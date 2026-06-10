@@ -1,0 +1,120 @@
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Light Mode (default) */
+  :root {
+    --bg: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #f1f5f9;
+    --card-bg: #ffffff;
+    --border: rgba(11, 31, 58, 0.1);
+    --border-strong: rgba(11, 31, 58, 0.2);
+    --text-primary: #0a0a0a;
+    --text-secondary: #475569;
+    --text-muted: #8a94a6;
+
+    /* Brand colors */
+    --orange: #ff6b00;
+    --orange-hover: #e55f00;
+    --orange-dim: rgba(255, 107, 0, 0.1);
+    --orange-dim-strong: rgba(255, 107, 0, 0.2);
+    --navy: #0b1f3a;
+    --blue: #2d8cff;
+    --blue-dim: rgba(45, 140, 255, 0.1);
+    --green: #10b981;
+    --red: #ef4444;
+
+    /* Map shadcn UI variables to brand colors */
+    --background: 0 0% 100%; /* #FFFFFF */
+    --foreground: 0 0% 4%; /* #0A0A0A */
+    --card: 0 0% 100%; /* #FFFFFF */
+    --card-foreground: 0 0% 4%; /* #0A0A0A */
+    --popover: 0 0% 100%; /* #FFFFFF */
+    --popover-foreground: 0 0% 4%; /* #0A0A0A */
+    --primary: 25 100% 50%; /* #FF6B00 (brand orange) */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF */
+    --secondary: 213 67% 14%; /* #0B1F3A (brand navy) */
+    --secondary-foreground: 0 0% 100%; /* #FFFFFF */
+    --muted: 210 40% 96.1%; /* #F1F5F9 (bg-tertiary) */
+    --muted-foreground: 215.4 16.3% 46.9%; /* #475569 (text-secondary) */
+    --accent: 25 100% 50% / 10%; /* orange-dim */
+    --accent-foreground: 25 100% 50%; /* #FF6B00 */
+    --destructive: 0 84.2% 60.2%; /* #EF4444 */
+    --destructive-foreground: 0 0% 98%; /* #FFFFFF */
+    --input: 213 67% 14% / 10%; /* rgba(11, 31, 58, 0.1) */
+    --ring: 25 100% 50%; /* #FF6B00 */
+    --radius: 0.5rem;
+  }
+
+  /* Dark Mode */
+  .dark {
+    --bg: #0a0a0a;
+    --bg-secondary: #0b1f3a;
+    --bg-tertiary: #0f2a4a;
+    --card-bg: #0b1f3a;
+    --border: rgba(255, 107, 0, 0.15);
+    --border-strong: rgba(255, 107, 0, 0.25);
+    --text-primary: #ffffff;
+    --text-secondary: #cbd5e1;
+    --text-muted: #8a94a6;
+
+    /* Map shadcn UI variables to brand colors */
+    --background: 0 0% 4%; /* #0A0A0A */
+    --foreground: 0 0% 100%; /* #FFFFFF */
+    --card: 213 67% 14%; /* #0B1F3A (brand navy) */
+    --card-foreground: 0 0% 100%; /* #FFFFFF */
+    --popover: 213 67% 14%; /* #0B1F3A */
+    --popover-foreground: 0 0% 100%; /* #FFFFFF */
+    --primary: 25 100% 50%; /* #FF6B00 (brand orange) */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF */
+    --secondary: 213 67% 20%; /* #0f2a4a */
+    --secondary-foreground: 0 0% 100%; /* #FFFFFF */
+    --muted: 213 67% 18%; /* #0f2a4a (bg-tertiary) */
+    --muted-foreground: 215 20.2% 80%; /* #CBD5E1 (text-secondary) */
+    --accent: 25 100% 50% / 15%; /* orange-dim-strong */
+    --accent-foreground: 25 100% 50%; /* #FF6B00 */
+    --destructive: 0 84.2% 60.2%; /* #EF4444 */
+    --destructive-foreground: 0 0% 98%; /* #FFFFFF */
+    --input: 25 100% 50% / 15%; /* rgba(255, 107, 0, 0.15) */
+    --ring: 25 100% 50%; /* #FF6B00 */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-color: var(--bg);
+    color: var(--text-primary);
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
