@@ -52,7 +52,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden py-16 md:py-28 bg-background transition-colors duration-300">
+    <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden py-16 md:py-28 bg-transparent transition-colors duration-300">
       
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none z-0" />
