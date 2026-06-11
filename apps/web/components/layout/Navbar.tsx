@@ -135,7 +135,7 @@ export function Navbar() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 5, scale: 0.98 }}
                           transition={{ duration: 0.15, ease: 'easeOut' }}
-                          className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[580px] p-6 rounded-2xl glass-card premium-shadow grid grid-cols-4 gap-6"
+                          className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[580px] p-6 rounded-2xl bg-white dark:bg-[#0b1f3a] border border-border dark:border-white/10 premium-shadow grid grid-cols-4 gap-6"
                         >
                           {serviceCategories.map((category) => (
                             <div key={category.name} className="flex flex-col space-y-3">
