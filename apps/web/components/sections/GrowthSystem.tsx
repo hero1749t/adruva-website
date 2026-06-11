@@ -102,7 +102,7 @@ export function GrowthSystem() {
                 variants={itemVariants}
                 whileHover={prefersReducedMotion ? {} : { y: -6 }}
                 className={cn(
-                  'relative p-6 rounded-2xl glass-card premium-shadow transition-all duration-300 flex flex-col items-start',
+                  'relative p-6 rounded-2xl glass-card-dark premium-shadow transition-all duration-300 flex flex-col items-start',
                   'hover:border-brand-orange/40 hover:shadow-[0_10px_25px_-10px_rgba(255,107,0,0.3)] group'
                 )}
               >
