@@ -125,10 +125,10 @@ export function ServicesPreview() {
               <motion.div
                 key={service.slug}
                 variants={itemVariants}
-                whileHover={prefersReducedMotion ? {} : { y: -4 }}
+                whileHover={prefersReducedMotion ? {} : { y: -6 }}
                 className={cn(
-                  'flex flex-col justify-between p-6 rounded-2xl border border-border/40 bg-card transition-all duration-300 min-h-[220px] group',
-                  'hover:border-brand-orange/30 hover:shadow-[0_4px_20px_rgba(255,107,0,0.06)]'
+                  'flex flex-col justify-between p-6 rounded-2xl glass-card premium-shadow transition-all duration-300 min-h-[220px] group',
+                  'hover:border-brand-orange/40 dark:hover:border-brand-orange/40 hover:shadow-[0_12px_30px_-10px_rgba(255,107,0,0.15)] dark:hover:shadow-[0_12px_30px_-10px_rgba(255,107,0,0.3)]'
                 )}
               >
                 <div>

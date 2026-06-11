@@ -89,8 +89,8 @@ export function Navbar() {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300',
           isScrolled
-            ? 'bg-black/90 backdrop-blur-xl border-b border-white/10 shadow-lg text-white py-3'
-            : 'bg-transparent text-foreground dark:text-white py-5'
+            ? 'bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-border dark:border-white/10 shadow-sm py-3'
+            : 'bg-transparent py-5'
         )}
       >
         <div className="max-w-[1100px] mx-auto px-5 md:px-10 flex items-center justify-between">
@@ -99,10 +99,7 @@ export function Navbar() {
             href="/" 
             className="flex items-center gap-1.5 focus:outline-none"
           >
-            <span className={cn(
-              'text-2xl font-extrabold tracking-tight transition-colors',
-              isScrolled ? 'text-white' : 'text-brand-navy dark:text-white'
-            )}>
+            <span className="text-2xl font-extrabold tracking-tight text-brand-navy dark:text-white transition-colors">
               Adruva<span className="text-brand-orange">.</span>
             </span>
           </Link>
@@ -122,8 +119,7 @@ export function Navbar() {
                   >
                     <button
                       className={cn(
-                        'flex items-center gap-1 text-sm font-medium transition-colors hover:text-brand-orange',
-                        isScrolled ? 'text-white/80' : 'text-foreground/80 dark:text-white/80',
+                        'flex items-center gap-1 text-sm font-medium transition-colors hover:text-brand-orange text-foreground/80 dark:text-white/80',
                         isActive && 'text-brand-orange font-semibold'
                       )}
                     >
@@ -139,7 +135,7 @@ export function Navbar() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 5, scale: 0.98 }}
                           transition={{ duration: 0.15, ease: 'easeOut' }}
-                          className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[580px] p-6 rounded-2xl border shadow-2xl bg-background text-foreground dark:bg-black dark:border-white/10 grid grid-cols-4 gap-6"
+                          className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[580px] p-6 rounded-2xl glass-card premium-shadow grid grid-cols-4 gap-6"
                         >
                           {serviceCategories.map((category) => (
                             <div key={category.name} className="flex flex-col space-y-3">
@@ -173,8 +169,7 @@ export function Navbar() {
                   key={link.name}
                   href={link.href}
                   className={cn(
-                    'text-sm font-medium transition-colors hover:text-brand-orange py-2 relative',
-                    isScrolled ? 'text-white/80' : 'text-foreground/80 dark:text-white/80',
+                    'text-sm font-medium transition-colors hover:text-brand-orange py-2 relative text-foreground/80 dark:text-white/80',
                     isActive && 'text-brand-orange font-semibold'
                   )}
                 >

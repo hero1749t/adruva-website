@@ -100,10 +100,10 @@ export function GrowthSystem() {
               <motion.div
                 key={step.number}
                 variants={itemVariants}
-                whileHover={prefersReducedMotion ? {} : { y: -4 }}
+                whileHover={prefersReducedMotion ? {} : { y: -6 }}
                 className={cn(
-                  'relative p-6 rounded-2xl border border-white/5 bg-[#0D0D0D] transition-all duration-300 flex flex-col items-start',
-                  'hover:border-brand-orange/30 group'
+                  'relative p-6 rounded-2xl glass-card premium-shadow transition-all duration-300 flex flex-col items-start',
+                  'hover:border-brand-orange/40 hover:shadow-[0_10px_25px_-10px_rgba(255,107,0,0.3)] group'
                 )}
               >
                 {/* Step Number Badge */}
