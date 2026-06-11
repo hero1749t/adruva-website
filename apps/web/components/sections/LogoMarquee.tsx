@@ -28,7 +28,7 @@ export function LogoMarquee() {
   const marqueeItems = [...clients, ...clients, ...clients, ...clients];
 
   return (
-    <section className="w-full bg-[#F8FAFC] dark:bg-[#0A0A0A] py-10 overflow-hidden border-y border-border/40 transition-colors duration-300">
+    <section className="w-full bg-[#f3f6fc] dark:bg-[#0b1328]/45 py-10 overflow-hidden border-y border-slate-200/80 dark:border-white/5 transition-colors duration-300">
       
       {/* Styles for CSS Marquee */}
       {!prefersReducedMotion && (
@@ -60,8 +60,8 @@ export function LogoMarquee() {
 
       <div className="relative w-full overflow-hidden flex py-2">
         {/* Left/Right fading edge masks for premium look */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#F8FAFC] dark:from-[#0A0A0A] to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#F8FAFC] dark:from-[#0A0A0A] to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#f3f6fc] dark:from-[#070d1d] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#f3f6fc] dark:from-[#070d1d] to-transparent z-10 pointer-events-none" />
 
         {prefersReducedMotion ? (
           /* Static wrap list if user prefers reduced motion */

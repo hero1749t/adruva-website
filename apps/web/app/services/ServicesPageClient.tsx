@@ -137,7 +137,7 @@ export function ServicesPageClient() {
       <Section className="py-6 relative z-10">
         <Container>
           <div className="flex justify-center border-b border-border/40 pb-px mb-12">
-            <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4 p-1.5 bg-muted/30 rounded-2xl border border-border/20 max-w-full overflow-x-auto">
+            <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4 p-1.5 bg-slate-50/50 dark:bg-white/5 rounded-2xl border border-slate-200/80 dark:border-white/5 max-w-full overflow-x-auto">
               {categories.map((category) => {
                 const isActive = activeTab === category.id;
                 return (
@@ -184,8 +184,8 @@ export function ServicesPageClient() {
                     exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 10 }}
                     whileHover={prefersReducedMotion ? {} : { y: -4 }}
                     className={cn(
-                      'flex flex-col justify-between p-6 rounded-2xl border border-border/40 bg-card transition-all duration-300 min-h-[240px] group relative overflow-hidden',
-                      'hover:border-brand-orange/30 hover:shadow-[0_8px_30px_rgba(255,107,0,0.06)]'
+                      'flex flex-col justify-between p-6 rounded-2xl border border-slate-200/80 dark:border-white/5 bg-card transition-all duration-300 min-h-[240px] group relative overflow-hidden',
+                      'hover:border-brand-orange/40 dark:hover:border-brand-orange/40 hover:shadow-[0_12px_30px_-10px_rgba(255,107,0,0.12)] dark:hover:shadow-[0_12px_30px_-10px_rgba(255,107,0,0.25)]'
                     )}
                   >
                     <div>

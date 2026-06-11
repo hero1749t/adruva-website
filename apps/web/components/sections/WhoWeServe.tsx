@@ -68,7 +68,7 @@ export function WhoWeServe() {
   };
 
   return (
-    <Section className="bg-[#F8FAFC] dark:bg-[#0B1F3A]/40">
+    <Section className="bg-[#f3f6fc] dark:bg-[#0b1328]/45">
       <Container>
         {/* Header */}
         <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-12">
@@ -97,7 +97,7 @@ export function WhoWeServe() {
               key={tag}
               variants={tagVariants}
               whileHover={prefersReducedMotion ? {} : { scale: 1.03, y: -2 }}
-              className="px-4 py-2 text-xs md:text-sm font-semibold rounded-full border border-border/40 bg-card text-muted-foreground hover:text-brand-orange hover:border-brand-orange/40 hover:bg-brand-orange/5 cursor-default transition-all duration-200 select-none font-inter shadow-sm"
+              className="px-4 py-2 text-xs md:text-sm font-semibold rounded-full border border-slate-200/80 dark:border-white/5 bg-card text-muted-foreground hover:text-brand-orange hover:border-brand-orange/40 hover:bg-brand-orange/5 cursor-default transition-all duration-200 select-none font-inter shadow-sm"
             >
               {tag}
             </motion.span>

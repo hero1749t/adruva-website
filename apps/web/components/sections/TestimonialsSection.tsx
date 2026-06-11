@@ -90,8 +90,8 @@ export function TestimonialsSection() {
               variants={itemVariants}
               whileHover={prefersReducedMotion ? {} : { y: -4 }}
               className={cn(
-                'p-6 md:p-8 rounded-2xl border border-white/5 bg-[#0D0D0D] transition-all duration-300 flex flex-col justify-between',
-                'hover:border-brand-orange/30 group'
+                'p-6 md:p-8 rounded-2xl border border-white/10 bg-[#0d172e] transition-all duration-300 flex flex-col justify-between',
+                'hover:border-brand-orange/40 hover:shadow-[0_12px_30px_-10px_rgba(255,107,0,0.15)] group'
               )}
             >
               <div>

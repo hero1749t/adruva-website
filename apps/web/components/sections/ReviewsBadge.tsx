@@ -27,7 +27,7 @@ export function ReviewsBadge() {
   };
 
   return (
-    <Section className="py-8 md:py-12 bg-background border-t border-border/20">
+    <Section className="py-8 md:py-12 bg-background border-t border-slate-200/80 dark:border-white/5">
       <Container>
         <motion.div
           variants={fadeInUp}

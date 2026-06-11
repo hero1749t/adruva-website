@@ -3,55 +3,57 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ChevronDown, Menu, Calendar } from 'lucide-react';
+import { 
+  ChevronDown, Menu, Calendar, 
+  Code2, Smartphone, Terminal, 
+  Cpu, Megaphone, Zap, 
+  Target, Share2, Search, Mail, 
+  Layout, Palette, Video, ChevronRight 
+} from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { MobileMenu } from './MobileMenu';
 
-import { SERVICES_BY_CATEGORY } from '@/lib/services-data';
-
 const serviceCategories = [
   {
     name: 'Build',
-    services: SERVICES_BY_CATEGORY.build.map((s) => ({
-      name:
-        s.name === 'Web Development'
-          ? 'Web Dev'
-          : s.name === 'Mobile App Development'
-          ? 'Mobile App'
-          : s.name === 'SaaS & Custom Software'
-          ? 'SaaS'
-          : s.name,
-      slug: s.slug,
-    })),
+    icon: Code2,
+    services: [
+      { name: 'Web Dev', slug: 'web-development', icon: Code2 },
+      { name: 'Mobile App', slug: 'mobile-app-development', icon: Smartphone },
+      { name: 'SaaS', slug: 'saas-custom-software', icon: Terminal },
+    ],
   },
   {
     name: 'Automate',
-    services: SERVICES_BY_CATEGORY.automate.map((s) => ({
-      name: s.name === 'Custom AI Solutions' ? 'Custom AI' : s.name,
-      slug: s.slug,
-    })),
+    icon: Cpu,
+    services: [
+      { name: 'AI Automation', slug: 'ai-automation', icon: Cpu },
+      { name: 'AI Ads', slug: 'ai-ads', icon: Megaphone },
+      { name: 'Custom AI', slug: 'custom-ai-solutions', icon: Zap },
+    ],
   },
   {
     name: 'Grow',
-    services: SERVICES_BY_CATEGORY.grow.map((s) => ({
-      name: s.name === 'Social Media Management' ? 'Social Media' : s.name,
-      slug: s.slug,
-    })),
+    icon: Target,
+    services: [
+      { name: 'Google Ads', slug: 'google-ads', icon: Target },
+      { name: 'Meta Ads', slug: 'meta-ads', icon: Share2 },
+      { name: 'SEO', slug: 'seo', icon: Search },
+      { name: 'Social Media', slug: 'social-media-management', icon: Share2 },
+      { name: 'Email Marketing', slug: 'email-marketing', icon: Mail },
+    ],
   },
   {
     name: 'Design',
-    services: SERVICES_BY_CATEGORY.design.map((s) => ({
-      name:
-        s.name === 'UI/UX Design'
-          ? 'UI/UX'
-          : s.name === 'Graphic Designing'
-          ? 'Graphic Design'
-          : s.name,
-      slug: s.slug,
-    })),
+    icon: Palette,
+    services: [
+      { name: 'UI/UX', slug: 'ui-ux-design', icon: Layout },
+      { name: 'Graphic Design', slug: 'graphic-designing', icon: Palette },
+      { name: 'Video Editing', slug: 'video-editing', icon: Video },
+    ],
   },
 ];
 
@@ -131,32 +133,65 @@ export function Navbar() {
                     <AnimatePresence>
                       {isServicesDropdownOpen && (
                         <motion.div
-                          initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                          initial={{ opacity: 0, y: 12, scale: 0.98 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 5, scale: 0.98 }}
-                          transition={{ duration: 0.15, ease: 'easeOut' }}
-                          className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[580px] p-6 rounded-2xl bg-white dark:bg-[#0b1f3a] border border-border dark:border-white/10 premium-shadow grid grid-cols-4 gap-6"
+                          exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                          transition={{ duration: 0.2, ease: 'easeOut' }}
+                          className="absolute left-1/2 -translate-x-1/2 top-full mt-3 w-[660px] rounded-2xl bg-gradient-to-b from-white to-slate-50 dark:from-[#0b1f3a] dark:to-[#071529] border border-slate-200/80 dark:border-white/10 premium-shadow overflow-hidden z-50"
                         >
-                          {serviceCategories.map((category) => (
-                            <div key={category.name} className="flex flex-col space-y-3">
-                              <h4 className="text-xs font-bold uppercase tracking-wider text-brand-orange">
-                                {category.name}
-                              </h4>
-                              <ul className="flex flex-col space-y-2">
-                                {category.services.map((service) => (
-                                  <li key={service.slug}>
-                                    <Link
-                                      href={`/services/${service.slug}`}
-                                      className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors block"
-                                      onClick={() => setIsServicesDropdownOpen(false)}
-                                    >
-                                      {service.name}
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
+                          {/* Top Orange Highlight Strip */}
+                          <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-brand-orange/40 via-brand-orange to-brand-orange/40" />
+                          
+                          {/* Main Grid Content */}
+                          <div className="grid grid-cols-4 gap-6 p-7">
+                            {serviceCategories.map((category) => {
+                              const CategoryIcon = category.icon;
+                              return (
+                                <div key={category.name} className="flex flex-col space-y-3.5">
+                                  <h4 className="text-xs font-bold uppercase tracking-wider text-brand-orange flex items-center gap-1.5 font-space">
+                                    <CategoryIcon className="h-3.5 w-3.5 shrink-0" />
+                                    {category.name}
+                                  </h4>
+                                  <ul className="flex flex-col space-y-1">
+                                    {category.services.map((service) => {
+                                      const ServiceIcon = service.icon;
+                                      return (
+                                        <li key={service.slug}>
+                                          <Link
+                                            href={`/services/${service.slug}`}
+                                            className="group/item flex items-center gap-2 p-2 -mx-2 rounded-xl transition-all duration-200 hover:bg-slate-100/75 dark:hover:bg-white/5"
+                                            onClick={() => setIsServicesDropdownOpen(false)}
+                                          >
+                                            <div className="flex items-center justify-center p-1 rounded-lg bg-slate-50/50 dark:bg-white/5 group-hover/item:bg-brand-orange/10 text-muted-foreground group-hover/item:text-brand-orange transition-colors">
+                                              <ServiceIcon className="h-3.5 w-3.5 shrink-0" />
+                                            </div>
+                                            <span className="text-[13px] font-medium text-foreground/80 dark:text-white/80 group-hover/item:text-brand-orange group-hover/item:translate-x-0.5 transition-all font-inter">
+                                              {service.name}
+                                            </span>
+                                          </Link>
+                                        </li>
+                                      );
+                                    })}
+                                  </ul>
+                                </div>
+                              );
+                            })}
+                          </div>
+
+                          {/* Elegant Bottom Footer */}
+                          <div className="border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-black/15 px-7 py-3.5 flex items-center justify-between">
+                            <span className="text-[11px] text-muted-foreground font-medium font-inter">
+                              Need a customized digital strategy? Let&apos;s build together.
+                            </span>
+                            <Link
+                              href="/contact"
+                              className="text-xs font-bold text-brand-orange hover:text-brand-orange-hover transition-colors flex items-center gap-1 font-inter animate-pulse"
+                              onClick={() => setIsServicesDropdownOpen(false)}
+                            >
+                              Book a Free Call
+                              <ChevronRight className="h-3.5 w-3.5" />
+                            </Link>
+                          </div>
                         </motion.div>
                       )}
                     </AnimatePresence>

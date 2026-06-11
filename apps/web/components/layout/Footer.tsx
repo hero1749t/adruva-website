@@ -87,7 +87,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="w-full bg-[#0A0A0A] text-white border-t border-white/10 pt-16 pb-24 md:pb-8 transition-colors duration-300">
+    <footer className="w-full bg-[#03050d] text-white border-t border-white/10 pt-16 pb-24 md:pb-8 transition-colors duration-300">
       <div className="max-w-[1100px] mx-auto px-5 md:px-10">
         
         {/* Main 4-Column Grid */}

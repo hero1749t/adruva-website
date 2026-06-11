@@ -164,7 +164,7 @@ export function HeroSection() {
             >
               <Button
                 size="lg"
-                className="w-full sm:w-auto bg-brand-orange hover:bg-brand-orange-hover text-white font-semibold flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(255,107,0,0.3)] transition-transform hover:scale-[1.02] active:scale-[0.98] h-12 px-6 rounded-lg text-sm"
+                className="w-full sm:w-auto bg-brand-orange hover:bg-brand-orange-hover text-white font-semibold flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(255,107,0,0.25)] orange-glow-hover hover:scale-[1.02] active:scale-[0.98] h-12 px-6 rounded-lg text-sm"
               >
                 Get a Free Audit
                 <ArrowRight className="h-4 w-4" />

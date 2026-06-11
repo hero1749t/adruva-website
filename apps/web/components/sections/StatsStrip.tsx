@@ -67,16 +67,16 @@ export function StatsStrip() {
   ];
 
   return (
-    <section className="w-full bg-background border-y border-border/40 py-2 transition-colors duration-300">
+    <section className="w-full bg-background border-y border-slate-200/80 dark:border-white/5 py-2 transition-colors duration-300">
       <Container>
-        <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-border/30">
+        <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-200/80 dark:divide-white/5">
           {stats.map((stat, idx) => (
             <div 
               key={idx} 
               className={cn(
                 "w-full",
                 // Handle mobile borders
-                idx % 2 === 0 ? "border-r md:border-r-0 border-border/30" : ""
+                idx % 2 === 0 ? "border-r md:border-r-0 border-slate-200/80 dark:border-white/5" : ""
               )}
             >
               <StatItem

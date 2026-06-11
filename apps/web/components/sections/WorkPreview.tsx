@@ -111,8 +111,8 @@ export function WorkPreview() {
               variants={itemVariants}
               whileHover={prefersReducedMotion ? {} : { y: -4 }}
               className={cn(
-                'flex flex-col rounded-2xl border border-border/40 bg-card overflow-hidden transition-all duration-300 group',
-                'hover:border-brand-orange/30 hover:shadow-[0_4px_20px_rgba(255,107,0,0.06)]'
+                'flex flex-col rounded-2xl border border-slate-200/80 dark:border-white/5 bg-card overflow-hidden transition-all duration-300 group',
+                'hover:border-brand-orange/40 dark:hover:border-brand-orange/40 hover:shadow-[0_12px_30px_-10px_rgba(255,107,0,0.12)] dark:hover:shadow-[0_12px_30px_-10px_rgba(255,107,0,0.25)]'
               )}
             >
               {/* Image Gradient Placeholder */}

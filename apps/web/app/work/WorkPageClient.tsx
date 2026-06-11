@@ -105,7 +105,7 @@ export function WorkPageClient() {
       {/* b) Combined Filter Bar */}
       <Section className="py-6 relative z-10">
         <Container>
-          <div className="flex flex-col gap-6 p-6 rounded-2xl border border-border/30 bg-muted/10 max-w-4xl mx-auto mb-12">
+          <div className="flex flex-col gap-6 p-6 rounded-2xl border border-slate-200/80 dark:border-white/5 bg-slate-50/50 dark:bg-white/5 max-w-4xl mx-auto mb-12">
             
             {/* Category Filter */}
             <div className="flex flex-col gap-2">
@@ -177,7 +177,7 @@ export function WorkPageClient() {
                   variants={fadeInUp}
                   exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 10 }}
                   whileHover={prefersReducedMotion ? {} : { y: -4 }}
-                  className="flex flex-col rounded-2xl border border-border/40 bg-card overflow-hidden transition-all duration-300 group hover:border-brand-orange/30 hover:shadow-[0_8px_30px_rgba(255,107,0,0.06)]"
+                  className="flex flex-col rounded-2xl border border-slate-200/80 dark:border-white/5 bg-card overflow-hidden transition-all duration-300 group hover:border-brand-orange/40 dark:hover:border-brand-orange/40 hover:shadow-[0_12px_30px_-10px_rgba(255,107,0,0.12)] dark:hover:shadow-[0_12px_30px_-10px_rgba(255,107,0,0.25)]"
                 >
                   {/* Gradient banner area */}
                   <div className={cn(

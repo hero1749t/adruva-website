@@ -68,8 +68,8 @@ export function CTASection({
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
           className={cn(
-            'relative overflow-hidden rounded-3xl bg-brand-navy border border-white/5 text-white text-center p-8 md:p-16 max-w-4xl mx-auto shadow-2xl',
-            'dark:bg-[#070707] dark:border-white/10'
+            'relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0b1f3a] to-[#071324] border border-brand-orange/15 text-white text-center p-8 md:p-16 max-w-4xl mx-auto shadow-2xl',
+            'dark:from-[#0d172e] dark:to-[#050914]'
           )}
         >
           {/* Brand Orange Radial Glow */}

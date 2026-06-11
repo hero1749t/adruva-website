@@ -7,80 +7,80 @@
 @layer base {
   /* Light Mode (default) */
   :root {
-    --bg: #ffffff;
-    --bg-secondary: #f8fafc;
-    --bg-tertiary: #f1f5f9;
+    --bg: #fafbfe;
+    --bg-secondary: #f3f6fc;
+    --bg-tertiary: #edf1f9;
     --card-bg: #ffffff;
-    --border: rgba(11, 31, 58, 0.1);
-    --border-strong: rgba(11, 31, 58, 0.2);
-    --text-primary: #0a0a0a;
+    --border: rgba(11, 31, 58, 0.08);
+    --border-strong: rgba(11, 31, 58, 0.16);
+    --text-primary: #0a0c10;
     --text-secondary: #475569;
     --text-muted: #8a94a6;
 
     /* Brand colors */
     --orange: #ff6b00;
     --orange-hover: #e55f00;
-    --orange-dim: rgba(255, 107, 0, 0.1);
-    --orange-dim-strong: rgba(255, 107, 0, 0.2);
+    --orange-dim: rgba(255, 107, 0, 0.08);
+    --orange-dim-strong: rgba(255, 107, 0, 0.16);
     --navy: #0b1f3a;
     --blue: #2d8cff;
-    --blue-dim: rgba(45, 140, 255, 0.1);
+    --blue-dim: rgba(45, 140, 255, 0.08);
     --green: #10b981;
     --red: #ef4444;
 
     /* Map shadcn UI variables to brand colors */
-    --background: 0 0% 100%; /* #FFFFFF */
-    --foreground: 0 0% 4%; /* #0A0A0A */
+    --background: 220 33% 98%; /* #fafbfe */
+    --foreground: 220 25% 5%; /* #0a0c10 */
     --card: 0 0% 100%; /* #FFFFFF */
-    --card-foreground: 0 0% 4%; /* #0A0A0A */
-    --popover: 0 0% 100%; /* #FFFFFF */
-    --popover-foreground: 0 0% 4%; /* #0A0A0A */
-    --primary: 25 100% 50%; /* #FF6B00 (brand orange) */
-    --primary-foreground: 0 0% 100%; /* #FFFFFF */
-    --secondary: 213 67% 14%; /* #0B1F3A (brand navy) */
-    --secondary-foreground: 0 0% 100%; /* #FFFFFF */
-    --muted: 210 40% 96.1%; /* #F1F5F9 (bg-tertiary) */
-    --muted-foreground: 215.4 16.3% 46.9%; /* #475569 (text-secondary) */
-    --accent: 25 100% 50% / 10%; /* orange-dim */
-    --accent-foreground: 25 100% 50%; /* #FF6B00 */
-    --destructive: 0 84.2% 60.2%; /* #EF4444 */
-    --destructive-foreground: 0 0% 98%; /* #FFFFFF */
-    --input: 213 67% 14% / 10%; /* rgba(11, 31, 58, 0.1) */
-    --ring: 25 100% 50%; /* #FF6B00 */
-    --radius: 0.5rem;
+    --card-foreground: 220 25% 5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 5%;
+    --primary: 25 100% 50%; /* #FF6B00 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 213 67% 14%; /* #0B1F3A */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 215 30% 95%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 25 100% 50% / 8%;
+    --accent-foreground: 25 100% 50%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --input: 213 67% 14% / 8%;
+    --ring: 25 100% 50%;
+    --radius: 0.625rem;
   }
 
   /* Dark Mode */
   .dark {
-    --bg: #0a0a0a;
-    --bg-secondary: #0b1f3a;
-    --bg-tertiary: #0f2a4a;
-    --card-bg: #0b1f3a;
-    --border: rgba(255, 107, 0, 0.15);
-    --border-strong: rgba(255, 107, 0, 0.25);
-    --text-primary: #ffffff;
+    --bg: #050814;
+    --bg-secondary: #0b1328;
+    --bg-tertiary: #101c3b;
+    --card-bg: #0d172e;
+    --border: rgba(255, 107, 0, 0.12);
+    --border-strong: rgba(255, 107, 0, 0.22);
+    --text-primary: #f8fafc;
     --text-secondary: #cbd5e1;
     --text-muted: #8a94a6;
 
     /* Map shadcn UI variables to brand colors */
-    --background: 0 0% 4%; /* #0A0A0A */
-    --foreground: 0 0% 100%; /* #FFFFFF */
-    --card: 213 67% 14%; /* #0B1F3A (brand navy) */
-    --card-foreground: 0 0% 100%; /* #FFFFFF */
-    --popover: 213 67% 14%; /* #0B1F3A */
-    --popover-foreground: 0 0% 100%; /* #FFFFFF */
-    --primary: 25 100% 50%; /* #FF6B00 (brand orange) */
-    --primary-foreground: 0 0% 100%; /* #FFFFFF */
-    --secondary: 213 67% 20%; /* #0f2a4a */
-    --secondary-foreground: 0 0% 100%; /* #FFFFFF */
-    --muted: 213 67% 18%; /* #0f2a4a (bg-tertiary) */
-    --muted-foreground: 215 20.2% 80%; /* #CBD5E1 (text-secondary) */
-    --accent: 25 100% 50% / 15%; /* orange-dim-strong */
-    --accent-foreground: 25 100% 50%; /* #FF6B00 */
-    --destructive: 0 84.2% 60.2%; /* #EF4444 */
-    --destructive-foreground: 0 0% 98%; /* #FFFFFF */
-    --input: 25 100% 50% / 15%; /* rgba(255, 107, 0, 0.15) */
-    --ring: 25 100% 50%; /* #FF6B00 */
+    --background: 228 60% 5%; /* #050814 */
+    --foreground: 210 40% 98%; /* #f8fafc */
+    --card: 225 55% 12%; /* #0d172e */
+    --card-foreground: 210 40% 98%;
+    --popover: 225 55% 12%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 25 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 225 55% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 225 50% 15%;
+    --muted-foreground: 215 20.2% 80%;
+    --accent: 25 100% 50% / 12%;
+    --accent-foreground: 25 100% 50%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --input: 25 100% 50% / 12%;
+    --ring: 25 100% 50%;
   }
 }
 
@@ -124,7 +124,7 @@ a {
   .glow-orb {
     position: absolute;
     border-radius: 9999px;
-    filter: blur(100px);
+    filter: blur(120px);
     opacity: 0.08;
     z-index: 0;
     pointer-events: none;
@@ -132,29 +132,38 @@ a {
   }
 
   .dark .glow-orb {
-    opacity: 0.16;
+    opacity: 0.18;
   }
 
   .glass-card {
-    background: rgba(255, 255, 255, 0.45);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(11, 31, 58, 0.06);
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(11, 31, 58, 0.05);
   }
 
   .dark .glass-card {
-    background: rgba(11, 31, 58, 0.25);
-    border: 1px solid rgba(255, 107, 0, 0.12);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: linear-gradient(135deg, rgba(13, 23, 46, 0.6) 0%, rgba(8, 18, 38, 0.35) 100%);
+    border: 1px solid rgba(255, 107, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
 
   .premium-shadow {
-    box-shadow: 0 10px 30px -10px rgba(11, 31, 58, 0.08);
+    box-shadow: 0 10px 30px -10px rgba(11, 31, 58, 0.04);
   }
 
   .dark .premium-shadow {
-    box-shadow: 0 10px 30px -10px rgba(255, 107, 0, 0.12);
+    box-shadow: 0 15px 40px -15px rgba(0, 0, 0, 0.45);
+  }
+
+  .orange-glow-hover {
+    transition: all 0.3s ease;
+  }
+
+  .orange-glow-hover:hover {
+    box-shadow: 0 0 25px 2px rgba(255, 107, 0, 0.35);
+    transform: translateY(-1px);
   }
 }
 
