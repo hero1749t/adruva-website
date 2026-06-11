@@ -7,6 +7,7 @@
 ## Phase 1: Pre-Deployment (Before any deploy)
 
 ### Code Quality
+
 - [ ] ESLint passes: `npm run lint` (0 errors)
 - [ ] TypeScript compiles: `npm run build` (0 errors)
 - [ ] All tests pass: `npm run test`
@@ -15,6 +16,7 @@
 - [ ] .env files in .gitignore — verified
 
 ### Content Ready
+
 - [ ] All placeholder text replaced with real content
 - [ ] Real team photos uploaded (Cloudinary)
 - [ ] Real client logos for marquee
@@ -27,6 +29,7 @@
 - [ ] Google Maps embed URL correct
 
 ### SEO Ready
+
 - [ ] All pages have unique meta titles
 - [ ] All pages have meta descriptions (120–160 chars)
 - [ ] OG images generated for all key pages
@@ -37,6 +40,7 @@
 - [ ] No broken internal links
 
 ### Performance
+
 - [ ] Lighthouse score 90+ on all 4 categories
 - [ ] Core Web Vitals: LCP < 2.5s, CLS < 0.1, FID < 100ms
 - [ ] All images using next/image
@@ -48,6 +52,7 @@
 ## Phase 2: Vercel Deployment (Frontend)
 
 ### Setup
+
 ```
 1. Push code to GitHub main branch
 2. Vercel → Import Project → Select repo
@@ -58,6 +63,7 @@
 ```
 
 ### Environment Variables (add in Vercel dashboard)
+
 ```
 NEXT_PUBLIC_APP_URL=https://adruvaSolution.com
 NEXT_PUBLIC_API_URL=https://api.adruvaSolution.com
@@ -72,6 +78,7 @@ NEXT_PUBLIC_SENTRY_DSN=[from Sentry]
 ```
 
 ### Post-Deploy
+
 - [ ] Vercel URL works (xyz.vercel.app)
 - [ ] All pages load without errors
 - [ ] Dark/light toggle works
@@ -82,6 +89,7 @@ NEXT_PUBLIC_SENTRY_DSN=[from Sentry]
 ## Phase 3: Railway Deployment (Backend)
 
 ### PostgreSQL Setup
+
 ```
 1. Railway → New Project → Add PostgreSQL
 2. Copy DATABASE_URL from Railway dashboard
@@ -93,6 +101,7 @@ NEXT_PUBLIC_SENTRY_DSN=[from Sentry]
 ```
 
 ### NestJS API Setup
+
 ```
 1. Railway → New Service → GitHub repo
 2. Root directory: apps/api
@@ -101,6 +110,7 @@ NEXT_PUBLIC_SENTRY_DSN=[from Sentry]
 ```
 
 ### Environment Variables (add in Railway dashboard)
+
 ```
 NODE_ENV=production
 PORT=3001
@@ -124,6 +134,7 @@ SENTRY_DSN=[from Sentry]
 ```
 
 ### Post-Deploy
+
 - [ ] API health check: GET https://api.adruvaSolution.com/health → `{ status: "ok" }`
 - [ ] Services endpoint: GET https://api.adruvaSolution.com/api/v1/services → returns 14 services
 - [ ] CORS working (no CORS errors from frontend)
@@ -133,6 +144,7 @@ SENTRY_DSN=[from Sentry]
 ## Phase 4: Cloudflare Setup
 
 ### DNS Configuration
+
 ```
 1. Login to Cloudflare → Add site: adruvaSolution.com
 2. Change nameservers at domain registrar to Cloudflare's
@@ -147,6 +159,7 @@ TXT   | @    | [Google Search Console verify] | ❌ DNS only
 ```
 
 ### SSL/TLS Settings
+
 ```
 SSL/TLS → Overview → Full (strict)
 SSL/TLS → Edge Certificates → Always Use HTTPS: ON
@@ -154,6 +167,7 @@ SSL/TLS → Edge Certificates → Min TLS Version: TLS 1.2
 ```
 
 ### Performance Settings
+
 ```
 Speed → Optimization → Auto Minify: JS ✅, CSS ✅, HTML ✅
 Caching → Configuration → Cache Level: Standard
@@ -161,6 +175,7 @@ Caching → Browser Cache TTL: 4 hours
 ```
 
 ### Security Settings
+
 ```
 Security → Settings → Security Level: Medium
 Security → Settings → Bot Fight Mode: ON
@@ -184,6 +199,7 @@ Firewall → Tools → Block: nothing (allow all for now)
 ## Phase 6: Final Testing (Production)
 
 ### Functional Testing
+
 - [ ] Home page loads correctly
 - [ ] All 6 main pages load
 - [ ] All 13 service pages load (/services/[slug])
@@ -204,12 +220,14 @@ Firewall → Tools → Block: nothing (allow all for now)
 - [ ] Mobile bottom bar appears on mobile
 
 ### Cross-Browser Testing
+
 - [ ] Chrome (desktop + mobile)
 - [ ] Firefox (desktop)
 - [ ] Safari (desktop + iOS)
 - [ ] Edge (desktop)
 
 ### Performance Audit (Production)
+
 ```
 Run Lighthouse on:
 - / (Home)
@@ -225,6 +243,7 @@ Target: Performance 90+, SEO 100, Accessibility 90+, Best Practices 90+
 ## Phase 7: Post-Launch
 
 ### Day 1
+
 - [ ] Google Search Console → verify domain
 - [ ] Submit sitemap: https://adruvaSolution.com/sitemap.xml
 - [ ] GA4 → verify real-time traffic works
@@ -232,6 +251,7 @@ Target: Performance 90+, SEO 100, Accessibility 90+, Best Practices 90+
 - [ ] Monitor Sentry for any production errors (first 24 hours)
 
 ### Week 1
+
 - [ ] Check GA4 for traffic + bounce rate
 - [ ] Check Search Console for indexing status
 - [ ] Check Sentry for any errors
@@ -239,6 +259,7 @@ Target: Performance 90+, SEO 100, Accessibility 90+, Best Practices 90+
 - [ ] Verify all WhatsApp notifications still working
 
 ### Month 1
+
 - [ ] First blog post audit (traffic, rankings)
 - [ ] Review contact form submissions quality
 - [ ] Check Cloudinary storage usage

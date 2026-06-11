@@ -12,6 +12,7 @@
 **Key Feature:** 100% admin-controlled — job postings, hiring process, salary, everything managed from admin panel. Zero code changes needed to post/close jobs.
 
 **Types of Opportunities:**
+
 - Full-time jobs
 - Internships (paid/unpaid, flexible duration)
 - Freelance projects
@@ -21,6 +22,7 @@
 ## 2. Public Careers Page (`/careers`)
 
 ### Navigation
+
 - **Navbar:** Add "Careers" link (between Blog and Contact)
 - **Footer:** Add "Careers" under Company column
 - **About page:** Mention "We're hiring!" with link in team section
@@ -28,6 +30,7 @@
 ### Page Sections (top to bottom)
 
 #### Section 1: Hero
+
 ```
 Tag: "JOIN OUR TEAM"
 H1: "Where Your Career Meets Real Impact"
@@ -38,6 +41,7 @@ Background: Dark navy with subtle orange particles
 ```
 
 #### Section 2: Life at Adruva (Culture)
+
 ```
 Tag: "OUR CULTURE"
 Title: "Why people love working here"
@@ -53,6 +57,7 @@ Title: "Why people love working here"
 ```
 
 #### Section 3: Benefits & Perks
+
 ```
 Tag: "WHAT YOU GET"
 Title: "Benefits that actually matter"
@@ -76,6 +81,7 @@ Internships:
 ```
 
 #### Section 4: Hiring Process
+
 ```
 Tag: "HOW WE HIRE"
 Title: "Our hiring process"
@@ -96,6 +102,7 @@ Timeline note: "We aim to respond within 7 business days"
 ```
 
 #### Section 5: Job Listings
+
 ```
 Tag: "OPEN POSITIONS"
 Title: "Find your role at Adruva"
@@ -121,6 +128,7 @@ Click → opens job detail page or modal
 ```
 
 #### Section 6: Job Detail Page (`/careers/[slug]`)
+
 ```
 Full job detail:
 1. Header: Title + Type + Department + Location badges
@@ -135,6 +143,7 @@ Full job detail:
 ```
 
 #### Section 7: Application Form (per job)
+
 ```
 Fields:
 - Full Name *
@@ -291,6 +300,7 @@ GET  /api/v1/admin/careers/analytics               → Hiring analytics data
 ```
 
 ### GET /api/v1/careers Query Params
+
 ```
 ?type=internship&department=web-development&location=remote&status=active
 ```
@@ -300,14 +310,16 @@ GET  /api/v1/admin/careers/analytics               → Hiring analytics data
 ## 6. Admin Panel — Careers Module
 
 ### Access Control
-| Role | Permissions |
-|---|---|
-| owner | Full access — create/edit/delete jobs + manage applications |
-| manager | Create/edit jobs + manage applications (no delete) |
-| content_writer | View only |
-| HR (future role) | Full careers access |
+
+| Role             | Permissions                                                 |
+| ---------------- | ----------------------------------------------------------- |
+| owner            | Full access — create/edit/delete jobs + manage applications |
+| manager          | Create/edit jobs + manage applications (no delete)          |
+| content_writer   | View only                                                   |
+| HR (future role) | Full careers access                                         |
 
 ### Admin Sidebar (add after Newsletter)
+
 ```
 📋 Careers
   ├── Job Listings
@@ -315,6 +327,7 @@ GET  /api/v1/admin/careers/analytics               → Hiring analytics data
 ```
 
 ### Job Listings Page (`/admin/careers`)
+
 ```
 Header: "Job Listings" + "+ Post New Job" button
 Stats row: Active Jobs | Total Applications | This Week | Avg per Job
@@ -333,6 +346,7 @@ Actions per row:
 ```
 
 ### Create/Edit Job Page (`/admin/careers/new`)
+
 ```
 Form sections:
 
@@ -375,6 +389,7 @@ Buttons: "Save Draft" | "Publish Job"
 ```
 
 ### Applications Manager (`/admin/applications`)
+
 ```
 Filter: All | Job title | Status | Date range | Department
 Search: by name, email
@@ -393,6 +408,7 @@ Status pipeline (color coded):
 ```
 
 ### Application Detail View (Modal/Page)
+
 ```
 Left panel:
   - Candidate info (name, email, phone, location)
@@ -417,6 +433,7 @@ Right panel:
 ```
 
 ### Email Candidate (from Admin)
+
 ```
 Compose modal:
   - To: [candidate email] (pre-filled, locked)
@@ -436,6 +453,7 @@ Logged in application history
 ```
 
 ### Hiring Analytics Dashboard
+
 ```
 Stats cards:
   - Total Applications (all time)
@@ -460,11 +478,13 @@ Export: "Export All Applications CSV" button
 ## 7. Navbar + Footer Updates
 
 ### Navbar (update)
+
 ```
 Links order: Home | About | Services | Our Work | Blog | Careers | Contact
 ```
 
 ### Footer (update Company column)
+
 ```
 Company links:
 About Us
@@ -477,6 +497,7 @@ Terms
 ```
 
 ### About Page (add in team section)
+
 ```
 Below team grid, add banner:
 "We're growing! 🚀 Check out our open positions →"
@@ -524,6 +545,7 @@ Step E: Navbar + Footer update
 ## 9. Update CLAUDE.md
 
 Add to Pages Overview:
+
 ```
 | Careers Listing | /careers | Public |
 | Job Detail | /careers/[slug] | Public |
@@ -532,11 +554,13 @@ Add to Pages Overview:
 ```
 
 Add to Admin Sidebar:
+
 ```
 📋 Careers (owner + manager + HR)
 ```
 
 Add to Service Categories note:
+
 ```
 Departments (dynamic, admin-managed):
 Web Development, Mobile, AI/ML, UI/UX Design, Digital Marketing,

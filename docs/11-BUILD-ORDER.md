@@ -18,26 +18,27 @@
 ## Phase 1 — Setup + Design System + Home (Week 1-2)
 
 ### Step 1: Monorepo Setup
+
 ```
 Read: CLAUDE.md
 
 1. Init Turborepo:
    npx create-turbo@latest adruva-website
-   
+
 2. Setup apps/web (Next.js 14):
    - App Router
    - TypeScript strict
    - Tailwind CSS
    - ESLint + Prettier + Husky
-   
+
 3. Setup apps/api (NestJS):
    npm i @nestjs/cli
    nest new api
-   
+
 4. Configure Turborepo:
    - Shared build pipeline
    - Shared lint config
-   
+
 5. Setup packages/config:
    - Shared ESLint config
    - Shared Tailwind config
@@ -51,7 +52,7 @@ Read: CLAUDE.md
 7. Setup GitHub repo (private)
 8. Setup Husky pre-commit hooks:
    - lint-staged: ESLint + Prettier on staged files
-   
+
 9. Setup GitHub Actions:
    - .github/workflows/ci.yml
    - On push: lint + test
@@ -63,6 +64,7 @@ Test: Both apps run locally, CI passes
 ```
 
 ### Step 2: Design System
+
 ```
 Read: docs/10-DESIGN-SYSTEM.md
 
@@ -70,7 +72,7 @@ Read: docs/10-DESIGN-SYSTEM.md
 2. Install + configure Shadcn/ui:
    npx shadcn@latest init
    Add components: Button, Card, Input, Textarea, Select, Badge, Toast, Dialog, Dropdown
-   
+
 3. Install next-themes (dark/light mode)
 4. Setup CSS variables for dark/light in globals.css
 5. Install + configure Framer Motion
@@ -85,6 +87,7 @@ Test: Design system renders correctly in light + dark mode
 ```
 
 ### Step 3: Layout Components
+
 ```
 Read: docs/04-COMPONENTS.md
 
@@ -95,22 +98,22 @@ Read: docs/04-COMPONENTS.md
    - Services mega dropdown menu (4 categories)
    - Dark/light toggle
    - Mobile: hamburger → full screen overlay
-   
+
 2. Footer component:
    - 4 columns: Brand+Newsletter | Services | Company | Contact+Social
    - Newsletter signup form
    - Social links (LinkedIn, Instagram, Twitter, YouTube, WhatsApp)
    - Copyright bar
-   
+
 3. FloatingWhatsApp component:
    - Fixed bottom-right
    - Pulse animation
    - Opens WhatsApp chat with pre-filled message
-   
+
 4. MobileBottomBar component:
    - Fixed bottom on mobile only
    - "Book a Free Call" + "WhatsApp" buttons
-   
+
 5. CookieBanner component
 6. BackToTop button
 7. PageTransition wrapper (Framer Motion)
@@ -120,6 +123,7 @@ Test: Layout renders on all screen sizes
 ```
 
 ### Step 4: Home Page
+
 ```
 Read: docs/03-PAGES.md (Home section)
 
@@ -145,6 +149,7 @@ Test: Home page renders perfectly on mobile + desktop + tablet
 ## Phase 2 — Services Pages (Week 3-4)
 
 ### Step 5: Services Listing Page
+
 ```
 Read: docs/03-PAGES.md (Services section)
 
@@ -162,6 +167,7 @@ Test: All service categories filter correctly
 ```
 
 ### Step 6: All 13 Individual Service Pages
+
 ```
 Read: docs/03-PAGES.md (Individual Service Page section)
 
@@ -192,6 +198,7 @@ Use static JSON data files for now (real data from admin later)
 ## Phase 3 — Remaining Pages (Week 5-6)
 
 ### Step 7: About Page
+
 ```
 1. Hero section
 2. Company story (narrative copy)
@@ -202,6 +209,7 @@ Use static JSON data files for now (real data from admin later)
 ```
 
 ### Step 8: Our Work + Case Studies
+
 ```
 1. Our Work listing page:
    - Dual filter (category + industry) — client-side filtering
@@ -214,6 +222,7 @@ Use static JSON data files for now (real data from admin later)
 ```
 
 ### Step 9: Blog Pages
+
 ```
 1. Blog listing page:
    - Search (client-side for now)
@@ -234,6 +243,7 @@ Use static JSON data files for now (real data from admin later)
 ```
 
 ### Step 10: Contact Page
+
 ```
 1. Contact form (all fields + Zod validation)
 2. reCAPTCHA v3 setup (frontend token generation)
@@ -244,6 +254,7 @@ Use static JSON data files for now (real data from admin later)
 ```
 
 ### Step 11: Legal + 404 Pages
+
 ```
 1. Privacy Policy page (static content)
 2. Terms of Service page (static content)
@@ -257,6 +268,7 @@ Use static JSON data files for now (real data from admin later)
 ## Phase 4 — Backend + Admin + Integrations (Week 7-9)
 
 ### Step 12: NestJS + Database Setup
+
 ```
 Read: docs/02-TRD.md (Backend section)
 
@@ -274,6 +286,7 @@ Read: docs/02-TRD.md (Backend section)
 ```
 
 ### Step 13: Inquiries API + All Integrations
+
 ```
 Read: docs/09-INTEGRATIONS.md
 
@@ -296,6 +309,7 @@ Test: Submit form → all 4 actions trigger correctly
 ```
 
 ### Step 14: Blog + Projects API
+
 ```
 1. Blog CRUD API:
    GET /api/v1/blog (list, paginated)
@@ -321,6 +335,7 @@ Test: Submit form → all 4 actions trigger correctly
 ```
 
 ### Step 15: Admin Panel
+
 ```
 Read: docs/06-CMS-ADMIN.md
 
@@ -364,6 +379,7 @@ Read: docs/06-CMS-ADMIN.md
 ```
 
 ### Step 16: Connect Frontend to Backend
+
 ```
 1. Blog listing: fetch from API (ISR)
 2. Blog post: fetch from API (ISR)
@@ -380,6 +396,7 @@ Read: docs/06-CMS-ADMIN.md
 ## Phase 5 — SEO + Performance + Launch (Week 10-11)
 
 ### Step 17: SEO Implementation
+
 ```
 Read: docs/07-SEO.md
 
@@ -405,6 +422,7 @@ Read: docs/07-SEO.md
 ```
 
 ### Step 18: Performance Optimization
+
 ```
 1. Audit Core Web Vitals (Lighthouse)
 2. Image optimization (all next/image with proper sizes)
@@ -416,6 +434,7 @@ Read: docs/07-SEO.md
 ```
 
 ### Step 19: Analytics + Monitoring
+
 ```
 1. GA4 integration (pageview + events)
 2. Sentry setup (frontend + backend)
@@ -424,6 +443,7 @@ Read: docs/07-SEO.md
 ```
 
 ### Step 20: Testing + QA
+
 ```
 1. Jest unit tests for:
    - Form validation (Zod schemas)
@@ -444,6 +464,7 @@ Read: docs/07-SEO.md
 ```
 
 ### Step 21: Pre-Launch
+
 ```
 1. Replace all placeholder content with real content
 2. Add real team photos
@@ -462,6 +483,7 @@ Read: docs/07-SEO.md
 ```
 
 ### Step 22: Launch
+
 ```
 1. Push to main branch → auto-deploy to Vercel
 2. Verify production deployment works
@@ -476,16 +498,16 @@ Read: docs/07-SEO.md
 
 ## Quick Reference: What to Read Before Each Task
 
-| Task | Read |
-|---|---|
-| Any page spec | docs/03-PAGES.md |
-| Any component | docs/04-COMPONENTS.md |
-| Any API endpoint | docs/05-API.md |
-| Admin panel | docs/06-CMS-ADMIN.md |
-| SEO | docs/07-SEO.md |
-| Animations | docs/08-ANIMATIONS.md |
-| CRM/Email/WhatsApp | docs/09-INTEGRATIONS.md |
+| Task                 | Read                     |
+| -------------------- | ------------------------ |
+| Any page spec        | docs/03-PAGES.md         |
+| Any component        | docs/04-COMPONENTS.md    |
+| Any API endpoint     | docs/05-API.md           |
+| Admin panel          | docs/06-CMS-ADMIN.md     |
+| SEO                  | docs/07-SEO.md           |
+| Animations           | docs/08-ANIMATIONS.md    |
+| CRM/Email/WhatsApp   | docs/09-INTEGRATIONS.md  |
 | Colors/fonts/spacing | docs/10-DESIGN-SYSTEM.md |
-| Architecture | docs/02-TRD.md |
-| Features list | docs/01-PRD.md |
-| Everything else | CLAUDE.md |
+| Architecture         | docs/02-TRD.md           |
+| Features list        | docs/01-PRD.md           |
+| Everything else      | CLAUDE.md                |

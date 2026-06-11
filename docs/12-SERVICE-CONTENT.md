@@ -10,6 +10,7 @@
 ---
 
 ### 1. Web Development
+
 **Slug:** `web-development`
 **Category:** build
 **Tagline:** "Websites that work as hard as you do"
@@ -18,6 +19,7 @@
 We build fast, scalable, and conversion-focused websites — from simple business landing pages to complex web applications. Every project starts with understanding your business goals, not just your design preferences.
 
 **Benefits:**
+
 1. 🚀 Fast & SEO-Optimized — Built with Next.js for lightning-fast load times and Google rankings
 2. 📱 Mobile-First Design — 70% of your customers visit on mobile. We design for them first.
 3. 🔒 Secure & Reliable — SSL, secure forms, regular updates — your site stays safe
@@ -26,6 +28,7 @@ We build fast, scalable, and conversion-focused websites — from simple busines
 6. 🛠️ Easy to Update — Admin panel or CMS so you can update content without a developer
 
 **What's Included (Base):**
+
 - Complete website design + development
 - Mobile responsive (all screen sizes)
 - Contact form with email + WhatsApp notification
@@ -40,6 +43,7 @@ We build fast, scalable, and conversion-focused websites — from simple busines
 Next.js, React, Tailwind CSS, NestJS, PostgreSQL, Vercel
 
 **Process Steps:**
+
 1. Discovery Call — Understand your business, goals, target audience, competitors
 2. Wireframe & Design — Low-fi wireframes → high-fi Figma designs → your approval
 3. Development — Build the actual website, mobile-first
@@ -70,6 +74,7 @@ A: Landing page: 1–2 weeks. Business website: 2–4 weeks. Web app: 6–16 wee
 ---
 
 ### 2. Mobile App Development
+
 **Slug:** `mobile-app-development`
 **Category:** build
 **Tagline:** "Apps your customers will actually use"
@@ -78,6 +83,7 @@ A: Landing page: 1–2 weeks. Business website: 2–4 weeks. Web app: 6–16 wee
 We build iOS and Android mobile applications that are fast, intuitive, and built for real users. Whether you need a customer-facing app or an internal tool, we handle design, development, and deployment.
 
 **Benefits:**
+
 1. 📱 iOS + Android — One codebase, both platforms (React Native)
 2. 🎨 Beautiful UI — Designed for real users, not just developers
 3. ⚡ High Performance — Native-like speed without native costs
@@ -86,6 +92,7 @@ We build iOS and Android mobile applications that are fast, intuitive, and built
 6. 🏪 App Store Ready — We handle App Store + Play Store submission
 
 **What's Included:**
+
 - Full mobile app (iOS + Android) via React Native
 - UI/UX design (Figma)
 - Backend API (NestJS + PostgreSQL)
@@ -98,6 +105,7 @@ We build iOS and Android mobile applications that are fast, intuitive, and built
 React Native, Expo, NestJS, PostgreSQL, Firebase, Razorpay/Stripe
 
 **Process Steps:**
+
 1. Discovery — Understand users, core features, user journeys
 2. Design — Wireframes + UI design (mobile-first, platform-specific guidelines)
 3. Development — Frontend app + backend API
@@ -125,6 +133,7 @@ A: Most apps need a backend. We build it as part of the project.
 ---
 
 ### 3. SaaS / Custom Software
+
 **Slug:** `saas-custom-software`
 **Category:** build
 **Tagline:** "Build the software your business actually needs"
@@ -133,6 +142,7 @@ A: Most apps need a backend. We build it as part of the project.
 Off-the-shelf software rarely fits perfectly. We build custom SaaS products and internal tools tailored exactly to your business — whether it's a client management system, booking platform, or industry-specific tool.
 
 **Benefits:**
+
 1. 🎯 Built for YOUR workflow — Not a generic tool adapted for you
 2. 📈 Scales with your business — Architecture designed to grow from 10 to 10,000 users
 3. 🔗 Integrates with everything — Connect to any third-party tool via API
@@ -141,6 +151,7 @@ Off-the-shelf software rarely fits perfectly. We build custom SaaS products and 
 6. 🛠️ We maintain it — Ongoing support and feature additions as you grow
 
 **What's Included:**
+
 - Full product design (UX/UI)
 - Frontend (Next.js)
 - Backend API (NestJS + PostgreSQL)
@@ -154,6 +165,7 @@ Off-the-shelf software rarely fits perfectly. We build custom SaaS products and 
 Next.js, NestJS, PostgreSQL, Redis, Cloudinary, Razorpay/Stripe
 
 **Process Steps:**
+
 1. Discovery + Requirements — Deep dive into your workflow, users, pain points
 2. Architecture — Database design, API design, tech decisions
 3. Design — Full UX/UI design in Figma
@@ -179,6 +191,7 @@ A: Yes — we offer monthly maintenance retainers after project delivery.
 ---
 
 ### 4. AI Automation
+
 **Slug:** `ai-automation`
 **Category:** automate
 **Tagline:** "Stop doing manually what AI can do for you"
@@ -187,6 +200,7 @@ A: Yes — we offer monthly maintenance retainers after project delivery.
 We identify repetitive tasks in your business and build AI systems to handle them — from automated customer follow-ups and WhatsApp bots to document processing and workflow automation.
 
 **Benefits:**
+
 1. ⏰ Save 10+ hours/week — Automate repetitive tasks that eat your time
 2. 🤖 24/7 Customer Response — AI handles enquiries even at 2am
 3. ❌ Eliminate Human Error — Automated processes don't make mistakes
@@ -195,6 +209,7 @@ We identify repetitive tasks in your business and build AI systems to handle the
 6. 🚀 Faster Response Times — Instant replies vs. hours of waiting
 
 **What's Included:**
+
 - Business process audit (identify automation opportunities)
 - Custom AI workflow design
 - Integration with your existing tools (WhatsApp, email, CRM, etc.)
@@ -206,6 +221,7 @@ We identify repetitive tasks in your business and build AI systems to handle the
 Python, OpenAI API, n8n, Make.com, WhatsApp Business API, Zapier, Node.js
 
 **Process Steps:**
+
 1. Audit — Map your current workflows, find automation opportunities
 2. Design — Design the automation flow (what triggers what)
 3. Build — Build and integrate the automation
@@ -225,6 +241,7 @@ A: We monitor during the first 30 days. After that, maintenance is available on 
 ---
 
 ### 5. AI Ads
+
 **Slug:** `ai-ads`
 **Category:** automate
 **Tagline:** "Ads that learn and optimize themselves"
@@ -233,6 +250,7 @@ A: We monitor during the first 30 days. After that, maintenance is available on 
 We build AI-powered advertising systems that automatically optimize your Google and Meta ad campaigns — adjusting bids, audiences, and creatives based on real performance data, not guesswork.
 
 **Benefits:**
+
 1. 📈 Higher ROI — AI finds the best-performing combinations faster than any human
 2. 🎯 Smarter Targeting — Finds your ideal customer based on behavior, not just demographics
 3. ⚡ Real-Time Optimization — Adjusts campaigns 24/7, not just during office hours
@@ -241,6 +259,7 @@ We build AI-powered advertising systems that automatically optimize your Google 
 6. 📊 Clear Reporting — Know exactly what's working and why
 
 **What's Included:**
+
 - Ad account audit + setup
 - AI bidding strategy configuration
 - Audience building (custom + lookalike)
@@ -249,6 +268,7 @@ We build AI-powered advertising systems that automatically optimize your Google 
 - Monthly strategy review
 
 **Process Steps:**
+
 1. Audit — Review existing ad accounts, identify waste and opportunities
 2. Strategy — Define objectives, audiences, budget allocation
 3. Setup — Configure AI bidding, build audiences, set up tracking
@@ -258,6 +278,7 @@ We build AI-powered advertising systems that automatically optimize your Google 
 ---
 
 ### 6. Custom AI Solutions
+
 **Slug:** `custom-ai-solutions`
 **Category:** automate
 **Tagline:** "AI built specifically for your industry and workflow"
@@ -266,6 +287,7 @@ We build AI-powered advertising systems that automatically optimize your Google 
 When off-the-shelf AI tools don't fit, we build custom AI solutions — chatbots trained on your data, recommendation engines, document analysis tools, and more.
 
 **Benefits:**
+
 1. 🎯 Trained on YOUR data — Not generic AI, but AI that knows your business
 2. 🔒 Private + Secure — Your data never goes to public AI models
 3. 🔗 Fully Integrated — Works within your existing tools and workflow
@@ -290,6 +312,7 @@ A: Yes — we build private AI systems. Your data is never used to train public 
 ---
 
 ### 7. Google Ads
+
 **Slug:** `google-ads`
 **Category:** grow
 **Tagline:** "Show up exactly when customers are searching for you"
@@ -298,6 +321,7 @@ A: Yes — we build private AI systems. Your data is never used to train public 
 We manage Google Ads campaigns that put your business in front of people actively searching for your products or services — with full transparency on spend and results.
 
 **Benefits:**
+
 1. 🎯 Intent-Based Targeting — Reach people actively searching for what you sell
 2. 💰 Full Spend Transparency — See every rupee spent and what it generated
 3. 📈 Measurable ROI — Track calls, forms, and sales directly from ads
@@ -306,6 +330,7 @@ We manage Google Ads campaigns that put your business in front of people activel
 6. 📊 Monthly Reports — Clear, jargon-free performance reports
 
 **What's Included:**
+
 - Google Ads account setup/audit
 - Keyword research + competitor analysis
 - Campaign structure + ad copy writing
@@ -315,6 +340,7 @@ We manage Google Ads campaigns that put your business in front of people activel
 - Dedicated account manager
 
 **Process Steps:**
+
 1. Audit — Review existing account or research competitors
 2. Strategy — Keywords, bidding strategy, budget allocation
 3. Setup — Campaign build, ad copy, tracking
@@ -331,6 +357,7 @@ A: Usually 2–4 weeks to gather data, 4–8 weeks to see meaningful optimizatio
 ---
 
 ### 8. Meta Ads (Facebook + Instagram)
+
 **Slug:** `meta-ads`
 **Category:** grow
 **Tagline:** "Find your customers where they spend their time"
@@ -339,6 +366,7 @@ A: Usually 2–4 weeks to gather data, 4–8 weeks to see meaningful optimizatio
 We run Facebook and Instagram ad campaigns that build awareness, generate leads, and drive sales — using creative that stops the scroll and targeting that reaches the right people.
 
 **Benefits:**
+
 1. 👥 Massive Reach — 400M+ Indians use Facebook/Instagram
 2. 🎯 Precise Targeting — Age, location, interests, behavior, lookalikes
 3. 🎨 Creative That Converts — Scroll-stopping visuals + copy designed to perform
@@ -347,6 +375,7 @@ We run Facebook and Instagram ad campaigns that build awareness, generate leads,
 6. 💰 Cost-Effective — Often lower cost-per-lead than Google for awareness campaigns
 
 **What's Included:**
+
 - Meta Business Manager setup
 - Pixel installation + event tracking
 - Campaign strategy + audience building
@@ -357,6 +386,7 @@ We run Facebook and Instagram ad campaigns that build awareness, generate leads,
 ---
 
 ### 9. SEO
+
 **Slug:** `seo`
 **Category:** grow
 **Tagline:** "Rank higher. Get found. Convert better."
@@ -365,6 +395,7 @@ We run Facebook and Instagram ad campaigns that build awareness, generate leads,
 We improve your search engine rankings so customers find you organically — without paying for every click. Our SEO combines technical optimization, content strategy, and link building.
 
 **Benefits:**
+
 1. 🆓 Free Traffic — Once ranked, organic visitors cost nothing per click
 2. 🏆 Long-Term Results — Rankings compound over time (unlike paid ads)
 3. 🎯 High-Intent Visitors — People searching for your service are ready to buy
@@ -373,6 +404,7 @@ We improve your search engine rankings so customers find you organically — wit
 6. 🔧 Technical + Content — We handle both sides of SEO
 
 **What's Included:**
+
 - Technical SEO audit + fixes (site speed, mobile, structure)
 - Keyword research + content strategy
 - On-page optimization (meta tags, headers, content)
@@ -393,6 +425,7 @@ A: SEO is ongoing — algorithms change, competitors optimize. We recommend at l
 ---
 
 ### 10. Social Media Management
+
 **Slug:** `social-media-management`
 **Category:** grow
 **Tagline:** "A consistent, professional social presence without the headache"
@@ -401,6 +434,7 @@ A: SEO is ongoing — algorithms change, competitors optimize. We recommend at l
 We handle your social media completely — content creation, scheduling, engagement, and growth. You focus on your business, we handle your Instagram, Facebook, and LinkedIn.
 
 **Benefits:**
+
 1. 📅 Consistent Posting — Never miss a post or run out of content ideas
 2. 🎨 Professional Content — Designed graphics, captions, hashtags done right
 3. 💬 Engagement Management — Replies to comments and DMs
@@ -409,6 +443,7 @@ We handle your social media completely — content creation, scheduling, engagem
 6. ⏰ Save 10+ hours/week — No more stressing about what to post
 
 **What's Included:**
+
 - Content calendar (monthly)
 - Graphic design (posts, stories, reels covers)
 - Caption writing + hashtag research
@@ -421,6 +456,7 @@ We handle your social media completely — content creation, scheduling, engagem
 ---
 
 ### 11. Email Marketing
+
 **Slug:** `email-marketing`
 **Category:** grow
 **Tagline:** "The highest ROI marketing channel, done right"
@@ -429,6 +465,7 @@ We handle your social media completely — content creation, scheduling, engagem
 Email marketing delivers ₹42 for every ₹1 spent (on average). We set up automated email sequences and campaigns that nurture leads, retain customers, and drive repeat sales.
 
 **Benefits:**
+
 1. 💰 Highest Marketing ROI — Email consistently outperforms every other channel
 2. 🤖 Automated Sequences — Welcome series, follow-ups, abandoned cart — all automatic
 3. 🎯 Highly Personalized — Right message to the right person at the right time
@@ -437,6 +474,7 @@ Email marketing delivers ₹42 for every ₹1 spent (on average). We set up auto
 6. 🔄 Works 24/7 — Automated emails go out even when you're sleeping
 
 **What's Included:**
+
 - Email platform setup (Mailchimp/Brevo/Klaviyo)
 - List segmentation strategy
 - Welcome sequence (5–7 emails)
@@ -451,6 +489,7 @@ Email marketing delivers ₹42 for every ₹1 spent (on average). We set up auto
 ---
 
 ### 12. UI/UX Design
+
 **Slug:** `ui-ux-design`
 **Category:** design
 **Tagline:** "Design that users love and businesses need"
@@ -459,6 +498,7 @@ Email marketing delivers ₹42 for every ₹1 spent (on average). We set up auto
 We design digital experiences that are beautiful, intuitive, and conversion-focused. From user research to final Figma files — we make sure your product works for real users.
 
 **Benefits:**
+
 1. 🔍 User Research First — We understand your users before designing anything
 2. 🎯 Conversion-Focused — Design decisions backed by UX principles and data
 3. 📱 Mobile-First — Every design works perfectly on all screen sizes
@@ -467,6 +507,7 @@ We design digital experiences that are beautiful, intuitive, and conversion-focu
 6. 🧪 Tested Designs — Usability testing before development saves costly mistakes
 
 **What's Included:**
+
 - User research (interviews or surveys)
 - User personas + user journey maps
 - Information architecture
@@ -478,6 +519,7 @@ We design digital experiences that are beautiful, intuitive, and conversion-focu
 - 2 rounds of revisions
 
 **Process Steps:**
+
 1. Research — User interviews, competitor analysis, heuristic evaluation
 2. Architecture — Sitemap, user flows, information hierarchy
 3. Wireframes — Low-fidelity layouts, feedback round
@@ -487,6 +529,7 @@ We design digital experiences that are beautiful, intuitive, and conversion-focu
 ---
 
 ### 13. Graphic Designing
+
 **Slug:** `graphic-designing`
 **Category:** design
 **Tagline:** "Visual identity that makes your brand unforgettable"
@@ -495,6 +538,7 @@ We design digital experiences that are beautiful, intuitive, and conversion-focu
 From logos and brand identities to marketing materials and social media graphics — we create visuals that communicate your brand's personality and professionalism.
 
 **What's Included (varies by project):**
+
 - Logo design (3 concepts, 2 revision rounds)
 - Brand identity kit (colors, fonts, usage guidelines)
 - Business card design
@@ -504,6 +548,7 @@ From logos and brand identities to marketing materials and social media graphics
 - Banner ads
 
 **Process Steps:**
+
 1. Brief — Understand brand personality, target audience, preferences
 2. Concepts — 3 initial design directions
 3. Refinement — Choose direction, refine
@@ -512,6 +557,7 @@ From logos and brand identities to marketing materials and social media graphics
 ---
 
 ### 14. Video Editing
+
 **Slug:** `video-editing`
 **Category:** design
 **Tagline:** "Raw footage to professional content, fast"
@@ -520,6 +566,7 @@ From logos and brand identities to marketing materials and social media graphics
 We edit your raw video footage into professional content for social media, ads, YouTube, or presentations — with graphics, music, captions, and your brand identity.
 
 **What's Included:**
+
 - Video editing (cuts, transitions, color grading)
 - Motion graphics + text overlays
 - Brand intro/outro

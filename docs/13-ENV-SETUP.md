@@ -6,6 +6,7 @@
 ---
 
 ## ⚠️ IMPORTANT RULES
+
 1. NEVER commit .env files to GitHub
 2. .env is in .gitignore — verify before first commit
 3. Use .env.example (with empty values) for documentation
@@ -16,6 +17,7 @@
 ## Complete .env Files
 
 ### apps/web/.env.local (Next.js Frontend)
+
 ```env
 # App
 NEXT_PUBLIC_APP_URL=http://localhost:3000
@@ -43,6 +45,7 @@ NEXT_PUBLIC_SENTRY_DSN=                   # from Sentry project settings
 ```
 
 ### apps/api/.env (NestJS Backend)
+
 ```env
 # App
 NODE_ENV=development
@@ -87,9 +90,11 @@ SENTRY_DSN=                               # from Sentry project settings
 ## Accounts to Create — Step by Step
 
 ### 1. Google Cloud Console (OAuth + reCAPTCHA)
+
 **URL:** https://console.cloud.google.com
 
 **Steps:**
+
 ```
 OAuth Credentials:
 1. Create new project: "adruva-website"
@@ -109,9 +114,11 @@ reCAPTCHA v3:
 ```
 
 ### 2. Google Analytics 4
+
 **URL:** https://analytics.google.com
 
 **Steps:**
+
 ```
 1. Create account: "Adruva Solution"
 2. Create property: "adruva-website"
@@ -123,9 +130,11 @@ reCAPTCHA v3:
 ```
 
 ### 3. Gmail App Password (for Nodemailer)
+
 **URL:** https://myaccount.google.com/security
 
 **Steps:**
+
 ```
 1. Use: hello@adruvaSolution.com (or team Gmail)
 2. Enable 2-Factor Authentication (required)
@@ -138,9 +147,11 @@ Note: Regular Gmail password won't work — must be App Password
 ```
 
 ### 4. Cloudinary
+
 **URL:** https://cloudinary.com
 
 **Steps:**
+
 ```
 1. Sign up free (free tier: 25GB storage, 25GB bandwidth/month)
 2. Dashboard → Account Details
@@ -153,9 +164,11 @@ Note: Regular Gmail password won't work — must be App Password
 ```
 
 ### 5. Meta WhatsApp Business API
+
 **URL:** https://developers.facebook.com
 
 **Steps:**
+
 ```
 1. Create Meta Developer account
 2. Create App → Business type
@@ -174,9 +187,11 @@ Note: Regular Gmail password won't work — must be App Password
 ```
 
 ### 6. Calendly
+
 **URL:** https://calendly.com
 
 **Steps:**
+
 ```
 1. Sign up (free plan works)
 2. Create event: "Free Discovery Call - 30 min"
@@ -188,9 +203,11 @@ Note: Regular Gmail password won't work — must be App Password
 ```
 
 ### 7. Sentry
+
 **URL:** https://sentry.io
 
 **Steps:**
+
 ```
 1. Create account
 2. Create project: "adruva-website-frontend" (Next.js)
@@ -202,9 +219,11 @@ Note: Regular Gmail password won't work — must be App Password
 ```
 
 ### 8. Vercel (Frontend Hosting)
+
 **URL:** https://vercel.com
 
 **Steps:**
+
 ```
 1. Sign up with GitHub
 2. Import repository
@@ -217,9 +236,11 @@ Note: Regular Gmail password won't work — must be App Password
 ```
 
 ### 9. Railway (Backend Hosting)
+
 **URL:** https://railway.app
 
 **Steps:**
+
 ```
 1. Sign up with GitHub
 2. New Project → Deploy from GitHub
@@ -232,9 +253,11 @@ Note: Regular Gmail password won't work — must be App Password
 ```
 
 ### 10. Cloudflare (CDN + SSL + DNS)
+
 **URL:** https://cloudflare.com
 
 **Steps:**
+
 ```
 1. Add site: adruvaSolution.com
 2. Change nameservers at domain registrar to Cloudflare's
@@ -247,9 +270,11 @@ Note: Regular Gmail password won't work — must be App Password
 ```
 
 ### 11. Google Search Console
+
 **URL:** https://search.google.com/search-console
 
 **Steps (after launch):**
+
 ```
 1. Add property: adruvaSolution.com
 2. Verify via: DNS TXT record (add in Cloudflare)
@@ -261,13 +286,13 @@ Note: Regular Gmail password won't work — must be App Password
 
 ## Development vs Production Values
 
-| Variable | Development | Production |
-|---|---|---|
-| NEXT_PUBLIC_APP_URL | http://localhost:3000 | https://adruvaSolution.com |
+| Variable            | Development           | Production                     |
+| ------------------- | --------------------- | ------------------------------ |
+| NEXT_PUBLIC_APP_URL | http://localhost:3000 | https://adruvaSolution.com     |
 | NEXT_PUBLIC_API_URL | http://localhost:3001 | https://api.adruvaSolution.com |
-| NEXTAUTH_URL | http://localhost:3000 | https://adruvaSolution.com |
-| NODE_ENV | development | production |
-| DATABASE_URL | local PostgreSQL | Railway PostgreSQL |
+| NEXTAUTH_URL        | http://localhost:3000 | https://adruvaSolution.com     |
+| NODE_ENV            | development           | production                     |
+| DATABASE_URL        | local PostgreSQL      | Railway PostgreSQL             |
 
 ---
 

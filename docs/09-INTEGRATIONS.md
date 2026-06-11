@@ -7,6 +7,7 @@
 ## 1. Contact Form → AdruvaCRM Webhook (MOST IMPORTANT)
 
 ### Flow
+
 ```
 User fills contact form
   → reCAPTCHA v3 token generated (frontend)
@@ -21,6 +22,7 @@ User fills contact form
 ```
 
 ### CRM Webhook Payload
+
 ```typescript
 // POST to: process.env.ADRUVA_CRM_WEBHOOK_URL
 // Headers: { 'x-webhook-secret': process.env.ADRUVA_CRM_WEBHOOK_SECRET }
@@ -46,6 +48,7 @@ User fills contact form
 ```
 
 ### CRM Webhook Service
+
 ```typescript
 // common/crm-webhook/crm-webhook.service.ts
 async pushLeadToCRM(inquiry: InquiryDto): Promise<string | null> {
@@ -73,20 +76,22 @@ async pushLeadToCRM(inquiry: InquiryDto): Promise<string | null> {
 ## 2. Email Service (Nodemailer + Gmail SMTP)
 
 ### Setup
+
 ```typescript
 // common/email/email.service.ts
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: "gmail",
   auth: {
     user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_APP_PASSWORD
-  }
-})
+    pass: process.env.GMAIL_APP_PASSWORD,
+  },
+});
 ```
 
 ### Email Templates
 
 #### Template 1: User Confirmation Email
+
 ```
 Subject: "We got your message, [Name]! 🚀"
 From: Adruva Solution <hello@adruvaSolution.com>
@@ -111,6 +116,7 @@ Team Adruva Solution
 ```
 
 #### Template 2: Team Notification Email
+
 ```
 Subject: "🔔 New Lead: [Name] — [Service]"
 From: Adruva Website <hello@adruvaSolution.com>
@@ -131,6 +137,7 @@ View in CRM: [crm link]
 ```
 
 #### Template 3: Newsletter Welcome Email
+
 ```
 Subject: "Welcome to Adruva Insights! 🎉"
 To: [subscriber email]
@@ -144,6 +151,7 @@ You'll receive our latest articles on tech, AI, and digital growth.
 ## 3. WhatsApp Notification (Meta Cloud API)
 
 ### Setup
+
 ```typescript
 // common/whatsapp/whatsapp.service.ts
 const META_API = 'https://graph.facebook.com/v18.0'
@@ -171,8 +179,8 @@ async sendTemplate(to: string, templateName: string, params: string[]) {
 
 ### WhatsApp Templates (Pre-approve with Meta)
 
-| Template | Trigger | Parameters |
-|---|---|---|
+| Template           | Trigger             | Parameters             |
+| ------------------ | ------------------- | ---------------------- |
 | `new_website_lead` | Contact form submit | [name, service, phone] |
 
 ```
@@ -186,15 +194,15 @@ Message: "New lead from website! 🚀 Name: {{1}}, Service: {{2}}, Phone: {{3}}.
 
 ```typescript
 // lib/gtag.ts
-export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 export const pageview = (url: string) => {
-  window.gtag('config', GA_MEASUREMENT_ID, { page_path: url })
-}
+  window.gtag("config", GA_MEASUREMENT_ID, { page_path: url });
+};
 
 export const event = (action: string, params: object) => {
-  window.gtag('event', action, params)
-}
+  window.gtag("event", action, params);
+};
 
 // Events to track:
 // 'contact_form_submit' — form submitted
@@ -247,18 +255,18 @@ async delete(publicId: string) {
 // Embed Calendly inline widget on contact page
 
 useEffect(() => {
-  const script = document.createElement('script')
-  script.src = 'https://assets.calendly.com/assets/external/widget.js'
-  document.body.appendChild(script)
-}, [])
+  const script = document.createElement("script");
+  script.src = "https://assets.calendly.com/assets/external/widget.js";
+  document.body.appendChild(script);
+}, []);
 
 return (
   <div
     className="calendly-inline-widget"
     data-url={`${process.env.NEXT_PUBLIC_CALENDLY_URL}?hide_gdpr_banner=1&primary_color=FF6B00`}
-    style={{ minWidth: '320px', height: '700px' }}
+    style={{ minWidth: "320px", height: "700px" }}
   />
-)
+);
 ```
 
 ---
@@ -271,20 +279,20 @@ Sentry.init({
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
   tracesSampleRate: 0.1,
   environment: process.env.NODE_ENV,
-})
+});
 
 // sentry.server.config.ts
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
   tracesSampleRate: 0.1,
-})
+});
 
 // Capture in all catch blocks:
 try {
   // ...
 } catch (err) {
-  Sentry.captureException(err)
-  throw err
+  Sentry.captureException(err);
+  throw err;
 }
 ```
 

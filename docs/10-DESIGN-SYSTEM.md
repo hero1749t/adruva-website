@@ -11,45 +11,46 @@
 
 /* Light Mode (default) */
 :root {
-  --bg: #FFFFFF;
-  --bg-secondary: #F8FAFC;
-  --bg-tertiary: #F1F5F9;
-  --card-bg: #FFFFFF;
+  --bg: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --card-bg: #ffffff;
   --border: rgba(11, 31, 58, 0.1);
   --border-strong: rgba(11, 31, 58, 0.2);
-  --text-primary: #0A0A0A;
+  --text-primary: #0a0a0a;
   --text-secondary: #475569;
-  --text-muted: #8A94A6;
+  --text-muted: #8a94a6;
 }
 
 /* Dark Mode */
 .dark {
-  --bg: #0A0A0A;
-  --bg-secondary: #0B1F3A;
+  --bg: #0a0a0a;
+  --bg-secondary: #0b1f3a;
   --bg-tertiary: #0f2a4a;
-  --card-bg: #0B1F3A;
+  --card-bg: #0b1f3a;
   --border: rgba(255, 107, 0, 0.15);
   --border-strong: rgba(255, 107, 0, 0.25);
-  --text-primary: #FFFFFF;
-  --text-secondary: #CBD5E1;
-  --text-muted: #8A94A6;
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-muted: #8a94a6;
 }
 
 /* Brand colors — same in both modes */
 :root {
-  --orange: #FF6B00;
-  --orange-hover: #E55F00;
+  --orange: #ff6b00;
+  --orange-hover: #e55f00;
   --orange-dim: rgba(255, 107, 0, 0.1);
   --orange-dim-strong: rgba(255, 107, 0, 0.2);
-  --navy: #0B1F3A;
-  --blue: #2D8CFF;
+  --navy: #0b1f3a;
+  --blue: #2d8cff;
   --blue-dim: rgba(45, 140, 255, 0.1);
-  --green: #10B981;
-  --red: #EF4444;
+  --green: #10b981;
+  --red: #ef4444;
 }
 ```
 
 ### Tailwind Config
+
 ```typescript
 // tailwind.config.ts
 colors: {
@@ -69,6 +70,7 @@ colors: {
 ## 2. Typography
 
 ### Font Stack
+
 ```typescript
 // Headings: Poppins (800, 700, 600)
 // Body: Inter (400, 500)
@@ -77,18 +79,20 @@ colors: {
 ```
 
 ### Type Scale
+
 ```css
---text-xs: 12px;    /* Badges, labels, meta info */
---text-sm: 14px;    /* Body text, descriptions */
---text-base: 16px;  /* Default body */
---text-lg: 20px;    /* Section subtitles */
---text-xl: 24px;    /* Small headings */
---text-2xl: 32px;   /* Section titles */
---text-3xl: 48px;   /* Page titles */
---text-4xl: 64px+;  /* Hero headlines (clamp) */
+--text-xs: 12px; /* Badges, labels, meta info */
+--text-sm: 14px; /* Body text, descriptions */
+--text-base: 16px; /* Default body */
+--text-lg: 20px; /* Section subtitles */
+--text-xl: 24px; /* Small headings */
+--text-2xl: 32px; /* Section titles */
+--text-3xl: 48px; /* Page titles */
+--text-4xl: 64px+; /* Hero headlines (clamp) */
 ```
 
 ### Usage Rules
+
 ```
 Hero H1: Poppins 800, clamp(38px, 5.5vw, 68px), letter-spacing: -2px
 Section Title: Poppins 700, 32px, letter-spacing: -0.5px
@@ -111,19 +115,26 @@ Hero subtext: Space Grotesk 400, 18px
 --space-5: 32px;
 --space-6: 48px;
 --space-7: 64px;
---space-8: 80px;    /* Section padding */
+--space-8: 80px; /* Section padding */
 --space-9: 96px;
---space-10: 120px;  /* Large section padding */
+--space-10: 120px; /* Large section padding */
 ```
 
 ### Section Padding Rule
+
 ```css
 /* Standard section: 80px top/bottom */
-.section { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
+.section {
+  padding: 80px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
 
 /* On mobile: 48px top/bottom */
 @media (max-width: 640px) {
-  .section { padding: 48px 20px; }
+  .section {
+    padding: 48px 20px;
+  }
 }
 ```
 
@@ -132,11 +143,11 @@ Hero subtext: Space Grotesk 400, 18px
 ## 4. Border Radius
 
 ```css
---radius-sm: 4px;    /* Small elements */
---radius-btn: 8px;   /* Buttons, inputs */
+--radius-sm: 4px; /* Small elements */
+--radius-btn: 8px; /* Buttons, inputs */
 --radius-card: 12px; /* Cards */
---radius-lg: 16px;   /* Large cards */
---radius-xl: 20px;   /* CTA boxes */
+--radius-lg: 16px; /* Large cards */
+--radius-xl: 20px; /* CTA boxes */
 --radius-full: 100px; /* Badges, pills */
 ```
 
@@ -146,10 +157,10 @@ Hero subtext: Space Grotesk 400, 18px
 
 ```css
 /* Light mode */
---shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
---shadow: 0 4px 6px rgba(0,0,0,0.07);
---shadow-lg: 0 10px 24px rgba(0,0,0,0.1);
---shadow-orange: 0 4px 20px rgba(255,107,0,0.2);
+--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+--shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+--shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.1);
+--shadow-orange: 0 4px 20px rgba(255, 107, 0, 0.2);
 
 /* Dark mode — use border instead of shadow */
 ```
@@ -159,6 +170,7 @@ Hero subtext: Space Grotesk 400, 18px
 ## 6. Component Specs (Shadcn/ui Customizations)
 
 ### Button
+
 ```
 Primary: bg-orange, text-white, rounded-btn, px-6 py-3, font-semibold
 Primary hover: opacity-90, translateY(-1px)
@@ -167,6 +179,7 @@ Ghost hover: text-white, border-gray/60
 ```
 
 ### Card
+
 ```
 Light: bg-white, border border-navy/10, rounded-card, shadow-sm
 Dark: bg-navy, border border-orange/15, rounded-card
@@ -174,6 +187,7 @@ Hover: border-color → orange/25, translateY(-4px)
 ```
 
 ### Badge / Tag
+
 ```
 Orange: bg-orange/10, text-orange, rounded-full, text-xs, font-medium
 Blue: bg-blue/10, text-blue
@@ -182,6 +196,7 @@ Gray: bg-gray/10, text-gray
 ```
 
 ### Input / Form Fields
+
 ```
 bg-bg-tertiary, border border-navy/10, rounded-btn
 focus: border-orange/50, outline-none
@@ -189,6 +204,7 @@ placeholder: text-muted
 ```
 
 ### Section Tag (Above Title)
+
 ```
 Font: Inter 600, 11px, letter-spacing: 0.12em, UPPERCASE
 Color: orange
@@ -204,31 +220,31 @@ Margin-bottom: 10px
 export const fadeInUp = {
   initial: { opacity: 0, y: 24 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5, ease: 'easeOut' }
-}
+  transition: { duration: 0.5, ease: "easeOut" },
+};
 
 // Stagger children
 export const staggerContainer = {
-  animate: { transition: { staggerChildren: 0.1 } }
-}
+  animate: { transition: { staggerChildren: 0.1 } },
+};
 
 // Card hover
 export const cardHover = {
-  whileHover: { y: -4, transition: { duration: 0.2 } }
-}
+  whileHover: { y: -4, transition: { duration: 0.2 } },
+};
 
 // Counter animation
 export const useCounter = (target: number, duration: number) => {
   // Use framer-motion useMotionValue + useTransform
-}
+};
 
 // Page transition
 export const pageVariants = {
   initial: { opacity: 0, y: 8 },
   animate: { opacity: 1, y: 0 },
   exit: { opacity: 0, y: -8 },
-  transition: { duration: 0.3 }
-}
+  transition: { duration: 0.3 },
+};
 ```
 
 ---
