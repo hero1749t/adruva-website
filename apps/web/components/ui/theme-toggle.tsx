@@ -25,11 +25,49 @@ export function ThemeToggle() {
 
   const isDark = theme === 'dark';
 
+  const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const nextTheme = isDark ? 'light' : 'dark';
+    const doc = document as any;
+    if (!doc.startViewTransition) {
+      setTheme(nextTheme);
+      return;
+    }
+
+    const x = e.clientX;
+    const y = e.clientY;
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    const transition = doc.startViewTransition(() => {
+      setTheme(nextTheme);
+    });
+
+    transition.ready.then(() => {
+      const clipPath = [
+        `circle(0px at ${x}px ${y}px)`,
+        `circle(${endRadius}px at ${x}px ${y}px)`
+      ];
+
+      document.documentElement.animate(
+        {
+          clipPath: clipPath,
+        },
+        {
+          duration: 480,
+          easing: 'ease-in-out',
+          pseudoElement: '::view-transition-new(root)',
+        }
+      );
+    });
+  };
+
   return (
     <Button
       variant="ghost"
       size="icon"
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      onClick={handleToggle}
       className="relative w-10 h-10 rounded-btn overflow-hidden hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
     >
       <span className="sr-only">Toggle theme</span>

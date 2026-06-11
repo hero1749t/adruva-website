@@ -9,6 +9,7 @@ import { MobileBottomBar } from '@/components/layout/MobileBottomBar';
 import { CookieBanner } from '@/components/layout/CookieBanner';
 import { BackToTop } from '@/components/layout/BackToTop';
 import { PageTransition } from '@/components/layout/PageTransition';
+import { CursorGlow } from '@/components/ui/CursorGlow';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -76,6 +77,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${poppins.variable} ${spaceGrotesk.variable} antialiased`}>
         <Providers>
           <div className="flex min-h-screen flex-col bg-background text-foreground transition-colors duration-300">
+            <CursorGlow />
             <Navbar />
             <main className="flex-grow pt-20 pb-16 md:pb-0">
               <PageTransition>{children}</PageTransition>
