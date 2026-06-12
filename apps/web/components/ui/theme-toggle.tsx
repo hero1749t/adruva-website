@@ -17,7 +17,7 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <Button variant="ghost" size="icon" className="w-10 h-10 rounded-btn">
+      <Button variant="ghost" size="icon" className="w-9 h-9 border border-border rounded-lg">
         <span className="sr-only">Toggle theme</span>
       </Button>
     );
@@ -72,7 +72,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       onClick={handleToggle}
-      className="relative w-10 h-10 rounded-btn overflow-hidden hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+      className="relative w-9 h-9 border border-border rounded-lg overflow-hidden hover:bg-black/5 dark:hover:bg-white/5 hover:border-brand-orange dark:hover:border-brand-orange hover:text-brand-orange dark:hover:text-brand-orange transition-all duration-200"
     >
       <span className="sr-only">Toggle theme</span>
       <AnimatePresence mode="wait" initial={false}>
@@ -83,9 +83,9 @@ export function ThemeToggle() {
             animate={{ y: 0, opacity: 1, rotate: 0 }}
             exit={{ y: -20, opacity: 0, rotate: 90 }}
             transition={{ duration: 0.2 }}
-            className="flex items-center justify-center text-primary"
+            className="flex items-center justify-center text-brand-orange"
           >
-            <Sun className="h-5 w-5" />
+            <Sun className="h-4 w-4" />
           </motion.div>
         ) : (
           <motion.div
@@ -96,7 +96,7 @@ export function ThemeToggle() {
             transition={{ duration: 0.2 }}
             className="flex items-center justify-center text-[#0B1F3A]"
           >
-            <Moon className="h-5 w-5" />
+            <Moon className="h-4 w-4" />
           </motion.div>
         )}
       </AnimatePresence>

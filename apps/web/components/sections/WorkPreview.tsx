@@ -2,13 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { Section } from '@/components/layout/section';
 import { Container } from '@/components/layout/container';
-import { SectionTag } from '@/components/ui/section-tag';
 import { cn } from '@/lib/utils';
-import { Badge } from '@/components/ui/badge';
 
 const projects = [
   {
@@ -17,7 +14,7 @@ const projects = [
     industry: 'Wellness',
     description: 'Booking engine and headless website integration for Dehraduns premium yoga studio.',
     tech: ['Next.js', 'Framer Motion', 'Tailwind'],
-    gradient: 'from-orange-500/80 to-navy-950/80',
+    gradient: 'from-[#0d1b2e] via-[#0f2549] to-[#162b4a]',
     slug: 'yoga-shala',
   },
   {
@@ -26,16 +23,16 @@ const projects = [
     industry: 'F&B',
     description: 'Automated order-taking, WhatsApp dispatching system, and real-time CRM updates.',
     tech: ['NestJS', 'WhatsApp Cloud API', 'PostgreSQL'],
-    gradient: 'from-blue-600/80 to-orange-600/80',
+    gradient: 'from-[#1a0800] via-[#2d1200] to-[#3d1a00]',
     slug: 'lura-cafe',
   },
   {
     title: 'Adruva Resto System',
-    category: 'Build & Automate',
+    category: 'Build',
     industry: 'Hospitality',
     description: 'A custom POS and billing interface for local restaurants with safe offline sync.',
     tech: ['React', 'Prisma', 'Tailwind CSS'],
-    gradient: 'from-teal-600/80 to-navy-900/80',
+    gradient: 'from-[#081a0e] via-[#0d2b16] to-[#123320]',
     slug: 'adruva-resto',
   },
 ];
@@ -55,13 +52,13 @@ export function WorkPreview() {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.08,
       },
     },
   };
 
   const itemVariants = {
-    hidden: prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 },
+    hidden: prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
@@ -70,29 +67,24 @@ export function WorkPreview() {
   };
 
   return (
-    <Section className="bg-transparent">
+    <section className="w-full py-20 bg-transparent transition-colors duration-300">
       <Container>
+        
         {/* Header Row */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
           <div className="flex flex-col items-start">
-            <SectionTag>Our Work</SectionTag>
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
+            <span className="section-tag mb-3">Our Work</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground font-poppins">
               Projects we&apos;re proud of
             </h2>
-            <div className="h-1 w-12 bg-brand-orange rounded-full mt-4" />
           </div>
 
           <Link
             href="/work"
-            className="group flex items-center gap-1.5 text-xs font-bold text-brand-orange hover:text-brand-orange-hover transition-colors font-inter"
+            className="group flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-brand-orange border-b border-border hover:border-brand-orange pb-0.5 transition-all duration-200 self-start"
           >
             View all projects
-            <motion.span
-              animate={prefersReducedMotion ? {} : { x: [0, 4, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
-            >
-              <ArrowRight className="h-4 w-4" />
-            </motion.span>
+            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
           </Link>
         </div>
 
@@ -101,83 +93,106 @@ export function WorkPreview() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          viewport={{ once: true, margin: '-60px' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
         >
           {projects.map((project) => (
             <motion.div
               key={project.slug}
               variants={itemVariants}
-              whileHover={prefersReducedMotion ? {} : { y: -4 }}
               className={cn(
-                'flex flex-col rounded-2xl border border-slate-200/80 dark:border-white/5 bg-card overflow-hidden transition-all duration-300 group',
-                'hover:border-brand-orange/40 dark:hover:border-brand-orange/40 hover:shadow-[0_12px_30px_-10px_rgba(255,107,0,0.12)] dark:hover:shadow-[0_12px_30px_-10px_rgba(255,107,0,0.25)]'
+                'flex flex-col rounded-[16px] border border-border bg-card overflow-hidden transition-all duration-250 group',
+                'hover:border-brand-orange/40 hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] hover:-translate-y-1.5'
               )}
             >
-              {/* Image Gradient Placeholder */}
+              {/* Image/Visual Area (top, height: 200px) */}
               <div
                 className={cn(
-                  'h-48 w-full bg-gradient-to-br flex items-center justify-center p-6 relative overflow-hidden select-none',
+                  'h-50 w-full bg-gradient-to-br flex items-center justify-center p-6 relative overflow-hidden select-none',
                   project.gradient
                 )}
               >
-                {/* Decorative mesh effect */}
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15)_0%,transparent_80%)] mix-blend-overlay" />
-                <span className="text-xs font-extrabold tracking-widest text-white/50 uppercase font-space-grotesk">
-                  {project.industry} Case Study
-                </span>
+                {/* Pattern overlay */}
+                <div 
+                  className="absolute inset-0 opacity-15 pointer-events-none"
+                  style={{
+                    backgroundImage: 'radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)',
+                    backgroundSize: '16px 16px',
+                  }}
+                />
                 
-                {/* Category overlays */}
-                <div className="absolute bottom-4 left-4 flex gap-1.5">
-                  <span className="text-[10px] font-bold text-white bg-black/40 px-2 py-0.5 rounded backdrop-blur-sm uppercase tracking-wider font-inter">
-                    {project.category}
+                {/* Industry label in bottom-left */}
+                <div className="absolute bottom-4 left-4 z-10">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-white/70 bg-black/35 backdrop-blur-md px-2.5 py-1 rounded-md font-inter border border-white/10">
+                    {project.industry} Case Study
                   </span>
                 </div>
               </div>
 
-              {/* Card Body */}
-              <div className="p-6 flex-grow flex flex-col justify-between">
+              {/* Content Area (bottom) */}
+              <div className="p-5 flex-grow flex flex-col justify-between">
                 <div>
-                  <h3 className="text-base font-bold text-brand-navy dark:text-white mb-2 font-poppins leading-tight group-hover:text-brand-orange transition-colors">
+                  {/* Category & Industry Badges Row */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    <span 
+                      className={cn(
+                        'text-xs font-semibold px-2.5 py-0.5 rounded-full border',
+                        project.category === 'Build' && 'bg-blue-500/10 text-blue-400 border-blue-500/20',
+                        project.category === 'Automate' && 'bg-purple-500/10 text-purple-400 border-purple-500/20',
+                        project.category === 'Grow' && 'bg-green-500/10 text-green-400 border-green-500/20',
+                        project.category === 'Design' && 'bg-pink-500/10 text-pink-400 border-pink-500/20'
+                      )}
+                    >
+                      {project.category}
+                    </span>
+                    <span className="text-xs font-medium bg-muted text-muted-foreground border border-border/40 rounded-full px-2.5 py-0.5">
+                      {project.industry}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-base font-bold text-foreground mb-2 font-poppins group-hover:text-brand-orange transition-colors duration-150">
                     {project.title}
                   </h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed mb-6 font-inter">
+
+                  {/* Description */}
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-6 font-inter line-clamp-2">
                     {project.description}
                   </p>
                 </div>
 
-                {/* Tech stack & Action link */}
+                {/* Tech Stack & Action */}
                 <div className="mt-auto space-y-4">
-                  {/* Tech stack badges */}
+                  {/* Tech stack pills */}
                   <div className="flex flex-wrap gap-1.5">
                     {project.tech.map((t) => (
-                      <Badge 
-                        key={t} 
-                        variant="secondary"
-                        className="bg-muted hover:bg-muted text-[10px] text-muted-foreground font-semibold px-2 py-0.5 border border-border/10 rounded-sm font-inter"
+                      <span
+                        key={t}
+                        className="bg-muted text-muted-foreground border border-border/60 text-[10px] font-medium px-2 py-0.5 rounded-md font-inter"
                       >
                         {t}
-                      </Badge>
+                      </span>
                     ))}
                   </div>
 
                   {/* Case study link */}
-                  <div className="border-t border-border/20 pt-4 flex items-center justify-between">
+                  <div className="border-t border-border/40 pt-4 flex items-center justify-between">
                     <Link
                       href={`/work/${project.slug}`}
-                      className="text-xs font-bold text-brand-navy hover:text-brand-orange dark:text-white/80 dark:hover:text-brand-orange transition-colors flex items-center gap-1 font-inter"
+                      className="text-sm font-semibold text-brand-orange hover:text-brand-orange-hover transition-colors flex items-center gap-1 font-inter"
                     >
                       View Case Study
-                      <ExternalLink className="h-3.5 w-3.5 opacity-60" />
+                      <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
                 </div>
               </div>
+
             </motion.div>
           ))}
         </motion.div>
       </Container>
-    </Section>
+    </section>
   );
 }
 

@@ -55,7 +55,8 @@ export class ApplicationsService {
         currentLocation: dto.currentLocation,
         qualification: dto.qualification,
         experienceLevel: dto.experienceLevel,
-        resumeUrl: dto.resumeUrl || 'https://example.com/resume-placeholder.pdf',
+        resumeUrl:
+          dto.resumeUrl || 'https://example.com/resume-placeholder.pdf',
         portfolioUrl: dto.portfolioUrl || null,
         linkedinUrl: dto.linkedinUrl || null,
         coverLetter: dto.coverLetter,
@@ -65,7 +66,9 @@ export class ApplicationsService {
       },
     });
 
-    this.logger.log(`Successfully created application ${application.id} for job ${dto.jobId}`);
+    this.logger.log(
+      `Successfully created application ${application.id} for job ${dto.jobId}`,
+    );
 
     return {
       success: true,

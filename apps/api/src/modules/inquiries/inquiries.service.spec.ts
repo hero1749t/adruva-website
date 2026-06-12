@@ -26,7 +26,9 @@ const mockInquiry = {
 const mockPrismaService = {
   websiteInquiry: {
     create: jest.fn().mockResolvedValue(mockInquiry),
-    update: jest.fn().mockResolvedValue({ ...mockInquiry, crmLeadId: 'crm_987' }),
+    update: jest
+      .fn()
+      .mockResolvedValue({ ...mockInquiry, crmLeadId: 'crm_987' }),
     findMany: jest.fn().mockResolvedValue([mockInquiry]),
     count: jest.fn().mockResolvedValue(1),
     findUnique: jest.fn().mockResolvedValue(mockInquiry),
@@ -104,7 +106,10 @@ describe('InquiriesService', () => {
     });
 
     it('should bypass verification for the mock testing reCAPTCHA key', async () => {
-      const testDto = { ...dto, recaptchaToken: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI' };
+      const testDto = {
+        ...dto,
+        recaptchaToken: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
+      };
       const result = await service.create(testDto, '127.0.0.1', 'Mozilla/5.0');
 
       expect(recaptcha.verify).not.toHaveBeenCalled();
@@ -173,7 +178,9 @@ describe('InquiriesService', () => {
     it('should return correctly formatted CSV string', async () => {
       const csv = await service.exportCsv();
 
-      expect(csv).toContain('ID,Name,Email,Phone,Company,Service,Budget,Timeline,Message,Status,CRM Lead ID,Created At');
+      expect(csv).toContain(
+        'ID,Name,Email,Phone,Company,Service,Budget,Timeline,Message,Status,CRM Lead ID,Created At',
+      );
       expect(csv).toContain('inq_123');
       expect(csv).toContain('"John Doe"');
     });

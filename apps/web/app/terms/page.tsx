@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Scale, Clock, Mail, MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | Adruva Solution',
+  title: 'Terms of Service',
   description: 'Read the terms and conditions governing project agreements, portal usage, payment timelines, and intellectual property transfers at Adruva Solution.',
   alternates: {
     canonical: '/terms',

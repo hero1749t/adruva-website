@@ -63,7 +63,7 @@ export function Navbar() {
   const [scrollY, setScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
-  const { theme, resolvedTheme } = useTheme();
+  const { resolvedTheme, theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   
   const pathname = usePathname();
@@ -78,6 +78,9 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const isScrolled = scrollY > 10;
+  const isDarkMode = resolvedTheme === 'dark' || theme === 'dark';
+
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
@@ -88,42 +91,39 @@ export function Navbar() {
     { name: 'Contact', href: '/contact' },
   ];
 
-  const isScrolled = scrollY > 10;
-  const isDarkMode = resolvedTheme === 'dark' || theme === 'dark';
-
   return (
     <>
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300',
+          'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 h-16 flex items-center',
           isScrolled
-            ? 'bg-background/95 backdrop-blur-md border-b border-border/50 shadow-sm py-3'
-            : 'bg-transparent py-5'
+            ? 'bg-white/92 dark:bg-[#080B10]/92 backdrop-blur-md saturate-[180%] border-b border-border shadow-[0_1px_20px_rgba(0,0,0,0.06)]'
+            : 'bg-transparent border-b border-transparent'
         )}
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-between">
           {/* Logo */}
           <Link 
             href="/" 
             className="flex items-center gap-2.5 focus:outline-none group"
           >
-            <div className="h-10 w-10 relative shrink-0 group-hover:scale-105 transition-transform duration-200">
+            <div className="h-10 w-[51px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
               <Image
                 src={mounted && isDarkMode ? "/logo-symbol-dark.png" : "/logo-symbol-light.png"}
                 alt="Adruva Logo"
                 fill
-                sizes="40px"
+                sizes="51px"
                 className="object-contain"
                 priority
               />
             </div>
-            <span className="text-2xl font-[800] tracking-tight text-brand-navy dark:text-white transition-colors font-poppins">
+            <span className="text-xl font-[800] tracking-tight text-foreground transition-colors font-poppins">
               Adruva<span className="text-brand-orange">.</span>
             </span>
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-6 h-16">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.isDropdown && pathname.startsWith('/services'));
 
@@ -131,7 +131,7 @@ export function Navbar() {
                 return (
                   <div
                     key={link.name}
-                    className="relative py-2"
+                    className="relative flex items-center h-full"
                     onMouseEnter={() => setIsServicesDropdownOpen(true)}
                     onMouseLeave={() => setIsServicesDropdownOpen(false)}
                   >
@@ -145,63 +145,55 @@ export function Navbar() {
                       <ChevronDown className="h-4 w-4" />
                     </button>
 
-                    {/* Mega Menu Dropdown */}
+                    {/* Services Mega Menu Dropdown */}
                     <AnimatePresence>
                       {isServicesDropdownOpen && (
                         <motion.div
-                          initial={{ opacity: 0, y: 12, scale: 0.98 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                          initial={{ opacity: 0, y: -8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -8 }}
                           transition={{ duration: 0.2, ease: 'easeOut' }}
-                          className="absolute left-1/2 -translate-x-1/2 top-full mt-3 w-[660px] rounded-2xl bg-gradient-to-b from-white to-slate-50 dark:from-[#0b1f3a] dark:to-[#071529] border border-slate-200/80 dark:border-white/10 premium-shadow overflow-hidden z-50"
+                          className="fixed left-0 right-0 top-16 w-full bg-card border-b border-border shadow-lg rounded-b-xl z-50 overflow-hidden"
+                          onMouseEnter={() => setIsServicesDropdownOpen(true)}
+                          onMouseLeave={() => setIsServicesDropdownOpen(false)}
                         >
-                          {/* Top Orange Highlight Strip */}
-                          <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-brand-orange/40 via-brand-orange to-brand-orange/40" />
-                          
-                          {/* Main Grid Content */}
-                          <div className="grid grid-cols-4 gap-6 p-7">
-                            {serviceCategories.map((category) => {
-                              const CategoryIcon = category.icon;
-                              return (
-                                <div key={category.name} className="flex flex-col space-y-3.5">
-                                  <h4 className="text-xs font-bold uppercase tracking-wider text-brand-orange flex items-center gap-1.5 font-space">
-                                    <CategoryIcon className="h-3.5 w-3.5 shrink-0" />
-                                    {category.name}
-                                  </h4>
-                                  <ul className="flex flex-col space-y-1">
-                                    {category.services.map((service) => {
-                                      const ServiceIcon = service.icon;
-                                      return (
-                                        <li key={service.slug}>
-                                          <Link
-                                            href={`/services/${service.slug}`}
-                                            className="group/item flex items-center gap-2 p-2 -mx-2 rounded-xl transition-all duration-200 hover:bg-slate-100/75 dark:hover:bg-white/5"
-                                            onClick={() => setIsServicesDropdownOpen(false)}
-                                          >
-                                            <div className="flex items-center justify-center p-1 rounded-lg bg-slate-50/50 dark:bg-white/5 group-hover/item:bg-brand-orange/10 text-muted-foreground group-hover/item:text-brand-orange transition-colors">
-                                              <ServiceIcon className="h-3.5 w-3.5 shrink-0" />
-                                            </div>
-                                            <span className="text-[13px] font-medium text-foreground/80 dark:text-white/80 group-hover/item:text-brand-orange group-hover/item:translate-x-0.5 transition-all font-inter">
-                                              {service.name}
-                                            </span>
-                                          </Link>
-                                        </li>
-                                      );
-                                    })}
-                                  </ul>
-                                </div>
-                              );
-                            })}
+                          <div className="max-w-6xl mx-auto grid grid-cols-4 gap-8 px-8 py-8">
+                            {serviceCategories.map((category) => (
+                              <div key={category.name} className="flex flex-col space-y-4">
+                                <h4 className="text-xs font-bold uppercase tracking-widest text-brand-orange font-space-grotesk">
+                                  {category.name}
+                                </h4>
+                                <ul className="flex flex-col space-y-2">
+                                  {category.services.map((service) => {
+                                    const ServiceIcon = service.icon;
+                                    return (
+                                      <li key={service.slug}>
+                                        <Link
+                                          href={`/services/${service.slug}`}
+                                          className="flex items-center gap-2.5 py-1 px-2 -mx-2 rounded-lg text-sm text-muted-foreground hover:text-foreground border-l-2 border-transparent hover:border-brand-orange transition-all duration-200"
+                                          onClick={() => setIsServicesDropdownOpen(false)}
+                                        >
+                                          <ServiceIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
+                                          <span className="font-medium font-inter">
+                                            {service.name}
+                                          </span>
+                                        </Link>
+                                      </li>
+                                    );
+                                  })}
+                                </ul>
+                              </div>
+                            ))}
                           </div>
-
-                          {/* Elegant Bottom Footer */}
-                          <div className="border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-black/15 px-7 py-3.5 flex items-center justify-between">
+                          
+                          {/* Dropdown footer banner */}
+                          <div className="bg-muted/40 border-t border-border px-8 py-3.5 flex items-center justify-between">
                             <span className="text-[11px] text-muted-foreground font-medium font-inter">
                               Need a customized digital strategy? Let&apos;s build together.
                             </span>
                             <Link
                               href="/contact"
-                              className="text-xs font-bold text-brand-orange hover:text-brand-orange-hover transition-colors flex items-center gap-1 font-inter animate-pulse"
+                              className="text-xs font-bold text-brand-orange hover:text-brand-orange-hover transition-colors flex items-center gap-1 font-inter"
                               onClick={() => setIsServicesDropdownOpen(false)}
                             >
                               Book a Free Call
@@ -220,7 +212,7 @@ export function Navbar() {
                   key={link.name}
                   href={link.href}
                   className={cn(
-                    'text-sm font-medium transition-colors hover:text-brand-orange py-2 relative text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-white',
+                    'text-sm font-medium transition-colors hover:text-brand-orange relative text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-white flex items-center h-full',
                     isActive && 'text-foreground dark:text-white font-semibold'
                   )}
                 >
@@ -238,7 +230,7 @@ export function Navbar() {
           </nav>
 
           {/* Desktop Right Actions */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-4 h-16">
             <ThemeToggle />
             <a
               href={calendlyUrl}
@@ -246,9 +238,9 @@ export function Navbar() {
               rel={calendlyUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
             >
               <Button 
-                className="bg-brand-orange hover:bg-brand-orange/90 text-white text-xs px-4 h-9 rounded-lg font-semibold flex items-center gap-1.5 shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                className="bg-brand-orange hover:bg-brand-orange-hover text-white text-xs px-5 h-9 rounded-full font-semibold flex items-center gap-1.5 shadow-[0_4px_14px_rgba(255,107,0,0.3)] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
               >
-                <Calendar className="h-4 w-4" />
+                <Calendar className="h-3.5 w-3.5" />
                 Book a Free Call
               </Button>
             </a>
@@ -262,7 +254,7 @@ export function Navbar() {
               className={cn(
                 'p-2 rounded-lg border transition-colors',
                 isScrolled
-                  ? 'border-white/10 hover:bg-white/5 text-white'
+                  ? 'border-border hover:bg-black/5 text-foreground'
                   : 'border-border hover:bg-muted text-foreground dark:text-white dark:border-white/10'
               )}
               aria-label="Open navigation menu"

@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
   if (!post) {
     return {
-      title: 'Post Not Found | Adruva Solution',
+      title: 'Post Not Found',
       description: 'The requested blog post was not found.',
     };
   }
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const ogImageUrl = `/og?title=${encodeURIComponent(ogTitle)}&subtitle=${encodeURIComponent(ogSubtitle)}&type=blog`;
 
   return {
-    title: `${post.title} | Blog | Adruva Solution`,
+    title: `${post.title} | Blog`,
     description: post.summary,
     alternates: {
       canonical: `/blog/${post.slug}`,

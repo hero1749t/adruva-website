@@ -2,9 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Section } from '@/components/layout/section';
 import { Container } from '@/components/layout/container';
-import { SectionTag } from '@/components/ui/section-tag';
 import { cn } from '@/lib/utils';
 
 const testimonials = [
@@ -13,21 +11,21 @@ const testimonials = [
     author: 'Dinesh Singh',
     role: 'Owner, Lura Cafe',
     initials: 'DS',
-    avatarBg: 'bg-brand-orange/20 text-brand-orange',
+    gradient: 'from-blue-600 to-indigo-900',
   },
   {
     text: 'Building our platform with Adruva was transparent and seamless. They designed a beautiful site and customized a booking system that is extremely easy for our yoga retreat students to check in and register.',
     author: 'Stephanie',
     role: 'Founder, Dehradun Yoga Shala',
     initials: 'S',
-    avatarBg: 'bg-brand-blue/20 text-brand-blue',
+    gradient: 'from-orange-500 to-red-800',
   },
   {
     text: 'We saw a massive increase in high-budget event inquiries within 30 days of launching our Meta and Google search campaigns. Their team is extremely direct, honest, and focuses strictly on ROI metrics.',
     author: 'Vivek Negi',
     role: 'Director, Event Management',
     initials: 'VN',
-    avatarBg: 'bg-[#10B981]/20 text-[#10B981]',
+    gradient: 'from-emerald-500 to-green-900',
   },
 ];
 
@@ -52,7 +50,7 @@ export function TestimonialsSection() {
   };
 
   const itemVariants = {
-    hidden: prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 },
+    hidden: prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
@@ -61,18 +59,19 @@ export function TestimonialsSection() {
   };
 
   return (
-    <Section dark={true} className="relative overflow-hidden">
+    <section className="w-full bg-[#0A0A0A] text-white py-20 relative overflow-hidden transition-colors duration-300">
+      
       {/* Background glow */}
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-brand-blue/5 rounded-full blur-[120px] pointer-events-none select-none z-0" />
 
       <Container className="relative z-10">
+        
         {/* Header */}
         <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-16">
-          <SectionTag className="justify-center">Client Love</SectionTag>
+          <span className="section-tag mb-3">Client Love</span>
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white font-poppins">
             What our clients say
           </h2>
-          <div className="h-1 w-12 bg-brand-orange rounded-full mt-4" />
         </div>
 
         {/* 3-Column Grid */}
@@ -81,52 +80,55 @@ export function TestimonialsSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-5"
         >
           {testimonials.map((t, idx) => (
             <motion.div
               key={idx}
               variants={itemVariants}
-              whileHover={prefersReducedMotion ? {} : { y: -4 }}
               className={cn(
-                'p-6 md:p-8 rounded-2xl border border-white/10 bg-[#0d172e] transition-all duration-300 flex flex-col justify-between',
-                'hover:border-brand-orange/40 hover:shadow-[0_12px_30px_-10px_rgba(255,107,0,0.15)] group'
+                'p-7 rounded-[16px] border border-white/[0.08] bg-white/[0.04] transition-all duration-200 flex flex-col justify-between group',
+                'hover:border-brand-orange/[0.3]'
               )}
             >
               <div>
-                {/* Large double quotes */}
-                <span className="text-5xl font-serif text-brand-orange/45 select-none block -mt-2 -ml-1">
-                  “
+                {/* Large quote mark */}
+                <span className="text-5xl font-extrabold text-brand-orange select-none block leading-none mb-4 font-poppins">
+                  &ldquo;
                 </span>
-                <p className="text-xs md:text-sm text-white/80 leading-relaxed italic -mt-2 mb-6 font-inter">
+                
+                {/* Quote Text */}
+                <p className="text-sm md:text-base text-gray-300 leading-[1.75] mb-6 font-inter">
                   {t.text}
                 </p>
               </div>
 
-              {/* Author info */}
-              <div className="flex items-center gap-3 border-t border-white/5 pt-4 mt-auto">
-                {/* Initials Avatar */}
+              {/* Author section */}
+              <div className="flex items-center gap-3 mt-auto pt-4 border-t border-white/[0.05]">
+                
+                {/* Gradient Avatar */}
                 <div className={cn(
-                  'h-10 w-10 rounded-full flex items-center justify-center font-bold text-xs shrink-0 select-none font-space-grotesk',
-                  t.avatarBg
+                  'h-11 w-11 rounded-full flex items-center justify-center font-semibold text-sm text-white shrink-0 select-none font-poppins bg-gradient-to-br',
+                  t.gradient
                 )}>
                   {t.initials}
                 </div>
 
-                <div className="overflow-hidden">
-                  <h4 className="text-xs font-bold text-white font-poppins truncate">
+                <div className="flex flex-col gap-0.5 overflow-hidden">
+                  <h4 className="text-sm font-semibold text-white font-poppins truncate">
                     {t.author}
                   </h4>
-                  <p className="text-[10px] text-white/50 font-medium font-inter truncate mt-0.5">
+                  <p className="text-xs text-gray-500 font-inter truncate">
                     {t.role}
                   </p>
                 </div>
+
               </div>
             </motion.div>
           ))}
         </motion.div>
       </Container>
-    </Section>
+    </section>
   );
 }
 

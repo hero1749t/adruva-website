@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Shield, Clock, Mail, MapPin, Phone } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Adruva Solution',
+  title: 'Privacy Policy',
   description: 'Understand how Adruva Solution collects, stores, protects, and manages your personal information in accordance with Indian IT regulations.',
   alternates: {
     canonical: '/privacy-policy',

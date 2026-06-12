@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { RefreshCcw, Clock, Mail, MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Refund & Cancellation Policy | Adruva Solution',
+  title: 'Refund & Cancellation Policy',
   description: 'Understand the terms governing cancellations, milestone refunds, and non-refundable services (advertising setups/hosting) at Adruva Solution.',
   alternates: {
     canonical: '/refund-policy',

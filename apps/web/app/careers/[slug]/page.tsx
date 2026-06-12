@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   
   if (!job) {
     return {
-      title: 'Job Not Found | Adruva Solution',
+      title: 'Job Not Found',
     };
   }
 
@@ -32,20 +32,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const ogImageUrl = `/og?title=${encodeURIComponent(ogTitle)}&subtitle=${encodeURIComponent(ogSubtitle)}&type=careers`;
 
   return {
-    title: `${job.title} (${typeLabel}) | Careers | Adruva Solution`,
+    title: `${job.title} (${typeLabel}) | Careers`,
     description: `Apply for the ${job.title} (${typeLabel}) position at Adruva Solution in Dehradun. ${job.description}`,
     alternates: {
       canonical: `/careers/${params.slug}`,
     },
     openGraph: {
-      title: `${job.title} | Careers | Adruva Solution`,
+      title: `${job.title} | Careers`,
       description: job.description,
       type: 'website',
       images: [ogImageUrl],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${job.title} | Careers | Adruva Solution`,
+      title: `${job.title} | Careers`,
       description: job.description,
       images: [ogImageUrl],
     },

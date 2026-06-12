@@ -4,7 +4,7 @@ import { BlogPageClient } from './BlogPageClient';
 export const revalidate = 300; // ISR: Revalidate every 5 minutes
 
 export const metadata: Metadata = {
-  title: 'Blog & Resources | Adruva Solution',
+  title: 'Blog & Resources',
   description: 'Read the latest insights and resources on Web Development, AI Automation, Digital Ads, and growth strategies for service businesses from Adruva.',
   alternates: {
     canonical: '/blog',

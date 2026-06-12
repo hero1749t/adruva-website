@@ -30,20 +30,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const ogImageUrl = `/og?title=${encodeURIComponent(ogTitle)}&subtitle=${encodeURIComponent(ogSubtitle)}&type=work`;
 
   return {
-    title: `${project.title} | Case Studies | Adruva Solution`,
+    title: `${project.title} | Case Studies`,
     description: project.overview,
     alternates: {
       canonical: `/work/${params.slug}`,
     },
     openGraph: {
-      title: `${project.title} | Case Studies | Adruva Solution`,
+      title: `${project.title} | Case Studies`,
       description: project.overview,
       type: 'website',
       images: [ogImageUrl],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${project.title} | Case Studies | Adruva Solution`,
+      title: `${project.title} | Case Studies`,
       description: project.overview,
       images: [ogImageUrl],
     },

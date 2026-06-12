@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Cookie, Clock, Mail, MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Cookie Policy | Adruva Solution',
+  title: 'Cookie Policy',
   description: 'Understand how Adruva Solution uses cookies to enhance theme selections, measure analytical data, and protect public forms.',
   alternates: {
     canonical: '/cookie-policy',
