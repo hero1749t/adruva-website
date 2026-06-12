@@ -67,19 +67,33 @@ export function Navbar() {
   const pathname = usePathname();
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || '/contact';
   const dropdownRef = React.useRef<HTMLDivElement>(null);
+  const sentinelRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setSupportsHover(window.matchMedia('(hover: hover)').matches);
-    const handleScroll = () => {
-      const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-      setScrollY(scrollTop);
+    
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry) {
+          setScrollY(entry.isIntersecting ? 0 : 100);
+        }
+      },
+      {
+        root: null, // viewport
+        threshold: 0,
+      }
+    );
+
+    observer.observe(sentinel);
+    
+    return () => {
+      observer.unobserve(sentinel);
+      observer.disconnect();
     };
-    
-    // Set initial scroll on mount
-    handleScroll();
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
@@ -110,11 +124,12 @@ export function Navbar() {
 
   return (
     <>
+      <div ref={sentinelRef} id="nav-sentinel" className="absolute top-0 left-0 h-px w-px pointer-events-none" />
       <header
         className={cn(
           'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 h-16 flex items-center',
           isScrolled
-            ? 'bg-white/96 dark:bg-[#080B10]/96 backdrop-blur-md saturate-[180%] border-b border-border shadow-[0_1px_20px_rgba(0,0,0,0.06)]'
+            ? 'bg-white dark:bg-[#080B10] border-b border-border shadow-[0_1px_20px_rgba(0,0,0,0.06)]'
             : 'bg-white/40 dark:bg-transparent backdrop-blur-[6px] dark:backdrop-blur-0 border-b border-border/10 dark:border-transparent'
         )}
       >
