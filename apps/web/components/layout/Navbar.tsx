@@ -69,6 +69,8 @@ export function Navbar() {
   const pathname = usePathname();
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || '/contact';
 
+  const dropdownRef = React.useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     setMounted(true);
     const handleScroll = () => {
@@ -77,6 +79,20 @@ export function Navbar() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsServicesDropdownOpen(false);
+      }
+    };
+    if (isServicesDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isServicesDropdownOpen]);
 
   const isScrolled = scrollY > 10;
   const isDarkMode = resolvedTheme === 'dark' || theme === 'dark';
@@ -131,11 +147,16 @@ export function Navbar() {
                 return (
                   <div
                     key={link.name}
+                    ref={dropdownRef}
                     className="relative flex items-center h-full"
                     onMouseEnter={() => setIsServicesDropdownOpen(true)}
                     onMouseLeave={() => setIsServicesDropdownOpen(false)}
                   >
                     <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsServicesDropdownOpen(!isServicesDropdownOpen);
+                      }}
                       className={cn(
                         'flex items-center gap-1 text-sm font-medium transition-colors hover:text-brand-orange text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-white',
                         isActive && 'text-foreground dark:text-white font-semibold'
