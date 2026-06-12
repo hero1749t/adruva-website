@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { apiFetch } from '@/lib/api';
+import Image from 'next/image';
 
 const services = [
   { name: 'Web Development', slug: 'web-development' },
@@ -96,8 +97,14 @@ export function Footer() {
           {/* Column 1: Brand & Newsletter */}
           <div className="flex flex-col space-y-4">
             <Link href="/" className="flex items-center gap-2.5 focus:outline-none group">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-orange text-white font-poppins font-extrabold text-lg shadow-sm shrink-0 group-hover:scale-105 transition-transform duration-200">
-                A
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white border border-slate-200/50 dark:border-white/10 shadow-sm shrink-0 group-hover:scale-105 transition-transform duration-200 overflow-hidden relative">
+                <Image
+                  src="/logo.png"
+                  alt="Adruva Logo"
+                  fill
+                  sizes="36px"
+                  className="object-contain object-top scale-[1.35] origin-top p-0.5"
+                />
               </div>
               <span className="text-3xl font-[800] tracking-tight text-white transition-colors font-poppins">
                 Adruva<span className="text-brand-orange">.</span>

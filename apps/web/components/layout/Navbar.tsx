@@ -15,6 +15,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { MobileMenu } from './MobileMenu';
+import Image from 'next/image';
 
 const serviceCategories = [
   {
@@ -101,8 +102,15 @@ export function Navbar() {
             href="/" 
             className="flex items-center gap-2.5 focus:outline-none group"
           >
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-orange text-white font-poppins font-extrabold text-base shadow-sm shrink-0 group-hover:scale-105 transition-transform duration-200">
-              A
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white border border-slate-200/50 dark:border-white/10 shadow-sm shrink-0 group-hover:scale-105 transition-transform duration-200 overflow-hidden relative">
+              <Image
+                src="/logo.png"
+                alt="Adruva Logo"
+                fill
+                sizes="32px"
+                className="object-contain object-top scale-[1.35] origin-top p-0.5"
+                priority
+              />
             </div>
             <span className="text-2xl font-[800] tracking-tight text-brand-navy dark:text-white transition-colors font-poppins">
               Adruva<span className="text-brand-orange">.</span>
