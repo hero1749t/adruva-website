@@ -108,7 +108,7 @@ export function WorkPreview() {
               {/* Image/Visual Area (top, height: 200px) */}
               <div
                 className={cn(
-                  'h-50 w-full bg-gradient-to-br flex items-center justify-center p-6 relative overflow-hidden select-none',
+                  'h-[200px] w-full bg-gradient-to-br flex items-center justify-center p-6 relative overflow-hidden select-none',
                   project.gradient
                 )}
               >
