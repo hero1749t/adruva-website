@@ -107,10 +107,10 @@ export function StatsStrip() {
               key={idx}
               className={cn(
                 "w-full",
-                idx === 0 && "border-r border-b md:border-r-0 md:border-b-0 border-border",
-                idx === 1 && "border-b md:border-b-0 md:border-l border-border",
-                idx === 2 && "border-r md:border-r-0 md:border-l border-border",
-                idx === 3 && "md:border-l border-border"
+                idx === 0 && "border-r border-b md:border-0 border-border",
+                idx === 1 && "border-b md:border-y-0 md:border-r-0 md:border-l border-border",
+                idx === 2 && "border-r md:border-y-0 md:border-r-0 md:border-l border-border",
+                idx === 3 && "border-0 md:border-l border-border"
               )}
             >
               <StatItem

@@ -16,7 +16,6 @@ import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { MobileMenu } from './MobileMenu';
 import Image from 'next/image';
-import { useTheme } from 'next-themes';
 
 const serviceCategories = [
   {
@@ -63,8 +62,6 @@ export function Navbar() {
   const [scrollY, setScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
-  const { resolvedTheme, theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   
   const pathname = usePathname();
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || '/contact';
@@ -72,7 +69,6 @@ export function Navbar() {
   const dropdownRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setMounted(true);
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
@@ -95,7 +91,6 @@ export function Navbar() {
   }, [isServicesDropdownOpen]);
 
   const isScrolled = scrollY > 10;
-  const isDarkMode = resolvedTheme === 'dark' || theme === 'dark';
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -114,7 +109,7 @@ export function Navbar() {
           'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 h-16 flex items-center',
           isScrolled
             ? 'bg-white/92 dark:bg-[#080B10]/92 backdrop-blur-md saturate-[180%] border-b border-border shadow-[0_1px_20px_rgba(0,0,0,0.06)]'
-            : 'bg-transparent border-b border-transparent'
+            : 'bg-white/40 dark:bg-transparent backdrop-blur-[6px] dark:backdrop-blur-0 border-b border-border/10 dark:border-transparent'
         )}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-between">
@@ -158,7 +153,7 @@ export function Navbar() {
                         setIsServicesDropdownOpen(!isServicesDropdownOpen);
                       }}
                       className={cn(
-                        'flex items-center gap-1 text-sm font-medium transition-colors hover:text-brand-orange text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-white',
+                        'flex items-center gap-1 text-sm font-medium transition-colors hover:text-brand-orange text-foreground/75 hover:text-foreground dark:text-muted-foreground dark:hover:text-white',
                         isActive && 'text-foreground dark:text-white font-semibold'
                       )}
                     >
@@ -233,7 +228,7 @@ export function Navbar() {
                   key={link.name}
                   href={link.href}
                   className={cn(
-                    'text-sm font-medium transition-colors hover:text-brand-orange relative text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-white flex items-center h-full',
+                    'text-sm font-medium transition-colors hover:text-brand-orange relative text-foreground/75 hover:text-foreground dark:text-muted-foreground dark:hover:text-white flex items-center h-full',
                     isActive && 'text-foreground dark:text-white font-semibold'
                   )}
                 >

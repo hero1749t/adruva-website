@@ -84,7 +84,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="w-full bg-[#0A0A0A] text-white border-t border-white/10 pt-16 pb-8 transition-colors duration-300">
+    <footer className="w-full bg-[#0A0A0A] text-white border-t border-white/10 pt-16 pb-28 md:pb-8 transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Grid */}

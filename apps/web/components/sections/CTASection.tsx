@@ -87,7 +87,7 @@ export function CTASection({
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-center justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto max-w-xs sm:max-w-none items-center justify-center">
               <a
                 href={defaultPrimaryCTA.href}
                 target={defaultPrimaryCTA.href.startsWith('http') ? '_blank' : undefined}

@@ -62,7 +62,7 @@ export function WhoWeServe() {
       <Container>
         
         {/* Header */}
-        <div className="flex flex-col items-start text-left mb-10">
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left mb-10 mx-auto lg:mx-0 max-w-[600px] lg:max-w-none">
           <span className="section-tag mb-3">WHO WE SERVE</span>
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground max-w-[600px] font-poppins">
             If you have customers, we can help you grow.
@@ -78,7 +78,7 @@ export function WhoWeServe() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
-          className="flex flex-wrap gap-2.5 my-10"
+          className="flex flex-wrap justify-center lg:justify-start gap-2.5 my-10"
         >
           {industries.map((ind) => (
             <motion.div
@@ -93,8 +93,8 @@ export function WhoWeServe() {
         </motion.div>
 
         {/* Bottom CTA Box */}
-        <div className="w-full bg-card border border-border rounded-[16px] p-7 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mt-8 shadow-sm">
-          <div className="flex flex-col gap-1.5">
+        <div className="w-full bg-card border border-border rounded-[16px] p-7 md:p-8 flex flex-col md:flex-row justify-between items-center md:items-center text-center md:text-left gap-6 mt-8 shadow-sm">
+          <div className="flex flex-col gap-1.5 items-center md:items-start">
             <h4 className="text-base font-bold text-foreground font-poppins">
               Not sure if we serve your niche?
             </h4>

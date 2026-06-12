@@ -95,11 +95,11 @@ export function HeroSection() {
             {/* Title */}
             <motion.h1
               variants={itemVariants}
-              className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground leading-[1.05] mb-4 font-poppins"
+              className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground leading-[1.12] sm:leading-[1.05] mb-4 font-poppins"
             >
               The Last Tech Partner <br className="hidden sm:inline" />
               You&apos;ll Ever{' '}
-              <span className="inline-block min-w-[130px] text-brand-orange">
+              <span className="inline-block min-w-[130px] text-brand-orange text-center lg:text-left">
                 {prefersReducedMotion ? (
                   words[0]
                 ) : (
@@ -110,7 +110,7 @@ export function HeroSection() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -12 }}
                       transition={{ duration: 0.3, ease: 'easeOut' }}
-                      className="inline-block"
+                      className="inline-block w-full"
                     >
                       {words[currentWordIndex]}
                     </motion.span>
@@ -138,7 +138,7 @@ export function HeroSection() {
             {/* CTA Buttons */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-center justify-center lg:justify-start"
+              className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto max-w-xs sm:max-w-none items-center justify-center lg:justify-start"
             >
               <a
                 href={calendlyUrl}
