@@ -109,7 +109,7 @@ export function Navbar() {
           >
             <div className="h-10 w-[51px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
               <Image
-                src={mounted && isDarkMode ? "/logo-symbol-dark.png" : "/logo-symbol-light.png"}
+                src="/logo-symbol-light.png"
                 alt="Adruva Logo"
                 fill
                 sizes="51px"

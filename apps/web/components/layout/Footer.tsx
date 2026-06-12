@@ -95,7 +95,7 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-2.5 focus:outline-none group">
               <div className="h-10 w-[51px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
                 <Image
-                  src="/logo-symbol-dark.png"
+                  src="/logo-symbol-light.png"
                   alt="Adruva Logo"
                   fill
                   sizes="51px"

@@ -49,7 +49,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden py-16 lg:py-24 bg-transparent transition-colors duration-300">
+    <section className="relative w-full min-h-[80vh] flex items-center justify-center overflow-hidden py-12 lg:py-16 bg-transparent transition-colors duration-300">
       
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none z-0" />
@@ -83,7 +83,7 @@ export function HeroSection() {
             {/* Badge */}
             <motion.div
               variants={itemVariants}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-orange/10 border border-brand-orange/25 shadow-[0_0_12px_rgba(255,107,0,0.15)] text-sm font-medium text-brand-orange mb-6"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-orange/10 border border-brand-orange/25 shadow-[0_0_12px_rgba(255,107,0,0.15)] text-sm font-medium text-brand-orange mb-4"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-brand-orange opacity-75"></span>
@@ -95,11 +95,11 @@ export function HeroSection() {
             {/* Title */}
             <motion.h1
               variants={itemVariants}
-              className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-foreground leading-[1.05] mb-6 font-poppins"
+              className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground leading-[1.05] mb-4 font-poppins"
             >
               The Last Tech Partner <br />
               You&apos;ll Ever{' '}
-              <span className="inline-block min-w-[150px] text-brand-orange">
+              <span className="inline-block min-w-[130px] text-brand-orange">
                 {prefersReducedMotion ? (
                   words[0]
                 ) : (
@@ -122,7 +122,7 @@ export function HeroSection() {
             {/* Subtext */}
             <motion.p
               variants={itemVariants}
-              className="text-xl font-medium text-muted-foreground tracking-tight mb-4 font-space-grotesk"
+              className="text-lg sm:text-xl font-medium text-muted-foreground tracking-tight mb-3 font-space-grotesk"
             >
               Digital Growth Systems for Local Businesses & Beyond
             </motion.p>
@@ -130,7 +130,7 @@ export function HeroSection() {
             {/* Description */}
             <motion.p
               variants={itemVariants}
-              className="text-base text-muted-foreground leading-relaxed mb-8 max-w-[520px] font-inter"
+              className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6 max-w-[520px] font-inter"
             >
               From high-converting websites to customized AI-powered automation — we build and optimize digital workflows that attract customers, streamline growth, and scale your revenues honestly.
             </motion.p>
@@ -168,7 +168,7 @@ export function HeroSection() {
           </motion.div>
 
           {/* Right Column: Floating Dashboard Cards (Desktop Only) */}
-          <div className="hidden lg:col-span-5 lg:flex relative h-[450px] items-center justify-center">
+          <div className="hidden lg:col-span-5 lg:flex relative h-[380px] items-center justify-center">
             
             {/* Background blob for mockups */}
             <div className="absolute w-[320px] h-[320px] rounded-full bg-brand-orange/5 blur-3xl z-0" />
@@ -178,14 +178,14 @@ export function HeroSection() {
               initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.9, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="absolute top-10 left-4 w-48 p-4 rounded-2xl bg-card border border-border shadow-lg flex items-center gap-3.5 z-10 hover:border-brand-orange/40 hover:shadow-xl transition-all duration-300"
+              className="absolute top-2 left-2 w-44 p-3.5 rounded-2xl bg-card border border-border shadow-lg flex items-center gap-3 z-10 hover:border-brand-orange/40 hover:shadow-xl transition-all duration-300"
             >
-              <div className="p-2.5 rounded-xl bg-green-500/10 text-green-500 shrink-0">
-                <CheckCircle2 className="h-5 w-5" />
+              <div className="p-2 rounded-xl bg-green-500/10 text-green-500 shrink-0">
+                <CheckCircle2 className="h-4.5 w-4.5" />
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-bold text-foreground font-poppins">15+</span>
-                <span className="text-xs text-muted-foreground font-inter">Projects Delivered</span>
+                <span className="text-base font-bold text-foreground font-poppins">15+</span>
+                <span className="text-[10px] text-muted-foreground font-inter">Projects Delivered</span>
               </div>
             </motion.div>
 
@@ -194,17 +194,17 @@ export function HeroSection() {
               initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.9, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className="absolute top-40 right-2 w-52 p-4 rounded-2xl bg-card border border-border shadow-lg flex flex-col gap-2 z-20 hover:border-brand-orange/40 hover:shadow-xl transition-all duration-300"
+              className="absolute top-28 right-0 w-48 p-3.5 rounded-2xl bg-card border border-border shadow-lg flex flex-col gap-1.5 z-20 hover:border-brand-orange/40 hover:shadow-xl transition-all duration-300"
             >
               <div className="flex items-center justify-between">
-                <div className="p-2.5 rounded-xl bg-brand-blue/10 text-brand-blue shrink-0">
-                  <TrendingUp className="h-5 w-5" />
+                <div className="p-2 rounded-xl bg-brand-blue/10 text-brand-blue shrink-0">
+                  <TrendingUp className="h-4.5 w-4.5" />
                 </div>
-                <span className="text-[10px] font-bold text-green-500 bg-green-500/10 px-2 py-0.5 rounded-full font-inter">+24% MoM</span>
+                <span className="text-[9px] font-bold text-green-500 bg-green-500/10 px-1.5 py-0.5 rounded-full font-inter">+24% MoM</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-2xl font-black text-foreground font-poppins">100%</span>
-                <span className="text-xs text-muted-foreground font-inter">On-Time Delivery</span>
+                <span className="text-xl font-black text-foreground font-poppins">100%</span>
+                <span className="text-[10px] text-muted-foreground font-inter">On-Time Delivery</span>
               </div>
             </motion.div>
 
@@ -213,14 +213,14 @@ export function HeroSection() {
               initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.9, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="absolute bottom-10 left-10 w-52 p-4 rounded-2xl bg-card border border-border shadow-lg flex items-center gap-3.5 z-30 hover:border-brand-orange/40 hover:shadow-xl transition-all duration-300"
+              className="absolute bottom-2 left-6 w-48 p-3.5 rounded-2xl bg-card border border-border shadow-lg flex items-center gap-3 z-30 hover:border-brand-orange/40 hover:shadow-xl transition-all duration-300"
             >
-              <div className="p-2.5 rounded-xl bg-brand-orange/10 text-brand-orange shrink-0">
-                <Cpu className="h-5 w-5" />
+              <div className="p-2 rounded-xl bg-brand-orange/10 text-brand-orange shrink-0">
+                <Cpu className="h-4.5 w-4.5" />
               </div>
               <div className="flex flex-col">
-                <span className="text-sm font-bold text-foreground font-poppins">AI Automation</span>
-                <span className="text-xs text-muted-foreground font-inter">Systems Integrated</span>
+                <span className="text-xs font-bold text-foreground font-poppins">AI Automation</span>
+                <span className="text-[10px] text-muted-foreground font-inter">Systems Integrated</span>
               </div>
             </motion.div>
 
