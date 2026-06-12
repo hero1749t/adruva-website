@@ -97,13 +97,13 @@ export function Footer() {
           {/* Column 1: Brand & Newsletter */}
           <div className="flex flex-col space-y-4">
             <Link href="/" className="flex items-center gap-2.5 focus:outline-none group">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white border border-slate-200/50 dark:border-white/10 shadow-sm shrink-0 group-hover:scale-105 transition-transform duration-200 overflow-hidden relative">
+              <div className="h-11 w-11 overflow-hidden relative shrink-0 group-hover:scale-105 transition-transform duration-200">
                 <Image
-                  src="/logo.png"
+                  src="/logo-dark.png"
                   alt="Adruva Logo"
                   fill
-                  sizes="36px"
-                  className="object-contain object-top scale-[1.35] origin-top p-0.5"
+                  sizes="44px"
+                  className="object-contain object-top scale-[1.35] origin-top"
                 />
               </div>
               <span className="text-3xl font-[800] tracking-tight text-white transition-colors font-poppins">

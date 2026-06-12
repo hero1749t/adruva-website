@@ -16,6 +16,7 @@ import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { MobileMenu } from './MobileMenu';
 import Image from 'next/image';
+import { useTheme } from 'next-themes';
 
 const serviceCategories = [
   {
@@ -62,11 +63,14 @@ export function Navbar() {
   const [scrollY, setScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   
   const pathname = usePathname();
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || '/contact';
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
@@ -85,6 +89,7 @@ export function Navbar() {
   ];
 
   const isScrolled = scrollY > 10;
+  const isDarkMode = resolvedTheme === 'dark' || theme === 'dark';
 
   return (
     <>
@@ -102,13 +107,13 @@ export function Navbar() {
             href="/" 
             className="flex items-center gap-2.5 focus:outline-none group"
           >
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white border border-slate-200/50 dark:border-white/10 shadow-sm shrink-0 group-hover:scale-105 transition-transform duration-200 overflow-hidden relative">
+            <div className="h-10 w-10 overflow-hidden relative shrink-0 group-hover:scale-105 transition-transform duration-200">
               <Image
-                src="/logo.png"
+                src={mounted && isDarkMode ? "/logo-dark.png" : "/logo-light.png"}
                 alt="Adruva Logo"
                 fill
-                sizes="32px"
-                className="object-contain object-top scale-[1.35] origin-top p-0.5"
+                sizes="40px"
+                className="object-contain object-top scale-[1.35] origin-top"
                 priority
               />
             </div>
