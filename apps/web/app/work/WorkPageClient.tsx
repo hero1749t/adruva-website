@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ArrowRight, Sparkle } from 'lucide-react';
 import { Section } from '@/components/layout/section';
 import { Container } from '@/components/layout/container';
-import { Badge } from '@/components/ui/badge';
 import { CTASection } from '@/components/sections/CTASection';
 import { projects } from '@/lib/work-data';
 import { cn } from '@/lib/utils';
@@ -192,7 +191,7 @@ export function WorkPageClient() {
 
                     {/* Category tag */}
                     <div className="absolute bottom-4 left-4 flex gap-1.5">
-                      <span className="text-[9px] font-extrabold text-white bg-black/40 px-2 py-0.5 rounded backdrop-blur-sm uppercase tracking-wider font-inter">
+                      <span className="text-[10px] font-bold text-white bg-brand-orange px-2.5 py-1 rounded-full uppercase tracking-wider font-space-grotesk shadow-sm">
                         {project.category}
                       </span>
                     </div>
@@ -201,7 +200,7 @@ export function WorkPageClient() {
                   {/* Body details */}
                   <div className="p-6 flex-grow flex flex-col justify-between">
                     <div>
-                      <h3 className="text-base font-bold text-brand-navy dark:text-white mb-2 font-poppins leading-snug group-hover:text-brand-orange transition-colors">
+                      <h3 className="text-base font-semibold text-brand-navy dark:text-white mb-2 font-poppins leading-snug group-hover:text-brand-orange transition-colors">
                         {project.title}
                       </h3>
                       <p className="text-xs text-muted-foreground leading-relaxed mb-6 font-inter">
@@ -213,13 +212,12 @@ export function WorkPageClient() {
                     <div className="mt-auto space-y-4">
                       <div className="flex flex-wrap gap-1.5">
                         {project.techStack.slice(0, 3).map((tech) => (
-                          <Badge 
+                          <span 
                             key={tech} 
-                            variant="secondary"
-                            className="bg-muted hover:bg-muted text-[9px] text-muted-foreground font-semibold px-2 py-0.5 rounded-sm border border-border/10 font-inter"
+                            className="bg-muted text-muted-foreground text-xs font-semibold px-2.5 py-0.5 rounded-full border border-border/10 font-inter"
                           >
                             {tech}
-                          </Badge>
+                          </span>
                         ))}
                       </div>
 

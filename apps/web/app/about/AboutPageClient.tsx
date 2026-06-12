@@ -16,15 +16,16 @@ import { Section } from '@/components/layout/section';
 import { Container } from '@/components/layout/container';
 import { Button } from '@/components/ui/button';
 import { CTASection } from '@/components/sections/CTASection';
+import { SectionTag } from '@/components/ui/section-tag';
 import { cn } from '@/lib/utils';
 
 const teamMembers = [
-  { initials: 'D.K.', name: 'D.K.', role: 'Full Stack Developer', gradient: 'from-orange-400 to-red-500' },
-  { initials: 'L.K.', name: 'L.K.', role: 'Project Manager', gradient: 'from-blue-400 to-indigo-600' },
-  { initials: 'N.K.', name: 'N.K.', role: 'Marketing Lead', gradient: 'from-green-400 to-teal-600' },
-  { initials: 'S.K.', name: 'S.K.', role: 'UI/UX Designer', gradient: 'from-pink-400 to-purple-600' },
-  { initials: 'A.K.', name: 'A.K.', role: 'AI Specialist', gradient: 'from-yellow-400 to-orange-500' },
-  { initials: 'R.K.', name: 'R.K.', role: 'SEO Expert', gradient: 'from-cyan-400 to-blue-500' }
+  { initials: 'D.K.', name: 'D.K.', role: 'Full Stack Developer', gradient: 'from-blue-600 to-blue-900' },
+  { initials: 'L.K.', name: 'L.K.', role: 'Project Manager', gradient: 'from-orange-500 to-red-700' },
+  { initials: 'N.K.', name: 'N.K.', role: 'Marketing Lead', gradient: 'from-green-500 to-emerald-800' },
+  { initials: 'S.K.', name: 'S.K.', role: 'UI/UX Designer', gradient: 'from-purple-500 to-violet-800' },
+  { initials: 'A.K.', name: 'A.K.', role: 'AI Specialist', gradient: 'from-cyan-500 to-blue-700' },
+  { initials: 'R.K.', name: 'R.K.', role: 'SEO Expert', gradient: 'from-yellow-500 to-orange-600' }
 ];
 
 const whyChooseUs = [
@@ -119,9 +120,7 @@ export function AboutPageClient() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             <div className="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-24">
-              <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3 block font-inter">
-                OUR STORY
-              </span>
+              <SectionTag>OUR STORY</SectionTag>
               <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white mb-6 font-poppins">
                 Why We Started
               </h2>
@@ -241,9 +240,7 @@ export function AboutPageClient() {
       <Section className="py-16 md:py-24">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3 block font-inter">
-              WHY CHOOSE US
-            </span>
+            <SectionTag className="justify-center">WHY CHOOSE US</SectionTag>
             <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
               5 reasons clients trust Adruva
             </h2>
@@ -288,9 +285,7 @@ export function AboutPageClient() {
       <Section className="bg-muted/10 border-y border-border/20 py-16 md:py-24">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3 block font-inter">
-              OUR TEAM
-            </span>
+            <SectionTag className="justify-center">OUR TEAM</SectionTag>
             <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
               Meet the people behind Adruva
             </h2>
@@ -311,12 +306,12 @@ export function AboutPageClient() {
                 whileHover={prefersReducedMotion ? {} : { y: -4 }}
                 className={cn(
                   'flex flex-col items-center text-center p-6 rounded-2xl border border-border/40 bg-card transition-all duration-300',
-                  'hover:border-brand-orange/30 hover:shadow-[0_8px_30px_rgba(255,107,0,0.05)]'
+                  'hover:-translate-y-1 hover:shadow-lg hover:border-brand-orange/30'
                 )}
               >
                 {/* Initials circle avatar */}
                 <div className={cn(
-                  'h-20 w-20 rounded-full bg-gradient-to-br flex items-center justify-center text-white font-extrabold text-xl mb-4 shadow-inner select-none font-space-grotesk',
+                  'h-16 w-16 rounded-full bg-gradient-to-br flex items-center justify-center text-white font-bold text-lg mb-4 shadow-inner select-none font-space-grotesk',
                   member.gradient
                 )}>
                   {member.initials}

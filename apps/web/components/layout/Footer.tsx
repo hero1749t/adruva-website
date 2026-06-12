@@ -71,7 +71,7 @@ export function Footer() {
     }
 
     try {
-      await apiFetch<any>('/newsletter/subscribe', {
+      await apiFetch<unknown>('/newsletter/subscribe', {
         method: 'POST',
         body: JSON.stringify({ email, recaptchaToken: token }),
       });
@@ -87,24 +87,29 @@ export function Footer() {
   };
 
   return (
-    <footer className="w-full bg-[#03050d] text-white border-t border-white/10 pt-16 pb-24 md:pb-8 transition-colors duration-300">
-      <div className="max-w-[1100px] mx-auto px-5 md:px-10">
+    <footer className="w-full bg-[#0A0A0A] text-white border-t border-white/10 pt-16 pb-24 md:pb-8 transition-colors duration-300">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main 4-Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           
           {/* Column 1: Brand & Newsletter */}
           <div className="flex flex-col space-y-4">
-            <span className="text-xl font-bold tracking-tight text-white">
-              Adruva<span className="text-brand-orange">.</span>
-            </span>
-            <p className="text-xs text-white/60 leading-relaxed max-w-[240px]">
+            <Link href="/" className="flex items-center gap-2.5 focus:outline-none group">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-orange text-white font-poppins font-extrabold text-lg shadow-sm shrink-0 group-hover:scale-105 transition-transform duration-200">
+                A
+              </div>
+              <span className="text-3xl font-[800] tracking-tight text-white transition-colors font-poppins">
+                Adruva<span className="text-brand-orange">.</span>
+              </span>
+            </Link>
+            <p className="text-xs text-muted-foreground leading-relaxed max-w-[240px] font-inter">
               Digital growth systems for local businesses and beyond. The last tech partner you&apos;ll ever need.
             </p>
             
             {/* Newsletter Subscription Form */}
             <div className="pt-2">
-              <span className="text-xs font-semibold uppercase tracking-wider text-brand-orange block mb-2">
+              <span className="text-xs font-semibold uppercase tracking-wider text-white block mb-3 font-space-grotesk">
                 Join our Newsletter
               </span>
               <form onSubmit={handleSubscribe} className="flex gap-2 max-w-[260px]">
@@ -115,7 +120,7 @@ export function Footer() {
                   placeholder="Enter your email"
                   required
                   disabled={status === 'loading'}
-                  className="bg-white/5 border-white/10 text-white placeholder:text-white/40 h-9 text-xs focus-visible:ring-brand-orange rounded-lg"
+                  className="bg-black/40 border-white/10 text-white placeholder:text-white/30 h-9 text-xs focus-visible:ring-1 focus-visible:ring-brand-orange/50 rounded-lg"
                 />
                 <Button
                   type="submit"
@@ -142,7 +147,7 @@ export function Footer() {
 
           {/* Column 2: Services */}
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-orange block mb-4">
+            <span className="text-xs font-semibold uppercase tracking-wider text-white block mb-4 font-space-grotesk">
               Our Services
             </span>
             <ul className="grid grid-cols-1 gap-2">
@@ -150,7 +155,7 @@ export function Footer() {
                 <li key={item.slug}>
                   <Link
                     href={`/services/${item.slug}`}
-                    className="text-xs text-white/60 hover:text-white transition-colors hover:translate-x-1 duration-200 block"
+                    className="text-xs text-muted-foreground hover:text-brand-orange transition-colors hover:translate-x-0.5 duration-200 block"
                   >
                     {item.name}
                   </Link>
@@ -162,7 +167,7 @@ export function Footer() {
           {/* Column 3: Company */}
           <div className="flex flex-col space-y-6">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-orange block mb-4">
+              <span className="text-xs font-semibold uppercase tracking-wider text-white block mb-4 font-space-grotesk">
                 Company
               </span>
               <ul className="space-y-2">
@@ -170,7 +175,7 @@ export function Footer() {
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className="text-xs text-white/60 hover:text-white transition-colors block"
+                      className="text-xs text-muted-foreground hover:text-brand-orange transition-colors hover:translate-x-0.5 duration-200 block"
                     >
                       {item.name}
                     </Link>
@@ -179,7 +184,7 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-orange block mb-4">
+              <span className="text-xs font-semibold uppercase tracking-wider text-white block mb-4 font-space-grotesk">
                 Legal
               </span>
               <ul className="space-y-2">
@@ -187,7 +192,7 @@ export function Footer() {
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className="text-xs text-white/60 hover:text-white transition-colors block"
+                      className="text-xs text-muted-foreground hover:text-brand-orange transition-colors hover:translate-x-0.5 duration-200 block"
                     >
                       {item.name}
                     </Link>
@@ -200,10 +205,10 @@ export function Footer() {
           {/* Column 4: Contact & Socials */}
           <div className="flex flex-col space-y-6">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-orange block mb-4">
+              <span className="text-xs font-semibold uppercase tracking-wider text-white block mb-4 font-space-grotesk">
                 Contact Us
               </span>
-              <div className="space-y-2.5 text-xs text-white/60">
+              <div className="space-y-2.5 text-xs text-muted-foreground">
                 <p>hello@adruvasolution.com</p>
                 <p>+91 98765 43210</p>
                 <p className="leading-relaxed">
@@ -212,10 +217,8 @@ export function Footer() {
                   India - 248001
                 </p>
               </div>
-            </div>
-
-            <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-orange block mb-3">
+            </div>            <div>
+              <span className="text-xs font-semibold uppercase tracking-wider text-white block mb-4 font-space-grotesk">
                 Follow Us
               </span>
               <div className="flex items-center gap-3">
@@ -223,7 +226,7 @@ export function Footer() {
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-white/5 hover:bg-brand-orange hover:text-white transition-all duration-300 flex items-center justify-center"
+                  className="w-8 h-8 rounded-full border border-white/10 hover:border-brand-orange text-muted-foreground hover:text-brand-orange transition-all duration-300 flex items-center justify-center bg-transparent"
                   aria-label="LinkedIn"
                 >
                   <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg">
@@ -234,7 +237,7 @@ export function Footer() {
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-white/5 hover:bg-brand-orange hover:text-white transition-all duration-300 flex items-center justify-center"
+                  className="w-8 h-8 rounded-full border border-white/10 hover:border-brand-orange text-muted-foreground hover:text-brand-orange transition-all duration-300 flex items-center justify-center bg-transparent"
                   aria-label="Instagram"
                 >
                   <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg">
@@ -245,7 +248,7 @@ export function Footer() {
                   href="https://twitter.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-white/5 hover:bg-brand-orange hover:text-white transition-all duration-300 flex items-center justify-center"
+                  className="w-8 h-8 rounded-full border border-white/10 hover:border-brand-orange text-muted-foreground hover:text-brand-orange transition-all duration-300 flex items-center justify-center bg-transparent"
                   aria-label="Twitter"
                 >
                   <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg">
@@ -256,7 +259,7 @@ export function Footer() {
                   href="https://youtube.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-white/5 hover:bg-brand-orange hover:text-white transition-all duration-300 flex items-center justify-center"
+                  className="w-8 h-8 rounded-full border border-white/10 hover:border-brand-orange text-muted-foreground hover:text-brand-orange transition-all duration-300 flex items-center justify-center bg-transparent"
                   aria-label="YouTube"
                 >
                   <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg">
@@ -268,7 +271,7 @@ export function Footer() {
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-lg bg-white/5 hover:bg-brand-orange hover:text-white transition-all duration-300"
+                    className="w-8 h-8 rounded-full border border-white/10 hover:border-brand-orange text-muted-foreground hover:text-brand-orange transition-all duration-300 flex items-center justify-center bg-transparent"
                     aria-label="WhatsApp"
                   >
                     <svg
@@ -287,10 +290,10 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar: Copyright */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40">
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
           <p>© {new Date().getFullYear()} Adruva Solution. All rights reserved.</p>
           <div className="flex gap-4">
-            <span className="hover:text-white transition-colors cursor-pointer">Dehradun, India</span>
+            <span className="hover:text-brand-orange transition-colors cursor-pointer">Dehradun, India</span>
           </div>
         </div>
 

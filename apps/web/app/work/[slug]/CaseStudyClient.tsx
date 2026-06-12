@@ -19,6 +19,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { projects, ProjectItem } from '@/lib/work-data';
 import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { SectionTag } from '@/components/ui/section-tag';
 import { cn } from '@/lib/utils';
 
 interface CaseStudyClientProps {
@@ -243,9 +244,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
       <Section className="py-16 md:py-24 bg-brand-navy text-white dark:bg-[#070707] dark:border-y dark:border-white/10">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3 block font-inter">
-              THE IMPACT
-            </span>
+            <SectionTag className="justify-center text-white">THE IMPACT</SectionTag>
             <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-poppins">
               Project results & outcomes
             </h2>
@@ -281,9 +280,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
       <Section className="py-16 md:py-24">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3 block font-inter">
-              VISUAL WORK
-            </span>
+            <SectionTag className="justify-center">VISUAL WORK</SectionTag>
             <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
               Interface screenshots & flows
             </h2>
@@ -357,9 +354,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
           <Container>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
               <div className="flex flex-col items-start">
-                <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3 block font-inter">
-                  MORE SUCCESS STORIES
-                </span>
+                <SectionTag>MORE SUCCESS STORIES</SectionTag>
                 <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
                   Related Case Studies
                 </h2>

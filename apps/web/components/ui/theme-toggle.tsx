@@ -27,7 +27,11 @@ export function ThemeToggle() {
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     const nextTheme = isDark ? 'light' : 'dark';
-    const doc = document as any;
+    const doc = document as unknown as {
+      startViewTransition?: (callback: () => void) => {
+        ready: Promise<void>;
+      };
+    };
     if (!doc.startViewTransition) {
       setTheme(nextTheme);
       return;

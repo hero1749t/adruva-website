@@ -91,17 +91,20 @@ export function Navbar() {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300',
           isScrolled
-            ? 'bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-border dark:border-white/10 shadow-sm py-3'
+            ? 'bg-background/95 backdrop-blur-md border-b border-border/50 shadow-sm py-3'
             : 'bg-transparent py-5'
         )}
       >
-        <div className="max-w-[1100px] mx-auto px-5 md:px-10 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
           <Link 
             href="/" 
-            className="flex items-center gap-1.5 focus:outline-none"
+            className="flex items-center gap-2.5 focus:outline-none group"
           >
-            <span className="text-2xl font-extrabold tracking-tight text-brand-navy dark:text-white transition-colors">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-orange text-white font-poppins font-extrabold text-base shadow-sm shrink-0 group-hover:scale-105 transition-transform duration-200">
+              A
+            </div>
+            <span className="text-2xl font-[800] tracking-tight text-brand-navy dark:text-white transition-colors font-poppins">
               Adruva<span className="text-brand-orange">.</span>
             </span>
           </Link>
@@ -121,8 +124,8 @@ export function Navbar() {
                   >
                     <button
                       className={cn(
-                        'flex items-center gap-1 text-sm font-medium transition-colors hover:text-brand-orange text-foreground/80 dark:text-white/80',
-                        isActive && 'text-brand-orange font-semibold'
+                        'flex items-center gap-1 text-sm font-medium transition-colors hover:text-brand-orange text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-white',
+                        isActive && 'text-foreground dark:text-white font-semibold'
                       )}
                     >
                       {link.name}
@@ -204,8 +207,8 @@ export function Navbar() {
                   key={link.name}
                   href={link.href}
                   className={cn(
-                    'text-sm font-medium transition-colors hover:text-brand-orange py-2 relative text-foreground/80 dark:text-white/80',
-                    isActive && 'text-brand-orange font-semibold'
+                    'text-sm font-medium transition-colors hover:text-brand-orange py-2 relative text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-white',
+                    isActive && 'text-foreground dark:text-white font-semibold'
                   )}
                 >
                   {link.name}
@@ -230,7 +233,7 @@ export function Navbar() {
               rel={calendlyUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
             >
               <Button 
-                className="bg-brand-orange hover:bg-brand-orange/90 text-white text-xs px-4 h-9 rounded-lg font-semibold flex items-center gap-1.5 shadow-[0_4px_14px_rgba(255,107,0,0.3)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                className="bg-brand-orange hover:bg-brand-orange/90 text-white text-xs px-4 h-9 rounded-lg font-semibold flex items-center gap-1.5 shadow-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
                 <Calendar className="h-4 w-4" />
                 Book a Free Call

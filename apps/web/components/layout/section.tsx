@@ -16,13 +16,15 @@ export function Section({
       className={cn(
         'w-full py-12 md:py-20 transition-colors duration-300',
         dark
-          ? 'bg-[#050814] dark:bg-[#030610] text-white border-y border-brand-orange/15'
+          ? 'bg-[#0A0A0A] text-white'
           : 'bg-transparent text-foreground',
         className
       )}
       {...props}
     >
-      {children}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {children}
+      </div>
     </section>
   );
 }

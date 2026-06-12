@@ -6,6 +6,7 @@ import { ArrowRight, Code2, Smartphone, Megaphone, Cpu, Search, Share2 } from 'l
 import { motion } from 'framer-motion';
 import { Section } from '@/components/layout/section';
 import { Container } from '@/components/layout/container';
+import { SectionTag } from '@/components/ui/section-tag';
 import { cn } from '@/lib/utils';
 
 const services = [
@@ -88,9 +89,7 @@ export function ServicesPreview() {
         {/* Header Row */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div className="flex flex-col items-start">
-            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3 font-inter">
-              What We Do
-            </span>
+            <SectionTag>What We Do</SectionTag>
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
               Full-spectrum digital services
             </h2>
@@ -127,8 +126,7 @@ export function ServicesPreview() {
                 variants={itemVariants}
                 whileHover={prefersReducedMotion ? {} : { y: -6 }}
                 className={cn(
-                  'flex flex-col justify-between p-6 rounded-2xl glass-card premium-shadow transition-all duration-300 min-h-[220px] group',
-                  'hover:border-brand-orange/40 dark:hover:border-brand-orange/40 hover:shadow-[0_12px_30px_-10px_rgba(255,107,0,0.15)] dark:hover:shadow-[0_12px_30px_-10px_rgba(255,107,0,0.3)]'
+                  'flex flex-col justify-between p-6 rounded-2xl premium-service-card premium-shadow min-h-[220px] group'
                 )}
               >
                 <div>
@@ -150,7 +148,7 @@ export function ServicesPreview() {
 
                 {/* Footer details */}
                 <div className="flex items-center justify-between border-t border-border/20 pt-4 mt-auto">
-                  <span className="text-[11px] font-semibold text-brand-orange uppercase tracking-wider font-space-grotesk">
+                  <span className="bg-brand-orange/10 text-brand-orange text-xs font-semibold px-2 py-0.5 rounded-full font-space-grotesk">
                     {service.price}
                   </span>
                   
@@ -159,7 +157,7 @@ export function ServicesPreview() {
                     className="text-xs font-bold text-brand-navy hover:text-brand-orange dark:text-white/80 dark:hover:text-brand-orange transition-colors flex items-center gap-1 font-inter"
                   >
                     Learn More
-                    <ArrowRight className="h-3.5 w-3.5 opacity-60 group-hover:translate-x-0.5 transition-transform" />
+                    <ArrowRight className="h-3.5 w-3.5 opacity-60 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               </motion.div>

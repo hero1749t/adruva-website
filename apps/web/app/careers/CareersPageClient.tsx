@@ -23,6 +23,7 @@ import { Section } from '@/components/layout/section';
 import { Container } from '@/components/layout/container';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { SectionTag } from '@/components/ui/section-tag';
 import { mockJobs, JOB_TYPES, LOCATIONS, DEFAULT_PROCESS_STEPS, ProcessStep } from '@/lib/careers-data';
 import { cn } from '@/lib/utils';
 
@@ -189,9 +190,7 @@ export function CareersPageClient() {
       <Section className="py-16 md:py-24 border-b border-border/10">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3 block font-space-grotesk">
-              OUR CULTURE
-            </span>
+            <SectionTag className="justify-center">OUR CULTURE</SectionTag>
             <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
               Why people love working here
             </h2>
@@ -237,9 +236,7 @@ export function CareersPageClient() {
       <Section className="py-16 md:py-24 bg-muted/10 border-b border-border/10">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3 block font-space-grotesk">
-              WHAT YOU GET
-            </span>
+            <SectionTag className="justify-center">WHAT YOU GET</SectionTag>
             <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
               Benefits that actually matter
             </h2>
@@ -304,9 +301,7 @@ export function CareersPageClient() {
       <Section className="py-16 md:py-24 border-b border-border/10">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3 block font-space-grotesk">
-              HOW WE HIRE
-            </span>
+            <SectionTag className="justify-center">HOW WE HIRE</SectionTag>
             <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
               Our default hiring process
             </h2>
@@ -352,9 +347,7 @@ export function CareersPageClient() {
       <Section id="open-positions" className="py-16 md:py-24 bg-muted/5 scroll-mt-20">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3 block font-space-grotesk">
-              OPEN POSITIONS
-            </span>
+            <SectionTag className="justify-center">OPEN POSITIONS</SectionTag>
             <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
               Find your role at Adruva
             </h2>

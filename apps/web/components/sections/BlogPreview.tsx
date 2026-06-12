@@ -6,6 +6,7 @@ import { ArrowRight, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Section } from '@/components/layout/section';
 import { Container } from '@/components/layout/container';
+import { SectionTag } from '@/components/ui/section-tag';
 import { cn } from '@/lib/utils';
 
 const posts = [
@@ -70,9 +71,7 @@ export function BlogPreview() {
         {/* Header Row */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div className="flex flex-col items-start">
-            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3 font-inter">
-              Insights
-            </span>
+            <SectionTag>Insights</SectionTag>
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
               From our desk
             </h2>

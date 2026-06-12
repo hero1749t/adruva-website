@@ -89,9 +89,9 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-muted-foreground text-[15px] leading-[1.75];
     background-color: var(--bg);
-    color: var(--text-primary);
+    color: var(--text-secondary);
     transition:
       background-color 0.3s ease,
       color 0.3s ease,
@@ -172,6 +172,15 @@ a {
     box-shadow: 0 0 25px 2px rgba(255, 107, 0, 0.35);
     transform: translateY(-1px);
   }
+
+  .premium-service-card {
+    @apply bg-card border border-border transition-all duration-300;
+  }
+
+  .premium-service-card:hover {
+    @apply border-brand-orange/50;
+    background: linear-gradient(135deg, hsl(var(--card)), hsl(var(--card)) / 80%);
+  }
 }
 
 /* Document View Transitions Styling for circular theme wave */
@@ -187,4 +196,28 @@ a {
 
 ::view-transition-new(root) {
   z-index: 9999;
+}
+
+/* Float Keyframes and Animations */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-20px) translateX(10px); }
+}
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(15px) translateX(-15px); }
+}
+@keyframes float-fast {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-10px) translateX(-5px); }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s infinite ease-in-out;
+}
+.animate-float-medium {
+  animation: float-medium 8s infinite ease-in-out;
+}
+.animate-float-fast {
+  animation: float-fast 5s infinite ease-in-out;
 }

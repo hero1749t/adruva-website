@@ -91,7 +91,7 @@ export function ContactPageClient() {
     }
 
     try {
-      await apiFetch<any>('/inquiries', {
+      await apiFetch<unknown>('/inquiries', {
         method: 'POST',
         body: JSON.stringify({
           name: values.fullName,
@@ -175,9 +175,9 @@ export function ContactPageClient() {
               <div className="space-y-4 font-inter">
                 <a
                   href="mailto:hello@adruvasolution.com"
-                  className="flex items-center space-x-4 p-4 rounded-xl border border-border/60 bg-card hover:border-primary/40 dark:hover:border-primary/30 transition-all duration-300 shadow-sm"
+                  className="flex items-center space-x-4 p-4 rounded-xl border border-border/60 bg-card hover:border-brand-orange/40 dark:hover:border-brand-orange/30 transition-all duration-300 shadow-sm"
                 >
-                  <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary shrink-0">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-brand-orange/10 text-brand-orange shrink-0">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
@@ -188,9 +188,9 @@ export function ContactPageClient() {
 
                 <a
                   href="tel:+919876543210"
-                  className="flex items-center space-x-4 p-4 rounded-xl border border-border/60 bg-card hover:border-primary/40 dark:hover:border-primary/30 transition-all duration-300 shadow-sm"
+                  className="flex items-center space-x-4 p-4 rounded-xl border border-border/60 bg-card hover:border-brand-orange/40 dark:hover:border-brand-orange/30 transition-all duration-300 shadow-sm"
                 >
-                  <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary shrink-0">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-brand-orange/10 text-brand-orange shrink-0">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
@@ -200,7 +200,7 @@ export function ContactPageClient() {
                 </a>
 
                 <div className="flex items-center space-x-4 p-4 rounded-xl border border-border/60 bg-card shadow-sm">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary shrink-0">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-brand-orange/10 text-brand-orange shrink-0">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
@@ -289,13 +289,13 @@ export function ContactPageClient() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
-                          Full Name <span className="text-primary">*</span>
+                          Full Name <span className="text-brand-orange">*</span>
                         </label>
                         <Input
                           type="text"
                           placeholder="e.g. Rahul Bisht"
                           {...register('fullName')}
-                          className={`border-border/80 focus-visible:ring-primary ${errors.fullName ? 'border-red-500' : ''}`}
+                          className={`border-border/80 focus-visible:ring-brand-orange/50 ${errors.fullName ? 'border-red-500 focus-visible:ring-red-500 ring-red-500' : ''}`}
                         />
                         {errors.fullName && (
                           <p className="text-xs text-red-500 mt-1">{errors.fullName.message}</p>
@@ -304,13 +304,13 @@ export function ContactPageClient() {
 
                       <div className="space-y-2">
                         <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
-                          Email Address <span className="text-primary">*</span>
+                          Email Address <span className="text-brand-orange">*</span>
                         </label>
                         <Input
                           type="email"
                           placeholder="e.g. rahul@example.com"
                           {...register('email')}
-                          className={`border-border/80 focus-visible:ring-primary ${errors.email ? 'border-red-500' : ''}`}
+                          className={`border-border/80 focus-visible:ring-brand-orange/50 ${errors.email ? 'border-red-500 focus-visible:ring-red-500 ring-red-500' : ''}`}
                         />
                         {errors.email && (
                           <p className="text-xs text-red-500 mt-1">{errors.email.message}</p>
@@ -322,13 +322,13 @@ export function ContactPageClient() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
-                          Phone Number <span className="text-primary">*</span>
+                          Phone Number <span className="text-brand-orange">*</span>
                         </label>
                         <Input
                           type="tel"
                           placeholder="10-digit number"
                           {...register('phone')}
-                          className={`border-border/80 focus-visible:ring-primary ${errors.phone ? 'border-red-500' : ''}`}
+                          className={`border-border/80 focus-visible:ring-brand-orange/50 ${errors.phone ? 'border-red-500 focus-visible:ring-red-500 ring-red-500' : ''}`}
                         />
                         {errors.phone && (
                           <p className="text-xs text-red-500 mt-1">{errors.phone.message}</p>
@@ -343,7 +343,7 @@ export function ContactPageClient() {
                           type="text"
                           placeholder="Optional"
                           {...register('companyName')}
-                          className="border-border/80 focus-visible:ring-primary"
+                          className="border-border/80 focus-visible:ring-brand-orange/50"
                         />
                         {errors.companyName && (
                           <p className="text-xs text-red-500 mt-1">{errors.companyName.message}</p>
@@ -355,12 +355,12 @@ export function ContactPageClient() {
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                       <div className="space-y-2">
                         <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
-                          Service Interested <span className="text-primary">*</span>
+                          Service Interested <span className="text-brand-orange">*</span>
                         </label>
                         <select
                           {...register('serviceInterested')}
-                          className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-border/80 focus-visible:ring-primary ${
-                            errors.serviceInterested ? 'border-red-500' : ''
+                          className={`flex h-10 w-full rounded-md border border-border/80 bg-background px-3 py-2 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/50 disabled:cursor-not-allowed disabled:opacity-50 ${
+                            errors.serviceInterested ? 'border-red-500 focus-visible:ring-red-500' : ''
                           }`}
                         >
                           <option value="">Select Service</option>
@@ -377,12 +377,12 @@ export function ContactPageClient() {
 
                       <div className="space-y-2">
                         <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
-                          Budget Range <span className="text-primary">*</span>
+                          Budget Range <span className="text-brand-orange">*</span>
                         </label>
                         <select
                           {...register('budgetRange')}
-                          className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-border/80 focus-visible:ring-primary ${
-                            errors.budgetRange ? 'border-red-500' : ''
+                          className={`flex h-10 w-full rounded-md border border-border/80 bg-background px-3 py-2 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/50 disabled:cursor-not-allowed disabled:opacity-50 ${
+                            errors.budgetRange ? 'border-red-500 focus-visible:ring-red-500' : ''
                           }`}
                         >
                           <option value="">Select Budget</option>
@@ -399,12 +399,12 @@ export function ContactPageClient() {
 
                       <div className="space-y-2">
                         <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
-                          Timeline <span className="text-primary">*</span>
+                          Timeline <span className="text-brand-orange">*</span>
                         </label>
                         <select
                           {...register('timeline')}
-                          className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-border/80 focus-visible:ring-primary ${
-                            errors.timeline ? 'border-red-500' : ''
+                          className={`flex h-10 w-full rounded-md border border-border/80 bg-background px-3 py-2 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/50 disabled:cursor-not-allowed disabled:opacity-50 ${
+                            errors.timeline ? 'border-red-500 focus-visible:ring-red-500' : ''
                           }`}
                         >
                           <option value="">Select Timeline</option>
@@ -423,13 +423,13 @@ export function ContactPageClient() {
                     {/* Message Area */}
                     <div className="space-y-2">
                       <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
-                        Project Details <span className="text-primary">*</span>
+                        Project Details <span className="text-brand-orange">*</span>
                       </label>
                       <Textarea
                         rows={4}
                         placeholder="Tell us about your project requirements..."
                         {...register('message')}
-                        className={`border-border/80 focus-visible:ring-primary ${errors.message ? 'border-red-500' : ''}`}
+                        className={`border-border/80 focus-visible:ring-brand-orange/50 ${errors.message ? 'border-red-500 focus-visible:ring-red-500 ring-red-500' : ''}`}
                       />
                       {errors.message && (
                         <p className="text-xs text-red-500 mt-1">{errors.message.message}</p>
@@ -440,7 +440,7 @@ export function ContactPageClient() {
                     <Button
                       type="submit"
                       disabled={submitStatus === 'loading'}
-                      className="w-full bg-primary hover:bg-orange-hover text-white py-6 rounded-xl font-bold flex items-center justify-center gap-2 group shadow-md hover:shadow-primary/20 hover:shadow-lg transition-all duration-300"
+                      className="w-full md:w-auto md:px-12 bg-brand-orange hover:bg-brand-orange/90 text-white py-6 rounded-xl font-bold flex items-center justify-center gap-2 group shadow-sm hover:shadow-brand-orange/20 transition-all duration-300"
                     >
                       {submitStatus === 'loading' ? (
                         <>

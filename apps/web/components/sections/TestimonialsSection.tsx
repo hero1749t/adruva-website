@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Section } from '@/components/layout/section';
 import { Container } from '@/components/layout/container';
+import { SectionTag } from '@/components/ui/section-tag';
 import { cn } from '@/lib/utils';
 
 const testimonials = [
@@ -67,9 +68,7 @@ export function TestimonialsSection() {
       <Container className="relative z-10">
         {/* Header */}
         <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-16">
-          <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3 font-inter">
-            Client Love
-          </span>
+          <SectionTag className="justify-center">Client Love</SectionTag>
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white font-poppins">
             What our clients say
           </h2>

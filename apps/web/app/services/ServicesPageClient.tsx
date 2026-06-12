@@ -184,8 +184,7 @@ export function ServicesPageClient() {
                     exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 10 }}
                     whileHover={prefersReducedMotion ? {} : { y: -4 }}
                     className={cn(
-                      'flex flex-col justify-between p-6 rounded-2xl border border-slate-200/80 dark:border-white/5 bg-card transition-all duration-300 min-h-[240px] group relative overflow-hidden',
-                      'hover:border-brand-orange/40 dark:hover:border-brand-orange/40 hover:shadow-[0_12px_30px_-10px_rgba(255,107,0,0.12)] dark:hover:shadow-[0_12px_30px_-10px_rgba(255,107,0,0.25)]'
+                      'flex flex-col justify-between p-6 rounded-2xl premium-service-card premium-shadow min-h-[240px] group relative overflow-hidden'
                     )}
                   >
                     <div>
@@ -217,7 +216,7 @@ export function ServicesPageClient() {
 
                     {/* Bottom Row: Price + Learn More */}
                     <div className="flex items-center justify-between border-t border-border/20 pt-4 mt-auto">
-                      <span className="text-[11px] font-semibold text-brand-orange uppercase tracking-wider font-space-grotesk bg-brand-orange/5 px-2 py-0.5 rounded">
+                      <span className="bg-brand-orange/10 text-brand-orange text-xs font-semibold px-2 py-0.5 rounded-full font-space-grotesk">
                         {service.price}
                       </span>
                       
@@ -226,7 +225,7 @@ export function ServicesPageClient() {
                         className="text-xs font-bold text-brand-navy hover:text-brand-orange dark:text-white/80 dark:hover:text-brand-orange transition-colors flex items-center gap-1 font-inter"
                       >
                         Learn More
-                        <ArrowRight className="h-3.5 w-3.5 opacity-60 group-hover:translate-x-0.5 transition-transform" />
+                        <ArrowRight className="h-3.5 w-3.5 opacity-60 group-hover:translate-x-1 transition-transform" />
                       </Link>
                     </div>
                   </motion.div>

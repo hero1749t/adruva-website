@@ -57,6 +57,12 @@ export function HeroSection() {
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none z-0" />
 
+      {/* Large radial gradient behind headline */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute top-[10%] left-[15%] w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(255,107,0,0.08)_0%,transparent_70%)] blur-3xl pointer-events-none" />
+        <div className="absolute top-[5%] right-[15%] w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(45,140,255,0.06)_0%,transparent_70%)] blur-3xl pointer-events-none" />
+      </div>
+
       {/* Blurry Glow Orbs */}
       <div className="glow-orb bg-brand-orange/10 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] -top-[10%] -left-[10%]" />
       <div className="glow-orb bg-brand-blue/10 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] bottom-[10%] -right-[5%]" />
@@ -99,10 +105,10 @@ export function HeroSection() {
           {/* Badge */}
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-xs font-semibold text-brand-orange mb-6"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-orange/10 border border-brand-orange/30 shadow-[0_0_12px_rgba(255,107,0,0.15)] text-xs font-semibold text-brand-orange mb-6"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-orange opacity-75"></span>
+              <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-brand-orange opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-orange"></span>
             </span>
             Now offering AI Automation & AI Ads
@@ -164,10 +170,10 @@ export function HeroSection() {
             >
               <Button
                 size="lg"
-                className="w-full sm:w-auto bg-brand-orange hover:bg-brand-orange-hover text-white font-semibold flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(255,107,0,0.25)] orange-glow-hover hover:scale-[1.02] active:scale-[0.98] h-12 px-6 rounded-lg text-sm"
+                className="group w-full sm:w-auto bg-brand-orange hover:bg-brand-orange-hover text-white font-semibold flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(255,107,0,0.25)] orange-glow-hover hover:scale-[1.02] active:scale-[0.98] h-12 px-6 rounded-lg text-sm"
               >
                 Get a Free Audit
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </a>
 
@@ -175,7 +181,7 @@ export function HeroSection() {
               <Button
                 variant="ghost"
                 size="lg"
-                className="w-full sm:w-auto text-brand-navy border border-brand-navy/15 hover:bg-muted dark:text-white dark:border-white/10 dark:hover:bg-white/5 font-semibold h-12 px-6 rounded-lg text-sm"
+                className="w-full sm:w-auto text-brand-navy border border-brand-navy/30 hover:border-brand-orange hover:text-brand-orange dark:text-white dark:border-white/20 dark:hover:border-brand-orange dark:hover:text-brand-orange font-semibold h-12 px-6 rounded-lg text-sm transition-all duration-300"
               >
                 View Services
               </Button>

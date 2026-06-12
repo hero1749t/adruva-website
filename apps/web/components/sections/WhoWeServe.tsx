@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Calendar } from 'lucide-react';
 import { Section } from '@/components/layout/section';
 import { Container } from '@/components/layout/container';
+import { SectionTag } from '@/components/ui/section-tag';
 import { Button } from '@/components/ui/button';
 
 const industries = [
@@ -72,9 +73,7 @@ export function WhoWeServe() {
       <Container>
         {/* Header */}
         <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-12">
-          <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3 font-inter">
-            Who We Serve
-          </span>
+          <SectionTag className="justify-center">Who We Serve</SectionTag>
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
             If you have customers, we can help you grow.
           </h2>

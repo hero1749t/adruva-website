@@ -126,7 +126,7 @@ export function JobDetailClient({ job }: Props) {
     }
 
     try {
-      await apiFetch<any>('/applications', {
+      await apiFetch<unknown>('/applications', {
         method: 'POST',
         body: JSON.stringify({
           jobId: job.id,

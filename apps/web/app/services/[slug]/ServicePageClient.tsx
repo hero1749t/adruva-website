@@ -44,6 +44,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { CTASection } from '@/components/sections/CTASection';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
+import { SectionTag } from '@/components/ui/section-tag';
 import { cn } from '@/lib/utils';
 
 const BenefitIconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -359,9 +360,7 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
       <Section className="bg-muted/10 border-y border-border/20">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3 block font-inter">
-              WHY CHOOSE THIS SERVICE
-            </span>
+            <SectionTag className="justify-center">WHY CHOOSE THIS SERVICE</SectionTag>
             <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
               Key outcomes & benefits
             </h2>
@@ -409,9 +408,7 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-5 flex flex-col items-start">
-              <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3 block font-inter">
-                COMPREHENSIVE DELIVERY
-              </span>
+              <SectionTag>COMPREHENSIVE DELIVERY</SectionTag>
               <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white mb-6 font-poppins">
                 What is included in the project?
               </h2>
@@ -455,9 +452,7 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
       <Section className="bg-muted/10 border-y border-border/20 overflow-hidden">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3 block font-inter">
-              HOW WE WORK
-            </span>
+            <SectionTag className="justify-center">HOW WE WORK</SectionTag>
             <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
               Our step-by-step process
             </h2>
@@ -510,9 +505,7 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
         <Section>
           <Container>
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3 block font-inter">
-                OUR ENGINEERING STACK
-              </span>
+              <SectionTag className="justify-center">OUR ENGINEERING STACK</SectionTag>
               <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
                 Modern tools we build with
               </h2>
@@ -587,9 +580,7 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
           <Container>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
               <div className="flex flex-col items-start">
-                <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3 block font-inter">
-                  SUCCESS CASES
-                </span>
+                <SectionTag>SUCCESS CASES</SectionTag>
                 <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
                   Related client work
                 </h2>
@@ -661,9 +652,7 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
         <Section className="bg-muted/10 border-t border-border/20">
           <Container>
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-brand-orange mb-3 block font-inter">
-                COMMON INQUIRIES
-              </span>
+              <SectionTag className="justify-center">COMMON INQUIRIES</SectionTag>
               <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
                 Frequently asked questions
               </h2>

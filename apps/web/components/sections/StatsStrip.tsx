@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useInView, animate } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Container } from '@/components/layout/container';
 
@@ -13,9 +12,8 @@ interface StatItemProps {
 }
 
 function StatItem({ target, suffix, label, prefersReducedMotion }: StatItemProps) {
-  const [displayValue, setDisplayValue] = useState(prefersReducedMotion ? target : 0);
+  const [displayValue, setDisplayValue] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
 
   useEffect(() => {
     if (prefersReducedMotion) {
@@ -23,17 +21,42 @@ function StatItem({ target, suffix, label, prefersReducedMotion }: StatItemProps
       return;
     }
 
-    if (isInView) {
-      const controls = animate(0, target, {
-        duration: 2,
-        ease: 'easeOut',
-        onUpdate(value) {
-          setDisplayValue(Math.round(value));
-        },
-      });
-      return () => controls.stop();
-    }
-  }, [isInView, target, prefersReducedMotion]);
+    const element = ref.current;
+    if (!element) return;
+
+    let started = false;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry && entry.isIntersecting && !started) {
+          started = true;
+          let startTimestamp: number | null = null;
+          const step = (timestamp: number) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / 2000, 1);
+            // easeOutQuad
+            const easeProgress = progress * (2 - progress);
+            setDisplayValue(Math.floor(easeProgress * target));
+            if (progress < 1) {
+              window.requestAnimationFrame(step);
+            } else {
+              setDisplayValue(target);
+            }
+          };
+          window.requestAnimationFrame(step);
+          observer.unobserve(element);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [target, prefersReducedMotion]);
 
   return (
     <div ref={ref} className="flex flex-col items-center justify-center p-6 text-center">
