@@ -1,52 +1,74 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { Container } from '@/components/layout/container';
-import { cn } from '@/lib/utils';
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Container } from "@/components/layout/container";
+import { cn } from "@/lib/utils";
 
 const projects = [
   {
-    title: 'Dehradun Yoga Shala Platform',
-    category: 'Build',
-    industry: 'Wellness',
-    description: 'Booking engine and headless website integration for Dehraduns premium yoga studio.',
-    tech: ['Next.js', 'Framer Motion', 'Tailwind'],
-    gradient: 'from-[#0d1b2e] via-[#0f2549] to-[#162b4a]',
-    slug: 'yoga-shala',
+    title: "Dehradun Yoga Shala Platform",
+    category: "Build",
+    industry: "Wellness",
+    description:
+      "Booking engine and headless website integration for Dehraduns premium yoga studio.",
+    tech: ["Next.js", "Framer Motion", "Tailwind"],
+    gradient: "from-[#0d1b2e] via-[#0f2549] to-[#162b4a]",
+    slug: "yoga-shala",
   },
   {
-    title: 'Lura Cafe Digital OS',
-    category: 'Automate',
-    industry: 'F&B',
-    description: 'Automated order-taking, WhatsApp dispatching system, and real-time CRM updates.',
-    tech: ['NestJS', 'WhatsApp Cloud API', 'PostgreSQL'],
-    gradient: 'from-[#1a0800] via-[#2d1200] to-[#3d1a00]',
-    slug: 'lura-cafe',
+    title: "Lura Cafe Digital OS",
+    category: "Automate",
+    industry: "F&B",
+    description:
+      "Automated order-taking, WhatsApp dispatching system, and real-time CRM updates.",
+    tech: ["NestJS", "WhatsApp Cloud API", "PostgreSQL"],
+    gradient: "from-[#1a0800] via-[#2d1200] to-[#3d1a00]",
+    slug: "lura-cafe",
   },
   {
-    title: 'Adruva Resto System',
-    category: 'Build',
-    industry: 'Hospitality',
-    description: 'A custom POS and billing interface for local restaurants with safe offline sync.',
-    tech: ['React', 'Prisma', 'Tailwind CSS'],
-    gradient: 'from-[#081a0e] via-[#0d2b16] to-[#123320]',
-    slug: 'adruva-resto',
+    title: "Adruva Resto System",
+    category: "Build",
+    industry: "Hospitality",
+    description:
+      "A custom POS and billing interface for local restaurants with safe offline sync.",
+    tech: ["React", "Prisma", "Tailwind CSS"],
+    gradient: "from-[#081a0e] via-[#0d2b16] to-[#123320]",
+    slug: "adruva-resto",
   },
 ];
 
-export function WorkPreview() {
+interface WorkPreviewProps {
+  initialProjects?: any[];
+}
+
+export function WorkPreview({ initialProjects }: WorkPreviewProps) {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
     const checkReducedMotion = () => {
-      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
       setPrefersReducedMotion(mediaQuery.matches);
     };
     checkReducedMotion();
   }, []);
+
+  const displayProjects = (
+    initialProjects && initialProjects.length > 0 ? initialProjects : projects
+  ).map((p) => ({
+    title: p.title,
+    slug: p.slug,
+    category: p.category,
+    industry: p.industry,
+    description: p.description || p.overview || "",
+    tech: p.tech || p.techStack || [],
+    gradient:
+      p.gradient ||
+      p.heroGradient ||
+      "from-[#0d1b2e] via-[#0f2549] to-[#162b4a]",
+  }));
 
   const containerVariants = {
     hidden: {},
@@ -62,14 +84,13 @@ export function WorkPreview() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: 'easeOut' },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
   return (
     <section className="w-full py-20 bg-transparent transition-colors duration-300">
       <Container>
-        
         {/* Header Row */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
           <div className="flex flex-col items-start">
@@ -93,34 +114,35 @@ export function WorkPreview() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
+          viewport={{ once: true, margin: "-60px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
         >
-          {projects.map((project) => (
+          {displayProjects.map((project) => (
             <motion.div
               key={project.slug}
               variants={itemVariants}
               className={cn(
-                'flex flex-col rounded-[16px] border border-border bg-card overflow-hidden transition-all duration-250 group',
-                'hover:border-brand-orange/40 hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] hover:-translate-y-1.5'
+                "flex flex-col rounded-[16px] border border-border bg-card overflow-hidden transition-all duration-250 group",
+                "hover:border-brand-orange/40 hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] hover:-translate-y-1.5",
               )}
             >
               {/* Image/Visual Area (top, height: 200px) */}
               <div
                 className={cn(
-                  'h-[200px] w-full bg-gradient-to-br flex items-center justify-center p-6 relative overflow-hidden select-none',
-                  project.gradient
+                  "h-[200px] w-full bg-gradient-to-br flex items-center justify-center p-6 relative overflow-hidden select-none",
+                  project.gradient,
                 )}
               >
                 {/* Pattern overlay */}
-                <div 
+                <div
                   className="absolute inset-0 opacity-15 pointer-events-none"
                   style={{
-                    backgroundImage: 'radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)',
-                    backgroundSize: '16px 16px',
+                    backgroundImage:
+                      "radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)",
+                    backgroundSize: "16px 16px",
                   }}
                 />
-                
+
                 {/* Industry label in bottom-left */}
                 <div className="absolute bottom-4 left-4 z-10">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-white/70 bg-black/35 backdrop-blur-md px-2.5 py-1 rounded-md font-inter border border-white/10">
@@ -134,13 +156,17 @@ export function WorkPreview() {
                 <div>
                   {/* Category & Industry Badges Row */}
                   <div className="flex flex-wrap gap-2 mb-4">
-                    <span 
+                    <span
                       className={cn(
-                        'text-xs font-semibold px-2.5 py-0.5 rounded-full border',
-                        project.category === 'Build' && 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-                        project.category === 'Automate' && 'bg-purple-500/10 text-purple-400 border-purple-500/20',
-                        project.category === 'Grow' && 'bg-green-500/10 text-green-400 border-green-500/20',
-                        project.category === 'Design' && 'bg-pink-500/10 text-pink-400 border-pink-500/20'
+                        "text-xs font-semibold px-2.5 py-0.5 rounded-full border",
+                        project.category === "Build" &&
+                          "bg-blue-500/10 text-blue-400 border-blue-500/20",
+                        project.category === "Automate" &&
+                          "bg-purple-500/10 text-purple-400 border-purple-500/20",
+                        project.category === "Grow" &&
+                          "bg-green-500/10 text-green-400 border-green-500/20",
+                        project.category === "Design" &&
+                          "bg-pink-500/10 text-pink-400 border-pink-500/20",
                       )}
                     >
                       {project.category}
@@ -165,7 +191,7 @@ export function WorkPreview() {
                 <div className="mt-auto space-y-4">
                   {/* Tech stack pills */}
                   <div className="flex flex-wrap gap-1.5">
-                    {project.tech.map((t) => (
+                    {project.tech.map((t: string) => (
                       <span
                         key={t}
                         className="bg-muted text-muted-foreground border border-border/60 text-[10px] font-medium px-2 py-0.5 rounded-md font-inter"
@@ -187,7 +213,6 @@ export function WorkPreview() {
                   </div>
                 </div>
               </div>
-
             </motion.div>
           ))}
         </motion.div>

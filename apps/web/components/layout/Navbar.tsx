@@ -276,14 +276,27 @@ export function Navbar() {
                               Need a customized digital strategy? Let&apos;s
                               build together.
                             </span>
-                            <Link
-                              href="/contact"
-                              className="text-xs font-bold text-brand-orange hover:text-brand-orange-hover transition-colors flex items-center gap-1 font-inter"
-                              onClick={() => setIsServicesDropdownOpen(false)}
-                            >
-                              Book a Free Call
-                              <ChevronRight className="h-3.5 w-3.5" />
-                            </Link>
+                            {calendlyUrl.startsWith("http") ? (
+                              <a
+                                href={calendlyUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-xs font-bold text-brand-orange hover:text-brand-orange-hover transition-colors flex items-center gap-1 font-inter"
+                                onClick={() => setIsServicesDropdownOpen(false)}
+                              >
+                                Book a Free Call
+                                <ChevronRight className="h-3.5 w-3.5" />
+                              </a>
+                            ) : (
+                              <Link
+                                href={calendlyUrl}
+                                className="text-xs font-bold text-brand-orange hover:text-brand-orange-hover transition-colors flex items-center gap-1 font-inter"
+                                onClick={() => setIsServicesDropdownOpen(false)}
+                              >
+                                Book a Free Call
+                                <ChevronRight className="h-3.5 w-3.5" />
+                              </Link>
+                            )}
                           </div>
                         </motion.div>
                       )}
