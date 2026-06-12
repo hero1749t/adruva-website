@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiFetch } from "../../../lib/api";
 import { Card, CardContent } from "../../../components/ui/card";
 import { Button } from "../../../components/ui/button";
@@ -17,6 +17,7 @@ interface ApiResponse<T> {
 }
 
 export default function SettingsManager() {
+  const queryClient = useQueryClient();
   const [activeTab, setActiveTab] = useState<
     "general" | "integrations" | "smtp" | "social"
   >("general");
@@ -29,6 +30,7 @@ export default function SettingsManager() {
     calendlyUrl: "",
     whatsappToken: "",
     whatsappPhoneId: "",
+    teamWhatsapp: "",
     smtpHost: "",
     smtpPort: "",
     smtpUser: "",
@@ -62,6 +64,8 @@ export default function SettingsManager() {
         body: JSON.stringify(payload),
       }),
     onSuccess: (res) => {
+      queryClient.invalidateQueries({ queryKey: ["admin", "settings"] });
+      queryClient.invalidateQueries({ queryKey: ["settings"] });
       toast.success(res.message || "Settings updated successfully!");
     },
     onError: (err) => {
@@ -283,7 +287,7 @@ export default function SettingsManager() {
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="space-y-1">
                       <Label
                         htmlFor="whatsappPhoneId"
@@ -317,6 +321,24 @@ export default function SettingsManager() {
                           handleInputChange("whatsappToken", e.target.value)
                         }
                         placeholder="EAABw..."
+                        className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 text-xs font-mono"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <Label
+                        htmlFor="teamWhatsapp"
+                        className="text-xs font-semibold"
+                      >
+                        Recipient WhatsApp Number (Team)
+                      </Label>
+                      <Input
+                        id="teamWhatsapp"
+                        value={formData.teamWhatsapp}
+                        onChange={(e) =>
+                          handleInputChange("teamWhatsapp", e.target.value)
+                        }
+                        placeholder="+919876543210"
                         className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 text-xs font-mono"
                       />
                     </div>

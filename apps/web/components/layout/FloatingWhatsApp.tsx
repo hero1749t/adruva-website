@@ -1,16 +1,27 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { cn } from '@/lib/utils';
+import React from "react";
+import { cn } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query";
+import { apiFetch } from "@/lib/api";
 
 interface FloatingWhatsAppProps {
   message?: string;
 }
 
 export function FloatingWhatsApp({
-  message = "Hi Adruva! I'd like to discuss a project."
+  message = "Hi Adruva! I'd like to discuss a project.",
 }: FloatingWhatsAppProps) {
-  const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210';
+  const { data: settingsData } = useQuery({
+    queryKey: ["settings"],
+    queryFn: () =>
+      apiFetch<{ success: boolean; data: Record<string, string> }>("/settings"),
+  });
+  const settings = settingsData?.data || {};
+
+  const phoneNumber = settings.contactPhone
+    ? settings.contactPhone.replace(/[^0-9]/g, "")
+    : process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919876543210";
 
   if (!phoneNumber) {
     return null; // Don't render if phone number is not configured
@@ -21,7 +32,9 @@ export function FloatingWhatsApp({
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
         @keyframes wa-pulse {
           0% {
             box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
@@ -36,21 +49,23 @@ export function FloatingWhatsApp({
         .whatsapp-btn-pulse {
           animation: wa-pulse 2s infinite;
         }
-      `}} />
+      `,
+        }}
+      />
       <div className="fixed z-50 hidden md:flex items-center gap-3 bottom-8 right-8 group">
         {/* Tooltip text */}
         <div className="opacity-0 translate-x-3 pointer-events-none group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 bg-[#0b1f3a] dark:bg-white text-white dark:text-[#0b1f3a] text-xs font-semibold px-3.5 py-2 rounded-xl shadow-lg border border-white/10 dark:border-black/5 whitespace-nowrap font-inter">
           Chat with us! 💬
         </div>
-        
+
         {/* Button */}
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
           className={cn(
-            'h-14 w-14 flex items-center justify-center rounded-full shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 text-white whatsapp-btn-pulse bg-[#25d366]',
-            'focus:outline-none focus:ring-2 focus:ring-[#25d366] focus:ring-offset-2'
+            "h-14 w-14 flex items-center justify-center rounded-full shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 text-white whatsapp-btn-pulse bg-[#25d366]",
+            "focus:outline-none focus:ring-2 focus:ring-[#25d366] focus:ring-offset-2",
           )}
           aria-label="Contact us on WhatsApp"
         >

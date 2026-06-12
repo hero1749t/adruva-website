@@ -1,26 +1,32 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
-import { X, Calendar } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from "react";
+import Link from "next/link";
+import { X, Calendar } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
+  calendlyUrl?: string;
 }
 
-export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
-  const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || '/contact';
+export function MobileMenu({
+  isOpen,
+  onClose,
+  calendlyUrl: propCalendlyUrl,
+}: MobileMenuProps) {
+  const calendlyUrl =
+    propCalendlyUrl || process.env.NEXT_PUBLIC_CALENDLY_URL || "/contact";
 
   const menuLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Services', href: '/services' },
-    { name: 'Our Work', href: '/work' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Careers', href: '/careers' },
-    { name: 'Contact', href: '/contact' },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Services", href: "/services" },
+    { name: "Our Work", href: "/work" },
+    { name: "Blog", href: "/blog" },
+    { name: "Careers", href: "/careers" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -46,7 +52,10 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           </div>
 
           {/* Links (large text-2xl, centered, stacked with gap-6) */}
-          <nav className="flex-grow flex flex-col items-center justify-center gap-6" onClick={(e) => e.stopPropagation()}>
+          <nav
+            className="flex-grow flex flex-col items-center justify-center gap-6"
+            onClick={(e) => e.stopPropagation()}
+          >
             {menuLinks.map((link) => (
               <Link
                 key={link.href}
@@ -60,11 +69,18 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           </nav>
 
           {/* CTA: Full-width orange button at bottom */}
-          <div className="w-full pt-4 pb-2" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="w-full pt-4 pb-2"
+            onClick={(e) => e.stopPropagation()}
+          >
             <a
               href={calendlyUrl}
-              target={calendlyUrl.startsWith('http') ? '_blank' : undefined}
-              rel={calendlyUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
+              target={calendlyUrl.startsWith("http") ? "_blank" : undefined}
+              rel={
+                calendlyUrl.startsWith("http")
+                  ? "noopener noreferrer"
+                  : undefined
+              }
               className="w-full flex h-12 items-center justify-center gap-2 rounded-full text-sm font-semibold text-white bg-brand-orange hover:bg-brand-orange/90 transition-all shadow-[0_4px_14px_rgba(255,107,0,0.3)] active:scale-95"
               onClick={onClose}
             >

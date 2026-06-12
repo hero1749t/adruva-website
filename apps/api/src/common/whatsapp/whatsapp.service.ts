@@ -1,18 +1,47 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { PrismaService } from '../../prisma/prisma.service';
 
 @Injectable()
 export class WhatsappService {
   private readonly logger = new Logger(WhatsappService.name);
   private readonly metaApi = 'https://graph.facebook.com/v18.0';
 
+  constructor(private readonly prisma: PrismaService) {}
+
   async sendLeadNotification(
     name: string,
     service: string,
     phone: string,
   ): Promise<boolean> {
-    const to = process.env.TEAM_WHATSAPP;
-    const token = process.env.META_WHATSAPP_TOKEN;
-    const phoneId = process.env.META_PHONE_NUMBER_ID;
+    let to = process.env.TEAM_WHATSAPP;
+    let token = process.env.META_WHATSAPP_TOKEN;
+    let phoneId = process.env.META_PHONE_NUMBER_ID;
+
+    try {
+      const dbSettings = await this.prisma.websiteSetting.findMany({
+        where: {
+          key: {
+            in: ['whatsappToken', 'whatsappPhoneId', 'teamWhatsapp'],
+          },
+        },
+      });
+
+      const settingsMap = dbSettings.reduce(
+        (acc, curr) => {
+          acc[curr.key] = curr.value;
+          return acc;
+        },
+        {} as Record<string, string>,
+      );
+
+      if (settingsMap.whatsappToken) token = settingsMap.whatsappToken;
+      if (settingsMap.whatsappPhoneId) phoneId = settingsMap.whatsappPhoneId;
+      if (settingsMap.teamWhatsapp) to = settingsMap.teamWhatsapp;
+    } catch (err) {
+      this.logger.error(
+        `Error loading WhatsApp settings from database: ${(err as Error).message}`,
+      );
+    }
 
     if (!to || !token || !phoneId || token === 'dummy_whatsapp_token') {
       this.logger.log(

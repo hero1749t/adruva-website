@@ -1,12 +1,25 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Calendar } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import React from "react";
+import { Calendar } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query";
+import { apiFetch } from "@/lib/api";
 
 export function MobileBottomBar() {
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210';
-  const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || '/contact';
+  const { data: settingsData } = useQuery({
+    queryKey: ["settings"],
+    queryFn: () =>
+      apiFetch<{ success: boolean; data: Record<string, string> }>("/settings"),
+  });
+  const settings = settingsData?.data || {};
+
+  const contactPhone = settings.contactPhone;
+  const whatsappNumber = contactPhone
+    ? contactPhone.replace(/[^0-9]/g, "")
+    : process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919876543210";
+  const calendlyUrl =
+    settings.calendlyUrl || process.env.NEXT_PUBLIC_CALENDLY_URL || "/contact";
 
   const whatsappMessage = "Hi Adruva! I'd like to discuss a project.";
   const encodedText = encodeURIComponent(whatsappMessage);
@@ -15,9 +28,9 @@ export function MobileBottomBar() {
   return (
     <div
       className={cn(
-        'fixed bottom-0 left-0 right-0 z-40 w-full md:hidden border-t border-border/40 shadow-[0_-8px_30px_rgb(0,0,0,0.08)] transition-all duration-300',
-        'bg-background/90 backdrop-blur-lg dark:bg-black/90',
-        'px-4 pt-3 pb-[calc(12px+env(safe-area-inset-bottom,16px))] flex items-center gap-3'
+        "fixed bottom-0 left-0 right-0 z-40 w-full md:hidden border-t border-border/40 shadow-[0_-8px_30px_rgb(0,0,0,0.08)] transition-all duration-300",
+        "bg-background/90 backdrop-blur-lg dark:bg-black/90",
+        "px-4 pt-3 pb-[calc(12px+env(safe-area-inset-bottom,16px))] flex items-center gap-3",
       )}
     >
       {/* WhatsApp Button - 40% Width */}
@@ -27,8 +40,8 @@ export function MobileBottomBar() {
           target="_blank"
           rel="noopener noreferrer"
           className={cn(
-            'flex-1 flex h-11 items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-transform active:scale-95 text-white bg-[#25d366]',
-            'shadow-[0_4px_14px_rgba(37,211,102,0.3)]'
+            "flex-1 flex h-11 items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-transform active:scale-95 text-white bg-[#25d366]",
+            "shadow-[0_4px_14px_rgba(37,211,102,0.3)]",
           )}
           style={{ flexGrow: 4 }}
         >
@@ -46,11 +59,11 @@ export function MobileBottomBar() {
       {/* Book Call Button - 60% Width */}
       <a
         href={calendlyUrl}
-        target={calendlyUrl.startsWith('http') ? '_blank' : undefined}
-        rel={calendlyUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
+        target={calendlyUrl.startsWith("http") ? "_blank" : undefined}
+        rel={calendlyUrl.startsWith("http") ? "noopener noreferrer" : undefined}
         className={cn(
-          'flex-1 flex h-11 items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-transform active:scale-95 text-white bg-brand-orange hover:bg-brand-orange/90',
-          'shadow-[0_4px_14px_rgba(255,107,0,0.3)]'
+          "flex-1 flex h-11 items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-transform active:scale-95 text-white bg-brand-orange hover:bg-brand-orange/90",
+          "shadow-[0_4px_14px_rgba(255,107,0,0.3)]",
         )}
         style={{ flexGrow: 6 }}
       >

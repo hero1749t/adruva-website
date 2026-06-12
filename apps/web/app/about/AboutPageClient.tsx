@@ -19,6 +19,8 @@ import { CTASection } from "@/components/sections/CTASection";
 import { SectionTag } from "@/components/ui/section-tag";
 import { cn } from "@/lib/utils";
 import NextImage from "next/image";
+import { useQuery } from "@tanstack/react-query";
+import { apiFetch } from "@/lib/api";
 
 const teamMembers = [
   {
@@ -131,7 +133,15 @@ interface AboutPageClientProps {
 
 export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || "/contact";
+
+  const { data: settingsData } = useQuery({
+    queryKey: ["settings"],
+    queryFn: () =>
+      apiFetch<{ success: boolean; data: Record<string, string> }>("/settings"),
+  });
+  const settings = settingsData?.data || {};
+  const calendlyUrl =
+    settings.calendlyUrl || process.env.NEXT_PUBLIC_CALENDLY_URL || "/contact";
 
   const list =
     initialTeam && initialTeam.length > 0
