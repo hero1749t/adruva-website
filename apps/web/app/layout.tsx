@@ -2,12 +2,7 @@ import type { Metadata } from 'next';
 import { Poppins, Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import { Providers } from './providers';
-import { Navbar } from '@/components/layout/Navbar';
-import { Footer } from '@/components/layout/Footer';
-import { FloatingWhatsApp } from '@/components/layout/FloatingWhatsApp';
-import { MobileBottomBar } from '@/components/layout/MobileBottomBar';
-import { CookieBanner } from '@/components/layout/CookieBanner';
-import { BackToTop } from '@/components/layout/BackToTop';
+import { PublicLayoutWrapper } from '@/components/layout/PublicLayoutWrapper';
 import { PageTransition } from '@/components/layout/PageTransition';
 import { CursorGlow } from '@/components/ui/CursorGlow';
 
@@ -78,15 +73,9 @@ export default function RootLayout({
         <Providers>
           <div className="flex min-h-screen flex-col bg-background text-foreground transition-colors duration-300">
             <CursorGlow />
-            <Navbar />
-            <main className="flex-grow pt-20 pb-16 md:pb-0">
+            <PublicLayoutWrapper>
               <PageTransition>{children}</PageTransition>
-            </main>
-            <Footer />
-            <FloatingWhatsApp />
-            <MobileBottomBar />
-            <CookieBanner />
-            <BackToTop />
+            </PublicLayoutWrapper>
           </div>
         </Providers>
       </body>

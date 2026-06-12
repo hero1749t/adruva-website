@@ -6,11 +6,13 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Shield, Lock, Mail, AlertCircle, ArrowRight } from 'lucide-react';
-import { Button } from '../../../components/ui/button';
-import { Input } from '../../../components/ui/input';
-import { Label } from '../../../components/ui/label';
-import { Card, CardHeader, CardContent, CardTitle, CardDescription } from '../../../components/ui/card';
+import { Lock, Mail, AlertCircle, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Card, CardHeader, CardContent, CardDescription } from '@/components/ui/card';
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -67,7 +69,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-[#060b13] overflow-hidden px-4">
+    <div className="relative min-h-screen w-full flex items-center justify-center bg-[#060b13] overflow-y-auto py-12 px-4">
       {/* Decorative Blur Background Circles */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-orange/20 rounded-full blur-[100px] pointer-events-none animate-pulse duration-[8000ms]" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-blue/20 rounded-full blur-[100px] pointer-events-none animate-pulse duration-[6000ms]" />
@@ -77,12 +79,21 @@ export default function LoginPage() {
         <div className="h-1.5 w-full bg-gradient-to-r from-brand-orange via-brand-blue to-brand-orange" />
 
         <CardHeader className="space-y-2 text-center pt-8">
-          <div className="mx-auto w-12 h-12 rounded-xl bg-brand-orange/10 border border-brand-orange/20 flex items-center justify-center mb-2">
-            <Shield className="w-6 h-6 text-brand-orange" />
-          </div>
-          <CardTitle className="text-2xl font-bold tracking-tight font-poppins">
-            Adruva Solution
-          </CardTitle>
+          <Link href="/" className="mx-auto flex flex-col items-center gap-1.5 focus:outline-none group mb-2">
+            <div className="h-10 w-[51px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
+              <Image
+                src="/logo-symbol-light.png"
+                alt="Adruva Logo"
+                fill
+                sizes="51px"
+                className="object-contain"
+                priority
+              />
+            </div>
+            <span className="text-2xl font-[800] tracking-tight text-white transition-colors font-poppins mt-1">
+              Adruva<span className="text-brand-orange">.</span>
+            </span>
+          </Link>
           <CardDescription className="text-brand-gray text-sm font-inter">
             Access the administrative console to manage content & leads
           </CardDescription>
@@ -102,13 +113,13 @@ export default function LoginPage() {
                 Email Address
               </Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-3 w-4 h-4 text-brand-gray" />
+                <Mail className="absolute left-4 top-3.5 w-5 h-5 text-brand-gray" />
                 <Input
                   id="email"
                   type="email"
                   placeholder="admin@adruvasolution.com"
-                  className="pl-10 bg-white/5 border-white/10 text-white placeholder:text-brand-gray focus:border-brand-orange focus:ring-1 focus:ring-brand-orange"
-                  {...register('register' in register ? 'email' : 'email')}
+                  className="pl-12 h-12 bg-white/5 border-white/10 text-white placeholder:text-brand-gray/40 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange"
+                  {...register('email')}
                 />
               </div>
               {errors.email && (
@@ -121,13 +132,13 @@ export default function LoginPage() {
                 Password
               </Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-3 w-4 h-4 text-brand-gray" />
+                <Lock className="absolute left-4 top-3.5 w-5 h-5 text-brand-gray" />
                 <Input
                   id="password"
                   type="password"
                   placeholder="••••••••••••"
-                  className="pl-10 bg-white/5 border-white/10 text-white placeholder:text-brand-gray focus:border-brand-orange focus:ring-1 focus:ring-brand-orange"
-                  {...register('register' in register ? 'password' : 'password')}
+                  className="pl-12 h-12 bg-white/5 border-white/10 text-white placeholder:text-brand-gray/40 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange"
+                  {...register('password')}
                 />
               </div>
               {errors.password && (
@@ -138,7 +149,7 @@ export default function LoginPage() {
             <Button
               type="submit"
               disabled={loading || googleLoading}
-              className="w-full bg-brand-orange hover:bg-brand-orange-hover text-white py-6 mt-6 transition-all duration-300 font-semibold flex items-center justify-center gap-2 rounded-lg"
+              className="w-full bg-brand-orange hover:bg-brand-orange/90 text-white h-12 mt-6 transition-all duration-300 font-semibold flex items-center justify-center gap-2 rounded-lg"
             >
               {loading ? (
                 <span>Authenticating...</span>
@@ -163,7 +174,7 @@ export default function LoginPage() {
             variant="outline"
             disabled={loading || googleLoading}
             onClick={handleGoogleSignIn}
-            className="w-full border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 text-white py-6 flex items-center justify-center gap-3 transition-all duration-300 rounded-lg"
+            className="w-full border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 text-white h-12 flex items-center justify-center gap-3 transition-all duration-300 rounded-lg"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
               <path
