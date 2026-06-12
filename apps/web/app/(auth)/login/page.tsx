@@ -78,7 +78,7 @@ export default function LoginPage() {
         {/* Top brand header accent */}
         <div className="h-1.5 w-full bg-gradient-to-r from-brand-orange via-brand-blue to-brand-orange" />
 
-        <CardHeader className="space-y-2 text-center pt-8">
+        <CardHeader className="space-y-2 text-center pt-8 px-6 sm:px-8">
           <Link href="/" className="mx-auto flex flex-col items-center gap-1.5 focus:outline-none group mb-2">
             <div className="h-10 w-[51px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
               <Image
@@ -99,7 +99,7 @@ export default function LoginPage() {
           </CardDescription>
         </CardHeader>
 
-        <CardContent className="space-y-6 pb-8">
+        <CardContent className="space-y-6 pb-8 px-6 sm:px-8">
           {error && (
             <div className="flex items-center gap-3 p-3 rounded-lg border border-red-500/20 bg-red-500/10 text-red-400 text-sm">
               <AlertCircle className="w-5 h-5 shrink-0" />
