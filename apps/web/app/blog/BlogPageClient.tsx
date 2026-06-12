@@ -1,36 +1,51 @@
-'use client';
+"use client";
 
-import React, { useState, useMemo } from 'react';
-import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Container } from '@/components/layout/container';
-import { Section } from '@/components/layout/section';
-import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
-import { blogPosts, BlogPost } from '@/lib/blog-data';
-import { Search, Calendar, Clock, User, ArrowRight } from 'lucide-react';
+import React, { useState, useMemo } from "react";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import { Container } from "@/components/layout/container";
+import { Section } from "@/components/layout/section";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import Image from "next/image";
+import { Search, Calendar, Clock, User, ArrowRight } from "lucide-react";
+import { blogPosts, BlogPost } from "@/lib/blog-data";
 
-const CATEGORIES: Array<BlogPost['category'] | 'All'> = [
-  'All',
-  'AI & Tech',
-  'Web Dev',
-  'Marketing',
-  'Design',
-  'Company News',
+const CATEGORIES: Array<BlogPost["category"] | "All"> = [
+  "All",
+  "AI & Tech",
+  "Web Dev",
+  "Marketing",
+  "Design",
+  "Company News",
 ];
 
-export function BlogPageClient() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<BlogPost['category'] | 'All'>('All');
+interface BlogPageClientProps {
+  initialPosts?: BlogPost[];
+}
+
+export function BlogPageClient({ initialPosts }: BlogPageClientProps) {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<
+    BlogPost["category"] | "All"
+  >("All");
+
+  const posts = initialPosts || blogPosts;
 
   // Filtered posts based on search query and category
   const filteredPosts = useMemo(() => {
-    return blogPosts.filter((post) => {
+    return posts.filter((post) => {
       const matchesSearch =
         post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         post.summary.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
+      const matchesCategory =
+        selectedCategory === "All" || post.category === selectedCategory;
       return matchesSearch && matchesCategory;
     });
   }, [searchQuery, selectedCategory]);
@@ -45,7 +60,9 @@ export function BlogPageClient() {
               Home
             </Link>
             <span>/</span>
-            <span className="text-text-primary dark:text-white font-medium">Blog</span>
+            <span className="text-text-primary dark:text-white font-medium">
+              Blog
+            </span>
           </div>
         </Container>
       </div>
@@ -54,14 +71,18 @@ export function BlogPageClient() {
       <Section className="pb-8">
         <Container>
           <div className="text-center max-w-3xl mx-auto space-y-4">
-            <Badge variant="outline" className="px-3 py-1 text-primary border-primary/20 bg-primary/5 uppercase tracking-wider text-xs font-semibold">
+            <Badge
+              variant="outline"
+              className="px-3 py-1 text-primary border-primary/20 bg-primary/5 uppercase tracking-wider text-xs font-semibold"
+            >
               Insights
             </Badge>
             <h1 className="text-4xl md:text-5xl font-extrabold font-poppins text-secondary dark:text-white tracking-tight">
               Insights & Resources
             </h1>
             <p className="text-lg md:text-xl text-text-secondary dark:text-gray-300 font-space leading-relaxed">
-              Articles on AI, web development, digital marketing, and business growth.
+              Articles on AI, web development, digital marketing, and business
+              growth.
             </p>
           </div>
         </Container>
@@ -79,8 +100,8 @@ export function BlogPageClient() {
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
                     selectedCategory === category
-                      ? 'bg-primary text-white shadow-md shadow-primary/20 scale-105'
-                      : 'bg-background hover:bg-muted text-text-secondary border border-border/50'
+                      ? "bg-primary text-white shadow-md shadow-primary/20 scale-105"
+                      : "bg-background hover:bg-muted text-text-secondary border border-border/50"
                   }`}
                 >
                   {category}
@@ -123,9 +144,25 @@ export function BlogPageClient() {
                     className="flex"
                   >
                     <Card className="flex flex-col w-full group overflow-hidden border-border/80 bg-card hover:border-primary/40 dark:hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 rounded-xl">
-                      {/* Card Cover Gradient (Representing Image) */}
-                      <Link href={`/blog/${post.slug}`} className="block relative aspect-[16/9] w-full overflow-hidden">
-                        <div className={`absolute inset-0 bg-gradient-to-br ${post.coverGradient} transform group-hover:scale-105 transition-transform duration-500`} />
+                      {/* Card Cover Image or Gradient */}
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className="block relative aspect-[16/9] w-full overflow-hidden"
+                      >
+                        {post.coverGradient.startsWith("http") ||
+                        post.coverGradient.startsWith("/") ? (
+                          <Image
+                            src={post.coverGradient}
+                            alt={post.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                            className="object-cover transform group-hover:scale-105 transition-transform duration-500"
+                          />
+                        ) : (
+                          <div
+                            className={`absolute inset-0 bg-gradient-to-br ${post.coverGradient} transform group-hover:scale-105 transition-transform duration-500`}
+                          />
+                        )}
                         <div className="absolute inset-0 bg-black/15 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         <div className="absolute top-4 left-4">
                           <Badge className="bg-primary text-white border-none py-1 px-3 hover:bg-primary">
@@ -145,7 +182,10 @@ export function BlogPageClient() {
                             {post.readingTime}
                           </span>
                         </div>
-                        <Link href={`/blog/${post.slug}`} className="block group-hover:text-primary transition-colors duration-200">
+                        <Link
+                          href={`/blog/${post.slug}`}
+                          className="block group-hover:text-primary transition-colors duration-200"
+                        >
                           <h3 className="text-xl font-bold font-poppins text-secondary dark:text-white line-clamp-2 leading-tight">
                             {post.title}
                           </h3>
@@ -195,14 +235,18 @@ export function BlogPageClient() {
                 className="text-center py-16 bg-muted/10 rounded-2xl border border-dashed border-border"
               >
                 <Search className="w-12 h-12 text-text-muted mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-secondary dark:text-white mb-2">No articles found</h3>
+                <h3 className="text-xl font-bold text-secondary dark:text-white mb-2">
+                  No articles found
+                </h3>
                 <p className="text-text-secondary dark:text-gray-400">
-                  We couldn&apos;t find any articles matching &quot;{searchQuery}&quot; in category &quot;{selectedCategory}&quot;.
+                  We couldn&apos;t find any articles matching &quot;
+                  {searchQuery}&quot; in category &quot;{selectedCategory}
+                  &quot;.
                 </p>
                 <button
                   onClick={() => {
-                    setSearchQuery('');
-                    setSelectedCategory('All');
+                    setSearchQuery("");
+                    setSelectedCategory("All");
                   }}
                   className="mt-4 px-4 py-2 bg-primary text-white rounded-lg text-sm font-semibold hover:bg-orange-hover transition-colors"
                 >

@@ -1,26 +1,33 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { 
-  ChevronRight, 
-  ArrowRight, 
-  Sparkle, 
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import {
+  ChevronRight,
+  ArrowRight,
+  Sparkle,
   Building,
   Tag,
   Clock,
   Code2,
-  ExternalLink
-} from 'lucide-react';
-import { Section } from '@/components/layout/section';
-import { Container } from '@/components/layout/container';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { projects, ProjectItem } from '@/lib/work-data';
-import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { SectionTag } from '@/components/ui/section-tag';
-import { cn } from '@/lib/utils';
+  ExternalLink,
+} from "lucide-react";
+import { Section } from "@/components/layout/section";
+import { Container } from "@/components/layout/container";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { projects, ProjectItem } from "@/lib/work-data";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import { SectionTag } from "@/components/ui/section-tag";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 interface CaseStudyClientProps {
   project: ProjectItem;
@@ -31,16 +38,22 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
 
   useEffect(() => {
     const checkReducedMotion = () => {
-      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
       setPrefersReducedMotion(mediaQuery.matches);
     };
     checkReducedMotion();
   }, []);
 
   // Filter related projects (aim for same category, fallback to others to get exactly 3)
-  let relatedProjects = projects.filter((p) => p.category === project.category && p.slug !== project.slug);
+  let relatedProjects = projects.filter(
+    (p) => p.category === project.category && p.slug !== project.slug,
+  );
   if (relatedProjects.length < 3) {
-    const otherProjects = projects.filter((p) => p.slug !== project.slug && !relatedProjects.find((rp) => rp.slug === p.slug));
+    const otherProjects = projects.filter(
+      (p) =>
+        p.slug !== project.slug &&
+        !relatedProjects.find((rp) => rp.slug === p.slug),
+    );
     relatedProjects = [...relatedProjects, ...otherProjects].slice(0, 3);
   }
 
@@ -50,7 +63,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: 'easeOut' },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
@@ -65,7 +78,6 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
 
   return (
     <div className="w-full bg-background text-foreground transition-colors duration-300">
-      
       {/* a) & b) Breadcrumbs & Hero Section */}
       <Section className="pt-10 pb-16 relative overflow-hidden">
         {/* Subtle background glow */}
@@ -74,24 +86,38 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
         <Container className="relative z-10">
           {/* Breadcrumbs */}
           <nav className="flex items-center gap-1.5 text-xs text-muted-foreground font-medium mb-8 font-inter">
-            <Link href="/" className="hover:text-brand-orange transition-colors">
+            <Link
+              href="/"
+              className="hover:text-brand-orange transition-colors"
+            >
               Home
             </Link>
             <ChevronRight className="h-3.5 w-3.5 opacity-60" />
-            <Link href="/work" className="hover:text-brand-orange transition-colors">
+            <Link
+              href="/work"
+              className="hover:text-brand-orange transition-colors"
+            >
               Our Work
             </Link>
             <ChevronRight className="h-3.5 w-3.5 opacity-60" />
-            <span className="text-foreground font-semibold">{project.title}</span>
+            <span className="text-foreground font-semibold">
+              {project.title}
+            </span>
           </nav>
 
           {/* Hero Content */}
           <div className="max-w-4xl mx-auto text-center mb-12">
             <div className="flex items-center justify-center gap-2 mb-6">
-              <Badge variant="outline" className="text-[10px] font-bold uppercase tracking-wider font-space-grotesk border-brand-orange/20 text-brand-orange bg-brand-orange/5 px-2.5 py-1">
+              <Badge
+                variant="outline"
+                className="text-[10px] font-bold uppercase tracking-wider font-space-grotesk border-brand-orange/20 text-brand-orange bg-brand-orange/5 px-2.5 py-1"
+              >
                 {project.category}
               </Badge>
-              <Badge variant="secondary" className="text-[10px] font-bold uppercase tracking-wider font-space-grotesk px-2.5 py-1">
+              <Badge
+                variant="secondary"
+                className="text-[10px] font-bold uppercase tracking-wider font-space-grotesk px-2.5 py-1"
+              >
                 {project.industry}
               </Badge>
             </div>
@@ -99,19 +125,34 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-brand-navy dark:text-white leading-[1.15] mb-6 font-poppins">
               {project.title}
             </h1>
-            
+
             <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-2xl mx-auto font-inter">
               {project.overview}
             </p>
           </div>
 
-          {/* Full-width 16:9 Gradient Header Banner */}
-          <div className={cn(
-            'w-full aspect-[21/9] rounded-3xl bg-gradient-to-br flex items-center justify-center relative overflow-hidden select-none shadow-2xl',
-            project.heroGradient
-          )}>
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15)_0%,transparent_85%)] mix-blend-overlay" />
-            <div className="relative z-10 flex flex-col items-center">
+          {/* Full-width Banner Image or Gradient */}
+          <div className="w-full aspect-[21/9] rounded-3xl relative overflow-hidden select-none shadow-2xl">
+            {project.heroGradient.startsWith("http") ||
+            project.heroGradient.startsWith("/") ? (
+              <Image
+                src={project.heroGradient}
+                alt={project.title}
+                fill
+                sizes="(max-width: 1200px) 100vw, 1200px"
+                className="object-cover"
+                priority
+              />
+            ) : (
+              <div
+                className={cn(
+                  "absolute inset-0 bg-gradient-to-br flex items-center justify-center",
+                  project.heroGradient,
+                )}
+              />
+            )}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15)_0%,transparent_85%)] mix-blend-overlay z-10" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
               <Sparkle className="h-8 w-8 text-white/45 animate-pulse mb-3" />
               <span className="text-xs font-bold text-white/50 tracking-[0.2em] uppercase font-space-grotesk">
                 Case Study Project Artifact
@@ -143,7 +184,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                 TECH STACK
               </span>
               <span className="text-xs font-semibold text-brand-navy dark:text-white font-inter truncate max-w-full">
-                {project.techStack.slice(0, 2).join(' / ')}
+                {project.techStack.slice(0, 2).join(" / ")}
               </span>
             </div>
 
@@ -177,11 +218,11 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start max-w-4xl mx-auto">
             {/* The Challenge */}
-            <motion.div 
+            <motion.div
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
+              viewport={{ once: true, margin: "-50px" }}
               className="flex flex-col items-start"
             >
               <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block mb-3 font-space-grotesk">
@@ -197,11 +238,11 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
             </motion.div>
 
             {/* Our Solution */}
-            <motion.div 
+            <motion.div
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
+              viewport={{ once: true, margin: "-50px" }}
               className="flex flex-col items-start"
             >
               <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block mb-3 font-space-grotesk">
@@ -232,7 +273,10 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3 max-w-xl mx-auto">
             {project.techStack.map((tech) => (
-              <div key={tech} className="px-3 py-1.5 rounded-lg border border-border/30 bg-card shadow-sm text-xs font-semibold text-brand-navy/80 dark:text-white/80 font-space-grotesk">
+              <div
+                key={tech}
+                className="px-3 py-1.5 rounded-lg border border-border/30 bg-card shadow-sm text-xs font-semibold text-brand-navy/80 dark:text-white/80 font-space-grotesk"
+              >
                 {tech}
               </div>
             ))}
@@ -244,7 +288,9 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
       <Section className="py-16 md:py-24 bg-brand-navy text-white dark:bg-[#070707] dark:border-y dark:border-white/10">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <SectionTag className="justify-center text-white">THE IMPACT</SectionTag>
+            <SectionTag className="justify-center text-white">
+              THE IMPACT
+            </SectionTag>
             <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-poppins">
               Project results & outcomes
             </h2>
@@ -255,7 +301,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
+            viewport={{ once: true, margin: "-50px" }}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
           >
             {project.results.map((result, index) => (
@@ -292,10 +338,12 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
               <Dialog key={index}>
                 <DialogTrigger
                   render={
-                    <button className={cn(
-                      'h-48 w-full rounded-2xl bg-gradient-to-br flex items-center justify-center relative overflow-hidden group focus:outline-none shadow-md border border-border/20 cursor-zoom-in transition-transform duration-300 hover:scale-[1.02]',
-                      gradient
-                    )}>
+                    <button
+                      className={cn(
+                        "h-48 w-full rounded-2xl bg-gradient-to-br flex items-center justify-center relative overflow-hidden group focus:outline-none shadow-md border border-border/20 cursor-zoom-in transition-transform duration-300 hover:scale-[1.02]",
+                        gradient,
+                      )}
+                    >
                       <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors" />
                       <span className="text-[9px] font-bold text-white/60 tracking-wider uppercase font-space-grotesk">
                         Screenshot {index + 1}
@@ -304,12 +352,18 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                   }
                 />
                 <DialogContent className="max-w-3xl border-none p-0 overflow-hidden bg-transparent shadow-none flex items-center justify-center">
-                  <DialogTitle className="sr-only">Screenshot {index + 1} Lightbox Preview</DialogTitle>
-                  <DialogDescription className="sr-only">Case study screenshot preview mockup</DialogDescription>
-                  <div className={cn(
-                    'w-full aspect-video rounded-3xl bg-gradient-to-br flex items-center justify-center text-white font-extrabold text-xl shadow-2xl relative border border-white/10',
-                    gradient
-                  )}>
+                  <DialogTitle className="sr-only">
+                    Screenshot {index + 1} Lightbox Preview
+                  </DialogTitle>
+                  <DialogDescription className="sr-only">
+                    Case study screenshot preview mockup
+                  </DialogDescription>
+                  <div
+                    className={cn(
+                      "w-full aspect-video rounded-3xl bg-gradient-to-br flex items-center justify-center text-white font-extrabold text-xl shadow-2xl relative border border-white/10",
+                      gradient,
+                    )}
+                  >
                     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15)_0%,transparent_85%)] mix-blend-overlay" />
                     <span className="font-space-grotesk tracking-widest text-white/50 text-xs uppercase">
                       SCREENSHOT {index + 1} FULL MOCKUP
@@ -333,7 +387,8 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
               Have a similar project in mind?
             </h2>
             <p className="text-xs text-muted-foreground mb-8 font-inter">
-              Get an honest technical scope check and estimated budget numbers for your company.
+              Get an honest technical scope check and estimated budget numbers
+              for your company.
             </p>
             <Link href="/contact">
               <Button
@@ -367,7 +422,11 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                 View all work
                 <motion.span
                   animate={prefersReducedMotion ? {} : { x: [0, 4, 0] }}
-                  transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 1.5,
+                    ease: "easeInOut",
+                  }}
                 >
                   <ArrowRight className="h-4 w-4" />
                 </motion.span>
@@ -381,7 +440,12 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                   className="flex flex-col rounded-2xl border border-border/40 bg-card overflow-hidden transition-all duration-300 group hover:border-brand-orange/30 hover:shadow-[0_4px_20px_rgba(255,107,0,0.06)]"
                 >
                   {/* Image Gradient Placeholder */}
-                  <div className={cn('h-40 w-full bg-gradient-to-br flex items-center justify-center p-6 relative overflow-hidden select-none', project.heroGradient)}>
+                  <div
+                    className={cn(
+                      "h-40 w-full bg-gradient-to-br flex items-center justify-center p-6 relative overflow-hidden select-none",
+                      project.heroGradient,
+                    )}
+                  >
                     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.12)_0%,transparent_80%)] mix-blend-overlay" />
                     <span className="text-[9px] font-extrabold tracking-widest text-white/50 uppercase font-space-grotesk">
                       {project.industry} Case Study
@@ -401,13 +465,20 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                     <div className="mt-auto space-y-3">
                       <div className="flex flex-wrap gap-1.5">
                         {project.techStack.slice(0, 3).map((t) => (
-                          <Badge key={t} variant="secondary" className="bg-muted hover:bg-muted text-[9px] text-muted-foreground font-semibold px-2 py-0.5 rounded-sm border border-border/10 font-inter">
+                          <Badge
+                            key={t}
+                            variant="secondary"
+                            className="bg-muted hover:bg-muted text-[9px] text-muted-foreground font-semibold px-2 py-0.5 rounded-sm border border-border/10 font-inter"
+                          >
                             {t}
                           </Badge>
                         ))}
                       </div>
                       <div className="border-t border-border/10 pt-3">
-                        <Link href={`/work/${project.slug}`} className="text-xs font-bold text-brand-navy hover:text-brand-orange dark:text-white/80 dark:hover:text-brand-orange transition-colors flex items-center gap-1 font-inter">
+                        <Link
+                          href={`/work/${project.slug}`}
+                          className="text-xs font-bold text-brand-navy hover:text-brand-orange dark:text-white/80 dark:hover:text-brand-orange transition-colors flex items-center gap-1 font-inter"
+                        >
                           View Case Study
                           <ExternalLink className="h-3 w-3 opacity-60" />
                         </Link>
@@ -420,7 +491,6 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
           </Container>
         </Section>
       )}
-
     </div>
   );
 }

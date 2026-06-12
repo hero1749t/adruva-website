@@ -14,6 +14,8 @@ import { TeamModule } from './modules/team/team.module';
 import { NewsletterModule } from './modules/newsletter/newsletter.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { ApplicationsModule } from './modules/applications/applications.module';
+import { CareersModule } from './modules/careers/careers.module';
+import { SettingsModule } from './modules/settings/settings.module';
 
 @Module({
   imports: [
@@ -35,6 +37,8 @@ import { ApplicationsModule } from './modules/applications/applications.module';
     NewsletterModule,
     AuthModule,
     ApplicationsModule,
+    CareersModule,
+    SettingsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

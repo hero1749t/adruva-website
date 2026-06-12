@@ -1,25 +1,86 @@
 import { Injectable, Logger } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
+import { PrismaService } from '../../prisma/prisma.service';
 
 @Injectable()
 export class EmailService {
   private readonly logger = new Logger(EmailService.name);
-  private transporter: nodemailer.Transporter | null = null;
 
-  constructor() {
-    const user = process.env.GMAIL_USER;
-    const pass = process.env.GMAIL_APP_PASSWORD;
+  constructor(private readonly prisma: PrismaService) {}
 
-    if (user && pass && user !== 'hello@adruvaSolution.com') {
-      this.transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: { user, pass },
+  private async getTransporter(): Promise<{
+    transporter: nodemailer.Transporter | null;
+    sender: string;
+  }> {
+    try {
+      const dbSettings = await this.prisma.websiteSetting.findMany({
+        where: {
+          key: {
+            in: [
+              'smtpHost',
+              'smtpPort',
+              'smtpUser',
+              'smtpPassword',
+              'senderEmail',
+            ],
+          },
+        },
       });
-    } else {
-      this.logger.warn(
-        'GMAIL_USER and GMAIL_APP_PASSWORD not configured. Emails will be mocked.',
+
+      const settingsMap = dbSettings.reduce(
+        (acc, curr) => {
+          acc[curr.key] = curr.value;
+          return acc;
+        },
+        {} as Record<string, string>,
+      );
+
+      const user = settingsMap.smtpUser || process.env.GMAIL_USER;
+      const pass = settingsMap.smtpPassword || process.env.GMAIL_APP_PASSWORD;
+      const host = settingsMap.smtpHost;
+      const port = settingsMap.smtpPort
+        ? parseInt(settingsMap.smtpPort, 10)
+        : 587;
+      const sender =
+        settingsMap.senderEmail || user || 'hello@adruvaSolution.com';
+
+      if (user && pass) {
+        if (host && host !== 'smtp.gmail.com') {
+          // Custom SMTP Server
+          const transporter = nodemailer.createTransport({
+            host,
+            port,
+            secure: port === 465,
+            auth: { user, pass },
+          });
+          return { transporter, sender };
+        } else {
+          // Gmail Default
+          const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: { user, pass },
+          });
+          return { transporter, sender };
+        }
+      }
+    } catch (err) {
+      this.logger.error(
+        `Error loading SMTP settings from database: ${(err as Error).message}`,
       );
     }
+
+    // Fallback Mock mode or base env
+    const userEnv = process.env.GMAIL_USER;
+    const passEnv = process.env.GMAIL_APP_PASSWORD;
+    if (userEnv && passEnv && userEnv !== 'hello@adruvaSolution.com') {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: { user: userEnv, pass: passEnv },
+      });
+      return { transporter, sender: userEnv };
+    }
+
+    return { transporter: null, sender: 'hello@adruvaSolution.com' };
   }
 
   async sendUserConfirmation(
@@ -92,14 +153,16 @@ Team Adruva Solution`;
     subject: string,
     text: string,
   ): Promise<boolean> {
-    if (!this.transporter) {
+    const { transporter, sender } = await this.getTransporter();
+
+    if (!transporter) {
       this.logger.log(`Mock Email sent to: ${to} | Subject: ${subject}`);
       return true;
     }
 
     try {
-      await this.transporter.sendMail({
-        from: `"Adruva Solution" <${process.env.GMAIL_USER}>`,
+      await transporter.sendMail({
+        from: `"Adruva Solution" <${sender}>`,
         to,
         subject,
         text,

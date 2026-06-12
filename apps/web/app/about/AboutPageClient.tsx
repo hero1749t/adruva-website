@@ -1,68 +1,146 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { 
-  Layers, 
-  Bolt, 
-  Coins, 
-  UserCheck, 
-  ShieldCheck, 
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import {
+  Layers,
+  Bolt,
+  Coins,
+  UserCheck,
+  ShieldCheck,
   ArrowRight,
-  Sparkle
-} from 'lucide-react';
-import { Section } from '@/components/layout/section';
-import { Container } from '@/components/layout/container';
-import { Button } from '@/components/ui/button';
-import { CTASection } from '@/components/sections/CTASection';
-import { SectionTag } from '@/components/ui/section-tag';
-import { cn } from '@/lib/utils';
+  Sparkle,
+} from "lucide-react";
+import { Section } from "@/components/layout/section";
+import { Container } from "@/components/layout/container";
+import { Button } from "@/components/ui/button";
+import { CTASection } from "@/components/sections/CTASection";
+import { SectionTag } from "@/components/ui/section-tag";
+import { cn } from "@/lib/utils";
+import NextImage from "next/image";
 
 const teamMembers = [
-  { initials: 'D.K.', name: 'D.K.', role: 'Full Stack Developer', gradient: 'from-blue-600 to-blue-900' },
-  { initials: 'L.K.', name: 'L.K.', role: 'Project Manager', gradient: 'from-orange-500 to-red-700' },
-  { initials: 'N.K.', name: 'N.K.', role: 'Marketing Lead', gradient: 'from-green-500 to-emerald-800' },
-  { initials: 'S.K.', name: 'S.K.', role: 'UI/UX Designer', gradient: 'from-purple-500 to-violet-800' },
-  { initials: 'A.K.', name: 'A.K.', role: 'AI Specialist', gradient: 'from-cyan-500 to-blue-700' },
-  { initials: 'R.K.', name: 'R.K.', role: 'SEO Expert', gradient: 'from-yellow-500 to-orange-600' }
+  {
+    initials: "D.K.",
+    name: "D.K.",
+    role: "Full Stack Developer",
+    gradient: "from-blue-600 to-blue-900",
+    photoUrl: null as string | null,
+  },
+  {
+    initials: "L.K.",
+    name: "L.K.",
+    role: "Project Manager",
+    gradient: "from-orange-500 to-red-700",
+    photoUrl: null as string | null,
+  },
+  {
+    initials: "N.K.",
+    name: "N.K.",
+    role: "Marketing Lead",
+    gradient: "from-green-500 to-emerald-800",
+    photoUrl: null as string | null,
+  },
+  {
+    initials: "S.K.",
+    name: "S.K.",
+    role: "UI/UX Designer",
+    gradient: "from-purple-500 to-violet-800",
+    photoUrl: null as string | null,
+  },
+  {
+    initials: "A.K.",
+    name: "A.K.",
+    role: "AI Specialist",
+    gradient: "from-cyan-500 to-blue-700",
+    photoUrl: null as string | null,
+  },
+  {
+    initials: "R.K.",
+    name: "R.K.",
+    role: "SEO Expert",
+    gradient: "from-yellow-500 to-orange-600",
+    photoUrl: null as string | null,
+  },
 ];
+
+function mapDbTeamToMember(dbMember: any) {
+  const initials = dbMember.name
+    ? dbMember.name
+        .split(" ")
+        .map((n: string) => n[0])
+        .join("")
+        .slice(0, 2)
+        .toUpperCase()
+    : "AT";
+
+  const gradients = [
+    "from-blue-600 to-blue-900",
+    "from-orange-500 to-red-700",
+    "from-green-500 to-emerald-800",
+    "from-purple-500 to-violet-800",
+    "from-cyan-500 to-blue-700",
+    "from-yellow-500 to-orange-600",
+  ];
+  const charSum = dbMember.name
+    .split("")
+    .reduce((sum: number, char: string) => sum + char.charCodeAt(0), 0);
+  const gradient = gradients[charSum % gradients.length];
+
+  return {
+    initials,
+    name: dbMember.name,
+    role: dbMember.designation,
+    photoUrl: dbMember.photoUrl || null,
+    gradient,
+  };
+}
 
 const whyChooseUs = [
   {
     icon: Layers,
-    title: 'End-to-end service',
-    desc: 'One partner for your entire digital cycle — from wireframe designs to complex AI integrations.'
+    title: "End-to-end service",
+    desc: "One partner for your entire digital cycle — from wireframe designs to complex AI integrations.",
   },
   {
     icon: Bolt,
-    title: 'Fast delivery + transparent communication',
-    desc: 'No corners cut. We work in rapid sprints with live dashboards so you see real daily updates.'
+    title: "Fast delivery + transparent communication",
+    desc: "No corners cut. We work in rapid sprints with live dashboards so you see real daily updates.",
   },
   {
     icon: Coins,
-    title: 'Affordable pricing without compromising quality',
-    desc: 'Enterprise-grade system structures scaled to fit local business development budgets.'
+    title: "Affordable pricing without compromising quality",
+    desc: "Enterprise-grade system structures scaled to fit local business development budgets.",
   },
   {
     icon: UserCheck,
-    title: 'Dedicated project manager for every project',
-    desc: 'A single point of contact coordinating all code deliverables, timelines, and launch scopes.'
+    title: "Dedicated project manager for every project",
+    desc: "A single point of contact coordinating all code deliverables, timelines, and launch scopes.",
   },
   {
     icon: ShieldCheck,
-    title: 'Secure client portal — professional management',
-    desc: 'Collaborate and access files, milestones, invoices, and reports securely.'
-  }
+    title: "Secure client portal — professional management",
+    desc: "Collaborate and access files, milestones, invoices, and reports securely.",
+  },
 ];
 
-export function AboutPageClient() {
+interface AboutPageClientProps {
+  initialTeam?: any[];
+}
+
+export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || '/contact';
+  const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || "/contact";
+
+  const list =
+    initialTeam && initialTeam.length > 0
+      ? initialTeam.map(mapDbTeamToMember)
+      : teamMembers;
 
   useEffect(() => {
     const checkReducedMotion = () => {
-      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
       setPrefersReducedMotion(mediaQuery.matches);
     };
     checkReducedMotion();
@@ -73,7 +151,7 @@ export function AboutPageClient() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: 'easeOut' },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
@@ -88,12 +166,11 @@ export function AboutPageClient() {
 
   return (
     <div className="w-full bg-background text-foreground transition-colors duration-300">
-      
       {/* a) Hero Section */}
       <Section className="pt-12 pb-16 md:pt-16 md:pb-24 relative overflow-hidden">
         {/* Subtle background gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-brand-orange/5 via-transparent to-transparent pointer-events-none select-none z-0" />
-        
+
         <Container className="relative z-10">
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
             {/* Tag */}
@@ -132,20 +209,35 @@ export function AboutPageClient() {
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: '-50px' }}
+                viewport={{ once: true, margin: "-50px" }}
                 className="space-y-6 text-sm text-muted-foreground leading-relaxed font-inter"
               >
                 <motion.p variants={fadeInUp}>
-                  In Dehradun and across regional business hubs, we noticed a persistent and frustrating gap: local businesses were struggling to find quality technical development partners. Many business owners had brilliant ideas but were constantly held back by unreliable code or poor configurations.
+                  In Dehradun and across regional business hubs, we noticed a
+                  persistent and frustrating gap: local businesses were
+                  struggling to find quality technical development partners.
+                  Many business owners had brilliant ideas but were constantly
+                  held back by unreliable code or poor configurations.
                 </motion.p>
                 <motion.p variants={fadeInUp}>
-                  Most digital agencies fell into two frustrating extremes — they were either prohibitively expensive for startups and local businesses, or they worked painfully slow, yielding low-quality code that failed to translate into real business inquiries or conversions.
+                  Most digital agencies fell into two frustrating extremes —
+                  they were either prohibitively expensive for startups and
+                  local businesses, or they worked painfully slow, yielding
+                  low-quality code that failed to translate into real business
+                  inquiries or conversions.
                 </motion.p>
                 <motion.p variants={fadeInUp}>
-                  We founded **Adruva Solution** to directly resolve this imbalance. Our goal was simple: provide transparent communication, fast sprints, and premium, enterprise-grade engineering at pricing models built for growing businesses.
+                  We founded **Adruva Solution** to directly resolve this
+                  imbalance. Our goal was simple: provide transparent
+                  communication, fast sprints, and premium, enterprise-grade
+                  engineering at pricing models built for growing businesses.
                 </motion.p>
                 <motion.p variants={fadeInUp}>
-                  Today, we have grown into a full-stack engineering, automation, and digital marketing team. We have built POS systems, automated WhatsApp lead qualifiers, optimized high-ROI Google Ads campaigns, and continues to empower businesses with honest technical counsel.
+                  Today, we have grown into a full-stack engineering,
+                  automation, and digital marketing team. We have built POS
+                  systems, automated WhatsApp lead qualifiers, optimized
+                  high-ROI Google Ads campaigns, and continues to empower
+                  businesses with honest technical counsel.
                 </motion.p>
               </motion.div>
             </div>
@@ -160,7 +252,7 @@ export function AboutPageClient() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
+            viewport={{ once: true, margin: "-50px" }}
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >
             {/* Mission Card */}
@@ -173,7 +265,8 @@ export function AboutPageClient() {
                   OUR MISSION
                 </span>
                 <p className="text-sm font-semibold text-brand-navy dark:text-white leading-relaxed font-inter">
-                  &ldquo;To empower businesses with cutting-edge technology&rdquo;
+                  &ldquo;To empower businesses with cutting-edge
+                  technology&rdquo;
                 </p>
               </div>
               <div className="border-t border-border/20 pt-4 mt-6 text-xs text-muted-foreground font-inter">
@@ -191,7 +284,8 @@ export function AboutPageClient() {
                   OUR VISION
                 </span>
                 <p className="text-sm font-semibold text-brand-navy dark:text-white leading-relaxed font-inter">
-                  &ldquo;To make enterprise-grade tech accessible to every business&rdquo;
+                  &ldquo;To make enterprise-grade tech accessible to every
+                  business&rdquo;
                 </p>
               </div>
               <div className="border-t border-border/20 pt-4 mt-6 text-xs text-muted-foreground font-inter">
@@ -251,7 +345,7 @@ export function AboutPageClient() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
+            viewport={{ once: true, margin: "-50px" }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {whyChooseUs.map((item, index) => {
@@ -261,8 +355,8 @@ export function AboutPageClient() {
                   key={index}
                   variants={fadeInUp}
                   className={cn(
-                    'p-6 rounded-2xl border border-border/40 bg-card transition-all duration-300 shadow-sm',
-                    index === 4 && 'md:col-span-2 lg:col-span-1'
+                    "p-6 rounded-2xl border border-border/40 bg-card transition-all duration-300 shadow-sm",
+                    index === 4 && "md:col-span-2 lg:col-span-1",
                   )}
                 >
                   <div className="inline-flex p-2.5 rounded-xl bg-brand-orange/10 text-brand-orange mb-5">
@@ -291,30 +385,43 @@ export function AboutPageClient() {
             </h2>
             <div className="h-1 w-12 bg-brand-orange rounded-full mt-4 mx-auto" />
           </div>
-
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
+            viewport={{ once: true, margin: "-50px" }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
           >
-            {teamMembers.map((member) => (
+            {list.map((member) => (
               <motion.div
-                key={member.initials}
+                key={member.name}
                 variants={fadeInUp}
                 whileHover={prefersReducedMotion ? {} : { y: -4 }}
                 className={cn(
-                  'flex flex-col items-center text-center p-6 rounded-2xl border border-border/40 bg-card transition-all duration-300',
-                  'hover:-translate-y-1 hover:shadow-lg hover:border-brand-orange/30'
+                  "flex flex-col items-center text-center p-6 rounded-2xl border border-border/40 bg-card transition-all duration-300",
+                  "hover:-translate-y-1 hover:shadow-lg hover:border-brand-orange/30",
                 )}
               >
-                {/* Initials circle avatar */}
-                <div className={cn(
-                  'h-16 w-16 rounded-full bg-gradient-to-br flex items-center justify-center text-white font-bold text-lg mb-4 shadow-inner select-none font-space-grotesk',
-                  member.gradient
-                )}>
-                  {member.initials}
+                {/* Photo or Initials circle avatar */}
+                <div className="h-16 w-16 rounded-full overflow-hidden mb-4 relative shadow-md">
+                  {member.photoUrl ? (
+                    <NextImage
+                      src={member.photoUrl}
+                      alt={member.name}
+                      fill
+                      sizes="64px"
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div
+                      className={cn(
+                        "h-full w-full bg-gradient-to-br flex items-center justify-center text-white font-bold text-lg shadow-inner select-none font-space-grotesk",
+                        member.gradient,
+                      )}
+                    >
+                      {member.initials}
+                    </div>
+                  )}
                 </div>
 
                 <h3 className="text-sm font-bold text-brand-navy dark:text-white mb-1 font-poppins">
@@ -328,11 +435,11 @@ export function AboutPageClient() {
           </motion.div>
 
           {/* f) Hiring Banner */}
-          <motion.div 
+          <motion.div
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
+            viewport={{ once: true, margin: "-50px" }}
             className="max-w-2xl mx-auto mt-16 p-6 rounded-2xl border border-brand-orange/20 bg-brand-orange/5 text-center relative overflow-hidden backdrop-blur-sm"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-orange/5 rounded-full filter blur-xl pointer-events-none -translate-y-1/2 translate-x-1/2" />
@@ -356,19 +463,18 @@ export function AboutPageClient() {
       </Section>
 
       {/* g) Final CTA */}
-      <CTASection 
+      <CTASection
         title="Interested in working with us?"
         subtitle="Book a free 30-minute discovery call. We'll map out a clear technology roadmap for your business scaling."
         primaryCTA={{
-          text: 'Book a Free Call',
-          href: calendlyUrl
+          text: "Book a Free Call",
+          href: calendlyUrl,
         }}
         secondaryCTA={{
-          text: 'See Our Services',
-          href: '/services'
+          text: "See Our Services",
+          href: "/services",
         }}
       />
-      
     </div>
   );
 }

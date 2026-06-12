@@ -204,3 +204,13 @@ model WebsiteApplication {
 
   @@map("website_applications")
 }
+
+model WebsiteSetting {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("website_settings")
+}

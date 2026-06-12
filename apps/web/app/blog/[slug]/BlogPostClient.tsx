@@ -1,14 +1,23 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { Container } from '@/components/layout/container';
-import { Section } from '@/components/layout/section';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { BlogPost, blogPosts } from '@/lib/blog-data';
-import { BlogContentRenderer } from '@/components/blog/BlogContentRenderer';
-import { Calendar, Clock, ArrowLeft, Share2, Copy, Check, User } from 'lucide-react';
+import React, { useState } from "react";
+import Link from "next/link";
+import { Container } from "@/components/layout/container";
+import { Section } from "@/components/layout/section";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { BlogPost, blogPosts } from "@/lib/blog-data";
+import { BlogContentRenderer } from "@/components/blog/BlogContentRenderer";
+import Image from "next/image";
+import {
+  Calendar,
+  Clock,
+  ArrowLeft,
+  Share2,
+  Copy,
+  Check,
+  User,
+} from "lucide-react";
 
 interface BlogPostClientProps {
   post: BlogPost;
@@ -19,13 +28,17 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
 
   // Get up to 3 related posts (same category first, excluding current post, filled with others if needed)
   const relatedPosts = React.useMemo(() => {
-    const sameCategory = blogPosts.filter((p) => p.category === post.category && p.slug !== post.slug);
-    const otherCategories = blogPosts.filter((p) => p.category !== post.category && p.slug !== post.slug);
+    const sameCategory = blogPosts.filter(
+      (p) => p.category === post.category && p.slug !== post.slug,
+    );
+    const otherCategories = blogPosts.filter(
+      (p) => p.category !== post.category && p.slug !== post.slug,
+    );
     return [...sameCategory, ...otherCategories].slice(0, 3);
   }, [post]);
 
   const handleCopyLink = () => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       navigator.clipboard.writeText(window.location.href);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -33,7 +46,8 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
   };
 
   const getShareUrls = () => {
-    if (typeof window === 'undefined') return { linkedin: '', twitter: '', whatsapp: '' };
+    if (typeof window === "undefined")
+      return { linkedin: "", twitter: "", whatsapp: "" };
     const url = encodeURIComponent(window.location.href);
     const title = encodeURIComponent(post.title);
     return {
@@ -56,7 +70,10 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                 Home
               </Link>
               <span>/</span>
-              <Link href="/blog" className="hover:text-primary transition-colors">
+              <Link
+                href="/blog"
+                className="hover:text-primary transition-colors"
+              >
                 Blog
               </Link>
               <span>/</span>
@@ -100,7 +117,9 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                       <User className="w-3.5 h-3.5 text-text-muted" />
                       {post.author.name}
                     </p>
-                    <p className="text-xs text-text-muted">{post.author.role}</p>
+                    <p className="text-xs text-text-muted">
+                      {post.author.role}
+                    </p>
                   </div>
                 </div>
 
@@ -118,10 +137,25 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
               </div>
             </div>
 
-            {/* Cover Gradient Graphic */}
+            {/* Cover Graphic / Image */}
             <div className="my-8 relative aspect-[16/9] w-full overflow-hidden rounded-2xl shadow-lg border border-border/50">
-              <div className={`absolute inset-0 bg-gradient-to-br ${post.coverGradient}`} />
-              <div className="absolute inset-0 bg-black/10" />
+              {post.coverGradient.startsWith("http") ||
+              post.coverGradient.startsWith("/") ? (
+                <Image
+                  src={post.coverGradient}
+                  alt={post.title}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              ) : (
+                <>
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${post.coverGradient}`}
+                  />
+                  <div className="absolute inset-0 bg-black/10" />
+                </>
+              )}
             </div>
 
             {/* Rich Text Body */}
@@ -143,8 +177,12 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                   rel="noopener noreferrer"
                   className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#0077b5]/10 hover:bg-[#0077b5]/20 text-[#0077b5] border border-[#0077b5]/20 transition-colors duration-200"
                 >
-                  <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="h-3.5 w-3.5 fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                   </svg>
                   LinkedIn
                 </a>
@@ -155,8 +193,12 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                   rel="noopener noreferrer"
                   className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 text-secondary dark:text-white border border-border transition-colors duration-200"
                 >
-                  <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="h-3.5 w-3.5 fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                   </svg>
                   Twitter
                 </a>
@@ -167,7 +209,11 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                   rel="noopener noreferrer"
                   className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#25d366]/10 hover:bg-[#25d366]/20 text-[#25d366] border border-[#25d366]/20 transition-colors duration-200"
                 >
-                  <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current" xmlns="http://www.w3.org/2000/svg">
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="h-3.5 w-3.5 fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <path d="M12.004 0C5.378 0 .004 5.373.004 12c0 2.112.551 4.164 1.6 5.976L.004 24l6.19-1.624c1.769.965 3.765 1.472 5.81 1.472 6.626 0 12-5.373 12-12s-5.374-12-12-12zm6.606 17.075c-.274.767-1.357 1.424-2.196 1.516-.576.064-1.328.096-2.129-.16-3.238-1.033-5.323-4.329-5.485-4.545-.162-.216-1.309-1.745-1.309-3.328 0-1.583.829-2.361 1.125-2.679.296-.318.647-.398.864-.398.216 0 .432.008.62.016.196.008.459-.072.716.551.274.663.935 2.279 1.015 2.44.08.16.134.348.026.559-.108.211-.162.344-.324.532-.162.188-.344.42-.491.564-.162.156-.332.328-.14.659.192.331.855 1.408 1.832 2.279.864.771 1.593 1.258 1.916 1.42.324.162.513.136.705-.084.192-.22.829-.964 1.05-1.296.221-.332.441-.276.745-.164.304.112 1.936.912 2.26 1.076.324.164.54.244.62.38.08.136.08.788-.194 1.556z" />
                   </svg>
                   WhatsApp
@@ -180,7 +226,9 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                   {copied ? (
                     <>
                       <Check className="w-3.5 h-3.5 text-green-500 animate-pulse" />
-                      <span className="text-green-600 dark:text-green-400">Copied!</span>
+                      <span className="text-green-600 dark:text-green-400">
+                        Copied!
+                      </span>
                     </>
                   ) : (
                     <>
@@ -202,7 +250,10 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
             <div className="max-w-[760px] mx-auto md:max-w-none">
               <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
                 <div>
-                  <Badge variant="outline" className="px-3 py-1 text-primary border-primary/20 bg-primary/5 uppercase tracking-wider text-[10px] font-bold">
+                  <Badge
+                    variant="outline"
+                    className="px-3 py-1 text-primary border-primary/20 bg-primary/5 uppercase tracking-wider text-[10px] font-bold"
+                  >
                     RECOMMENDED
                   </Badge>
                   <h2 className="text-2xl md:text-3xl font-bold font-poppins text-secondary dark:text-white mt-2">
@@ -229,7 +280,9 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                       href={`/blog/${relatedPost.slug}`}
                       className="block relative aspect-[16/9] w-full overflow-hidden"
                     >
-                      <div className={`absolute inset-0 bg-gradient-to-br ${relatedPost.coverGradient} transform group-hover:scale-105 transition-transform duration-500`} />
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-br ${relatedPost.coverGradient} transform group-hover:scale-105 transition-transform duration-500`}
+                      />
                       <div className="absolute inset-0 bg-black/10" />
                       <div className="absolute top-3 left-3">
                         <Badge className="bg-primary text-white border-none py-0.5 px-2 text-[10px] hover:bg-primary font-medium">

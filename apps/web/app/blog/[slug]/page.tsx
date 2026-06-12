@@ -1,8 +1,8 @@
-import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { blogPosts } from '@/lib/blog-data';
-import { BlogPostClient } from './BlogPostClient';
-import { JsonLd } from '@/components/seo/JsonLd';
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { blogPosts, mapDbBlogToBlogPost } from "@/lib/blog-data";
+import { BlogPostClient } from "./BlogPostClient";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const revalidate = 300; // ISR: Revalidate every 5 minutes
 
@@ -12,21 +12,60 @@ interface BlogPostPageProps {
   };
 }
 
-// Generate static routes for all mock blog posts
+async function getLiveBlogPost(slug: string) {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+  try {
+    const res = await fetch(`${apiUrl}/api/v1/blog/${slug}`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) {
+      return null;
+    }
+    const result = await res.json();
+    if (result && result.success && result.data) {
+      return mapDbBlogToBlogPost(result.data);
+    }
+    return null;
+  } catch (err) {
+    console.error(`Failed to fetch live blog post "${slug}":`, err);
+    return null;
+  }
+}
+
+// Generate static routes for all blog posts
 export async function generateStaticParams() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+  try {
+    const res = await fetch(`${apiUrl}/api/v1/blog?status=published&limit=100`);
+    if (res.ok) {
+      const result = await res.json();
+      if (result && result.success && Array.isArray(result.data)) {
+        return result.data.map((post: any) => ({
+          slug: post.slug,
+        }));
+      }
+    }
+  } catch (err) {
+    console.error("Failed to generate static params for blogs:", err);
+  }
+
+  // Fallback to static mock slugs
   return blogPosts.map((post) => ({
     slug: post.slug,
   }));
 }
 
 // Generate dynamic metadata for SEO
-export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const post = blogPosts.find((p) => p.slug === params.slug);
+export async function generateMetadata({
+  params,
+}: BlogPostPageProps): Promise<Metadata> {
+  const livePost = await getLiveBlogPost(params.slug);
+  const post = livePost || blogPosts.find((p) => p.slug === params.slug);
 
   if (!post) {
     return {
-      title: 'Post Not Found',
-      description: 'The requested blog post was not found.',
+      title: "Post Not Found",
+      description: "The requested blog post was not found.",
     };
   }
 
@@ -43,12 +82,12 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     openGraph: {
       title: post.title,
       description: post.summary,
-      type: 'article',
+      type: "article",
       url: `/blog/${post.slug}`,
       images: [ogImageUrl],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: post.title,
       description: post.summary,
       images: [ogImageUrl],
@@ -56,8 +95,9 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   };
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = blogPosts.find((p) => p.slug === params.slug);
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const livePost = await getLiveBlogPost(params.slug);
+  const post = livePost || blogPosts.find((p) => p.slug === params.slug);
 
   if (!post) {
     notFound();
@@ -66,37 +106,37 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
   const ogImageUrl = `/og?title=${encodeURIComponent(post.title)}&subtitle=${encodeURIComponent(post.summary)}&type=blog`;
 
   const blogSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    'headline': post.title,
-    'image': ogImageUrl || '/logo.png',
-    'datePublished': post.publishedDate || new Date().toISOString(),
-    'dateModified': post.publishedDate || new Date().toISOString(),
-    'author': { '@type': 'Person', 'name': post.author.name || 'Adruva Team' },
-    'publisher': { '@type': 'Organization', 'name': 'Adruva Solution' },
-    'description': post.summary,
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    image: ogImageUrl || "/logo.png",
+    datePublished: post.publishedDate || new Date().toISOString(),
+    dateModified: post.publishedDate || new Date().toISOString(),
+    author: { "@type": "Person", name: post.author.name || "Adruva Team" },
+    publisher: { "@type": "Organization", name: "Adruva Solution" },
+    description: post.summary,
   };
 
   const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    'itemListElement': [
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
       {
-        '@type': 'ListItem',
-        'position': 1,
-        'name': 'Home',
-        'item': 'https://adruvaSolution.com',
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://adruvaSolution.com",
       },
       {
-        '@type': 'ListItem',
-        'position': 2,
-        'name': 'Blog',
-        'item': 'https://adruvaSolution.com/blog',
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: "https://adruvaSolution.com/blog",
       },
       {
-        '@type': 'ListItem',
-        'position': 3,
-        'name': post.title,
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
       },
     ],
   };

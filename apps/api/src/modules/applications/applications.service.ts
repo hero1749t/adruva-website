@@ -1,7 +1,14 @@
-import { BadRequestException, Injectable, Logger } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+  Logger,
+} from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 import { CreateApplicationDto } from './dto/create-application.dto';
+import { UpdateApplicationDto } from './dto/update-application.dto';
 import { RecaptchaService } from '../../common/recaptcha/recaptcha.service';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class ApplicationsService {
@@ -74,6 +81,102 @@ export class ApplicationsService {
       success: true,
       message: 'Application submitted successfully!',
       data: { applicationId: application.id },
+    };
+  }
+
+  async findAll(query: {
+    page?: string;
+    limit?: string;
+    jobId?: string;
+    status?: string;
+    search?: string;
+  }) {
+    const page = Math.max(1, parseInt(query.page || '1', 10));
+    const limit = Math.max(1, parseInt(query.limit || '10', 10));
+    const skip = (page - 1) * limit;
+
+    const where: Prisma.WebsiteApplicationWhereInput = {};
+
+    if (query.jobId) {
+      where.jobId = query.jobId;
+    }
+
+    if (query.status && query.status !== 'all') {
+      where.status = query.status;
+    }
+
+    if (query.search) {
+      where.OR = [
+        { fullName: { contains: query.search, mode: 'insensitive' } },
+        { email: { contains: query.search, mode: 'insensitive' } },
+        { jobTitle: { contains: query.search, mode: 'insensitive' } },
+      ];
+    }
+
+    const [data, total] = await Promise.all([
+      this.prisma.websiteApplication.findMany({
+        where,
+        orderBy: { createdAt: 'desc' },
+        skip,
+        take: limit,
+      }),
+      this.prisma.websiteApplication.count({ where }),
+    ]);
+
+    const totalPages = Math.ceil(total / limit);
+
+    return {
+      success: true,
+      data,
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages,
+      },
+    };
+  }
+
+  async findOne(id: string) {
+    const application = await this.prisma.websiteApplication.findUnique({
+      where: { id },
+      include: {
+        job: true,
+      },
+    });
+
+    if (!application) {
+      throw new NotFoundException(`Application with ID "${id}" not found`);
+    }
+
+    return {
+      success: true,
+      data: application,
+    };
+  }
+
+  async update(id: string, dto: UpdateApplicationDto) {
+    const application = await this.prisma.websiteApplication.findUnique({
+      where: { id },
+    });
+
+    if (!application) {
+      throw new NotFoundException(`Application with ID "${id}" not found`);
+    }
+
+    const updated = await this.prisma.websiteApplication.update({
+      where: { id },
+      data: {
+        status: dto.status,
+        internalRating: dto.internalRating,
+        adminNotes: dto.adminNotes,
+        reviewedBy: dto.reviewedBy,
+      },
+    });
+
+    return {
+      success: true,
+      data: updated,
     };
   }
 }

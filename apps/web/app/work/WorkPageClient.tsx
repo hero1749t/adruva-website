@@ -1,47 +1,56 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ArrowRight, Sparkle } from 'lucide-react';
-import { Section } from '@/components/layout/section';
-import { Container } from '@/components/layout/container';
-import { CTASection } from '@/components/sections/CTASection';
-import { projects } from '@/lib/work-data';
-import { cn } from '@/lib/utils';
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronRight, ArrowRight, Sparkle } from "lucide-react";
+import { Section } from "@/components/layout/section";
+import { Container } from "@/components/layout/container";
+import { CTASection } from "@/components/sections/CTASection";
+import { projects, ProjectItem } from "@/lib/work-data";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const categories = [
-  { id: 'all', label: 'All Categories' },
-  { id: 'build', label: 'Build' },
-  { id: 'automate', label: 'Automate' },
-  { id: 'grow', label: 'Grow' },
-  { id: 'design', label: 'Design' }
+  { id: "all", label: "All Categories" },
+  { id: "build", label: "Build" },
+  { id: "automate", label: "Automate" },
+  { id: "grow", label: "Grow" },
+  { id: "design", label: "Design" },
 ];
 
 const industries = [
-  { id: 'all', label: 'All Industries' },
-  { id: 'technology', label: 'Technology' },
-  { id: 'education', label: 'Education' },
-  { id: 'retail', label: 'Retail' },
-  { id: 'healthcare', label: 'Healthcare' }
+  { id: "all", label: "All Industries" },
+  { id: "technology", label: "Technology" },
+  { id: "education", label: "Education" },
+  { id: "retail", label: "Retail" },
+  { id: "healthcare", label: "Healthcare" },
 ];
 
-export function WorkPageClient() {
-  const [activeCategory, setActiveCategory] = useState('all');
-  const [activeIndustry, setActiveIndustry] = useState('all');
+interface WorkPageClientProps {
+  initialProjects?: ProjectItem[];
+}
+
+export function WorkPageClient({ initialProjects }: WorkPageClientProps) {
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeIndustry, setActiveIndustry] = useState("all");
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  const list = initialProjects || projects;
 
   useEffect(() => {
     const checkReducedMotion = () => {
-      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
       setPrefersReducedMotion(mediaQuery.matches);
     };
     checkReducedMotion();
   }, []);
 
-  const filteredProjects = projects.filter((project) => {
-    const matchesCategory = activeCategory === 'all' || project.category === activeCategory;
-    const matchesIndustry = activeIndustry === 'all' || project.industry === activeIndustry;
+  const filteredProjects = list.filter((project) => {
+    const matchesCategory =
+      activeCategory === "all" || project.category === activeCategory;
+    const matchesIndustry =
+      activeIndustry === "all" || project.industry === activeIndustry;
     return matchesCategory && matchesIndustry;
   });
 
@@ -50,7 +59,7 @@ export function WorkPageClient() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.4, ease: 'easeOut' },
+      transition: { duration: 0.4, ease: "easeOut" },
     },
   };
 
@@ -65,16 +74,18 @@ export function WorkPageClient() {
 
   return (
     <div className="w-full min-h-screen bg-background text-foreground transition-colors duration-300">
-      
       {/* a) Hero Section */}
       <Section className="pt-12 pb-6 md:pt-16 md:pb-8 relative overflow-hidden">
         {/* Subtle background glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.04)_0%,transparent_70%)] pointer-events-none select-none z-0" />
-        
+
         <Container className="relative z-10">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-1.5 text-xs text-muted-foreground font-medium mb-8 font-inter">
-            <Link href="/" className="hover:text-brand-orange transition-colors">
+            <Link
+              href="/"
+              className="hover:text-brand-orange transition-colors"
+            >
               Home
             </Link>
             <ChevronRight className="h-3.5 w-3.5 opacity-60" />
@@ -95,7 +106,9 @@ export function WorkPageClient() {
 
             {/* Subtitle */}
             <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-xl font-inter">
-              Real projects, real results. See how we have engineered custom systems, automated client pipelines, and driven local business growth.
+              Real projects, real results. See how we have engineered custom
+              systems, automated client pipelines, and driven local business
+              growth.
             </p>
           </div>
         </Container>
@@ -105,7 +118,6 @@ export function WorkPageClient() {
       <Section className="py-6 relative z-10">
         <Container>
           <div className="flex flex-col gap-6 p-6 rounded-2xl border border-slate-200/80 dark:border-white/5 bg-slate-50/50 dark:bg-white/5 max-w-4xl mx-auto mb-12">
-            
             {/* Category Filter */}
             <div className="flex flex-col gap-2">
               <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest font-space-grotesk">
@@ -119,10 +131,10 @@ export function WorkPageClient() {
                       key={category.id}
                       onClick={() => setActiveCategory(category.id)}
                       className={cn(
-                        'relative px-3 py-1.5 text-xs font-semibold rounded-lg font-space-grotesk transition-colors duration-300 focus:outline-none',
-                        isActive 
-                          ? 'text-white bg-brand-orange shadow-[0_2px_8px_rgba(255,107,0,0.2)]' 
-                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                        "relative px-3 py-1.5 text-xs font-semibold rounded-lg font-space-grotesk transition-colors duration-300 focus:outline-none",
+                        isActive
+                          ? "text-white bg-brand-orange shadow-[0_2px_8px_rgba(255,107,0,0.2)]"
+                          : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
                       )}
                     >
                       {category.label}
@@ -145,10 +157,10 @@ export function WorkPageClient() {
                       key={industry.id}
                       onClick={() => setActiveIndustry(industry.id)}
                       className={cn(
-                        'relative px-3 py-1.5 text-xs font-semibold rounded-lg font-space-grotesk transition-colors duration-300 focus:outline-none',
-                        isActive 
-                          ? 'text-white bg-brand-orange shadow-[0_2px_8px_rgba(255,107,0,0.2)]' 
-                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                        "relative px-3 py-1.5 text-xs font-semibold rounded-lg font-space-grotesk transition-colors duration-300 focus:outline-none",
+                        isActive
+                          ? "text-white bg-brand-orange shadow-[0_2px_8px_rgba(255,107,0,0.2)]"
+                          : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
                       )}
                     >
                       {industry.label}
@@ -157,7 +169,6 @@ export function WorkPageClient() {
                 })}
               </div>
             </div>
-
           </div>
 
           {/* c) 3-column project grid */}
@@ -174,23 +185,42 @@ export function WorkPageClient() {
                   key={project.slug}
                   layout={!prefersReducedMotion}
                   variants={fadeInUp}
-                  exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 10 }}
+                  exit={
+                    prefersReducedMotion
+                      ? { opacity: 0 }
+                      : { opacity: 0, scale: 0.95, y: 10 }
+                  }
                   whileHover={prefersReducedMotion ? {} : { y: -4 }}
                   className="flex flex-col rounded-2xl border border-slate-200/80 dark:border-white/5 bg-card overflow-hidden transition-all duration-300 group hover:border-brand-orange/40 dark:hover:border-brand-orange/40 hover:shadow-[0_12px_30px_-10px_rgba(255,107,0,0.12)] dark:hover:shadow-[0_12px_30px_-10px_rgba(255,107,0,0.25)]"
                 >
-                  {/* Gradient banner area */}
-                  <div className={cn(
-                    'h-48 w-full bg-gradient-to-br flex items-center justify-center p-6 relative overflow-hidden select-none',
-                    project.heroGradient
-                  )}>
+                  {/* Gradient banner or Image */}
+                  <div className="h-48 w-full relative overflow-hidden select-none">
+                    {project.heroGradient.startsWith("http") ||
+                    project.heroGradient.startsWith("/") ? (
+                      <Image
+                        src={project.heroGradient}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div
+                        className={cn(
+                          "absolute inset-0 bg-gradient-to-br flex items-center justify-center",
+                          project.heroGradient,
+                        )}
+                      />
+                    )}
                     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.12)_0%,transparent_80%)] mix-blend-overlay" />
-                    
-                    <span className="text-[10px] font-extrabold tracking-widest text-white/50 uppercase font-space-grotesk">
+
+                    {/* Industry label */}
+                    <div className="absolute top-4 left-4 text-[10px] font-extrabold tracking-widest text-white/90 uppercase font-space-grotesk bg-black/30 px-2.5 py-0.5 rounded backdrop-blur-sm z-10">
                       {project.industry} Case Study
-                    </span>
+                    </div>
 
                     {/* Category tag */}
-                    <div className="absolute bottom-4 left-4 flex gap-1.5">
+                    <div className="absolute bottom-4 left-4 flex gap-1.5 z-10">
                       <span className="text-[10px] font-bold text-white bg-brand-orange px-2.5 py-1 rounded-full uppercase tracking-wider font-space-grotesk shadow-sm">
                         {project.category}
                       </span>
@@ -212,8 +242,8 @@ export function WorkPageClient() {
                     <div className="mt-auto space-y-4">
                       <div className="flex flex-wrap gap-1.5">
                         {project.techStack.slice(0, 3).map((tech) => (
-                          <span 
-                            key={tech} 
+                          <span
+                            key={tech}
                             className="bg-muted text-muted-foreground text-xs font-semibold px-2.5 py-0.5 rounded-full border border-border/10 font-inter"
                           >
                             {tech}
@@ -241,7 +271,8 @@ export function WorkPageClient() {
           {filteredProjects.length === 0 && (
             <div className="text-center py-16 p-6 rounded-2xl border border-dashed border-border/60 bg-muted/5 max-w-md mx-auto mt-6">
               <span className="text-xs font-semibold text-muted-foreground font-inter">
-                No case studies match the combined filters. Try selecting other combinations.
+                No case studies match the combined filters. Try selecting other
+                combinations.
               </span>
             </div>
           )}
@@ -249,19 +280,18 @@ export function WorkPageClient() {
       </Section>
 
       {/* d) Bottom CTA Section */}
-      <CTASection 
+      <CTASection
         title="Have a project in mind?"
-        subtitle="Let&apos;s build it. Book a free 30-minute call to scope out your engineering, automation, or growth requirements."
+        subtitle="Let's build it. Book a free 30-minute call to scope out your engineering, automation, or growth requirements."
         primaryCTA={{
-          text: 'Book a Free Call',
-          href: '/contact'
+          text: "Book a Free Call",
+          href: "/contact",
         }}
         secondaryCTA={{
-          text: 'See Our Services',
-          href: '/services'
+          text: "See Our Services",
+          href: "/services",
         }}
       />
-
     </div>
   );
 }
