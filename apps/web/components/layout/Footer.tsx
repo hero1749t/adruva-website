@@ -48,7 +48,7 @@ export function Footer() {
   
   const { executeRecaptcha } = useGoogleReCaptcha();
   
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '';
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210';
   const whatsappUrl = whatsappNumber 
     ? `https://wa.me/${whatsappNumber}?text=Hi%20Adruva!%20I'd%20like%20to%20discuss%20a%20project.`
     : '#';

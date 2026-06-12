@@ -5,7 +5,7 @@ import { Calendar } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export function MobileBottomBar() {
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '';
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210';
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || '/contact';
 
   const whatsappMessage = "Hi Adruva! I'd like to discuss a project.";

@@ -10,7 +10,7 @@ interface FloatingWhatsAppProps {
 export function FloatingWhatsApp({
   message = "Hi Adruva! I'd like to discuss a project."
 }: FloatingWhatsAppProps) {
-  const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '';
+  const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210';
 
   if (!phoneNumber) {
     return null; // Don't render if phone number is not configured
