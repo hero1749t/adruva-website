@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
   // Avoid hydration mismatch by waiting until mounted on client
@@ -23,7 +23,7 @@ export function ThemeToggle() {
     );
   }
 
-  const isDark = theme === 'dark';
+  const isDark = resolvedTheme === 'dark';
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     const nextTheme = isDark ? 'light' : 'dark';

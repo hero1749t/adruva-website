@@ -66,14 +66,18 @@ export function Navbar() {
   
   const pathname = usePathname();
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || '/contact';
-
   const dropdownRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setSupportsHover(window.matchMedia('(hover: hover)').matches);
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      setScrollY(scrollTop);
     };
+    
+    // Set initial scroll on mount
+    handleScroll();
+    
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -92,8 +96,6 @@ export function Navbar() {
     };
   }, [isServicesDropdownOpen]);
 
-  const isScrolled = scrollY > 10;
-
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
@@ -104,13 +106,15 @@ export function Navbar() {
     { name: 'Contact', href: '/contact' },
   ];
 
+  const isScrolled = scrollY > 20;
+
   return (
     <>
       <header
         className={cn(
           'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 h-16 flex items-center',
           isScrolled
-            ? 'bg-white/92 dark:bg-[#080B10]/92 backdrop-blur-md saturate-[180%] border-b border-border shadow-[0_1px_20px_rgba(0,0,0,0.06)]'
+            ? 'bg-white/96 dark:bg-[#080B10]/96 backdrop-blur-md saturate-[180%] border-b border-border shadow-[0_1px_20px_rgba(0,0,0,0.06)]'
             : 'bg-white/40 dark:bg-transparent backdrop-blur-[6px] dark:backdrop-blur-0 border-b border-border/10 dark:border-transparent'
         )}
       >
