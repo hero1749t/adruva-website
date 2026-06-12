@@ -42,9 +42,9 @@ export function FloatingWhatsApp({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          'fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 text-white whatsapp-btn-pulse bg-[#25d366]',
+          'fixed z-50 h-14 w-14 items-center justify-center rounded-full shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 text-white whatsapp-btn-pulse bg-[#25d366]',
           'focus:outline-none focus:ring-2 focus:ring-[#25d366] focus:ring-offset-2',
-          'bottom-24 md:bottom-8 md:right-8'
+          'hidden md:flex md:bottom-8 md:right-8'
         )}
         aria-label="Contact us on WhatsApp"
       >

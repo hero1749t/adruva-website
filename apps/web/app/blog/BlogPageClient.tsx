@@ -90,7 +90,7 @@ export function BlogPageClient() {
 
             {/* Search Input */}
             <div className="relative w-full md:w-80">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-text-muted" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
               <Input
                 type="text"
                 placeholder="Search articles..."

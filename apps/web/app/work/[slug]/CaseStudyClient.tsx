@@ -127,7 +127,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center max-w-4xl mx-auto">
             {/* Industry */}
             <div className="flex flex-col items-center p-3 border-r border-border/10 last:border-0 md:border-r">
-              <Building className="h-4.5 w-4.5 text-brand-orange mb-2" />
+              <Building className="h-4 w-4 text-brand-orange mb-2" />
               <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest font-space-grotesk mb-1">
                 INDUSTRY
               </span>
@@ -138,7 +138,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
 
             {/* Tech Stack */}
             <div className="flex flex-col items-center p-3 border-r border-border/10 last:border-0 md:border-r">
-              <Code2 className="h-4.5 w-4.5 text-brand-orange mb-2" />
+              <Code2 className="h-4 w-4 text-brand-orange mb-2" />
               <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest font-space-grotesk mb-1">
                 TECH STACK
               </span>
@@ -149,7 +149,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
 
             {/* Timeline */}
             <div className="flex flex-col items-center p-3 border-r border-border/10 last:border-0 md:border-r">
-              <Clock className="h-4.5 w-4.5 text-brand-orange mb-2" />
+              <Clock className="h-4 w-4 text-brand-orange mb-2" />
               <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest font-space-grotesk mb-1">
                 TIMELINE
               </span>
@@ -160,7 +160,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
 
             {/* Category */}
             <div className="flex flex-col items-center p-3">
-              <Tag className="h-4.5 w-4.5 text-brand-orange mb-2" />
+              <Tag className="h-4 w-4 text-brand-orange mb-2" />
               <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest font-space-grotesk mb-1">
                 CATEGORY
               </span>

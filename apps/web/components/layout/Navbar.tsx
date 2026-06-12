@@ -107,13 +107,13 @@ export function Navbar() {
             href="/" 
             className="flex items-center gap-2.5 focus:outline-none group"
           >
-            <div className="h-10 w-10 overflow-hidden relative shrink-0 group-hover:scale-105 transition-transform duration-200">
+            <div className="h-10 w-10 relative shrink-0 group-hover:scale-105 transition-transform duration-200">
               <Image
-                src={mounted && isDarkMode ? "/logo-dark.png" : "/logo-light.png"}
+                src={mounted && isDarkMode ? "/logo-symbol-dark.png" : "/logo-symbol-light.png"}
                 alt="Adruva Logo"
                 fill
                 sizes="40px"
-                className="object-contain object-top scale-[1.35] origin-top"
+                className="object-contain"
                 priority
               />
             </div>

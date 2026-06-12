@@ -43,7 +43,7 @@ export default function NotFoundPage() {
                   "bg-primary hover:bg-orange-hover text-white px-6 py-6 rounded-xl font-bold flex items-center justify-center gap-2 group shadow-md hover:shadow-primary/25 hover:shadow-lg transition-all duration-300 w-full sm:w-auto h-auto"
                 )}
               >
-                <Home className="w-4.5 h-4.5" />
+                <Home className="w-4 h-4" />
                 Back to Home
               </Link>
               
@@ -54,7 +54,7 @@ export default function NotFoundPage() {
                   "border-border/80 text-text-primary dark:text-white px-6 py-6 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-muted transition-all duration-300 w-full sm:w-auto h-auto"
                 )}
               >
-                <HelpCircle className="w-4.5 h-4.5 text-text-muted" />
+                <HelpCircle className="w-4 h-4 text-text-muted" />
                 Contact Support
               </Link>
             </div>

@@ -68,7 +68,7 @@ export function ReviewsBadge() {
                 </span>
                 <div className="flex items-center justify-center sm:justify-start gap-0.5 text-[#FFB800]">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4.5 w-4.5 fill-current" />
+                    <Star key={i} className="h-4 w-4 fill-current" />
                   ))}
                 </div>
               </div>

@@ -184,7 +184,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 className="w-full flex h-12 items-center justify-center gap-2 rounded-xl text-sm font-semibold text-white bg-brand-orange hover:bg-brand-orange/90 transition-all shadow-[0_4px_14px_rgba(255,107,0,0.3)] active:scale-95"
                 onClick={onClose}
               >
-                <Calendar className="h-4.5 w-4.5" />
+                <Calendar className="h-4 w-4" />
                 Book a Free Call
               </a>
             </div>

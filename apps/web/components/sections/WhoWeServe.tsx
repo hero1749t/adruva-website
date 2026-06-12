@@ -196,7 +196,7 @@ export function WhoWeServe() {
             <Button
               className="w-full md:w-auto bg-brand-orange hover:bg-brand-orange-hover text-white text-xs font-semibold px-6 h-11 rounded-lg flex items-center justify-center gap-1.5 shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
             >
-              <Calendar className="h-4.5 w-4.5" />
+              <Calendar className="h-4 w-4" />
               Book a Free Call
               <ArrowRight className="h-3.5 w-3.5" />
             </Button>
