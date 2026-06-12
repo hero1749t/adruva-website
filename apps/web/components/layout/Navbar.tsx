@@ -62,6 +62,7 @@ export function Navbar() {
   const [scrollY, setScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+  const [supportsHover, setSupportsHover] = useState(true);
   
   const pathname = usePathname();
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || '/contact';
@@ -69,6 +70,7 @@ export function Navbar() {
   const dropdownRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    setSupportsHover(window.matchMedia('(hover: hover)').matches);
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
@@ -95,7 +97,7 @@ export function Navbar() {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
-    { name: 'Services', href: '#', isDropdown: true },
+    { name: 'Services', href: '/services', isDropdown: true },
     { name: 'Our Work', href: '/work' },
     { name: 'Blog', href: '/blog' },
     { name: 'Careers', href: '/careers' },
@@ -144,13 +146,20 @@ export function Navbar() {
                     key={link.name}
                     ref={dropdownRef}
                     className="relative flex items-center h-full"
-                    onMouseEnter={() => setIsServicesDropdownOpen(true)}
-                    onMouseLeave={() => setIsServicesDropdownOpen(false)}
+                    onMouseEnter={() => {
+                      if (supportsHover) setIsServicesDropdownOpen(true);
+                    }}
+                    onMouseLeave={() => {
+                      if (supportsHover) setIsServicesDropdownOpen(false);
+                    }}
                   >
-                    <button
+                    <Link
+                      href="/services"
                       onClick={(e) => {
-                        e.preventDefault();
-                        setIsServicesDropdownOpen(!isServicesDropdownOpen);
+                        if (!supportsHover) {
+                          e.preventDefault();
+                          setIsServicesDropdownOpen(!isServicesDropdownOpen);
+                        }
                       }}
                       className={cn(
                         'flex items-center gap-1 text-sm font-medium transition-colors hover:text-brand-orange text-foreground/75 hover:text-foreground dark:text-muted-foreground dark:hover:text-white',
@@ -159,7 +168,7 @@ export function Navbar() {
                     >
                       {link.name}
                       <ChevronDown className="h-4 w-4" />
-                    </button>
+                    </Link>
 
                     {/* Services Mega Menu Dropdown */}
                     <AnimatePresence>
@@ -170,8 +179,12 @@ export function Navbar() {
                           exit={{ opacity: 0, y: -8 }}
                           transition={{ duration: 0.2, ease: 'easeOut' }}
                           className="fixed left-0 right-0 top-16 w-full bg-card border-b border-border shadow-lg rounded-b-xl z-50 overflow-hidden"
-                          onMouseEnter={() => setIsServicesDropdownOpen(true)}
-                          onMouseLeave={() => setIsServicesDropdownOpen(false)}
+                          onMouseEnter={() => {
+                            if (supportsHover) setIsServicesDropdownOpen(true);
+                          }}
+                          onMouseLeave={() => {
+                            if (supportsHover) setIsServicesDropdownOpen(false);
+                          }}
                         >
                           <div className="max-w-6xl mx-auto grid grid-cols-4 gap-8 px-8 py-8">
                             {serviceCategories.map((category) => (
