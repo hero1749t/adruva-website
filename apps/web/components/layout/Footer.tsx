@@ -123,12 +123,12 @@ export function Footer() {
                   placeholder="Enter your email"
                   required
                   disabled={status === 'loading'}
-                  className="bg-white/5 border-white/10 text-white placeholder:text-gray-600 h-9.5 text-sm focus-visible:ring-1 focus-visible:ring-brand-orange/50 rounded-lg flex-1 outline-none"
+                  className="bg-white/5 border-white/10 text-white placeholder:text-gray-600 h-10 text-sm focus-visible:ring-1 focus-visible:ring-brand-orange/50 rounded-lg flex-1 outline-none"
                 />
                 <Button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="bg-brand-orange hover:bg-orange-600 text-white w-9.5 h-9.5 p-0 shrink-0 rounded-lg flex items-center justify-center font-semibold text-sm transition-colors duration-200"
+                  className="bg-brand-orange hover:bg-orange-600 text-white w-10 h-10 p-0 shrink-0 rounded-lg flex items-center justify-center font-semibold text-sm transition-colors duration-200"
                 >
                   {status === 'loading' ? (
                     <Loader2 className="h-4 w-4 animate-spin" />
