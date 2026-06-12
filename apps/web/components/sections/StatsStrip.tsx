@@ -101,13 +101,16 @@ export function StatsStrip() {
   return (
     <section className="w-full border-y border-border bg-background-secondary/50 dark:bg-brand-navy/30 py-10 transition-colors duration-300">
       <Container>
-        <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-border">
+        <div className="grid grid-cols-2 md:grid-cols-4 w-full">
           {stats.map((stat, idx) => (
             <div
               key={idx}
               className={cn(
                 "w-full",
-                idx % 2 === 0 ? "border-r md:border-r-0 border-border" : ""
+                idx === 0 && "border-r border-b md:border-r-0 md:border-b-0 border-border",
+                idx === 1 && "border-b md:border-b-0 md:border-l border-border",
+                idx === 2 && "border-r md:border-r-0 md:border-l border-border",
+                idx === 3 && "md:border-l border-border"
               )}
             >
               <StatItem

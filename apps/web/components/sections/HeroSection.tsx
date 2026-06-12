@@ -78,7 +78,7 @@ export function HeroSection() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="lg:col-span-7 flex flex-col items-start text-left max-w-2xl"
+            className="lg:col-span-7 flex flex-col items-center text-center lg:items-start lg:text-left max-w-2xl mx-auto lg:mx-0"
           >
             {/* Badge */}
             <motion.div
@@ -97,7 +97,7 @@ export function HeroSection() {
               variants={itemVariants}
               className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground leading-[1.05] mb-4 font-poppins"
             >
-              The Last Tech Partner <br />
+              The Last Tech Partner <br className="hidden sm:inline" />
               You&apos;ll Ever{' '}
               <span className="inline-block min-w-[130px] text-brand-orange">
                 {prefersReducedMotion ? (
@@ -138,7 +138,7 @@ export function HeroSection() {
             {/* CTA Buttons */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-center justify-start"
+              className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-center justify-center lg:justify-start"
             >
               <a
                 href={calendlyUrl}
