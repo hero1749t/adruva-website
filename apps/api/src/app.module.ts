@@ -16,6 +16,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { ApplicationsModule } from './modules/applications/applications.module';
 import { CareersModule } from './modules/careers/careers.module';
 import { SettingsModule } from './modules/settings/settings.module';
+import { UploadModule } from './modules/upload/upload.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { SettingsModule } from './modules/settings/settings.module';
     ApplicationsModule,
     CareersModule,
     SettingsModule,
+    UploadModule,
   ],
   controllers: [AppController],
   providers: [AppService],

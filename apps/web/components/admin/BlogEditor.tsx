@@ -1,16 +1,17 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useEditor, EditorContent } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
-import { useQuery } from '@tanstack/react-query';
-import { apiFetch } from '../../lib/api';
-import { Card, CardContent } from '../ui/card';
-import { Input } from '../ui/input';
-import { Label } from '../ui/label';
-import { Button } from '../ui/button';
-import { Textarea } from '../ui/textarea';
-import { Select, SelectItem, SelectValue } from '../ui/select';
+import { useEffect, useState } from "react";
+import { useEditor, EditorContent } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import { useQuery } from "@tanstack/react-query";
+import { apiFetch } from "../../lib/api";
+import { Card, CardContent } from "../ui/card";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { Button } from "../ui/button";
+import { Textarea } from "../ui/textarea";
+import { Select, SelectItem, SelectValue } from "../ui/select";
+import { ImageUpload } from "./ImageUpload";
 import {
   Bold,
   Italic,
@@ -25,8 +26,8 @@ import {
   Save,
   ArrowLeft,
   Image as ImageIcon,
-} from 'lucide-react';
-import Link from 'next/link';
+} from "lucide-react";
+import Link from "next/link";
 
 interface Author {
   id: string;
@@ -54,30 +55,47 @@ interface BlogEditorProps {
   isSaving: boolean;
 }
 
-export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditorProps) {
-  const [title, setTitle] = useState(initialData?.title || '');
-  const [slug, setSlug] = useState(initialData?.slug || '');
-  const [coverImageUrl, setCoverImageUrl] = useState(initialData?.coverImageUrl || '');
-  const [coverImageCloudinaryId, setCoverImageCloudinaryId] = useState(initialData?.coverImageCloudinaryId || '');
-  const [authorId, setAuthorId] = useState(initialData?.authorId || '');
-  const [category, setCategory] = useState(initialData?.category || 'web-development');
-  const [tagsInput, setTagsInput] = useState(initialData?.tags?.join(', ') || '');
-  const [metaTitle, setMetaTitle] = useState(initialData?.metaTitle || '');
-  const [metaDescription, setMetaDescription] = useState(initialData?.metaDescription || '');
-  const [readingTime, setReadingTime] = useState(initialData?.readingTimeMinutes as number || 3);
+export default function BlogEditor({
+  initialData,
+  onSave,
+  isSaving,
+}: BlogEditorProps) {
+  const [title, setTitle] = useState(initialData?.title || "");
+  const [slug, setSlug] = useState(initialData?.slug || "");
+  const [coverImageUrl, setCoverImageUrl] = useState(
+    initialData?.coverImageUrl || "",
+  );
+  const [coverImageCloudinaryId, setCoverImageCloudinaryId] = useState(
+    initialData?.coverImageCloudinaryId || "",
+  );
+  const [authorId, setAuthorId] = useState(initialData?.authorId || "");
+  const [category, setCategory] = useState(
+    initialData?.category || "web-development",
+  );
+  const [tagsInput, setTagsInput] = useState(
+    initialData?.tags?.join(", ") || "",
+  );
+  const [metaTitle, setMetaTitle] = useState(initialData?.metaTitle || "");
+  const [metaDescription, setMetaDescription] = useState(
+    initialData?.metaDescription || "",
+  );
+  const [readingTime, setReadingTime] = useState(
+    (initialData?.readingTimeMinutes as number) || 3,
+  );
 
   // Fetch active team members for author dropdown
   const { data: authorsData } = useQuery({
-    queryKey: ['admin', 'authors'],
-    queryFn: () => apiFetch<{ success: boolean; data: Author[] }>('/team?all=true'),
+    queryKey: ["admin", "authors"],
+    queryFn: () =>
+      apiFetch<{ success: boolean; data: Author[] }>("/team?all=true"),
   });
 
   const generateSlug = (text: string) => {
     return text
       .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
+      .replace(/[^a-z0-9\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-")
       .trim();
   };
 
@@ -92,10 +110,11 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
   // Tiptap Editor config
   const editor = useEditor({
     extensions: [StarterKit],
-    content: initialData?.content || '<p>Start writing article here...</p>',
+    content: initialData?.content || "<p>Start writing article here...</p>",
     editorProps: {
       attributes: {
-        class: 'prose dark:prose-invert focus:outline-none min-h-[350px] max-w-none text-slate-800 dark:text-slate-200 text-sm font-inter p-4',
+        class:
+          "prose dark:prose-invert focus:outline-none min-h-[350px] max-w-none text-slate-800 dark:text-slate-200 text-sm font-inter p-4",
       },
     },
   });
@@ -109,28 +128,28 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
       setReadingTime(Math.max(1, Math.ceil(words / 200)));
     };
 
-    editor.on('update', calculateTime);
+    editor.on("update", calculateTime);
     return () => {
-      editor.off('update', calculateTime);
+      editor.off("update", calculateTime);
     };
   }, [editor]);
 
   const handlePublish = () => {
-    handleFormSubmit('published');
+    handleFormSubmit("published");
   };
 
   const handleSaveDraft = () => {
-    handleFormSubmit('draft');
+    handleFormSubmit("draft");
   };
 
   const handleFormSubmit = (submitStatus: string) => {
     if (!title.trim() || !slug.trim()) {
-      alert('Title and Slug are required!');
+      alert("Title and Slug are required!");
       return;
     }
 
     const tags = tagsInput
-      .split(',')
+      .split(",")
       .map((t: string) => t.trim())
       .filter((t: string) => t.length > 0);
 
@@ -168,9 +187,11 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
           </Link>
           <div>
             <h2 className="text-xl font-bold font-poppins text-slate-900 dark:text-white">
-              {initialData ? 'Edit Blog Post' : 'Create Blog Post'}
+              {initialData ? "Edit Blog Post" : "Create Blog Post"}
             </h2>
-            <p className="text-xs text-slate-500 dark:text-slate-400 font-inter">Draft and customize your article</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 font-inter">
+              Draft and customize your article
+            </p>
           </div>
         </div>
         <div className="flex gap-2 w-full sm:w-auto">
@@ -190,7 +211,13 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
             className="flex-1 sm:flex-none bg-brand-orange hover:bg-brand-orange-hover text-white flex items-center justify-center gap-2"
           >
             <Save className="w-4 h-4" />
-            <span>{isSaving ? 'Saving...' : initialData?.status === 'published' ? 'Update & Publish' : 'Publish'}</span>
+            <span>
+              {isSaving
+                ? "Saving..."
+                : initialData?.status === "published"
+                  ? "Update & Publish"
+                  : "Publish"}
+            </span>
           </Button>
         </div>
       </div>
@@ -205,7 +232,7 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
                 type="button"
                 variant="ghost"
                 size="sm"
-                className={`h-8 w-8 p-0 ${editor.isActive('bold') ? 'bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white' : 'text-slate-500'}`}
+                className={`h-8 w-8 p-0 ${editor.isActive("bold") ? "bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white" : "text-slate-500"}`}
                 onClick={() => editor.chain().focus().toggleBold().run()}
               >
                 <Bold className="w-4 h-4" />
@@ -214,7 +241,7 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
                 type="button"
                 variant="ghost"
                 size="sm"
-                className={`h-8 w-8 p-0 ${editor.isActive('italic') ? 'bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white' : 'text-slate-500'}`}
+                className={`h-8 w-8 p-0 ${editor.isActive("italic") ? "bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white" : "text-slate-500"}`}
                 onClick={() => editor.chain().focus().toggleItalic().run()}
               >
                 <Italic className="w-4 h-4" />
@@ -224,8 +251,10 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
                 type="button"
                 variant="ghost"
                 size="sm"
-                className={`h-8 w-8 p-0 ${editor.isActive('heading', { level: 2 }) ? 'bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white' : 'text-slate-500'}`}
-                onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+                className={`h-8 w-8 p-0 ${editor.isActive("heading", { level: 2 }) ? "bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white" : "text-slate-500"}`}
+                onClick={() =>
+                  editor.chain().focus().toggleHeading({ level: 2 }).run()
+                }
               >
                 <Heading2 className="w-4 h-4" />
               </Button>
@@ -233,8 +262,10 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
                 type="button"
                 variant="ghost"
                 size="sm"
-                className={`h-8 w-8 p-0 ${editor.isActive('heading', { level: 3 }) ? 'bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white' : 'text-slate-500'}`}
-                onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+                className={`h-8 w-8 p-0 ${editor.isActive("heading", { level: 3 }) ? "bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white" : "text-slate-500"}`}
+                onClick={() =>
+                  editor.chain().focus().toggleHeading({ level: 3 }).run()
+                }
               >
                 <Heading3 className="w-4 h-4" />
               </Button>
@@ -243,7 +274,7 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
                 type="button"
                 variant="ghost"
                 size="sm"
-                className={`h-8 w-8 p-0 ${editor.isActive('bulletList') ? 'bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white' : 'text-slate-500'}`}
+                className={`h-8 w-8 p-0 ${editor.isActive("bulletList") ? "bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white" : "text-slate-500"}`}
                 onClick={() => editor.chain().focus().toggleBulletList().run()}
               >
                 <List className="w-4 h-4" />
@@ -252,7 +283,7 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
                 type="button"
                 variant="ghost"
                 size="sm"
-                className={`h-8 w-8 p-0 ${editor.isActive('orderedList') ? 'bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white' : 'text-slate-500'}`}
+                className={`h-8 w-8 p-0 ${editor.isActive("orderedList") ? "bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white" : "text-slate-500"}`}
                 onClick={() => editor.chain().focus().toggleOrderedList().run()}
               >
                 <ListOrdered className="w-4 h-4" />
@@ -262,7 +293,7 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
                 type="button"
                 variant="ghost"
                 size="sm"
-                className={`h-8 w-8 p-0 ${editor.isActive('blockquote') ? 'bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white' : 'text-slate-500'}`}
+                className={`h-8 w-8 p-0 ${editor.isActive("blockquote") ? "bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white" : "text-slate-500"}`}
                 onClick={() => editor.chain().focus().toggleBlockquote().run()}
               >
                 <Quote className="w-4 h-4" />
@@ -271,7 +302,7 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
                 type="button"
                 variant="ghost"
                 size="sm"
-                className={`h-8 w-8 p-0 ${editor.isActive('code') ? 'bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white' : 'text-slate-500'}`}
+                className={`h-8 w-8 p-0 ${editor.isActive("code") ? "bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white" : "text-slate-500"}`}
                 onClick={() => editor.chain().focus().toggleCode().run()}
               >
                 <Code className="w-4 h-4" />
@@ -300,7 +331,9 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
             {/* Input fields */}
             <div className="p-6 space-y-4">
               <div className="space-y-1">
-                <Label htmlFor="post-title" className="text-xs font-semibold">Post Title</Label>
+                <Label htmlFor="post-title" className="text-xs font-semibold">
+                  Post Title
+                </Label>
                 <Input
                   id="post-title"
                   placeholder="Enter article title..."
@@ -311,7 +344,9 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
               </div>
 
               <div className="space-y-1">
-                <Label htmlFor="post-slug" className="text-xs font-semibold">URL Slug</Label>
+                <Label htmlFor="post-slug" className="text-xs font-semibold">
+                  URL Slug
+                </Label>
                 <Input
                   id="post-slug"
                   placeholder="enter-url-slug"
@@ -336,10 +371,19 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
           <Card className="border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#151f32] rounded-xl shadow-sm">
             <CardContent className="p-6 space-y-4">
               <div className="space-y-1.5">
-                <Label htmlFor="category" className="text-xs font-semibold">Category</Label>
-                <Select id="category" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs" value={category} onChange={(e) => setCategory(e.target.value)}>
+                <Label htmlFor="category" className="text-xs font-semibold">
+                  Category
+                </Label>
+                <Select
+                  id="category"
+                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                >
                   <SelectValue placeholder="Select Category" />
-                  <SelectItem value="web-development">Web Development</SelectItem>
+                  <SelectItem value="web-development">
+                    Web Development
+                  </SelectItem>
                   <SelectItem value="mobile-apps">Mobile Apps</SelectItem>
                   <SelectItem value="ai-tech">AI & Automation</SelectItem>
                   <SelectItem value="marketing">Digital Marketing</SelectItem>
@@ -348,8 +392,15 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
               </div>
 
               <div className="space-y-1.5">
-                <Label htmlFor="author" className="text-xs font-semibold">Author</Label>
-                <Select id="author" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs" value={authorId} onChange={(e) => setAuthorId(e.target.value)}>
+                <Label htmlFor="author" className="text-xs font-semibold">
+                  Author
+                </Label>
+                <Select
+                  id="author"
+                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs"
+                  value={authorId}
+                  onChange={(e) => setAuthorId(e.target.value)}
+                >
                   <SelectValue placeholder="Select Author" />
                   {authorsData?.data?.map((author) => (
                     <SelectItem key={author.id} value={author.id}>
@@ -360,7 +411,9 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
               </div>
 
               <div className="space-y-1">
-                <Label htmlFor="tags" className="text-xs font-semibold">Tags (comma separated)</Label>
+                <Label htmlFor="tags" className="text-xs font-semibold">
+                  Tags (comma separated)
+                </Label>
                 <Input
                   id="tags"
                   placeholder="React, Nextjs, AI"
@@ -371,11 +424,15 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
               </div>
 
               <div className="space-y-1">
-                <Label className="text-xs font-semibold">Reading Time (minutes)</Label>
+                <Label className="text-xs font-semibold">
+                  Reading Time (minutes)
+                </Label>
                 <Input
                   type="number"
                   value={readingTime}
-                  onChange={(e) => setReadingTime(parseInt(e.target.value, 10) || 1)}
+                  onChange={(e) =>
+                    setReadingTime(parseInt(e.target.value, 10) || 1)
+                  }
                   className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 text-xs"
                 />
               </div>
@@ -385,30 +442,21 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
           {/* Media Images Card */}
           <Card className="border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#151f32] rounded-xl shadow-sm">
             <CardContent className="p-6 space-y-4">
-              <div className="space-y-1">
-                <Label htmlFor="coverUrl" className="text-xs font-semibold">Cover Image URL</Label>
-                <div className="relative">
-                  <ImageIcon className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
-                  <Input
-                    id="coverUrl"
-                    placeholder="https://res.cloudinary.com/..."
-                    value={coverImageUrl}
-                    onChange={(e) => setCoverImageUrl(e.target.value)}
-                    className="pl-9 bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 font-mono text-[10px]"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <Label htmlFor="coverCloudinaryId" className="text-xs font-semibold">Cover Image Cloudinary ID</Label>
-                <Input
-                  id="coverCloudinaryId"
-                  placeholder="blogs/nextjs-cover"
-                  value={coverImageCloudinaryId}
-                  onChange={(e) => setCoverImageCloudinaryId(e.target.value)}
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 font-mono text-xs"
-                />
-              </div>
+              <ImageUpload
+                folder="blogs"
+                label="Cover Image"
+                hint="Wide photo recommended (1200x630) — JPG, PNG, WebP up to 5MB"
+                value={coverImageUrl || ""}
+                aspectRatio="wide"
+                onChange={(url, publicId) => {
+                  setCoverImageUrl(url);
+                  setCoverImageCloudinaryId(publicId);
+                }}
+                onClear={() => {
+                  setCoverImageUrl("");
+                  setCoverImageCloudinaryId("");
+                }}
+              />
             </CardContent>
           </Card>
 
@@ -416,7 +464,9 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
           <Card className="border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#151f32] rounded-xl shadow-sm">
             <CardContent className="p-6 space-y-4">
               <div className="space-y-1">
-                <Label htmlFor="metaTitle" className="text-xs font-semibold">SEO Title</Label>
+                <Label htmlFor="metaTitle" className="text-xs font-semibold">
+                  SEO Title
+                </Label>
                 <Input
                   id="metaTitle"
                   placeholder="Meta title for Google search..."
@@ -427,7 +477,9 @@ export default function BlogEditor({ initialData, onSave, isSaving }: BlogEditor
               </div>
 
               <div className="space-y-1">
-                <Label htmlFor="metaDesc" className="text-xs font-semibold">SEO Description</Label>
+                <Label htmlFor="metaDesc" className="text-xs font-semibold">
+                  SEO Description
+                </Label>
                 <Textarea
                   id="metaDesc"
                   rows={3}

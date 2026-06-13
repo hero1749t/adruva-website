@@ -21,6 +21,7 @@ import {
 } from "../../../components/ui/dialog";
 import { Select, SelectItem, SelectValue } from "../../../components/ui/select";
 import { Plus, Edit, Trash, Star, X, ExternalLink } from "lucide-react";
+import { ImageUpload } from "../../../components/admin/ImageUpload";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -94,6 +95,7 @@ export default function ProjectsManager() {
     handleSubmit,
     reset,
     setValue,
+    watch,
     formState: { errors },
   } = useForm<ProjectFields>({
     resolver: zodResolver(projectSchema),
@@ -510,34 +512,21 @@ export default function ProjectsManager() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-1">
-                <Label htmlFor="heroImageUrl" className="text-xs font-semibold">
-                  Hero Image URL
-                </Label>
-                <Input
-                  id="heroImageUrl"
-                  placeholder="https://res.cloudinary.com/..."
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 font-mono text-[10px]"
-                  {...register("heroImageUrl")}
-                />
-              </div>
-
-              <div className="space-y-1">
-                <Label
-                  htmlFor="heroImageCloudinaryId"
-                  className="text-xs font-semibold"
-                >
-                  Cloudinary Image ID
-                </Label>
-                <Input
-                  id="heroImageCloudinaryId"
-                  placeholder="projects/custom-crm"
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 font-mono text-xs"
-                  {...register("heroImageCloudinaryId")}
-                />
-              </div>
-            </div>
+            <ImageUpload
+              folder="projects"
+              label="Hero Image"
+              hint="Wide photo recommended — JPG, PNG, WebP up to 5MB"
+              value={watch("heroImageUrl") || ""}
+              aspectRatio="wide"
+              onChange={(url, publicId) => {
+                setValue("heroImageUrl", url);
+                setValue("heroImageCloudinaryId", publicId);
+              }}
+              onClear={() => {
+                setValue("heroImageUrl", "");
+                setValue("heroImageCloudinaryId", "");
+              }}
+            />
 
             {/* Case study detail descriptions */}
             <div className="space-y-3 p-4 rounded-xl border border-slate-100 dark:border-slate-850 bg-slate-50/50 dark:bg-slate-900/10">
