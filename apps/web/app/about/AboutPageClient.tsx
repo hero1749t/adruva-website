@@ -43,13 +43,6 @@ const teamMembers = [
   },
 ];
 
-const stats = [
-  { label: "Projects Delivered", value: "50+" },
-  { label: "Client Revenue Generated", value: "$10M+" },
-  { label: "Client Retention Rate", value: "99%" },
-  { label: "Years of Experience", value: "5+" },
-];
-
 const timeline = [
   {
     year: "2021",
@@ -185,27 +178,6 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
               transforming complex business challenges into elegant digital
               solutions.
             </p>
-          </div>
-        </Container>
-      </Section>
-
-      {/* 2. Impact in Numbers */}
-      <Section className="py-10 border-y border-slate-200 dark:border-white/10 bg-white dark:bg-[#0A0A0A] relative z-20">
-        <Container>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-x-0 md:divide-x divide-slate-200 dark:divide-white/10">
-            {stats.map((stat, idx) => (
-              <div
-                key={idx}
-                className="flex flex-col items-center justify-center text-center px-4"
-              >
-                <span className="text-4xl md:text-5xl font-black text-brand-orange mb-2 font-poppins">
-                  {stat.value}
-                </span>
-                <span className="text-xs md:text-sm font-semibold tracking-wider text-slate-500 dark:text-gray-400 uppercase font-inter">
-                  {stat.label}
-                </span>
-              </div>
-            ))}
           </div>
         </Container>
       </Section>
