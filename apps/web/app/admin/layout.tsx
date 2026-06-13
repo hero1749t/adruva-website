@@ -20,7 +20,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import { ThemeToggle } from "../../components/ui/theme-toggle";
+import { NotificationDropdown } from "../../components/admin/NotificationDropdown";
 
 const navItems = [
   {
@@ -196,7 +196,6 @@ export default function AdminLayout({
                 {userRole.replace("_", " ")}
               </span>
             </div>
-            <ThemeToggle />
           </div>
           <button
             onClick={() => signOut({ callbackUrl: "/login" })}
