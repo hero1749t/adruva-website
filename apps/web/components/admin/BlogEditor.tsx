@@ -25,7 +25,6 @@ import {
   Redo,
   Save,
   ArrowLeft,
-  Image as ImageIcon,
 } from "lucide-react";
 import Link from "next/link";
 

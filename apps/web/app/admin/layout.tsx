@@ -20,7 +20,6 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import { NotificationDropdown } from "../../components/admin/NotificationDropdown";
 
 const navItems = [
   {

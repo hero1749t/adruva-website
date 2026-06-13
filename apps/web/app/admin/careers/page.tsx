@@ -16,14 +16,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../../../components/ui/dialog";
-import {
-  Plus,
-  Edit2,
-  Trash2,
-  Briefcase,
-  Eye,
-  ExternalLink,
-} from "lucide-react";
+import { Plus, Edit2, Trash2, Briefcase, ExternalLink } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
