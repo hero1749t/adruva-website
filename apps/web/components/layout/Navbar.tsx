@@ -173,7 +173,15 @@ export function Navbar() {
                 alt="Adruva Logo"
                 fill
                 sizes="40px"
-                className="object-contain"
+                className="object-contain hidden dark:block"
+                priority
+              />
+              <Image
+                src="/logo-symbol-dark.png"
+                alt="Adruva Logo"
+                fill
+                sizes="40px"
+                className="object-contain block dark:hidden"
                 priority
               />
             </div>
