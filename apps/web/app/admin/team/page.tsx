@@ -22,6 +22,7 @@ import {
   Trash2,
   UserPlus,
   Image as ImageIcon,
+  Search,
 } from "lucide-react";
 import { ImageUpload } from "../../../components/admin/ImageUpload";
 import { useForm } from "react-hook-form";
@@ -65,6 +66,7 @@ export default function TeamManager() {
   const queryClient = useQueryClient();
   const [isOpen, setIsOpen] = useState(false);
   const [editingMember, setEditingMember] = useState<TeamMember | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const { data, isLoading } = useQuery({
     queryKey: ["admin", "team"],
@@ -205,6 +207,18 @@ export default function TeamManager() {
         </Button>
       </div>
 
+      {/* Search Filter Card */}
+      <Card className="border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#151f32] p-4 flex items-center gap-2 rounded-xl">
+        <Search className="w-4 h-4 text-slate-400" />
+        <Input
+          type="text"
+          placeholder="Search team members by name..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 h-9 text-xs focus:ring-1 focus:ring-brand-orange focus:border-brand-orange max-w-sm"
+        />
+      </Card>
+
       {/* Roster Cards Grid */}
       {isLoading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -233,85 +247,89 @@ export default function TeamManager() {
         </Card>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {data.data.map((member) => (
-            <Card
-              key={member.id}
-              className="border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#151f32] overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 flex flex-col rounded-xl"
-            >
-              {/* Member Photo area */}
-              <div className="aspect-square w-full relative bg-slate-100 dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800/60 flex items-center justify-center overflow-hidden">
-                {member.photoUrl ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={member.photoUrl}
-                    alt={member.name}
-                    className="w-full h-full object-cover object-center"
-                  />
-                ) : (
-                  <ImageIcon className="w-10 h-10 text-slate-300 dark:text-slate-700" />
-                )}
-                {!member.isActive && (
-                  <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-[2px] flex items-center justify-center">
-                    <span className="bg-red-500/90 text-white text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded">
-                      Inactive
-                    </span>
-                  </div>
-                )}
-              </div>
-
-              {/* Member details card footer */}
-              <CardHeader className="p-4 flex-grow space-y-1">
-                <div className="flex justify-between items-start">
-                  <h3 className="font-bold text-base text-slate-900 dark:text-white leading-tight truncate font-poppins">
-                    {member.name}
-                  </h3>
-                  {member.linkedinUrl && (
-                    <a
-                      href={member.linkedinUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-slate-400 hover:text-[#0077B5] transition-colors duration-150"
-                    >
-                      <svg
-                        className="w-4 h-4 fill-current"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                      </svg>
-                    </a>
+          {data.data
+            .filter((m) =>
+              m.name.toLowerCase().includes(searchQuery.toLowerCase()),
+            )
+            .map((member) => (
+              <Card
+                key={member.id}
+                className="border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#151f32] overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 flex flex-col rounded-xl"
+              >
+                {/* Member Photo area */}
+                <div className="aspect-square w-full relative bg-slate-100 dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800/60 flex items-center justify-center overflow-hidden">
+                  {member.photoUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={member.photoUrl}
+                      alt={member.name}
+                      className="w-full h-full object-cover object-center"
+                    />
+                  ) : (
+                    <ImageIcon className="w-10 h-10 text-slate-300 dark:text-slate-700" />
+                  )}
+                  {!member.isActive && (
+                    <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-[2px] flex items-center justify-center">
+                      <span className="bg-red-500/90 text-white text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded">
+                        Inactive
+                      </span>
+                    </div>
                   )}
                 </div>
-                <p className="text-xs text-slate-500 dark:text-slate-400 leading-tight font-medium font-inter">
-                  {member.designation}
-                </p>
-              </CardHeader>
 
-              <div className="p-4 pt-0 border-t border-slate-100 dark:border-slate-800/40 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/10">
-                <span className="text-[10px] font-semibold text-slate-400 uppercase">
-                  Sort Order: {member.sortOrder}
-                </span>
-                <div className="flex gap-1">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => handleEdit(member)}
-                    className="h-8 w-8 p-0 text-slate-600 hover:text-brand-orange hover:bg-brand-orange/5 dark:text-slate-400 dark:hover:text-brand-orange"
-                  >
-                    <Edit2 className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => handleDelete(member.id, member.name)}
-                    className="h-8 w-8 p-0 text-slate-600 hover:text-red-500 hover:bg-red-500/5 dark:text-slate-400 dark:hover:text-red-500"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
+                {/* Member details card footer */}
+                <CardHeader className="p-4 flex-grow space-y-1">
+                  <div className="flex justify-between items-start">
+                    <h3 className="font-bold text-base text-slate-900 dark:text-white leading-tight truncate font-poppins">
+                      {member.name}
+                    </h3>
+                    {member.linkedinUrl && (
+                      <a
+                        href={member.linkedinUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-slate-400 hover:text-[#0077B5] transition-colors duration-150"
+                      >
+                        <svg
+                          className="w-4 h-4 fill-current"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                      </a>
+                    )}
+                  </div>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-tight font-medium font-inter">
+                    {member.designation}
+                  </p>
+                </CardHeader>
+
+                <div className="p-4 pt-0 border-t border-slate-100 dark:border-slate-800/40 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/10">
+                  <span className="text-[10px] font-semibold text-slate-400 uppercase">
+                    Sort Order: {member.sortOrder}
+                  </span>
+                  <div className="flex gap-1">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleEdit(member)}
+                      className="h-8 w-8 p-0 text-slate-600 hover:text-brand-orange hover:bg-brand-orange/5 dark:text-slate-400 dark:hover:text-brand-orange"
+                    >
+                      <Edit2 className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleDelete(member.id, member.name)}
+                      className="h-8 w-8 p-0 text-slate-600 hover:text-red-500 hover:bg-red-500/5 dark:text-slate-400 dark:hover:text-red-500"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </Card>
-          ))}
+              </Card>
+            ))}
         </div>
       )}
 

@@ -20,7 +20,7 @@ import {
   DialogTitle,
 } from "../../../components/ui/dialog";
 import { Select, SelectItem, SelectValue } from "../../../components/ui/select";
-import { Plus, Edit, Trash, Star, X, ExternalLink } from "lucide-react";
+import { Plus, Edit, Trash, Star, X, ExternalLink, Search } from "lucide-react";
 import { ImageUpload } from "../../../components/admin/ImageUpload";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -81,6 +81,7 @@ export default function ProjectsManager() {
   // Tech stack local states
   const [techStack, setTechStack] = useState<string[]>([]);
   const [newTech, setNewTech] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const userRole = session?.user?.role || "content_writer";
   const isOwner = userRole === "owner";
@@ -292,6 +293,18 @@ export default function ProjectsManager() {
         </Button>
       </div>
 
+      {/* Search Filter Card */}
+      <Card className="border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#151f32] p-4 flex items-center gap-2 rounded-xl">
+        <Search className="w-4 h-4 text-slate-400" />
+        <Input
+          type="text"
+          placeholder="Search case studies by title..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 h-9 text-xs focus:ring-1 focus:ring-brand-orange focus:border-brand-orange max-w-sm"
+        />
+      </Card>
+
       {/* Listing card Table */}
       <Card className="border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#151f32] shadow-sm">
         <CardContent className="p-0">
@@ -324,93 +337,99 @@ export default function ProjectsManager() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800/40 text-slate-700 dark:text-slate-300">
-                  {data.data.map((project) => (
-                    <tr
-                      key={project.id}
-                      className="hover:bg-slate-50/50 dark:hover:bg-slate-900/10 transition-colors duration-150"
-                    >
-                      <td className="px-8 py-4">
-                        <div className="flex flex-col max-w-sm">
-                          <span className="font-semibold text-slate-900 dark:text-white leading-snug">
-                            {project.title}
-                          </span>
-                          <span className="text-xs text-slate-400 font-mono mt-0.5 truncate">
-                            {project.slug}
-                          </span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4">
-                        {project.clientName || "N/A"}
-                      </td>
-                      <td className="px-6 py-4">{project.industry || "N/A"}</td>
-                      <td className="px-6 py-4 capitalize">
-                        {project.category || "N/A"}
-                      </td>
-                      <td className="px-6 py-4">
-                        <button
-                          onClick={() =>
-                            isOwner && handleToggleFeatured(project.id)
-                          }
-                          disabled={!isOwner}
-                          className={`flex items-center gap-1 text-xs font-semibold focus:outline-none transition-colors duration-150 ${
-                            project.isFeatured
-                              ? "text-amber-500 hover:text-amber-600"
-                              : "text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
-                          }`}
-                        >
-                          <Star
-                            className={`w-4 h-4 ${project.isFeatured ? "fill-amber-500" : ""}`}
-                          />
-                        </button>
-                      </td>
-                      <td className="px-6 py-4">
-                        <Badge
-                          variant="outline"
-                          className={`capitalize font-semibold text-[10px] px-2 py-0.5 rounded-full ${getStatusColor(project.status)}`}
-                        >
-                          {project.status}
-                        </Badge>
-                      </td>
-                      <td className="px-8 py-4 text-right">
-                        <div className="flex gap-1.5 justify-end">
-                          {project.status === "published" && (
-                            <a
-                              href={`/work/${project.slug}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                title="View on site"
-                                className="h-8 w-8 p-0 text-slate-400 hover:text-emerald-500 hover:bg-emerald-500/5"
-                              >
-                                <ExternalLink className="w-3.5 h-3.5" />
-                              </Button>
-                            </a>
-                          )}
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleEdit(project)}
-                            className="h-8 w-8 p-0 text-slate-600 hover:text-brand-orange hover:bg-brand-orange/5 dark:text-slate-400"
-                          >
-                            <Edit className="w-3.5 h-3.5" />
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="sm"
+                  {data.data
+                    .filter((p) =>
+                      p.title.toLowerCase().includes(searchQuery.toLowerCase()),
+                    )
+                    .map((project) => (
+                      <tr
+                        key={project.id}
+                        className="hover:bg-slate-50/50 dark:hover:bg-slate-900/10 transition-colors duration-150"
+                      >
+                        <td className="px-8 py-4">
+                          <div className="flex flex-col max-w-sm">
+                            <span className="font-semibold text-slate-900 dark:text-white leading-snug">
+                              {project.title}
+                            </span>
+                            <span className="text-xs text-slate-400 font-mono mt-0.5 truncate">
+                              {project.slug}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          {project.clientName || "N/A"}
+                        </td>
+                        <td className="px-6 py-4">
+                          {project.industry || "N/A"}
+                        </td>
+                        <td className="px-6 py-4 capitalize">
+                          {project.category || "N/A"}
+                        </td>
+                        <td className="px-6 py-4">
+                          <button
                             onClick={() =>
-                              handleDelete(project.id, project.title)
+                              isOwner && handleToggleFeatured(project.id)
                             }
-                            className="h-8 w-8 p-0 text-slate-600 hover:text-red-500 hover:bg-red-500/5 dark:text-slate-400"
+                            disabled={!isOwner}
+                            className={`flex items-center gap-1 text-xs font-semibold focus:outline-none transition-colors duration-150 ${
+                              project.isFeatured
+                                ? "text-amber-500 hover:text-amber-600"
+                                : "text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
+                            }`}
                           >
-                            <Trash className="w-3.5 h-3.5" />
-                          </Button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
+                            <Star
+                              className={`w-4 h-4 ${project.isFeatured ? "fill-amber-500" : ""}`}
+                            />
+                          </button>
+                        </td>
+                        <td className="px-6 py-4">
+                          <Badge
+                            variant="outline"
+                            className={`capitalize font-semibold text-[10px] px-2 py-0.5 rounded-full ${getStatusColor(project.status)}`}
+                          >
+                            {project.status}
+                          </Badge>
+                        </td>
+                        <td className="px-8 py-4 text-right">
+                          <div className="flex gap-1.5 justify-end">
+                            {project.status === "published" && (
+                              <a
+                                href={`/work/${project.slug}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  title="View on site"
+                                  className="h-8 w-8 p-0 text-slate-400 hover:text-emerald-500 hover:bg-emerald-500/5"
+                                >
+                                  <ExternalLink className="w-3.5 h-3.5" />
+                                </Button>
+                              </a>
+                            )}
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleEdit(project)}
+                              className="h-8 w-8 p-0 text-slate-600 hover:text-brand-orange hover:bg-brand-orange/5 dark:text-slate-400"
+                            >
+                              <Edit className="w-3.5 h-3.5" />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() =>
+                                handleDelete(project.id, project.title)
+                              }
+                              className="h-8 w-8 p-0 text-slate-600 hover:text-red-500 hover:bg-red-500/5 dark:text-slate-400"
+                            >
+                              <Trash className="w-3.5 h-3.5" />
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             )}

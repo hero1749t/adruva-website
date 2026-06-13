@@ -176,4 +176,10 @@ Team Adruva Solution`;
       return false;
     }
   }
+
+  async sendTestEmail(to: string): Promise<boolean> {
+    const subject = `Test Email from Adruva Solution Dashboard`;
+    const body = `Hi there,\n\nIf you are receiving this, your SMTP settings are configured correctly!\n\nBest,\nAdruva Solution System`;
+    return this.sendMail(to, subject, body);
+  }
 }

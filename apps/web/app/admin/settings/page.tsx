@@ -73,6 +73,21 @@ export default function SettingsManager() {
     },
   });
 
+  const testEmailMutation = useMutation({
+    mutationFn: (to: string) =>
+      apiFetch<{ success: boolean; message?: string }>("/settings/test-email", {
+        method: "POST",
+        body: JSON.stringify({ to }),
+      }),
+    onSuccess: (res) => {
+      if (res.success) toast.success(res.message || "Test email sent!");
+      else toast.error(res.message || "Failed to send test email.");
+    },
+    onError: (err) => {
+      toast.error(err.message || "Failed to trigger test email");
+    },
+  });
+
   const handleInputChange = (key: string, val: string) => {
     setFormData((prev) => ({
       ...prev,
@@ -446,6 +461,33 @@ export default function SettingsManager() {
                       placeholder="no-reply@adruva.com"
                       className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 text-xs font-mono"
                     />
+                  </div>
+
+                  <div className="pt-4 flex items-center gap-3 border-t border-slate-100 dark:border-slate-800">
+                    <Input
+                      id="testEmail"
+                      placeholder="Enter email to send test..."
+                      className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 text-xs font-mono max-w-sm"
+                    />
+                    <Button
+                      type="button"
+                      variant="outline"
+                      disabled={testEmailMutation.isPending}
+                      onClick={() => {
+                        const email = (
+                          document.getElementById(
+                            "testEmail",
+                          ) as HTMLInputElement
+                        )?.value;
+                        if (!email) return toast.error("Enter an email first");
+                        testEmailMutation.mutate(email);
+                      }}
+                      className="text-xs"
+                    >
+                      {testEmailMutation.isPending
+                        ? "Sending..."
+                        : "Send Test Email"}
+                    </Button>
                   </div>
                 </div>
               )}

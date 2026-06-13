@@ -47,6 +47,7 @@ interface Job {
   salaryLabel: string | null;
   isPaid: boolean;
   duration: string | null;
+  applicationDeadline: string | null;
   openingsCount: number;
   status: string;
   createdAt: string;
@@ -71,6 +72,7 @@ const jobSchema = z.object({
   salaryMin: z.coerce.number().optional(),
   salaryMax: z.coerce.number().optional(),
   salaryLabel: z.string().optional(),
+  applicationDeadline: z.string().optional(),
   openingsCount: z.coerce.number().int().default(1),
   status: z.string().default("draft"),
 });
@@ -181,6 +183,12 @@ export default function CareersManager() {
     setValue("salaryMin", job.salaryMin || undefined);
     setValue("salaryMax", job.salaryMax || undefined);
     setValue("salaryLabel", job.salaryLabel || "");
+    setValue(
+      "applicationDeadline",
+      job.applicationDeadline
+        ? new Date(job.applicationDeadline).toISOString().split("T")[0]
+        : "",
+    );
     setValue("openingsCount", job.openingsCount);
     setValue("status", job.status);
     setIsOpen(true);
@@ -202,6 +210,7 @@ export default function CareersManager() {
       salaryMin: undefined,
       salaryMax: undefined,
       salaryLabel: "LPA",
+      applicationDeadline: "",
       openingsCount: 1,
       status: "draft",
     });
@@ -243,6 +252,7 @@ export default function CareersManager() {
       salaryMin: fields.salaryMin || null,
       salaryMax: fields.salaryMax || null,
       salaryLabel: fields.salaryLabel || null,
+      applicationDeadline: fields.applicationDeadline || null,
       openingsCount: fields.openingsCount,
       status: fields.status,
     };
@@ -254,12 +264,8 @@ export default function CareersManager() {
     }
   };
 
-  const handleDelete = (id: string) => {
-    if (
-      confirm(
-        "Are you sure you want to delete this job posting? (This is a soft delete)",
-      )
-    ) {
+  const handleDelete = (id: string, title: string) => {
+    if (window.confirm(`Delete "${title}"? This is a soft delete.`)) {
       deleteMutation.mutate(id);
     }
   };
@@ -390,7 +396,7 @@ export default function CareersManager() {
                           <Button
                             variant="ghost"
                             size="sm"
-                            onClick={() => handleDelete(job.id)}
+                            onClick={() => handleDelete(job.id, job.title)}
                             className="h-8 w-8 p-0 text-slate-500 hover:text-red-500"
                           >
                             <Trash2 className="w-4 h-4" />
@@ -568,10 +574,10 @@ export default function CareersManager() {
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-4 gap-4">
               <div className="space-y-1">
                 <Label htmlFor="salaryMin" className="text-xs font-semibold">
-                  Min Salary (Number)
+                  Min Salary
                 </Label>
                 <Input
                   id="salaryMin"
@@ -584,7 +590,7 @@ export default function CareersManager() {
 
               <div className="space-y-1">
                 <Label htmlFor="salaryMax" className="text-xs font-semibold">
-                  Max Salary (Number)
+                  Max Salary
                 </Label>
                 <Input
                   id="salaryMax"
@@ -597,13 +603,28 @@ export default function CareersManager() {
 
               <div className="space-y-1">
                 <Label htmlFor="salaryLabel" className="text-xs font-semibold">
-                  Salary Label (e.g. LPA)
+                  Salary Label
                 </Label>
                 <Input
                   id="salaryLabel"
-                  placeholder="LPA"
+                  placeholder="LPA / per month"
                   className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
                   {...register("salaryLabel")}
+                />
+              </div>
+
+              <div className="space-y-1">
+                <Label
+                  htmlFor="applicationDeadline"
+                  className="text-xs font-semibold"
+                >
+                  Deadline
+                </Label>
+                <Input
+                  id="applicationDeadline"
+                  type="date"
+                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
+                  {...register("applicationDeadline")}
                 />
               </div>
             </div>
