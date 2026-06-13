@@ -112,7 +112,7 @@ export function ServicesPageClient({
     },
   };
 
-  const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || "/contact";
+  const calendlyUrl = "/contact";
 
   return (
     <div className="w-full min-h-screen bg-background text-foreground transition-colors duration-300 relative overflow-hidden">

@@ -140,8 +140,7 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
       apiFetch<{ success: boolean; data: Record<string, string> }>("/settings"),
   });
   const settings = settingsData?.data || {};
-  const calendlyUrl =
-    settings.calendlyUrl || process.env.NEXT_PUBLIC_CALENDLY_URL || "/contact";
+  const calendlyUrl = "/contact";
 
   const list =
     initialTeam && initialTeam.length > 0

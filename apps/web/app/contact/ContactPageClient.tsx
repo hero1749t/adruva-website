@@ -549,44 +549,6 @@ export function ContactPageClient() {
           </div>
         </Container>
       </Section>
-
-      {/* Calendly Section */}
-      <Section className="bg-muted/10 border-t border-border/50 py-16 md:py-24">
-        <Container>
-          <div className="max-w-4xl mx-auto space-y-8 text-center">
-            <div className="space-y-3">
-              <Badge
-                variant="outline"
-                className="px-3 py-1 text-primary border-primary/20 bg-primary/5 uppercase tracking-wider text-xs font-semibold"
-              >
-                Direct Booking
-              </Badge>
-              <h2 className="text-2xl md:text-3xl font-bold font-poppins text-secondary dark:text-white">
-                Or Schedule Directly on Our Calendar
-              </h2>
-              <p className="text-sm text-text-muted max-w-lg mx-auto font-inter">
-                Prefer to talk live? Schedule a free 30-minute discovery call at
-                your convenient date and time below.
-              </p>
-            </div>
-
-            {/* Calendly Inline Widget Embed */}
-            <Card className="border-border/80 bg-card rounded-2xl shadow-lg overflow-hidden p-2">
-              <iframe
-                src={`${
-                  settings.calendlyUrl ||
-                  process.env.NEXT_PUBLIC_CALENDLY_URL ||
-                  "https://calendly.com/adruva/discovery-call"
-                }?hide_landing_page_details=1&hide_gdpr_banner=1`}
-                width="100%"
-                height="700"
-                style={{ minHeight: "700px", border: 0 }}
-                title="Schedule a Discovery Call"
-              />
-            </Card>
-          </div>
-        </Container>
-      </Section>
     </div>
   );
 }
