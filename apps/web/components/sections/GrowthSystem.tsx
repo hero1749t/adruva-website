@@ -1,41 +1,49 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { Target, MousePointerClick, Layers, Cpu, TrendingUp } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { Container } from '@/components/layout/container';
-import { cn } from '@/lib/utils';
+import React, { useState, useEffect } from "react";
+import {
+  Target,
+  MousePointerClick,
+  Layers,
+  Cpu,
+  TrendingUp,
+} from "lucide-react";
+import { motion } from "framer-motion";
+import { Container } from "@/components/layout/container";
 
 const steps = [
   {
-    number: '01',
+    number: "01",
     icon: Target,
-    title: 'Attract',
-    description: 'Targeted Google Ads, Meta Ads & data-driven SEO strategies.',
+    title: "Attract",
+    description: "Targeted Google Ads, Meta Ads & data-driven SEO strategies.",
   },
   {
-    number: '02',
+    number: "02",
     icon: MousePointerClick,
-    title: 'Convert',
-    description: 'High-performance websites and landing pages built to convert.',
+    title: "Convert",
+    description:
+      "High-performance websites and landing pages built to convert.",
   },
   {
-    number: '03',
+    number: "03",
     icon: Layers,
-    title: 'Manage',
-    description: 'Custom CRM integrations to manage and organize inbound leads.',
+    title: "Manage",
+    description:
+      "Custom CRM integrations to manage and organize inbound leads.",
   },
   {
-    number: '04',
+    number: "04",
     icon: Cpu,
-    title: 'Automate',
-    description: 'AI-driven automated email/WhatsApp follow-ups and bookings.',
+    title: "Automate",
+    description: "AI-driven automated email/WhatsApp follow-ups and bookings.",
   },
   {
-    number: '05',
+    number: "05",
     icon: TrendingUp,
-    title: 'Scale',
-    description: 'Continuous optimization and campaigns built for compounding growth.',
+    title: "Scale",
+    description:
+      "Continuous optimization and campaigns built for compounding growth.",
   },
 ];
 
@@ -44,7 +52,7 @@ export function GrowthSystem() {
 
   useEffect(() => {
     const checkReducedMotion = () => {
-      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
       setPrefersReducedMotion(mediaQuery.matches);
     };
     checkReducedMotion();
@@ -54,93 +62,103 @@ export function GrowthSystem() {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.08,
+        staggerChildren: 0.15,
       },
     },
   };
 
   const itemVariants = {
-    hidden: prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 },
+    hidden: prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: 'easeOut' },
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
     },
   };
 
   return (
-    <section className="w-full bg-[#0A0A0A] text-white py-20 relative overflow-hidden transition-colors duration-300">
-      
-      {/* Background radial highlight */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-orange/5 rounded-full blur-[120px] pointer-events-none select-none z-0" />
+    <section className="w-full bg-[#050A15] text-white py-24 relative overflow-hidden">
+      {/* Premium Background Effects */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-brand-orange/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] left-[-5%] w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px]" />
+      </div>
 
       <Container className="relative z-10">
-        
         {/* Header */}
-        <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-16">
-          <span className="section-tag mb-3">Our Methodology</span>
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white font-poppins">
-            The Adruva Growth System
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-20">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-orange/10 border border-brand-orange/20 mb-6">
+            <span className="w-2 h-2 rounded-full bg-brand-orange animate-pulse" />
+            <span className="text-xs font-semibold text-brand-orange tracking-wider uppercase">
+              Our Methodology
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white font-poppins mb-6">
+            The Adruva{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-amber-500">
+              Growth System
+            </span>
           </h2>
-          <p className="text-gray-400 mt-4 text-sm font-inter">
-            A proven methodology we apply to every client.
+          <p className="text-gray-400 text-base md:text-lg font-inter max-w-2xl">
+            A proven, predictable 5-step framework we apply to scale modern
+            businesses efficiently.
           </p>
         </div>
 
-        {/* 5-Step responsive layout */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          className="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-5 gap-6 relative"
-        >
-          {steps.map((step, idx) => {
-            const Icon = step.icon;
-            return (
-              <motion.div
-                key={step.number}
-                variants={itemVariants}
-                className={cn(
-                  'relative p-6 rounded-[12px] bg-white/[0.03] border border-white/[0.08] transition-all duration-300 flex flex-col items-start min-h-[240px]',
-                  'hover:bg-brand-orange/[0.06] hover:border-brand-orange/[0.3] group',
-                  // Responsive spans: 3 items in 1st row (span 2 each), 2 items in 2nd row (span 3 each)
-                  'col-span-1 sm:col-span-2 lg:col-span-1',
-                  idx === 3 ? 'sm:col-span-3 lg:col-span-1' : '',
-                  idx === 4 ? 'sm:col-span-3 lg:col-span-1' : ''
-                )}
-              >
-                {/* Step Number */}
-                <div className="text-brand-orange/50 font-bold text-xs tracking-widest font-poppins mb-3">
-                  {step.number}
-                </div>
+        {/* Timeline Layout */}
+        <div className="relative max-w-6xl mx-auto">
+          {/* Desktop Horizontal Line */}
+          <div className="hidden lg:block absolute top-[40px] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-brand-orange/0 via-brand-orange/30 to-brand-orange/0" />
 
-                {/* Icon square container (40x40px) */}
-                <div className="h-10 w-10 rounded-[10px] bg-brand-orange/[0.12] text-brand-orange flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-105">
-                  <Icon className="h-5 w-5" />
-                </div>
+          {/* Mobile Vertical Line */}
+          <div className="block lg:hidden absolute top-[40px] bottom-[40px] left-[39px] w-[2px] bg-gradient-to-b from-brand-orange/50 via-brand-orange/20 to-transparent" />
 
-                {/* Step Title */}
-                <h3 className="text-lg font-semibold text-white mb-2 font-poppins">
-                  {step.title}
-                </h3>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-6 relative"
+          >
+            {steps.map((step, idx) => {
+              const Icon = step.icon;
+              return (
+                <motion.div
+                  key={step.number}
+                  variants={itemVariants}
+                  className="relative flex flex-row lg:flex-col items-start lg:items-center group"
+                >
+                  {/* Glowing Node */}
+                  <div className="relative z-10 flex-shrink-0 mb-0 lg:mb-8 mr-6 lg:mr-0">
+                    <div className="w-20 h-20 lg:w-[80px] lg:h-[80px] rounded-full bg-[#0A1428] border-2 border-brand-orange/30 flex items-center justify-center shadow-[0_0_30px_rgba(249,115,22,0.15)] transition-all duration-500 group-hover:border-brand-orange group-hover:shadow-[0_0_40px_rgba(249,115,22,0.4)] group-hover:scale-110">
+                      <div
+                        className="absolute inset-0 rounded-full bg-brand-orange/10 animate-ping opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        style={{ animationDuration: "3s" }}
+                      />
+                      <Icon className="w-8 h-8 text-brand-orange relative z-10 transition-transform duration-500 group-hover:scale-110" />
+                    </div>
+                    {/* Step Number Badge */}
+                    <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-gradient-to-br from-brand-orange to-amber-600 flex items-center justify-center text-white text-xs font-bold shadow-lg border-2 border-[#050A15]">
+                      {idx + 1}
+                    </div>
+                  </div>
 
-                {/* Description */}
-                <p className="text-sm text-gray-400 leading-[1.65] font-inter">
-                  {step.description}
-                </p>
-
-                {/* Arrow Connector (Desktop only, except for the last step) */}
-                {idx < steps.length - 1 && (
-                  <span className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 text-gray-600 text-lg font-bold z-20 pointer-events-none">
-                    →
-                  </span>
-                )}
-              </motion.div>
-            );
-          })}
-        </motion.div>
-
+                  {/* Content Card */}
+                  <div className="flex-1 lg:text-center w-full mt-2 lg:mt-0 relative">
+                    <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.05] backdrop-blur-sm transition-all duration-500 group-hover:bg-white/[0.04] group-hover:border-brand-orange/30 group-hover:-translate-y-2 h-full">
+                      <h3 className="text-xl font-bold text-white mb-3 font-poppins group-hover:text-brand-orange transition-colors duration-300">
+                        {step.title}
+                      </h3>
+                      <p className="text-sm text-gray-400 leading-relaxed font-inter">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
       </Container>
     </section>
   );
