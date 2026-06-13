@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { ArrowRight, Calendar } from 'lucide-react';
-import { Section } from '@/components/layout/section';
-import { Container } from '@/components/layout/container';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { ArrowRight, Calendar } from "lucide-react";
+import { Section } from "@/components/layout/section";
+import { Container } from "@/components/layout/container";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface CTAProps {
   title?: string;
@@ -23,8 +23,8 @@ interface CTAProps {
 }
 
 export function CTASection({
-  title = 'Ready to grow your business digitally?',
-  subtitle = 'Book a free 30-minute discovery call. No commitment, no sales pitch — just honest advice and a clear growth roadmap.',
+  title = "Ready to grow your business digitally?",
+  subtitle = "Book a free 30-minute discovery call. No commitment, no sales pitch — just honest advice and a clear growth roadmap.",
   primaryCTA,
   secondaryCTA,
 }: CTAProps) {
@@ -32,22 +32,22 @@ export function CTASection({
 
   useEffect(() => {
     const checkReducedMotion = () => {
-      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
       setPrefersReducedMotion(mediaQuery.matches);
     };
     checkReducedMotion();
   }, []);
 
-  const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || '/contact';
+  const calendlyUrl = "/contact";
 
   const defaultPrimaryCTA = primaryCTA || {
-    text: 'Book a Free Call',
+    text: "Book a Free Call",
     href: calendlyUrl,
   };
 
   const defaultSecondaryCTA = secondaryCTA || {
-    text: 'See Our Services',
-    href: '/services',
+    text: "See Our Services",
+    href: "/services",
   };
 
   const fadeInUp = {
@@ -55,7 +55,7 @@ export function CTASection({
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: 'easeOut' },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
@@ -66,10 +66,10 @@ export function CTASection({
           variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
+          viewport={{ once: true, margin: "-50px" }}
           className={cn(
-            'relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0b1f3a] to-[#071324] border border-brand-orange/15 text-white text-center p-8 md:p-16 max-w-4xl mx-auto shadow-2xl',
-            'dark:from-[#0d172e] dark:to-[#050914]'
+            "relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0b1f3a] to-[#071324] border border-brand-orange/15 text-white text-center p-8 md:p-16 max-w-4xl mx-auto shadow-2xl",
+            "dark:from-[#0d172e] dark:to-[#050914]",
           )}
         >
           {/* Brand Orange Radial Glow */}
@@ -90,8 +90,16 @@ export function CTASection({
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto max-w-xs sm:max-w-none items-center justify-center">
               <a
                 href={defaultPrimaryCTA.href}
-                target={defaultPrimaryCTA.href.startsWith('http') ? '_blank' : undefined}
-                rel={defaultPrimaryCTA.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                target={
+                  defaultPrimaryCTA.href.startsWith("http")
+                    ? "_blank"
+                    : undefined
+                }
+                rel={
+                  defaultPrimaryCTA.href.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
                 className="w-full sm:w-auto"
               >
                 <Button
@@ -104,7 +112,10 @@ export function CTASection({
                 </Button>
               </a>
 
-              <Link href={defaultSecondaryCTA.href} className="w-full sm:w-auto">
+              <Link
+                href={defaultSecondaryCTA.href}
+                className="w-full sm:w-auto"
+              >
                 <Button
                   variant="ghost"
                   size="lg"

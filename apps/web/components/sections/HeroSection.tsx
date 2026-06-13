@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { ArrowRight, CheckCircle2, TrendingUp, Cpu } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Container } from '@/components/layout/container';
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { ArrowRight, CheckCircle2, TrendingUp, Cpu } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Container } from "@/components/layout/container";
 
-const words = ['Need.', 'Trust.', 'Choose.'];
+const words = ["Need.", "Trust.", "Choose."];
 
 export function HeroSection() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -15,7 +15,7 @@ export function HeroSection() {
 
   useEffect(() => {
     const checkReducedMotion = () => {
-      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
       setPrefersReducedMotion(mediaQuery.matches);
     };
 
@@ -28,7 +28,7 @@ export function HeroSection() {
     return () => clearInterval(interval);
   }, []);
 
-  const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || '/contact';
+  const calendlyUrl = "/contact";
 
   const containerVariants = {
     hidden: {},
@@ -44,13 +44,12 @@ export function HeroSection() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: 'easeOut' },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
   return (
     <section className="relative w-full min-h-[80vh] flex items-center justify-center overflow-hidden py-12 lg:py-16 bg-transparent transition-colors duration-300">
-      
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none z-0" />
 
@@ -72,7 +71,6 @@ export function HeroSection() {
 
       <Container className="relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
           {/* Left Text Column */}
           <motion.div
             variants={containerVariants}
@@ -98,7 +96,7 @@ export function HeroSection() {
               className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground leading-[1.12] sm:leading-[1.05] mb-4 font-poppins"
             >
               The Last Tech Partner <br className="hidden sm:inline" />
-              You&apos;ll Ever{' '}
+              You&apos;ll Ever{" "}
               <span className="inline-block min-w-[130px] text-brand-orange text-center lg:text-left">
                 {prefersReducedMotion ? (
                   words[0]
@@ -109,7 +107,7 @@ export function HeroSection() {
                       initial={{ opacity: 0, y: 12 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -12 }}
-                      transition={{ duration: 0.3, ease: 'easeOut' }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
                       className="inline-block w-full"
                     >
                       {words[currentWordIndex]}
@@ -132,7 +130,9 @@ export function HeroSection() {
               variants={itemVariants}
               className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6 max-w-[520px] font-inter"
             >
-              From high-converting websites to customized AI-powered automation — we build and optimize digital workflows that attract customers, streamline growth, and scale your revenues honestly.
+              From high-converting websites to customized AI-powered automation
+              — we build and optimize digital workflows that attract customers,
+              streamline growth, and scale your revenues honestly.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -142,8 +142,12 @@ export function HeroSection() {
             >
               <a
                 href={calendlyUrl}
-                target={calendlyUrl.startsWith('http') ? '_blank' : undefined}
-                rel={calendlyUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
+                target={calendlyUrl.startsWith("http") ? "_blank" : undefined}
+                rel={
+                  calendlyUrl.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
                 className="w-full sm:w-auto"
               >
                 <Button
@@ -169,13 +173,16 @@ export function HeroSection() {
 
           {/* Right Column: Floating Dashboard Cards (Desktop Only) */}
           <div className="hidden lg:col-span-5 lg:flex relative h-[380px] items-center justify-center">
-            
             {/* Background blob for mockups */}
             <div className="absolute w-[320px] h-[320px] rounded-full bg-brand-orange/5 blur-3xl z-0" />
-            
+
             {/* Card 1: 15+ Projects */}
             <motion.div
-              initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.9, y: 30 }}
+              initial={
+                prefersReducedMotion
+                  ? { opacity: 1 }
+                  : { opacity: 0, scale: 0.9, y: 30 }
+              }
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
               className="absolute top-2 left-2 w-44 p-3.5 rounded-2xl bg-card border border-border shadow-lg flex items-center gap-3 z-10 hover:border-brand-orange/40 hover:shadow-xl transition-all duration-300"
@@ -184,14 +191,22 @@ export function HeroSection() {
                 <CheckCircle2 className="h-4.5 w-4.5" />
               </div>
               <div className="flex flex-col">
-                <span className="text-base font-bold text-foreground font-poppins">15+</span>
-                <span className="text-[10px] text-muted-foreground font-inter">Projects Delivered</span>
+                <span className="text-base font-bold text-foreground font-poppins">
+                  15+
+                </span>
+                <span className="text-[10px] text-muted-foreground font-inter">
+                  Projects Delivered
+                </span>
               </div>
             </motion.div>
 
             {/* Card 2: 100% On-time */}
             <motion.div
-              initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.9, y: 30 }}
+              initial={
+                prefersReducedMotion
+                  ? { opacity: 1 }
+                  : { opacity: 0, scale: 0.9, y: 30 }
+              }
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
               className="absolute top-28 right-0 w-48 p-3.5 rounded-2xl bg-card border border-border shadow-lg flex flex-col gap-1.5 z-20 hover:border-brand-orange/40 hover:shadow-xl transition-all duration-300"
@@ -200,17 +215,27 @@ export function HeroSection() {
                 <div className="p-2 rounded-xl bg-brand-blue/10 text-brand-blue shrink-0">
                   <TrendingUp className="h-4.5 w-4.5" />
                 </div>
-                <span className="text-[9px] font-bold text-green-500 bg-green-500/10 px-1.5 py-0.5 rounded-full font-inter">+24% MoM</span>
+                <span className="text-[9px] font-bold text-green-500 bg-green-500/10 px-1.5 py-0.5 rounded-full font-inter">
+                  +24% MoM
+                </span>
               </div>
               <div className="flex flex-col">
-                <span className="text-xl font-black text-foreground font-poppins">100%</span>
-                <span className="text-[10px] text-muted-foreground font-inter">On-Time Delivery</span>
+                <span className="text-xl font-black text-foreground font-poppins">
+                  100%
+                </span>
+                <span className="text-[10px] text-muted-foreground font-inter">
+                  On-Time Delivery
+                </span>
               </div>
             </motion.div>
 
             {/* Card 3: AI Automation */}
             <motion.div
-              initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.9, y: 30 }}
+              initial={
+                prefersReducedMotion
+                  ? { opacity: 1 }
+                  : { opacity: 0, scale: 0.9, y: 30 }
+              }
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
               className="absolute bottom-2 left-6 w-48 p-3.5 rounded-2xl bg-card border border-border shadow-lg flex items-center gap-3 z-30 hover:border-brand-orange/40 hover:shadow-xl transition-all duration-300"
@@ -219,13 +244,15 @@ export function HeroSection() {
                 <Cpu className="h-4.5 w-4.5" />
               </div>
               <div className="flex flex-col">
-                <span className="text-xs font-bold text-foreground font-poppins">AI Automation</span>
-                <span className="text-[10px] text-muted-foreground font-inter">Systems Integrated</span>
+                <span className="text-xs font-bold text-foreground font-poppins">
+                  AI Automation
+                </span>
+                <span className="text-[10px] text-muted-foreground font-inter">
+                  Systems Integrated
+                </span>
               </div>
             </motion.div>
-
           </div>
-
         </div>
       </Container>
     </section>

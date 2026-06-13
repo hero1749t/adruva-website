@@ -85,8 +85,7 @@ export function Navbar() {
       apiFetch<{ success: boolean; data: Record<string, string> }>("/settings"),
   });
   const settings = settingsData?.data || {};
-  const calendlyUrl =
-    settings.calendlyUrl || process.env.NEXT_PUBLIC_CALENDLY_URL || "/contact";
+  const calendlyUrl = "/contact";
   const dropdownRef = React.useRef<HTMLDivElement>(null);
   const sentinelRef = React.useRef<HTMLDivElement>(null);
 

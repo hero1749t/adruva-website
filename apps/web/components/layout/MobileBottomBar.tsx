@@ -18,8 +18,7 @@ export function MobileBottomBar() {
   const whatsappNumber = contactPhone
     ? contactPhone.replace(/[^0-9]/g, "")
     : process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919876543210";
-  const calendlyUrl =
-    settings.calendlyUrl || process.env.NEXT_PUBLIC_CALENDLY_URL || "/contact";
+  const calendlyUrl = "/contact";
 
   const whatsappMessage = "Hi Adruva! I'd like to discuss a project.";
   const encodedText = encodeURIComponent(whatsappMessage);

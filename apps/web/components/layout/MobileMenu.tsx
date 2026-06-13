@@ -16,8 +16,7 @@ export function MobileMenu({
   onClose,
   calendlyUrl: propCalendlyUrl,
 }: MobileMenuProps) {
-  const calendlyUrl =
-    propCalendlyUrl || process.env.NEXT_PUBLIC_CALENDLY_URL || "/contact";
+  const calendlyUrl = "/contact";
 
   const menuLinks = [
     { name: "Home", href: "/" },
