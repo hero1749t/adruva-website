@@ -27,6 +27,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { MobileMenu } from "./MobileMenu";
 import Image from "next/image";
 
@@ -172,7 +173,15 @@ export function Navbar() {
                 alt="Adruva Logo"
                 fill
                 sizes="40px"
-                className="object-contain"
+                className="object-contain hidden dark:block"
+                priority
+              />
+              <Image
+                src="/logo-symbol-dark.png"
+                alt="Adruva Logo"
+                fill
+                sizes="40px"
+                className="object-contain block dark:hidden"
                 priority
               />
             </div>
@@ -330,8 +339,8 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Desktop Right Actions */}
           <div className="hidden md:flex items-center gap-4 h-16">
+            <ThemeToggle />
             <a
               href={calendlyUrl}
               target={calendlyUrl.startsWith("http") ? "_blank" : undefined}
@@ -348,8 +357,8 @@ export function Navbar() {
             </a>
           </div>
 
-          {/* Mobile Actions/Hamburger */}
           <div className="flex md:hidden items-center gap-3">
+            <ThemeToggle />
             <button
               onClick={() => setIsMobileMenuOpen(true)}
               className={cn(

@@ -26,8 +26,8 @@ export function Providers({ children, ...props }: ThemeProviderProps) {
       <QueryClientProvider client={queryClient}>
         <NextThemesProvider
           attribute="class"
-          defaultTheme="dark"
-          forcedTheme="dark"
+          defaultTheme="light"
+          enableSystem
           disableTransitionOnChange
           {...props}
         >
