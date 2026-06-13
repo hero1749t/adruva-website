@@ -118,16 +118,16 @@ export function Footer() {
               href="/"
               className="flex items-center gap-2.5 focus:outline-none group"
             >
-              <div className="h-10 w-[51px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
+              <div className="h-8 w-[40px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
                 <Image
                   src="/logo-symbol-light.png"
                   alt="Adruva Logo"
                   fill
-                  sizes="51px"
+                  sizes="40px"
                   className="object-contain"
                 />
               </div>
-              <span className="text-xl font-[800] tracking-tight text-white transition-colors font-poppins">
+              <span className="text-lg font-[800] tracking-tight text-white transition-colors font-poppins">
                 Adruva<span className="text-brand-orange">.</span>
               </span>
             </Link>

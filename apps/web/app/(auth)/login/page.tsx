@@ -1,22 +1,27 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { Lock, Mail, AlertCircle, ArrowRight } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Card, CardHeader, CardContent, CardDescription } from '@/components/ui/card';
+import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Lock, Mail, AlertCircle, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardDescription,
+} from "@/components/ui/card";
 
 const loginSchema = z.object({
-  email: z.string().email('Please enter a valid email address'),
-  password: z.string().min(1, 'Password is required'),
+  email: z.string().email("Please enter a valid email address"),
+  password: z.string().min(1, "Password is required"),
 });
 
 type LoginFields = z.infer<typeof loginSchema>;
@@ -39,7 +44,7 @@ export default function LoginPage() {
     setError(null);
     setLoading(true);
     try {
-      const result = await signIn('credentials', {
+      const result = await signIn("credentials", {
         email: data.email,
         password: data.password,
         redirect: false,
@@ -49,10 +54,10 @@ export default function LoginPage() {
         setError(result.error);
         setLoading(false);
       } else {
-        router.push('/admin/dashboard');
+        router.push("/admin/dashboard");
       }
     } catch {
-      setError('An unexpected error occurred. Please try again.');
+      setError("An unexpected error occurred. Please try again.");
       setLoading(false);
     }
   };
@@ -61,9 +66,9 @@ export default function LoginPage() {
     setError(null);
     setGoogleLoading(true);
     try {
-      await signIn('google', { callbackUrl: '/admin/dashboard' });
+      await signIn("google", { callbackUrl: "/admin/dashboard" });
     } catch {
-      setError('Google sign-in failed. Please try again.');
+      setError("Google sign-in failed. Please try again.");
       setGoogleLoading(false);
     }
   };
@@ -79,18 +84,21 @@ export default function LoginPage() {
         <div className="h-1.5 w-full bg-gradient-to-r from-brand-orange via-brand-blue to-brand-orange" />
 
         <CardHeader className="space-y-2 text-center pt-8 px-6 sm:px-8">
-          <Link href="/" className="mx-auto flex flex-col items-center gap-1.5 focus:outline-none group mb-2">
-            <div className="h-10 w-[51px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
+          <Link
+            href="/"
+            className="mx-auto flex flex-col items-center gap-1.5 focus:outline-none group mb-2"
+          >
+            <div className="h-8 w-[40px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
               <Image
                 src="/logo-symbol-light.png"
                 alt="Adruva Logo"
                 fill
-                sizes="51px"
+                sizes="40px"
                 className="object-contain"
                 priority
               />
             </div>
-            <span className="text-2xl font-[800] tracking-tight text-white transition-colors font-poppins mt-1">
+            <span className="text-xl font-[800] tracking-tight text-white transition-colors font-poppins mt-1">
               Adruva<span className="text-brand-orange">.</span>
             </span>
           </Link>
@@ -109,7 +117,10 @@ export default function LoginPage() {
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-white/80 text-sm font-medium">
+              <Label
+                htmlFor="email"
+                className="text-white/80 text-sm font-medium"
+              >
                 Email Address
               </Label>
               <div className="relative">
@@ -119,16 +130,21 @@ export default function LoginPage() {
                   type="email"
                   placeholder="admin@adruvasolution.com"
                   className="pl-12 h-12 bg-white/5 border-white/10 text-white placeholder:text-brand-gray/40 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange"
-                  {...register('email')}
+                  {...register("email")}
                 />
               </div>
               {errors.email && (
-                <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>
+                <p className="text-red-400 text-xs mt-1">
+                  {errors.email.message}
+                </p>
               )}
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-white/80 text-sm font-medium">
+              <Label
+                htmlFor="password"
+                className="text-white/80 text-sm font-medium"
+              >
                 Password
               </Label>
               <div className="relative">
@@ -138,11 +154,13 @@ export default function LoginPage() {
                   type="password"
                   placeholder="••••••••••••"
                   className="pl-12 h-12 bg-white/5 border-white/10 text-white placeholder:text-brand-gray/40 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange"
-                  {...register('password')}
+                  {...register("password")}
                 />
               </div>
               {errors.password && (
-                <p className="text-red-400 text-xs mt-1">{errors.password.message}</p>
+                <p className="text-red-400 text-xs mt-1">
+                  {errors.password.message}
+                </p>
               )}
             </div>
 
@@ -182,7 +200,7 @@ export default function LoginPage() {
                 d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.136 4.114-3.41 0-6.19-2.78-6.19-6.19 0-3.41 2.78-6.19 6.19-6.19 1.543 0 2.94.57 4.027 1.517l3.056-3.055C18.995 1.77 15.825 1 12.24 1 5.922 1 1 5.922 1 12.24s4.922 11.24 11.24 11.24c6.318 0 10.97-4.444 10.97-11.16 0-.649-.078-1.25-.175-1.835h-10.8V10.285z"
               />
             </svg>
-            <span>{googleLoading ? 'Redirecting...' : 'Google Account'}</span>
+            <span>{googleLoading ? "Redirecting..." : "Google Account"}</span>
           </Button>
         </CardContent>
       </Card>
