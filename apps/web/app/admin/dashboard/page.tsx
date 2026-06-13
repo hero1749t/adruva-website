@@ -11,6 +11,7 @@ import {
 } from "../../../components/ui/card";
 import { Badge } from "../../../components/ui/badge";
 import { Skeleton } from "../../../components/ui/skeleton";
+import { Button } from "../../../components/ui/button";
 import {
   Mail,
   Send,
@@ -20,6 +21,7 @@ import {
   Clock,
   Users,
   UserCheck,
+  Plus,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -188,6 +190,46 @@ export default function DashboardPage() {
             </Card>
           </Link>
         ))}
+      </div>
+
+      {/* Quick Actions Row */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <Link href="/admin/blogs/new">
+          <Button
+            variant="outline"
+            className="w-full bg-white dark:bg-[#151f32] border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 justify-start gap-2 h-12"
+          >
+            <Plus className="w-4 h-4 text-brand-orange" />
+            <span>Write New Blog</span>
+          </Button>
+        </Link>
+        <Link href="/admin/projects">
+          <Button
+            variant="outline"
+            className="w-full bg-white dark:bg-[#151f32] border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 justify-start gap-2 h-12"
+          >
+            <Briefcase className="w-4 h-4 text-brand-orange" />
+            <span>Add Case Study</span>
+          </Button>
+        </Link>
+        <Link href="/admin/careers">
+          <Button
+            variant="outline"
+            className="w-full bg-white dark:bg-[#151f32] border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 justify-start gap-2 h-12"
+          >
+            <UserCheck className="w-4 h-4 text-brand-orange" />
+            <span>Post New Job</span>
+          </Button>
+        </Link>
+        <Link href="/admin/inquiries">
+          <Button
+            variant="outline"
+            className="w-full bg-white dark:bg-[#151f32] border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 justify-start gap-2 h-12"
+          >
+            <Mail className="w-4 h-4 text-brand-orange" />
+            <span>Check Inquiries</span>
+          </Button>
+        </Link>
       </div>
 
       {/* Recent Inquiries Overview */}

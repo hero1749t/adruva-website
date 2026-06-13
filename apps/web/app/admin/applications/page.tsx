@@ -419,7 +419,6 @@ export default function ApplicationsManager() {
                 </div>
               </div>
 
-              {/* Links Area */}
               <div className="flex gap-3 flex-wrap">
                 {activeApp.resumeUrl && (
                   <a
@@ -430,6 +429,15 @@ export default function ApplicationsManager() {
                   >
                     <FileText className="w-3.5 h-3.5" />
                     <span>View Resume</span>
+                  </a>
+                )}
+                {activeApp.email && (
+                  <a
+                    href={`mailto:${activeApp.email}?subject=Regarding your application for ${activeApp.jobTitle} at Adruva Solution`}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-900 text-brand-orange transition-colors"
+                  >
+                    <Mail className="w-3.5 h-3.5" />
+                    <span>Reply via Email</span>
                   </a>
                 )}
                 {activeApp.linkedinUrl && (
