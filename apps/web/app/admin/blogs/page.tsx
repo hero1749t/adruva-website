@@ -1,17 +1,25 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { apiFetch } from '../../../lib/api';
-import { useSession } from 'next-auth/react';
-import { Card, CardContent } from '../../../components/ui/card';
-import { Badge } from '../../../components/ui/badge';
-import { Button } from '../../../components/ui/button';
-import { Input } from '../../../components/ui/input';
-import { Skeleton } from '../../../components/ui/skeleton';
-import { Edit, Trash, Plus, Globe, EyeOff, Search } from 'lucide-react';
-import Link from 'next/link';
-import toast from 'react-hot-toast';
+import { useState } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { apiFetch } from "../../../lib/api";
+import { useSession } from "next-auth/react";
+import { Card, CardContent } from "../../../components/ui/card";
+import { Badge } from "../../../components/ui/badge";
+import { Button } from "../../../components/ui/button";
+import { Input } from "../../../components/ui/input";
+import { Skeleton } from "../../../components/ui/skeleton";
+import {
+  Edit,
+  Trash,
+  Plus,
+  Globe,
+  EyeOff,
+  Search,
+  ExternalLink,
+} from "lucide-react";
+import Link from "next/link";
+import toast from "react-hot-toast";
 
 interface Blog {
   id: string;
@@ -41,31 +49,33 @@ export default function BlogManager() {
   const queryClient = useQueryClient();
   const { data: session } = useSession();
   const [page, setPage] = useState(1);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const limit = 10;
 
-  const userRole = session?.user?.role || 'content_writer';
-  const isWriter = userRole === 'content_writer';
+  const userRole = session?.user?.role || "content_writer";
+  const isWriter = userRole === "content_writer";
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ['admin', 'blogs', { page, limit, search }],
+    queryKey: ["admin", "blogs", { page, limit, search }],
     queryFn: () => {
-      const searchParam = search ? `&search=${search}` : '';
-      return apiFetch<PaginatedResponse>(`/blog?page=${page}&limit=${limit}&status=all${searchParam}`);
+      const searchParam = search ? `&search=${search}` : "";
+      return apiFetch<PaginatedResponse>(
+        `/blog?page=${page}&limit=${limit}&status=all${searchParam}`,
+      );
     },
   });
 
   const deleteMutation = useMutation({
     mutationFn: (id: string) =>
       apiFetch<{ success: boolean }>(`/blog/${id}`, {
-        method: 'DELETE',
+        method: "DELETE",
       }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['admin', 'blogs'] });
-      toast.success('Blog post soft deleted successfully!');
+      queryClient.invalidateQueries({ queryKey: ["admin", "blogs"] });
+      toast.success("Blog post soft deleted successfully!");
     },
     onError: (err) => {
-      toast.error(err.message || 'Failed to delete blog post');
+      toast.error(err.message || "Failed to delete blog post");
     },
   });
 
@@ -79,20 +89,24 @@ export default function BlogManager() {
   const togglePublishMutation = useMutation({
     mutationFn: (id: string) =>
       apiFetch<PublishResponse>(`/blog/${id}/publish`, {
-        method: 'PATCH',
+        method: "PATCH",
       }),
     onSuccess: (res) => {
-      queryClient.invalidateQueries({ queryKey: ['admin', 'blogs'] });
+      queryClient.invalidateQueries({ queryKey: ["admin", "blogs"] });
       const newStatus = res.data.status;
       toast.success(`Blog post is now ${newStatus}!`);
     },
     onError: (err) => {
-      toast.error(err.message || 'Failed to toggle publication');
+      toast.error(err.message || "Failed to toggle publication");
     },
   });
 
-  const handleDelete = (id: string) => {
-    if (confirm('Are you sure you want to delete this blog post? (Soft delete)')) {
+  const handleDelete = (id: string, title: string) => {
+    if (
+      window.confirm(
+        `Delete "${title}"? This is a soft delete and can be recovered.`,
+      )
+    ) {
       deleteMutation.mutate(id);
     }
   };
@@ -102,9 +116,9 @@ export default function BlogManager() {
   };
 
   const getStatusColor = (status: string) => {
-    return status === 'published'
-      ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20'
-      : 'bg-amber-500/10 text-amber-500 border-amber-500/20';
+    return status === "published"
+      ? "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"
+      : "bg-amber-500/10 text-amber-500 border-amber-500/20";
   };
 
   return (
@@ -112,8 +126,12 @@ export default function BlogManager() {
       {/* Header and Add button */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-xl font-bold font-poppins text-slate-900 dark:text-white">Blog Manager</h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 font-inter">Create, edit, and publish blog articles</p>
+          <h2 className="text-xl font-bold font-poppins text-slate-900 dark:text-white">
+            Blog Manager
+          </h2>
+          <p className="text-xs text-slate-500 dark:text-slate-400 font-inter">
+            Create, edit, and publish blog articles
+          </p>
         </div>
         <Link href="/admin/blogs/new">
           <Button className="bg-brand-orange hover:bg-brand-orange-hover text-white flex items-center gap-2">
@@ -130,7 +148,10 @@ export default function BlogManager() {
           type="text"
           placeholder="Search articles by title..."
           value={search}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setSearch(e.target.value); setPage(1); }}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setSearch(e.target.value);
+            setPage(1);
+          }}
           className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 h-9 text-xs focus:ring-1 focus:ring-brand-orange focus:border-brand-orange max-w-sm"
         />
       </Card>
@@ -167,31 +188,64 @@ export default function BlogManager() {
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800/40 text-slate-700 dark:text-slate-300">
                   {data.data.map((blog) => (
-                    <tr key={blog.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-900/10 transition-colors duration-150">
+                    <tr
+                      key={blog.id}
+                      className="hover:bg-slate-50/50 dark:hover:bg-slate-900/10 transition-colors duration-150"
+                    >
                       <td className="px-8 py-4">
                         <div className="flex flex-col max-w-md">
-                          <span className="font-semibold text-slate-900 dark:text-white leading-snug">{blog.title}</span>
-                          <span className="text-xs text-slate-400 font-mono mt-0.5 truncate">{blog.slug}</span>
+                          <span className="font-semibold text-slate-900 dark:text-white leading-snug">
+                            {blog.title}
+                          </span>
+                          <span className="text-xs text-slate-400 font-mono mt-0.5 truncate">
+                            {blog.slug}
+                          </span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 capitalize">{blog.category?.replace('-', ' ') || 'N/A'}</td>
-                      <td className="px-6 py-4">{blog.author?.name || 'Unknown'}</td>
+                      <td className="px-6 py-4 capitalize">
+                        {blog.category?.replace("-", " ") || "N/A"}
+                      </td>
                       <td className="px-6 py-4">
-                        <Badge variant="outline" className={`capitalize font-semibold text-[10px] px-2 py-0.5 rounded-full ${getStatusColor(blog.status)}`}>
+                        {blog.author?.name || "Unknown"}
+                      </td>
+                      <td className="px-6 py-4">
+                        <Badge
+                          variant="outline"
+                          className={`capitalize font-semibold text-[10px] px-2 py-0.5 rounded-full ${getStatusColor(blog.status)}`}
+                        >
                           {blog.status}
                         </Badge>
                       </td>
                       <td className="px-6 py-4 font-medium text-slate-500 dark:text-slate-400">
                         {blog.publishedAt
-                          ? new Date(blog.publishedAt).toLocaleDateString('en-IN', {
-                              day: '2-digit',
-                              month: 'short',
-                              year: 'numeric',
-                            })
-                          : 'N/A'}
+                          ? new Date(blog.publishedAt).toLocaleDateString(
+                              "en-IN",
+                              {
+                                day: "2-digit",
+                                month: "short",
+                                year: "numeric",
+                              },
+                            )
+                          : "N/A"}
                       </td>
                       <td className="px-8 py-4 text-right">
                         <div className="flex gap-1.5 justify-end">
+                          {blog.status === "published" && (
+                            <a
+                              href={`/blog/${blog.slug}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                title="View on site"
+                                className="h-8 w-8 p-0 text-slate-400 hover:text-emerald-500 hover:bg-emerald-500/5"
+                              >
+                                <ExternalLink className="w-3.5 h-3.5" />
+                              </Button>
+                            </a>
+                          )}
                           {!isWriter && (
                             <Button
                               variant="outline"
@@ -199,7 +253,7 @@ export default function BlogManager() {
                               onClick={() => handleTogglePublish(blog.id)}
                               className="h-8 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs flex items-center gap-1"
                             >
-                              {blog.status === 'published' ? (
+                              {blog.status === "published" ? (
                                 <>
                                   <EyeOff className="w-3.5 h-3.5 text-amber-500" />
                                   <span>Unpublish</span>
@@ -213,7 +267,11 @@ export default function BlogManager() {
                             </Button>
                           )}
                           <Link href={`/admin/blogs/${blog.id}/edit`}>
-                            <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-slate-600 hover:text-brand-orange hover:bg-brand-orange/5 dark:text-slate-400">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="h-8 w-8 p-0 text-slate-600 hover:text-brand-orange hover:bg-brand-orange/5 dark:text-slate-400"
+                            >
                               <Edit className="w-3.5 h-3.5" />
                             </Button>
                           </Link>
@@ -221,7 +279,7 @@ export default function BlogManager() {
                             <Button
                               variant="ghost"
                               size="sm"
-                              onClick={() => handleDelete(blog.id)}
+                              onClick={() => handleDelete(blog.id, blog.title)}
                               className="h-8 w-8 p-0 text-slate-600 hover:text-red-500 hover:bg-red-500/5 dark:text-slate-400"
                             >
                               <Trash className="w-3.5 h-3.5" />
