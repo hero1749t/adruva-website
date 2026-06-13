@@ -20,7 +20,16 @@ import {
   DialogTitle,
 } from "../../../components/ui/dialog";
 import { Select, SelectItem, SelectValue } from "../../../components/ui/select";
-import { Plus, Edit, Trash, Star, X, ExternalLink, Search } from "lucide-react";
+import {
+  Plus,
+  Edit,
+  Trash,
+  Star,
+  X,
+  ExternalLink,
+  Search,
+  Copy,
+} from "lucide-react";
 import { ImageUpload } from "../../../components/admin/ImageUpload";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -393,20 +402,37 @@ export default function ProjectsManager() {
                         <td className="px-8 py-4 text-right">
                           <div className="flex gap-1.5 justify-end">
                             {project.status === "published" && (
-                              <a
-                                href={`/work/${project.slug}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
+                              <div className="flex gap-1.5">
+                                <a
+                                  href={`/work/${project.slug}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    title="View on site"
+                                    className="h-8 w-8 p-0 text-slate-400 hover:text-emerald-500 hover:bg-emerald-500/5"
+                                  >
+                                    <ExternalLink className="w-3.5 h-3.5" />
+                                  </Button>
+                                </a>
                                 <Button
                                   variant="ghost"
                                   size="sm"
-                                  title="View on site"
-                                  className="h-8 w-8 p-0 text-slate-400 hover:text-emerald-500 hover:bg-emerald-500/5"
+                                  title="Copy public link"
+                                  onClick={() => {
+                                    navigator.clipboard.writeText(
+                                      window.location.origin +
+                                        `/work/${project.slug}`,
+                                    );
+                                    toast.success("Link copied!");
+                                  }}
+                                  className="h-8 w-8 p-0 text-slate-400 hover:text-blue-500 hover:bg-blue-500/5"
                                 >
-                                  <ExternalLink className="w-3.5 h-3.5" />
+                                  <Copy className="w-3.5 h-3.5" />
                                 </Button>
-                              </a>
+                              </div>
                             )}
                             <Button
                               variant="ghost"

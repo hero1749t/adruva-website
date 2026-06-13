@@ -3,7 +3,7 @@
 import { useSession, signOut } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   LayoutDashboard,
   FileText,
@@ -17,6 +17,8 @@ import {
   Settings,
   UserCheck,
   FolderGit2,
+  Menu,
+  X,
 } from "lucide-react";
 import { ThemeToggle } from "../../components/ui/theme-toggle";
 
@@ -91,6 +93,7 @@ export default function AdminLayout({
   const { data: session, status } = useSession();
   const router = useRouter();
   const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -119,14 +122,24 @@ export default function AdminLayout({
 
   return (
     <div className="min-h-screen flex bg-slate-50 dark:bg-[#0A0A0A] transition-colors duration-300">
+      {/* Mobile Overlay */}
+      {mobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-10 md:hidden"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+
       {/* Sidebar Navigation */}
-      <aside className="w-64 bg-[#0B1F3A] text-white flex flex-col fixed inset-y-0 left-0 z-20 border-r border-slate-800 shadow-xl">
+      <aside
+        className={`w-64 bg-[#0B1F3A] text-white flex flex-col fixed inset-y-0 left-0 z-20 border-r border-slate-800 shadow-xl transform transition-transform duration-300 ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
+      >
         {/* Brand Logo Header */}
         <div className="h-16 flex items-center px-6 border-b border-slate-800 gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-brand-orange flex items-center justify-center shadow-md shadow-brand-orange/20">
             <ShieldAlert className="w-5 h-5 text-white" />
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col flex-1">
             <span className="font-bold text-sm leading-none font-poppins text-white">
               Adruva Console
             </span>
@@ -134,6 +147,12 @@ export default function AdminLayout({
               Website CMS
             </span>
           </div>
+          <button
+            className="md:hidden text-slate-400 hover:text-white"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <X className="w-5 h-5" />
+          </button>
         </div>
 
         {/* Navigation Items */}
@@ -146,6 +165,7 @@ export default function AdminLayout({
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
                   className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 group ${
                     isActive
                       ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/15 font-semibold"
@@ -189,13 +209,21 @@ export default function AdminLayout({
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 pl-64 min-h-screen flex flex-col">
+      <main className="flex-1 md:pl-64 min-h-screen flex flex-col">
         {/* Top Navbar */}
-        <header className="h-16 border-b border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#0E1726]/30 backdrop-blur-md sticky top-0 z-10 flex items-center justify-between px-8 transition-colors duration-300">
-          <h1 className="text-lg font-semibold font-poppins text-slate-900 dark:text-white">
-            {navItems.find((item) => pathname.startsWith(item.href))?.name ||
-              "Admin Console"}
-          </h1>
+        <header className="h-16 border-b border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#0E1726]/30 backdrop-blur-md sticky top-0 z-10 flex items-center justify-between px-4 md:px-8 transition-colors duration-300">
+          <div className="flex items-center gap-3">
+            <button
+              className="md:hidden p-2 -ml-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+            <h1 className="text-lg font-semibold font-poppins text-slate-900 dark:text-white">
+              {navItems.find((item) => pathname.startsWith(item.href))?.name ||
+                "Admin Console"}
+            </h1>
+          </div>
           <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">
             Dehradun, India
           </div>
