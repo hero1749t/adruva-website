@@ -45,22 +45,22 @@ const teamMembers = [
 
 const timeline = [
   {
-    year: "2021",
+    step: "01",
     title: "The Beginning",
     desc: "Adruva was founded in Dehradun with a vision to bridge the gap between local businesses and premium engineering.",
   },
   {
-    year: "2022",
+    step: "02",
     title: "Scaling Up",
     desc: "Expanded our team and started delivering end-to-end digital solutions, combining SEO, Marketing, and Web Apps.",
   },
   {
-    year: "2023",
+    step: "03",
     title: "Automation Focus",
     desc: "Pioneered custom WhatsApp automation workflows and high-conversion landing pages for regional service industries.",
   },
   {
-    year: "2024",
+    step: "04",
     title: "Global Reach",
     desc: "Working with international clients, building enterprise-level SaaS products and scaling high-budget Meta/Google ad campaigns.",
   },
@@ -282,12 +282,11 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
                 >
                   {/* Timeline Dot */}
                   <div className="hidden md:flex absolute left-1/2 w-8 h-8 bg-brand-orange rounded-full border-4 border-white dark:border-[#0A0A0A] -translate-x-1/2 items-center justify-center shadow-[0_0_15px_rgba(249,115,22,0.4)] z-10" />
-
                   {/* Mobile Dot */}
                   <div className="md:hidden flex items-center mb-4 self-start">
                     <div className="w-4 h-4 bg-brand-orange rounded-full mr-4 shadow-[0_0_10px_rgba(249,115,22,0.5)]" />
                     <span className="text-xl font-bold text-brand-orange font-space-grotesk">
-                      {item.year}
+                      {item.step}
                     </span>
                   </div>
 
@@ -303,7 +302,7 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
                       className="p-8 rounded-3xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5 hover:border-brand-orange/30 dark:hover:border-brand-orange/30 transition-colors shadow-sm"
                     >
                       <span className="hidden md:block text-5xl font-black text-brand-orange/10 dark:text-brand-orange/10 absolute top-4 right-8 select-none">
-                        {item.year}
+                        {item.step}
                       </span>
                       <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 font-poppins relative z-10">
                         {item.title}
