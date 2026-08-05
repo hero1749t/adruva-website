@@ -6,7 +6,7 @@ import { mockJobs } from "@/lib/careers-data";
 
 export const revalidate = 3600; // Regenerate sitemap every hour
 
-const BASE_URL = "https://adruvaSolution.com";
+const BASE_URL = "https://adruvasolution.com";
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 
 async function getLiveBlogSlugs(): Promise<

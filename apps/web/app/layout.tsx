@@ -27,13 +27,15 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://adruvaSolution.com"),
+  metadataBase: new URL("https://adruvasolution.com"),
   title: {
     default: "Adruva Solution | Your Business & Productivity Partner",
     template: "%s | Adruva Solution",
   },
   description:
     "IT company India — web apps, mobile apps, AI solutions, SEO, Google ads. The last tech partner you'll ever need.",
+  applicationName: "Adruva Solution",
+
   keywords: [
     "web development company India",
     "AI automation company India",
@@ -46,7 +48,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://adruvaSolution.com",
+    url: "https://adruvasolution.com",
     siteName: "Adruva Solution",
   },
   twitter: {

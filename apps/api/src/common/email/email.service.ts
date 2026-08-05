@@ -28,11 +28,11 @@ export class EmailService {
       });
 
       const settingsMap = dbSettings.reduce(
-        (acc, curr) => {
+        (acc: Record<string, string>, curr) => {
           acc[curr.key] = curr.value;
           return acc;
         },
-        {} as Record<string, string>,
+        {},
       );
 
       const user = settingsMap.smtpUser || process.env.GMAIL_USER;

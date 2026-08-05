@@ -107,13 +107,13 @@ export default async function JobDetailPage({ params }: Props) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://adruvaSolution.com",
+        item: "https://adruvasolution.com",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Careers",
-        item: "https://adruvaSolution.com/careers",
+        item: "https://adruvasolution.com/careers",
       },
       {
         "@type": "ListItem",

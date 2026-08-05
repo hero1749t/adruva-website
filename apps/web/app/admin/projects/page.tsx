@@ -87,6 +87,11 @@ export default function ProjectsManager() {
   const [isOpen, setIsOpen] = useState(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
 
+  // Delete confirmation states
+  const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [deleteTitle, setDeleteTitle] = useState("");
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+
   // Tech stack local states
   const [techStack, setTechStack] = useState<string[]>([]);
   const [newTech, setNewTech] = useState("");
@@ -255,8 +260,16 @@ export default function ProjectsManager() {
   };
 
   const handleDelete = (id: string, title: string) => {
-    if (window.confirm(`Delete "${title}"? This is a soft delete.`)) {
-      deleteMutation.mutate(id);
+    setDeleteId(id);
+    setDeleteTitle(title);
+    setIsDeleteOpen(true);
+  };
+
+  const confirmDelete = () => {
+    if (deleteId) {
+      deleteMutation.mutate(deleteId);
+      setIsDeleteOpen(false);
+      setDeleteId(null);
     }
   };
 
@@ -477,215 +490,219 @@ export default function ProjectsManager() {
           </DialogHeader>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 py-2">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-1">
-                <Label htmlFor="title" className="text-xs font-semibold">
-                  Title
-                </Label>
-                <Input
-                  id="title"
-                  placeholder="Project Name"
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
-                  {...register("title")}
-                  onChange={(e) => handleTitleChange(e.target.value)}
-                />
-                {errors.title && (
-                  <p className="text-red-500 text-[10px]">
-                    {errors.title.message}
-                  </p>
-                )}
+            <div className="max-h-[60vh] overflow-y-auto pr-2 space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <Label htmlFor="title" className="text-xs font-semibold">
+                    Title
+                  </Label>
+                  <Input
+                    id="title"
+                    placeholder="Project Name"
+                    className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
+                    {...register("title")}
+                    onChange={(e) => handleTitleChange(e.target.value)}
+                  />
+                  {errors.title && (
+                    <p className="text-red-500 text-[10px]">
+                      {errors.title.message}
+                    </p>
+                  )}
+                </div>
+
+                <div className="space-y-1">
+                  <Label htmlFor="slug" className="text-xs font-semibold">
+                    URL Slug
+                  </Label>
+                  <Input
+                    id="slug"
+                    placeholder="project-slug-name"
+                    className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 font-mono text-xs"
+                    {...register("slug")}
+                  />
+                  {errors.slug && (
+                    <p className="text-red-500 text-[10px]">
+                      {errors.slug.message}
+                    </p>
+                  )}
+                </div>
               </div>
 
-              <div className="space-y-1">
-                <Label htmlFor="slug" className="text-xs font-semibold">
-                  URL Slug
-                </Label>
-                <Input
-                  id="slug"
-                  placeholder="project-slug-name"
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 font-mono text-xs"
-                  {...register("slug")}
-                />
-                {errors.slug && (
-                  <p className="text-red-500 text-[10px]">
-                    {errors.slug.message}
-                  </p>
-                )}
-              </div>
-            </div>
+              <div className="grid grid-cols-3 gap-4">
+                <div className="space-y-1">
+                  <Label htmlFor="clientName" className="text-xs font-semibold">
+                    Client Name
+                  </Label>
+                  <Input
+                    id="clientName"
+                    placeholder="Client Co."
+                    className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 text-xs"
+                    {...register("clientName")}
+                  />
+                </div>
 
-            <div className="grid grid-cols-3 gap-4">
-              <div className="space-y-1">
-                <Label htmlFor="clientName" className="text-xs font-semibold">
-                  Client Name
-                </Label>
-                <Input
-                  id="clientName"
-                  placeholder="Client Co."
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 text-xs"
-                  {...register("clientName")}
-                />
-              </div>
+                <div className="space-y-1">
+                  <Label htmlFor="industry" className="text-xs font-semibold">
+                    Industry
+                  </Label>
+                  <Input
+                    id="industry"
+                    placeholder="Retail / SaaS"
+                    className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 text-xs"
+                    {...register("industry")}
+                  />
+                </div>
 
-              <div className="space-y-1">
-                <Label htmlFor="industry" className="text-xs font-semibold">
-                  Industry
-                </Label>
-                <Input
-                  id="industry"
-                  placeholder="Retail / SaaS"
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 text-xs"
-                  {...register("industry")}
-                />
-              </div>
-
-              <div className="space-y-1">
-                <Label htmlFor="category" className="text-xs font-semibold">
-                  Category
-                </Label>
-                <Select
-                  id="category"
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs"
-                  {...register("category")}
-                >
-                  <SelectValue placeholder="Select Category" />
-                  <SelectItem value="build">Build (Development)</SelectItem>
-                  <SelectItem value="automate">Automate (AI)</SelectItem>
-                  <SelectItem value="grow">Grow (Marketing)</SelectItem>
-                  <SelectItem value="design">Design (Branding)</SelectItem>
-                </Select>
-              </div>
-            </div>
-
-            <ImageUpload
-              folder="projects"
-              label="Hero Image"
-              hint="Wide photo recommended — JPG, PNG, WebP up to 5MB"
-              value={watch("heroImageUrl") || ""}
-              aspectRatio="wide"
-              onChange={(url, publicId) => {
-                setValue("heroImageUrl", url);
-                setValue("heroImageCloudinaryId", publicId);
-              }}
-              onClear={() => {
-                setValue("heroImageUrl", "");
-                setValue("heroImageCloudinaryId", "");
-              }}
-            />
-
-            {/* Case study detail descriptions */}
-            <div className="space-y-3 p-4 rounded-xl border border-slate-100 dark:border-slate-850 bg-slate-50/50 dark:bg-slate-900/10">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                Case Study Details
-              </span>
-              <div className="space-y-2">
-                <Label htmlFor="problem" className="text-xs font-semibold">
-                  Problem / Challenge
-                </Label>
-                <Textarea
-                  id="problem"
-                  rows={2}
-                  placeholder="Explain the client problem..."
-                  className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs"
-                  {...register("problem")}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="solution" className="text-xs font-semibold">
-                  Solution Implemented
-                </Label>
-                <Textarea
-                  id="solution"
-                  rows={2}
-                  placeholder="How we solved it..."
-                  className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs"
-                  {...register("solution")}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="results" className="text-xs font-semibold">
-                  Results & Outcomes
-                </Label>
-                <Textarea
-                  id="results"
-                  rows={2}
-                  placeholder="Outcomes achieved (e.g. 50% revenue growth)..."
-                  className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs"
-                  {...register("results")}
-                />
-              </div>
-            </div>
-
-            {/* Tech Stack items */}
-            <div className="space-y-2">
-              <Label className="text-xs font-semibold">
-                Technologies Utilized
-              </Label>
-              <div className="flex gap-2">
-                <Input
-                  placeholder="e.g. Next.js, FastAPI"
-                  value={newTech}
-                  onChange={(e) => setNewTech(e.target.value)}
-                  onKeyDown={(e) =>
-                    e.key === "Enter" && (e.preventDefault(), addTech())
-                  }
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 text-xs h-9 max-w-xs"
-                />
-                <Button
-                  type="button"
-                  size="sm"
-                  onClick={addTech}
-                  className="bg-brand-orange hover:bg-brand-orange-hover text-white"
-                >
-                  Add Tech
-                </Button>
-              </div>
-              <div className="flex flex-wrap gap-1.5 pt-1">
-                {techStack.map((tech) => (
-                  <Badge
-                    key={tech}
-                    variant="outline"
-                    className="flex items-center gap-1 bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 px-2 py-0.5 rounded text-[10px]"
+                <div className="space-y-1">
+                  <Label htmlFor="category" className="text-xs font-semibold">
+                    Category
+                  </Label>
+                  <Select
+                    id="category"
+                    className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs"
+                    {...register("category")}
                   >
-                    <span>{tech}</span>
-                    <X
-                      className="w-3 h-3 text-slate-400 hover:text-red-500 cursor-pointer"
-                      onClick={() => removeTech(tech)}
-                    />
-                  </Badge>
-                ))}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4 items-center pt-2">
-              <div className="space-y-1">
-                <Label htmlFor="status" className="text-xs font-semibold">
-                  Publication Status
-                </Label>
-                <Select
-                  id="status"
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs"
-                  {...register("status")}
-                >
-                  <SelectValue placeholder="Select Status" />
-                  <SelectItem value="draft">Draft (Private)</SelectItem>
-                  <SelectItem value="published">Published (Public)</SelectItem>
-                </Select>
+                    <SelectValue placeholder="Select Category" />
+                    <SelectItem value="build">Build (Development)</SelectItem>
+                    <SelectItem value="automate">Automate (AI)</SelectItem>
+                    <SelectItem value="grow">Grow (Marketing)</SelectItem>
+                    <SelectItem value="design">Design (Branding)</SelectItem>
+                  </Select>
+                </div>
               </div>
 
-              <div className="flex items-center gap-2 mt-4">
-                <input
-                  id="isFeatured"
-                  type="checkbox"
-                  className="w-4 h-4 rounded border-slate-300 dark:border-slate-700 bg-slate-50 text-brand-orange focus:ring-brand-orange"
-                  {...register("isFeatured")}
-                />
-                <Label
-                  htmlFor="isFeatured"
-                  className="text-xs font-semibold select-none cursor-pointer"
-                >
-                  Featured Case Study
+              <ImageUpload
+                folder="projects"
+                label="Hero Image"
+                hint="Wide photo recommended — JPG, PNG, WebP up to 5MB"
+                value={watch("heroImageUrl") || ""}
+                aspectRatio="wide"
+                onChange={(url, publicId) => {
+                  setValue("heroImageUrl", url);
+                  setValue("heroImageCloudinaryId", publicId);
+                }}
+                onClear={() => {
+                  setValue("heroImageUrl", "");
+                  setValue("heroImageCloudinaryId", "");
+                }}
+              />
+
+              {/* Case study detail descriptions */}
+              <div className="space-y-3 p-4 rounded-xl border border-slate-100 dark:border-slate-850 bg-slate-50/50 dark:bg-slate-900/10">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                  Case Study Details
+                </span>
+                <div className="space-y-2">
+                  <Label htmlFor="problem" className="text-xs font-semibold">
+                    Problem / Challenge
+                  </Label>
+                  <Textarea
+                    id="problem"
+                    rows={2}
+                    placeholder="Explain the client problem..."
+                    className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs"
+                    {...register("problem")}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="solution" className="text-xs font-semibold">
+                    Solution Implemented
+                  </Label>
+                  <Textarea
+                    id="solution"
+                    rows={2}
+                    placeholder="How we solved it..."
+                    className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs"
+                    {...register("solution")}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="results" className="text-xs font-semibold">
+                    Results & Outcomes
+                  </Label>
+                  <Textarea
+                    id="results"
+                    rows={2}
+                    placeholder="Outcomes achieved (e.g. 50% revenue growth)..."
+                    className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs"
+                    {...register("results")}
+                  />
+                </div>
+              </div>
+
+              {/* Tech Stack items */}
+              <div className="space-y-2">
+                <Label className="text-xs font-semibold">
+                  Technologies Utilized
                 </Label>
+                <div className="flex gap-2">
+                  <Input
+                    placeholder="e.g. Next.js, FastAPI"
+                    value={newTech}
+                    onChange={(e) => setNewTech(e.target.value)}
+                    onKeyDown={(e) =>
+                      e.key === "Enter" && (e.preventDefault(), addTech())
+                    }
+                    className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 text-xs h-9 max-w-xs"
+                  />
+                  <Button
+                    type="button"
+                    size="sm"
+                    onClick={addTech}
+                    className="bg-brand-orange hover:bg-brand-orange-hover text-white"
+                  >
+                    Add Tech
+                  </Button>
+                </div>
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {techStack.map((tech) => (
+                    <Badge
+                      key={tech}
+                      variant="outline"
+                      className="flex items-center gap-1 bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 px-2 py-0.5 rounded text-[10px]"
+                    >
+                      <span>{tech}</span>
+                      <X
+                        className="w-3 h-3 text-slate-400 hover:text-red-500 cursor-pointer"
+                        onClick={() => removeTech(tech)}
+                      />
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 items-center pt-2">
+                <div className="space-y-1">
+                  <Label htmlFor="status" className="text-xs font-semibold">
+                    Publication Status
+                  </Label>
+                  <Select
+                    id="status"
+                    className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-xs"
+                    {...register("status")}
+                  >
+                    <SelectValue placeholder="Select Status" />
+                    <SelectItem value="draft">Draft (Private)</SelectItem>
+                    <SelectItem value="published">
+                      Published (Public)
+                    </SelectItem>
+                  </Select>
+                </div>
+
+                <div className="flex items-center gap-2 mt-4">
+                  <input
+                    id="isFeatured"
+                    type="checkbox"
+                    className="w-4 h-4 rounded border-slate-300 dark:border-slate-700 bg-slate-50 text-brand-orange focus:ring-brand-orange"
+                    {...register("isFeatured")}
+                  />
+                  <Label
+                    htmlFor="isFeatured"
+                    className="text-xs font-semibold select-none cursor-pointer"
+                  >
+                    Featured Case Study
+                  </Label>
+                </div>
               </div>
             </div>
 
@@ -708,6 +725,38 @@ export default function ProjectsManager() {
               </Button>
             </DialogFooter>
           </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* Delete Confirmation Dialog */}
+      <Dialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
+        <DialogContent className="sm:max-w-md bg-white dark:bg-[#151f32] border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl">
+          <DialogHeader>
+            <DialogTitle className="font-poppins flex items-center gap-2">
+              <Trash className="w-5 h-5 text-red-500" />
+              <span>Delete Case Study</span>
+            </DialogTitle>
+            <DialogDescription className="text-slate-500 dark:text-slate-400 text-xs">
+              Are you sure you want to delete &ldquo;{deleteTitle}&rdquo;? This
+              is a soft delete and the project can be recovered later.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="flex gap-2 sm:justify-end">
+            <Button
+              variant="outline"
+              onClick={() => setIsDeleteOpen(false)}
+              className="h-9"
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={confirmDelete}
+              className="bg-red-600 hover:bg-red-700 text-white h-9"
+            >
+              Delete
+            </Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     </div>

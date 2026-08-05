@@ -85,8 +85,8 @@ export default async function Home() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Adruva Solution",
-    url: "https://adruvaSolution.com",
-    logo: "https://adruvaSolution.com/logo.png",
+    url: "https://adruvasolution.com",
+    logo: "https://adruvasolution.com/logo.png",
     description: "Full-service IT & digital growth company",
     address: {
       "@type": "PostalAddress",
@@ -105,9 +105,18 @@ export default async function Home() {
     ],
   };
 
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Adruva Solution",
+    url: "https://adruvasolution.com",
+  };
+
   return (
     <div className="w-full flex flex-col">
       <JsonLd schema={schema} />
+      <JsonLd schema={websiteSchema} />
+
       {/* 1. Hero Section */}
       <HeroSection />
 

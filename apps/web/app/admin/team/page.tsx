@@ -68,6 +68,14 @@ export default function TeamManager() {
   const [editingMember, setEditingMember] = useState<TeamMember | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Delete confirmation states
+  const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [deleteName, setDeleteName] = useState("");
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+
+  // Track failed profile images
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
+
   const { data, isLoading } = useQuery({
     queryKey: ["admin", "team"],
     queryFn: () => apiFetch<ApiResponse<TeamMember[]>>("/team?all=true"),
@@ -179,10 +187,16 @@ export default function TeamManager() {
   };
 
   const handleDelete = (id: string, name: string) => {
-    if (
-      window.confirm(`Delete "${name}" from the team? This cannot be undone.`)
-    ) {
-      deleteMutation.mutate(id);
+    setDeleteId(id);
+    setDeleteName(name);
+    setIsDeleteOpen(true);
+  };
+
+  const confirmDelete = () => {
+    if (deleteId) {
+      deleteMutation.mutate(deleteId);
+      setIsDeleteOpen(false);
+      setDeleteId(null);
     }
   };
 
@@ -258,11 +272,17 @@ export default function TeamManager() {
               >
                 {/* Member Photo area */}
                 <div className="aspect-square w-full relative bg-slate-100 dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800/60 flex items-center justify-center overflow-hidden">
-                  {member.photoUrl ? (
+                  {member.photoUrl && !failedImages[member.id] ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={member.photoUrl}
                       alt={member.name}
+                      onError={() => {
+                        setFailedImages((prev) => ({
+                          ...prev,
+                          [member.id]: true,
+                        }));
+                      }}
                       className="w-full h-full object-cover object-center"
                     />
                   ) : (
@@ -335,7 +355,7 @@ export default function TeamManager() {
 
       {/* Add / Edit Dialog Modal */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-md bg-white dark:bg-[#151f32] border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl">
+        <DialogContent className="sm:max-w-md bg-white dark:bg-[#151f32] border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="font-poppins">
               {editingMember ? "Edit Team Member" : "Add Team Member"}
@@ -346,118 +366,126 @@ export default function TeamManager() {
           </DialogHeader>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 py-2">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-1">
-                <Label htmlFor="name" className="text-xs font-semibold">
-                  Full Name
-                </Label>
-                <Input
-                  id="name"
-                  placeholder="John Doe"
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
-                  {...register("name")}
-                />
-                {errors.name && (
-                  <p className="text-red-500 text-[10px]">
-                    {errors.name.message}
-                  </p>
-                )}
+            <div className="max-h-[60vh] overflow-y-auto pr-2 space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <Label htmlFor="name" className="text-xs font-semibold">
+                    Full Name
+                  </Label>
+                  <Input
+                    id="name"
+                    placeholder="John Doe"
+                    className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
+                    {...register("name")}
+                  />
+                  {errors.name && (
+                    <p className="text-red-500 text-[10px]">
+                      {errors.name.message}
+                    </p>
+                  )}
+                </div>
+
+                <div className="space-y-1">
+                  <Label
+                    htmlFor="designation"
+                    className="text-xs font-semibold"
+                  >
+                    Designation
+                  </Label>
+                  <Input
+                    id="designation"
+                    placeholder="Lead Developer"
+                    className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
+                    {...register("designation")}
+                  />
+                  {errors.designation && (
+                    <p className="text-red-500 text-[10px]">
+                      {errors.designation.message}
+                    </p>
+                  )}
+                </div>
               </div>
 
-              <div className="space-y-1">
-                <Label htmlFor="designation" className="text-xs font-semibold">
-                  Designation
-                </Label>
-                <Input
-                  id="designation"
-                  placeholder="Lead Developer"
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
-                  {...register("designation")}
-                />
-                {errors.designation && (
-                  <p className="text-red-500 text-[10px]">
-                    {errors.designation.message}
-                  </p>
-                )}
-              </div>
-            </div>
+              <ImageUpload
+                folder="team"
+                label="Profile Photo"
+                hint="Square photo recommended — JPG, PNG, WebP up to 5MB"
+                value={watch("photoUrl") || ""}
+                aspectRatio="square"
+                onChange={(url, publicId) => {
+                  setValue("photoUrl", url);
+                  setValue("photoCloudinaryId", publicId);
+                }}
+                onClear={() => {
+                  setValue("photoUrl", "");
+                  setValue("photoCloudinaryId", "");
+                }}
+              />
 
-            <ImageUpload
-              folder="team"
-              label="Profile Photo"
-              hint="Square photo recommended — JPG, PNG, WebP up to 5MB"
-              value={watch("photoUrl") || ""}
-              aspectRatio="square"
-              onChange={(url, publicId) => {
-                setValue("photoUrl", url);
-                setValue("photoCloudinaryId", publicId);
-              }}
-              onClear={() => {
-                setValue("photoUrl", "");
-                setValue("photoCloudinaryId", "");
-              }}
-            />
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <Label
+                    htmlFor="photoCloudinaryId"
+                    className="text-xs font-semibold"
+                  >
+                    Cloudinary Image ID
+                  </Label>
+                  <Input
+                    id="photoCloudinaryId"
+                    placeholder="team/john-doe"
+                    className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 font-mono text-xs"
+                    {...register("photoCloudinaryId")}
+                  />
+                </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-1">
-                <Label
-                  htmlFor="photoCloudinaryId"
-                  className="text-xs font-semibold"
-                >
-                  Cloudinary Image ID
-                </Label>
-                <Input
-                  id="photoCloudinaryId"
-                  placeholder="team/john-doe"
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 font-mono text-xs"
-                  {...register("photoCloudinaryId")}
-                />
-              </div>
-
-              <div className="space-y-1">
-                <Label htmlFor="linkedinUrl" className="text-xs font-semibold">
-                  LinkedIn URL
-                </Label>
-                <Input
-                  id="linkedinUrl"
-                  placeholder="https://linkedin.com/in/..."
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 text-xs"
-                  {...register("linkedinUrl")}
-                />
-                {errors.linkedinUrl && (
-                  <p className="text-red-500 text-[10px]">
-                    {errors.linkedinUrl.message}
-                  </p>
-                )}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4 items-center pt-2">
-              <div className="space-y-1">
-                <Label htmlFor="sortOrder" className="text-xs font-semibold">
-                  Sort Order
-                </Label>
-                <Input
-                  id="sortOrder"
-                  type="number"
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
-                  {...register("sortOrder")}
-                />
+                <div className="space-y-1">
+                  <Label
+                    htmlFor="linkedinUrl"
+                    className="text-xs font-semibold"
+                  >
+                    LinkedIn URL
+                  </Label>
+                  <Input
+                    id="linkedinUrl"
+                    placeholder="https://linkedin.com/in/..."
+                    className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 text-xs"
+                    {...register("linkedinUrl")}
+                  />
+                  {errors.linkedinUrl && (
+                    <p className="text-red-500 text-[10px]">
+                      {errors.linkedinUrl.message}
+                    </p>
+                  )}
+                </div>
               </div>
 
-              <div className="flex items-center gap-2 mt-4">
-                <input
-                  id="isActive"
-                  type="checkbox"
-                  className="w-4 h-4 rounded border-slate-300 dark:border-slate-700 bg-slate-50 text-brand-orange focus:ring-brand-orange"
-                  {...register("isActive")}
-                />
-                <Label
-                  htmlFor="isActive"
-                  className="text-xs font-semibold select-none cursor-pointer"
-                >
-                  Active Profile
-                </Label>
+              <div className="grid grid-cols-2 gap-4 items-center pt-2">
+                <div className="space-y-1">
+                  <Label htmlFor="sortOrder" className="text-xs font-semibold">
+                    Sort Order
+                  </Label>
+                  <Input
+                    id="sortOrder"
+                    type="number"
+                    className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
+                    {...register("sortOrder")}
+                  />
+                </div>
+
+                <div className="flex items-center gap-2 mt-4">
+                  <input
+                    id="isActive"
+                    type="checkbox"
+                    className="w-4 h-4 rounded border-slate-300 dark:border-slate-700 bg-slate-50 text-brand-orange focus:ring-brand-orange"
+                    {...register("isActive")}
+                  />
+                  <Label
+                    htmlFor="isActive"
+                    className="text-xs font-semibold select-none cursor-pointer"
+                  >
+                    Active Profile
+                  </Label>
+                </div>
               </div>
             </div>
 
@@ -480,6 +508,38 @@ export default function TeamManager() {
               </Button>
             </DialogFooter>
           </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* Delete Confirmation Dialog */}
+      <Dialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
+        <DialogContent className="sm:max-w-md bg-white dark:bg-[#151f32] border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl">
+          <DialogHeader>
+            <DialogTitle className="font-poppins flex items-center gap-2">
+              <Trash2 className="w-5 h-5 text-red-500" />
+              <span>Remove Team Member</span>
+            </DialogTitle>
+            <DialogDescription className="text-slate-500 dark:text-slate-400 text-xs">
+              Are you sure you want to remove &ldquo;{deleteName}&rdquo; from
+              the team? This action cannot be undone.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="flex gap-2 sm:justify-end">
+            <Button
+              variant="outline"
+              onClick={() => setIsDeleteOpen(false)}
+              className="h-9"
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={confirmDelete}
+              className="bg-red-600 hover:bg-red-700 text-white h-9"
+            >
+              Delete
+            </Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     </div>

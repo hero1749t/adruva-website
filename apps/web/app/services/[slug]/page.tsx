@@ -126,13 +126,13 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://adruvaSolution.com",
+        item: "https://adruvasolution.com",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Services",
-        item: "https://adruvaSolution.com/services",
+        item: "https://adruvasolution.com/services",
       },
       {
         "@type": "ListItem",

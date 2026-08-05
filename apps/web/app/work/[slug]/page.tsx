@@ -104,13 +104,13 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://adruvaSolution.com",
+        item: "https://adruvasolution.com",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Our Work",
-        item: "https://adruvaSolution.com/work",
+        item: "https://adruvasolution.com/work",
       },
       {
         "@type": "ListItem",

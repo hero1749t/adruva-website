@@ -16,7 +16,14 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../../../components/ui/dialog";
-import { Plus, Edit2, Trash2, Briefcase, ExternalLink } from "lucide-react";
+import {
+  Plus,
+  Edit2,
+  Trash2,
+  Briefcase,
+  ExternalLink,
+  Search,
+} from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -76,6 +83,10 @@ export default function CareersManager() {
   const queryClient = useQueryClient();
   const [isOpen, setIsOpen] = useState(false);
   const [editingJob, setEditingJob] = useState<Job | null>(null);
+  const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [deleteTitle, setDeleteTitle] = useState("");
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["admin", "jobs"],
@@ -258,8 +269,16 @@ export default function CareersManager() {
   };
 
   const handleDelete = (id: string, title: string) => {
-    if (window.confirm(`Delete "${title}"? This is a soft delete.`)) {
-      deleteMutation.mutate(id);
+    setDeleteId(id);
+    setDeleteTitle(title);
+    setIsDeleteOpen(true);
+  };
+
+  const confirmDelete = () => {
+    if (deleteId) {
+      deleteMutation.mutate(deleteId);
+      setIsDeleteOpen(false);
+      setDeleteId(null);
     }
   };
 
@@ -301,6 +320,18 @@ export default function CareersManager() {
         </Button>
       </div>
 
+      {/* Search Filter Card */}
+      <Card className="border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#151f32] p-4 flex items-center gap-2 rounded-xl">
+        <Search className="w-4 h-4 text-slate-400" />
+        <Input
+          type="text"
+          placeholder="Search positions by title or department..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 h-9 text-xs focus:ring-1 focus:ring-brand-orange focus:border-brand-orange max-w-sm"
+        />
+      </Card>
+
       {/* Main Table */}
       <Card className="border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#151f32] shadow-sm">
         <CardContent className="p-0">
@@ -337,67 +368,79 @@ export default function CareersManager() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800/40 text-slate-700 dark:text-slate-300">
-                  {data.data.map((job) => (
-                    <tr
-                      key={job.id}
-                      className="hover:bg-slate-50/50 dark:hover:bg-slate-900/10 transition-colors duration-150"
-                    >
-                      <td className="px-8 py-4">
-                        <div className="flex flex-col">
-                          <span className="font-semibold text-slate-900 dark:text-white leading-snug">
-                            {job.title}
+                  {data.data
+                    .filter(
+                      (job) =>
+                        job.title
+                          .toLowerCase()
+                          .includes(searchQuery.toLowerCase()) ||
+                        job.department
+                          .toLowerCase()
+                          .includes(searchQuery.toLowerCase()),
+                    )
+                    .map((job) => (
+                      <tr
+                        key={job.id}
+                        className="hover:bg-slate-50/50 dark:hover:bg-slate-900/10 transition-colors duration-150"
+                      >
+                        <td className="px-8 py-4">
+                          <div className="flex flex-col">
+                            <span className="font-semibold text-slate-900 dark:text-white leading-snug">
+                              {job.title}
+                            </span>
+                            <span className="text-[10px] text-slate-400 font-mono mt-0.5">
+                              {job.slug}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 capitalize">
+                          {job.department}
+                        </td>
+                        <td className="px-6 py-4 capitalize text-xs">
+                          {formatJobType(job.type)}
+                        </td>
+                        <td className="px-6 py-4 capitalize text-xs">
+                          {job.locationType?.replace("_", " ") || "N/A"}
+                        </td>
+                        <td className="px-6 py-4">{job.openingsCount}</td>
+                        <td className="px-6 py-4">
+                          <span
+                            className={`capitalize font-semibold text-[10px] border px-2 py-0.5 rounded-full ${getStatusBadgeClass(job.status)}`}
+                          >
+                            {job.status}
                           </span>
-                          <span className="text-[10px] text-slate-400 font-mono mt-0.5">
-                            {job.slug}
-                          </span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 capitalize">{job.department}</td>
-                      <td className="px-6 py-4 capitalize text-xs">
-                        {formatJobType(job.type)}
-                      </td>
-                      <td className="px-6 py-4 capitalize text-xs">
-                        {job.locationType?.replace("_", " ") || "N/A"}
-                      </td>
-                      <td className="px-6 py-4">{job.openingsCount}</td>
-                      <td className="px-6 py-4">
-                        <span
-                          className={`capitalize font-semibold text-[10px] border px-2 py-0.5 rounded-full ${getStatusBadgeClass(job.status)}`}
-                        >
-                          {job.status}
-                        </span>
-                      </td>
-                      <td className="px-8 py-4 text-right">
-                        <div className="flex gap-1.5 justify-end">
-                          <Link href={`/careers/${job.slug}`} target="_blank">
+                        </td>
+                        <td className="px-8 py-4 text-right">
+                          <div className="flex gap-1.5 justify-end">
+                            <Link href={`/careers/${job.slug}`} target="_blank">
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="h-8 w-8 p-0 text-slate-500 hover:text-blue-500"
+                              >
+                                <ExternalLink className="w-4 h-4" />
+                              </Button>
+                            </Link>
                             <Button
                               variant="ghost"
                               size="sm"
-                              className="h-8 w-8 p-0 text-slate-500 hover:text-blue-500"
+                              onClick={() => handleEdit(job)}
+                              className="h-8 w-8 p-0 text-slate-500 hover:text-brand-orange"
                             >
-                              <ExternalLink className="w-4 h-4" />
+                              <Edit2 className="w-4 h-4" />
                             </Button>
-                          </Link>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleEdit(job)}
-                            className="h-8 w-8 p-0 text-slate-500 hover:text-brand-orange"
-                          >
-                            <Edit2 className="w-4 h-4" />
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleDelete(job.id, job.title)}
-                            className="h-8 w-8 p-0 text-slate-500 hover:text-red-500"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </Button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleDelete(job.id, job.title)}
+                              className="h-8 w-8 p-0 text-slate-500 hover:text-red-500"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             )}
@@ -419,265 +462,273 @@ export default function CareersManager() {
           </DialogHeader>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 py-2">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-1">
-                <Label htmlFor="title" className="text-xs font-semibold">
-                  Job Title
-                </Label>
-                <div className="flex gap-2">
-                  <Input
-                    id="title"
-                    placeholder="Senior AI Engineer"
-                    className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
-                    {...register("title")}
-                  />
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    onClick={handleGenerateSlug}
-                    className="text-xs shrink-0"
-                  >
-                    Slugify
-                  </Button>
+            <div className="max-h-[60vh] overflow-y-auto pr-2 space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <Label htmlFor="title" className="text-xs font-semibold">
+                    Job Title
+                  </Label>
+                  <div className="flex gap-2">
+                    <Input
+                      id="title"
+                      placeholder="Senior AI Engineer"
+                      className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
+                      {...register("title")}
+                    />
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={handleGenerateSlug}
+                      className="text-xs shrink-0"
+                    >
+                      Slugify
+                    </Button>
+                  </div>
+                  {errors.title && (
+                    <p className="text-red-500 text-[10px]">
+                      {errors.title.message}
+                    </p>
+                  )}
                 </div>
-                {errors.title && (
-                  <p className="text-red-500 text-[10px]">
-                    {errors.title.message}
-                  </p>
-                )}
+
+                <div className="space-y-1">
+                  <Label htmlFor="slug" className="text-xs font-semibold">
+                    Slug (Unique URL)
+                  </Label>
+                  <Input
+                    id="slug"
+                    placeholder="senior-ai-engineer"
+                    className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 font-mono text-xs"
+                    {...register("slug")}
+                  />
+                  {errors.slug && (
+                    <p className="text-red-500 text-[10px]">
+                      {errors.slug.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-4">
+                <div className="space-y-1">
+                  <Label htmlFor="type" className="text-xs font-semibold">
+                    Job Type
+                  </Label>
+                  <select
+                    id="type"
+                    className="w-full h-10 px-3 py-2 text-sm rounded-md border border-slate-200 dark:border-slate-850 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none"
+                    {...register("type")}
+                  >
+                    <option value="full_time">Full Time</option>
+                    <option value="part_time">Part Time</option>
+                    <option value="contract">Contract</option>
+                    <option value="internship">Internship</option>
+                  </select>
+                </div>
+
+                <div className="space-y-1">
+                  <Label htmlFor="department" className="text-xs font-semibold">
+                    Department
+                  </Label>
+                  <Input
+                    id="department"
+                    placeholder="Engineering"
+                    className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
+                    {...register("department")}
+                  />
+                  {errors.department && (
+                    <p className="text-red-500 text-[10px]">
+                      {errors.department.message}
+                    </p>
+                  )}
+                </div>
+
+                <div className="space-y-1">
+                  <Label
+                    htmlFor="locationType"
+                    className="text-xs font-semibold"
+                  >
+                    Location
+                  </Label>
+                  <select
+                    id="locationType"
+                    className="w-full h-10 px-3 py-2 text-sm rounded-md border border-slate-200 dark:border-slate-850 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none"
+                    {...register("locationType")}
+                  >
+                    <option value="remote">Remote</option>
+                    <option value="hybrid">Hybrid</option>
+                    <option value="on_site">On Site</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-4">
+                <div className="space-y-1">
+                  <Label
+                    htmlFor="experienceLevel"
+                    className="text-xs font-semibold"
+                  >
+                    Experience Level
+                  </Label>
+                  <select
+                    id="experienceLevel"
+                    className="w-full h-10 px-3 py-2 text-sm rounded-md border border-slate-200 dark:border-slate-850 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none"
+                    {...register("experienceLevel")}
+                  >
+                    <option value="entry">Entry Level</option>
+                    <option value="mid">Mid Level</option>
+                    <option value="senior">Senior Level</option>
+                    <option value="lead">Lead / Principal</option>
+                  </select>
+                </div>
+
+                <div className="space-y-1">
+                  <Label
+                    htmlFor="openingsCount"
+                    className="text-xs font-semibold"
+                  >
+                    Openings Count
+                  </Label>
+                  <Input
+                    id="openingsCount"
+                    type="number"
+                    className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
+                    {...register("openingsCount")}
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <Label htmlFor="status" className="text-xs font-semibold">
+                    Status
+                  </Label>
+                  <select
+                    id="status"
+                    className="w-full h-10 px-3 py-2 text-sm rounded-md border border-slate-200 dark:border-slate-850 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none"
+                    {...register("status")}
+                  >
+                    <option value="draft">🟡 Draft</option>
+                    <option value="active">🟢 Active / Open</option>
+                    <option value="archived">⚫ Archived / Closed</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-4 gap-4">
+                <div className="space-y-1">
+                  <Label htmlFor="salaryMin" className="text-xs font-semibold">
+                    Min Salary
+                  </Label>
+                  <Input
+                    id="salaryMin"
+                    type="number"
+                    placeholder="5"
+                    className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
+                    {...register("salaryMin")}
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <Label htmlFor="salaryMax" className="text-xs font-semibold">
+                    Max Salary
+                  </Label>
+                  <Input
+                    id="salaryMax"
+                    type="number"
+                    placeholder="10"
+                    className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
+                    {...register("salaryMax")}
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <Label
+                    htmlFor="salaryLabel"
+                    className="text-xs font-semibold"
+                  >
+                    Salary Label
+                  </Label>
+                  <Input
+                    id="salaryLabel"
+                    placeholder="LPA / per month"
+                    className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
+                    {...register("salaryLabel")}
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <Label
+                    htmlFor="applicationDeadline"
+                    className="text-xs font-semibold"
+                  >
+                    Deadline
+                  </Label>
+                  <Input
+                    id="applicationDeadline"
+                    type="date"
+                    className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
+                    {...register("applicationDeadline")}
+                  />
+                </div>
               </div>
 
               <div className="space-y-1">
-                <Label htmlFor="slug" className="text-xs font-semibold">
-                  Slug (Unique URL)
-                </Label>
-                <Input
-                  id="slug"
-                  placeholder="senior-ai-engineer"
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 font-mono text-xs"
-                  {...register("slug")}
-                />
-                {errors.slug && (
-                  <p className="text-red-500 text-[10px]">
-                    {errors.slug.message}
-                  </p>
-                )}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-3 gap-4">
-              <div className="space-y-1">
-                <Label htmlFor="type" className="text-xs font-semibold">
-                  Job Type
-                </Label>
-                <select
-                  id="type"
-                  className="w-full h-10 px-3 py-2 text-sm rounded-md border border-slate-200 dark:border-slate-850 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none"
-                  {...register("type")}
-                >
-                  <option value="full_time">Full Time</option>
-                  <option value="part_time">Part Time</option>
-                  <option value="contract">Contract</option>
-                  <option value="internship">Internship</option>
-                </select>
-              </div>
-
-              <div className="space-y-1">
-                <Label htmlFor="department" className="text-xs font-semibold">
-                  Department
-                </Label>
-                <Input
-                  id="department"
-                  placeholder="Engineering"
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
-                  {...register("department")}
-                />
-                {errors.department && (
-                  <p className="text-red-500 text-[10px]">
-                    {errors.department.message}
-                  </p>
-                )}
-              </div>
-
-              <div className="space-y-1">
-                <Label htmlFor="locationType" className="text-xs font-semibold">
-                  Location
-                </Label>
-                <select
-                  id="locationType"
-                  className="w-full h-10 px-3 py-2 text-sm rounded-md border border-slate-200 dark:border-slate-850 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none"
-                  {...register("locationType")}
-                >
-                  <option value="remote">Remote</option>
-                  <option value="hybrid">Hybrid</option>
-                  <option value="on_site">On Site</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-3 gap-4">
-              <div className="space-y-1">
-                <Label
-                  htmlFor="experienceLevel"
-                  className="text-xs font-semibold"
-                >
-                  Experience Level
-                </Label>
-                <select
-                  id="experienceLevel"
-                  className="w-full h-10 px-3 py-2 text-sm rounded-md border border-slate-200 dark:border-slate-850 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none"
-                  {...register("experienceLevel")}
-                >
-                  <option value="entry">Entry Level</option>
-                  <option value="mid">Mid Level</option>
-                  <option value="senior">Senior Level</option>
-                  <option value="lead">Lead / Principal</option>
-                </select>
-              </div>
-
-              <div className="space-y-1">
-                <Label
-                  htmlFor="openingsCount"
-                  className="text-xs font-semibold"
-                >
-                  Openings Count
-                </Label>
-                <Input
-                  id="openingsCount"
-                  type="number"
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
-                  {...register("openingsCount")}
-                />
-              </div>
-
-              <div className="space-y-1">
-                <Label htmlFor="status" className="text-xs font-semibold">
-                  Status
-                </Label>
-                <select
-                  id="status"
-                  className="w-full h-10 px-3 py-2 text-sm rounded-md border border-slate-200 dark:border-slate-850 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none"
-                  {...register("status")}
-                >
-                  <option value="draft">🟡 Draft</option>
-                  <option value="active">🟢 Active / Open</option>
-                  <option value="archived">⚫ Archived / Closed</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-4 gap-4">
-              <div className="space-y-1">
-                <Label htmlFor="salaryMin" className="text-xs font-semibold">
-                  Min Salary
-                </Label>
-                <Input
-                  id="salaryMin"
-                  type="number"
-                  placeholder="5"
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
-                  {...register("salaryMin")}
-                />
-              </div>
-
-              <div className="space-y-1">
-                <Label htmlFor="salaryMax" className="text-xs font-semibold">
-                  Max Salary
-                </Label>
-                <Input
-                  id="salaryMax"
-                  type="number"
-                  placeholder="10"
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
-                  {...register("salaryMax")}
-                />
-              </div>
-
-              <div className="space-y-1">
-                <Label htmlFor="salaryLabel" className="text-xs font-semibold">
-                  Salary Label
-                </Label>
-                <Input
-                  id="salaryLabel"
-                  placeholder="LPA / per month"
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
-                  {...register("salaryLabel")}
-                />
-              </div>
-
-              <div className="space-y-1">
-                <Label
-                  htmlFor="applicationDeadline"
-                  className="text-xs font-semibold"
-                >
-                  Deadline
-                </Label>
-                <Input
-                  id="applicationDeadline"
-                  type="date"
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850"
-                  {...register("applicationDeadline")}
-                />
-              </div>
-            </div>
-
-            <div className="space-y-1">
-              <Label htmlFor="description" className="text-xs font-semibold">
-                Job Description
-              </Label>
-              <textarea
-                id="description"
-                placeholder="Summarize the role, team, and company vision..."
-                className="w-full min-h-[80px] p-3 text-sm rounded-md border border-slate-200 dark:border-slate-850 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none font-inter leading-relaxed"
-                {...register("description")}
-              />
-            </div>
-
-            <div className="grid grid-cols-3 gap-4">
-              <div className="space-y-1">
-                <Label
-                  htmlFor="requirementsRaw"
-                  className="text-xs font-semibold"
-                >
-                  Requirements (one per line)
+                <Label htmlFor="description" className="text-xs font-semibold">
+                  Job Description
                 </Label>
                 <textarea
-                  id="requirementsRaw"
-                  placeholder="3+ years React experience&#10;Excellent communication"
-                  className="w-full min-h-[120px] p-3 text-xs rounded-md border border-slate-200 dark:border-slate-850 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none font-mono leading-relaxed"
-                  {...register("requirementsRaw")}
+                  id="description"
+                  placeholder="Summarize the role, team, and company vision..."
+                  className="w-full min-h-[80px] p-3 text-sm rounded-md border border-slate-200 dark:border-slate-850 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none font-inter leading-relaxed"
+                  {...register("description")}
                 />
               </div>
 
-              <div className="space-y-1">
-                <Label
-                  htmlFor="responsibilitiesRaw"
-                  className="text-xs font-semibold"
-                >
-                  Responsibilities (one per line)
-                </Label>
-                <textarea
-                  id="responsibilitiesRaw"
-                  placeholder="Build responsive interfaces&#10;Optimize database queries"
-                  className="w-full min-h-[120px] p-3 text-xs rounded-md border border-slate-200 dark:border-slate-850 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none font-mono leading-relaxed"
-                  {...register("responsibilitiesRaw")}
-                />
-              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <div className="space-y-1">
+                  <Label
+                    htmlFor="requirementsRaw"
+                    className="text-xs font-semibold"
+                  >
+                    Requirements (one per line)
+                  </Label>
+                  <textarea
+                    id="requirementsRaw"
+                    placeholder="3+ years React experience&#10;Excellent communication"
+                    className="w-full min-h-[120px] p-3 text-xs rounded-md border border-slate-200 dark:border-slate-850 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none font-mono leading-relaxed"
+                    {...register("requirementsRaw")}
+                  />
+                </div>
 
-              <div className="space-y-1">
-                <Label
-                  htmlFor="skillsRequiredRaw"
-                  className="text-xs font-semibold"
-                >
-                  Skills Required (one per line)
-                </Label>
-                <textarea
-                  id="skillsRequiredRaw"
-                  placeholder="TypeScript&#10;TailwindCSS&#10;PostgreSQL"
-                  className="w-full min-h-[120px] p-3 text-xs rounded-md border border-slate-200 dark:border-slate-850 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none font-mono leading-relaxed"
-                  {...register("skillsRequiredRaw")}
-                />
+                <div className="space-y-1">
+                  <Label
+                    htmlFor="responsibilitiesRaw"
+                    className="text-xs font-semibold"
+                  >
+                    Responsibilities (one per line)
+                  </Label>
+                  <textarea
+                    id="responsibilitiesRaw"
+                    placeholder="Build responsive interfaces&#10;Optimize database queries"
+                    className="w-full min-h-[120px] p-3 text-xs rounded-md border border-slate-200 dark:border-slate-850 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none font-mono leading-relaxed"
+                    {...register("responsibilitiesRaw")}
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <Label
+                    htmlFor="skillsRequiredRaw"
+                    className="text-xs font-semibold"
+                  >
+                    Skills Required (one per line)
+                  </Label>
+                  <textarea
+                    id="skillsRequiredRaw"
+                    placeholder="TypeScript&#10;TailwindCSS&#10;PostgreSQL"
+                    className="w-full min-h-[120px] p-3 text-xs rounded-md border border-slate-200 dark:border-slate-850 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none font-mono leading-relaxed"
+                    {...register("skillsRequiredRaw")}
+                  />
+                </div>
               </div>
             </div>
 
@@ -700,6 +751,38 @@ export default function CareersManager() {
               </Button>
             </DialogFooter>
           </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* Delete Confirmation Dialog */}
+      <Dialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
+        <DialogContent className="sm:max-w-md bg-white dark:bg-[#151f32] border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl">
+          <DialogHeader>
+            <DialogTitle className="font-poppins flex items-center gap-2">
+              <Trash2 className="w-5 h-5 text-red-500" />
+              <span>Delete Job Posting</span>
+            </DialogTitle>
+            <DialogDescription className="text-slate-500 dark:text-slate-400 text-xs">
+              Are you sure you want to delete &ldquo;{deleteTitle}&rdquo;? This
+              is a soft delete and the job posting can be recovered later.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="flex gap-2 sm:justify-end">
+            <Button
+              variant="outline"
+              onClick={() => setIsDeleteOpen(false)}
+              className="h-9"
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={confirmDelete}
+              className="bg-red-600 hover:bg-red-700 text-white h-9"
+            >
+              Delete
+            </Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     </div>

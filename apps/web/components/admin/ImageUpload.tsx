@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Upload, X, Image as ImageIcon, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import toast from "react-hot-toast";
@@ -28,7 +28,12 @@ export function ImageUpload({
 }: ImageUploadProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setHasError(false);
+  }, [value]);
 
   const uploadFile = useCallback(
     async (file: File) => {
@@ -119,12 +124,25 @@ export function ImageUpload({
             aspectClass,
           )}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={value}
-            alt="Preview"
-            className="w-full h-full object-cover"
-          />
+          {hasError ? (
+            <div className="w-full h-full flex flex-col items-center justify-center bg-slate-100 dark:bg-slate-900/60 text-slate-400 dark:text-slate-500 gap-1.5 p-4 text-center">
+              <ImageIcon className="w-8 h-8 opacity-60 text-brand-orange" />
+              <span className="text-[10px] font-semibold tracking-wide uppercase opacity-70">
+                Mock Preview Mode
+              </span>
+              <span className="text-[9px] opacity-50 truncate max-w-full font-mono">
+                {value.split("/").pop()}
+              </span>
+            </div>
+          ) : (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={value}
+              alt="Preview"
+              onError={() => setHasError(true)}
+              className="w-full h-full object-cover"
+            />
+          )}
           {/* Overlay on hover */}
           <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-3">
             <button

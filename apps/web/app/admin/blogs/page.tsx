@@ -20,6 +20,14 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "../../../components/ui/dialog";
 
 interface Blog {
   id: string;
@@ -50,6 +58,9 @@ export default function BlogManager() {
   const { data: session } = useSession();
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
+  const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [deleteTitle, setDeleteTitle] = useState("");
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const limit = 10;
 
   const userRole = session?.user?.role || "content_writer";
@@ -102,12 +113,16 @@ export default function BlogManager() {
   });
 
   const handleDelete = (id: string, title: string) => {
-    if (
-      window.confirm(
-        `Delete "${title}"? This is a soft delete and can be recovered.`,
-      )
-    ) {
-      deleteMutation.mutate(id);
+    setDeleteId(id);
+    setDeleteTitle(title);
+    setIsDeleteOpen(true);
+  };
+
+  const confirmDelete = () => {
+    if (deleteId) {
+      deleteMutation.mutate(deleteId);
+      setIsDeleteOpen(false);
+      setDeleteId(null);
     }
   };
 
@@ -295,6 +310,38 @@ export default function BlogManager() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Delete Confirmation Dialog */}
+      <Dialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
+        <DialogContent className="sm:max-w-md bg-white dark:bg-[#151f32] border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl">
+          <DialogHeader>
+            <DialogTitle className="font-poppins flex items-center gap-2">
+              <Trash className="w-5 h-5 text-red-500" />
+              <span>Delete Blog Post</span>
+            </DialogTitle>
+            <DialogDescription className="text-slate-500 dark:text-slate-400 text-xs">
+              Are you sure you want to delete &ldquo;{deleteTitle}&rdquo;? This
+              is a soft delete and the post can be recovered later.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="flex gap-2 sm:justify-end">
+            <Button
+              variant="outline"
+              onClick={() => setIsDeleteOpen(false)}
+              className="h-9"
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={confirmDelete}
+              className="bg-red-600 hover:bg-red-700 text-white h-9"
+            >
+              Delete
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

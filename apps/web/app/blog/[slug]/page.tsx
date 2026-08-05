@@ -125,13 +125,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://adruvaSolution.com",
+        item: "https://adruvasolution.com",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Blog",
-        item: "https://adruvaSolution.com/blog",
+        item: "https://adruvasolution.com/blog",
       },
       {
         "@type": "ListItem",
