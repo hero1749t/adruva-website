@@ -8,38 +8,7 @@ import { Container } from "@/components/layout/container";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-const projects = [
-  {
-    title: "Dehradun Yoga Shala Platform",
-    category: "Build",
-    industry: "Wellness",
-    description:
-      "Booking engine and headless website integration for Dehraduns premium yoga studio.",
-    tech: ["Next.js", "Framer Motion", "Tailwind"],
-    gradient: "from-[#0d1b2e] via-[#0f2549] to-[#162b4a]",
-    slug: "yoga-shala",
-  },
-  {
-    title: "Lura Cafe Digital OS",
-    category: "Automate",
-    industry: "F&B",
-    description:
-      "Automated order-taking, WhatsApp dispatching system, and real-time CRM updates.",
-    tech: ["NestJS", "WhatsApp Cloud API", "PostgreSQL"],
-    gradient: "from-[#1a0800] via-[#2d1200] to-[#3d1a00]",
-    slug: "lura-cafe",
-  },
-  {
-    title: "Adruva Resto System",
-    category: "Build",
-    industry: "Hospitality",
-    description:
-      "A custom POS and billing interface for local restaurants with safe offline sync.",
-    tech: ["React", "Prisma", "Tailwind CSS"],
-    gradient: "from-[#081a0e] via-[#0d2b16] to-[#123320]",
-    slug: "adruva-resto",
-  },
-];
+import { projects as defaultProjects } from "@/lib/work-data";
 
 interface WorkPreviewProps {
   initialProjects?: any[];
@@ -57,7 +26,9 @@ export function WorkPreview({ initialProjects }: WorkPreviewProps) {
   }, []);
 
   const displayProjects = (
-    initialProjects && initialProjects.length > 0 ? initialProjects : projects
+    initialProjects && initialProjects.length > 0
+      ? initialProjects
+      : defaultProjects
   ).map((p) => ({
     title: p.title,
     slug: p.slug,
