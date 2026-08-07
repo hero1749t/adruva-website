@@ -6,6 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Container } from "@/components/layout/container";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const projects = [
   {
@@ -127,15 +128,27 @@ export function WorkPreview({ initialProjects }: WorkPreviewProps) {
               )}
             >
               {/* Image/Visual Area (top, height: 200px) */}
-              <div
-                className={cn(
-                  "h-[200px] w-full bg-gradient-to-br flex items-center justify-center p-6 relative overflow-hidden select-none",
-                  project.gradient,
+              <div className="h-[200px] w-full relative overflow-hidden select-none">
+                {project.gradient.startsWith("http") ||
+                project.gradient.startsWith("/") ? (
+                  <Image
+                    src={project.gradient}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <div
+                    className={cn(
+                      "absolute inset-0 bg-gradient-to-br flex items-center justify-center",
+                      project.gradient,
+                    )}
+                  />
                 )}
-              >
                 {/* Pattern overlay */}
                 <div
-                  className="absolute inset-0 opacity-15 pointer-events-none"
+                  className="absolute inset-0 opacity-15 pointer-events-none z-10"
                   style={{
                     backgroundImage:
                       "radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)",
@@ -144,7 +157,7 @@ export function WorkPreview({ initialProjects }: WorkPreviewProps) {
                 />
 
                 {/* Industry label in bottom-left */}
-                <div className="absolute bottom-4 left-4 z-10">
+                <div className="absolute bottom-4 left-4 z-20">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-white/70 bg-black/35 backdrop-blur-md px-2.5 py-1 rounded-md font-inter border border-white/10">
                     {project.industry} Case Study
                   </span>
