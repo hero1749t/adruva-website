@@ -6,6 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Container } from "@/components/layout/container";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const posts = [
   {
@@ -124,13 +125,25 @@ export function BlogPreview({ initialPosts }: BlogPreviewProps) {
               )}
             >
               {/* Cover image area (top, 160px) */}
-              <div
-                className={cn(
-                  "h-40 w-full bg-gradient-to-br flex items-center justify-center relative overflow-hidden select-none",
-                  post.gradient,
+              <div className="h-40 w-full relative overflow-hidden select-none">
+                {post.gradient.startsWith("http") ||
+                post.gradient.startsWith("/") ? (
+                  <Image
+                    src={post.gradient}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <div
+                    className={cn(
+                      "absolute inset-0 bg-gradient-to-br flex items-center justify-center",
+                      post.gradient,
+                    )}
+                  />
                 )}
-              >
-                <span className="text-xs font-bold uppercase tracking-widest text-white/30 font-space-grotesk">
+                <span className="text-xs font-bold uppercase tracking-widest text-white/30 font-space-grotesk absolute inset-0 m-auto flex items-center justify-center pointer-events-none z-10">
                   {post.category} Post
                 </span>
 

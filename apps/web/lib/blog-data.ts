@@ -32,7 +32,7 @@ export const blogPosts: BlogPost[] = [
     category: "AI & Tech",
     readingTime: "5 min read",
     publishedDate: "June 5, 2026",
-    coverGradient: "from-[#0b1f3a] to-[#2d8cff]",
+    coverGradient: "/blog/ai-automation.jpg",
     summary:
       "How local and service-based businesses are cutting manual booking and follow-up times by 80% using custom AI integrations.",
     author: {
@@ -243,7 +243,7 @@ export const blogPosts: BlogPost[] = [
     category: "Web Dev",
     readingTime: "6 min read",
     publishedDate: "June 2, 2026",
-    coverGradient: "from-[#0b1f3a] to-[#ff6b00]",
+    coverGradient: "/blog/headless-seo.jpg",
     summary:
       "An analysis of static-site loading speeds, Core Web Vitals, and why custom Next.js configurations win over traditional CMS tools.",
     author: {
@@ -418,7 +418,7 @@ export const blogPosts: BlogPost[] = [
     category: "Marketing",
     readingTime: "4 min read",
     publishedDate: "May 28, 2026",
-    coverGradient: "from-[#ff6b00] to-[#0a0a0a]",
+    coverGradient: "/blog/ads-spend.jpg",
     summary:
       "Understand the difference between search intent and social interest targeting, and learn how to allocate your digital ad budget for maximum ROI.",
     author: {

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import {
   Sparkle,
   Target,
@@ -22,24 +23,28 @@ const teamMembers = [
     name: "D.K.",
     role: "Founder & Full Stack Developer",
     gradient: "from-blue-600 to-blue-900",
+    photoUrl: "/team/dk.jpg",
   },
   {
     initials: "L.K.",
     name: "L.K.",
     role: "Project Manager",
     gradient: "from-orange-500 to-red-700",
+    photoUrl: "/team/lk.jpg",
   },
   {
     initials: "N.K.",
     name: "N.K.",
     role: "Marketing Lead",
     gradient: "from-green-500 to-emerald-800",
+    photoUrl: "/team/nk.jpg",
   },
   {
     initials: "S.K.",
     name: "S.K.",
     role: "UI/UX Designer",
     gradient: "from-purple-500 to-violet-800",
+    photoUrl: "/team/sk.jpg",
   },
 ];
 
@@ -496,11 +501,21 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
                 <div className="aspect-square w-full p-6 flex items-center justify-center relative">
                   <div
                     className={cn(
-                      "w-24 h-24 rounded-full flex items-center justify-center text-2xl font-bold text-white shadow-inner relative z-10 bg-gradient-to-br",
+                      "w-24 h-24 rounded-full flex items-center justify-center text-2xl font-bold text-white shadow-inner relative z-10 overflow-hidden bg-gradient-to-br",
                       member.gradient,
                     )}
                   >
-                    {member.initials}
+                    {member.photoUrl ? (
+                      <Image
+                        src={member.photoUrl}
+                        alt={member.name}
+                        fill
+                        sizes="96px"
+                        className="object-cover"
+                      />
+                    ) : (
+                      member.initials
+                    )}
                   </div>
                   {/* Decorative glowing ring */}
                   <div className="absolute inset-0 m-auto w-32 h-32 rounded-full border border-slate-200 dark:border-white/5 scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500" />
