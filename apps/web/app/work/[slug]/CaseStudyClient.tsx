@@ -232,9 +232,14 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                 The Business Problem
               </h2>
               <div className="h-1 w-10 bg-brand-orange rounded-full mb-6" />
-              <p className="text-xs text-muted-foreground leading-relaxed font-inter">
-                {project.problem}
-              </p>
+              {project.problem.split("\n\n").map((para, i) => (
+                <p
+                  key={i}
+                  className="text-xs text-muted-foreground leading-relaxed font-inter mb-4 last:mb-0"
+                >
+                  {para}
+                </p>
+              ))}
             </motion.div>
 
             {/* Our Solution */}
@@ -252,9 +257,14 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                 The Engineering Solution
               </h2>
               <div className="h-1 w-10 bg-brand-orange rounded-full mb-6" />
-              <p className="text-xs text-muted-foreground leading-relaxed font-inter">
-                {project.solution}
-              </p>
+              {project.solution.split("\n\n").map((para, i) => (
+                <p
+                  key={i}
+                  className="text-xs text-muted-foreground leading-relaxed font-inter mb-4 last:mb-0"
+                >
+                  {para}
+                </p>
+              ))}
             </motion.div>
           </div>
         </Container>
