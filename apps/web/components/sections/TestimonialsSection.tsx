@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Container } from "@/components/layout/container";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const testimonials = [
   {
@@ -12,6 +13,7 @@ const testimonials = [
     role: "Owner, Lura Cafe",
     initials: "DS",
     gradient: "from-blue-600 to-indigo-900",
+    photoUrl: "/testimonials/dinesh.jpg",
   },
   {
     text: "Building our platform with Adruva was transparent and seamless. They designed a beautiful site and customized a booking system that is extremely easy for our yoga retreat students to check in and register.",
@@ -19,6 +21,7 @@ const testimonials = [
     role: "Founder, Dehradun Yoga Shala",
     initials: "S",
     gradient: "from-orange-500 to-red-800",
+    photoUrl: "/testimonials/stephanie.jpg",
   },
   {
     text: "We saw a massive increase in high-budget event inquiries within 30 days of launching our Meta and Google search campaigns. Their team is extremely direct, honest, and focuses strictly on ROI metrics.",
@@ -26,6 +29,7 @@ const testimonials = [
     role: "Director, Event Management",
     initials: "VN",
     gradient: "from-emerald-500 to-green-900",
+    photoUrl: "/testimonials/vivek.jpg",
   },
 ];
 
@@ -132,11 +136,21 @@ export function TestimonialsSection() {
                 {/* Gradient Avatar */}
                 <div
                   className={cn(
-                    "h-12 w-12 rounded-full flex items-center justify-center font-bold text-sm text-white shrink-0 select-none font-poppins bg-gradient-to-br shadow-inner",
+                    "h-12 w-12 rounded-full flex items-center justify-center font-bold text-sm text-white shrink-0 select-none font-poppins relative overflow-hidden bg-gradient-to-br shadow-inner",
                     t.gradient,
                   )}
                 >
-                  {t.initials}
+                  {t.photoUrl ? (
+                    <Image
+                      src={t.photoUrl}
+                      alt={t.author}
+                      fill
+                      sizes="48px"
+                      className="object-cover"
+                    />
+                  ) : (
+                    t.initials
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-1 overflow-hidden">
