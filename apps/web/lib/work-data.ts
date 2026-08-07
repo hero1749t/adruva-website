@@ -22,84 +22,90 @@ export interface ProjectItem {
 
 export const projects: ProjectItem[] = [
   {
-    title: "Agency Management Platform",
-    slug: "agency-management-platform",
+    title: "Bali Yoga Teacher Training",
+    slug: "bali-yoga-teacher-training",
     category: "build",
-    industry: "technology",
-    techStack: ["Next.js", "NestJS", "PostgreSQL"],
-    heroGradient: "from-slate-900 to-blue-950",
+    industry: "education",
+    techStack: [
+      "Next.js",
+      "NestJS",
+      "PostgreSQL",
+      "Tailwind CSS",
+      "TanStack Query",
+    ],
+    heroGradient: "from-orange-600 to-amber-950",
     isFeatured: true,
-    clientName: "Delhi-based Tech Startup",
+    clientName: "Bali Yoga Teacher Training Center",
+    timeline: "10 weeks",
+    overview:
+      "A high-performance headless booking engine and CRM database built to manage yoga teacher training course enrollments and payments worldwide.",
+    problem:
+      "The school relied on a slow WordPress installation that crashed during high-traffic batch announcements. Students faced transaction failures on overseas credit cards, and the sales team struggled to track abandoned registrations.",
+    solution:
+      "We decoupled the system into a headless Next.js frontend and a NestJS backend. We integrated dynamic internationalization (i18n), secure multi-currency payment pipelines (Stripe/PayPal), and custom abandoned-cart logs that alert the sales team via instant dashboards.",
+    results: [
+      { metric: "240%", label: "Increase in Booking Conversion" },
+      { metric: "0%", label: "Server Downtime in Launches" },
+      { metric: "35%", label: "Recaptured Cart Leads" },
+    ],
+    gallery: [
+      "from-orange-800 to-amber-900",
+      "from-rose-900/50 to-orange-950",
+      "from-amber-950 to-yellow-900",
+    ],
+  },
+  {
+    title: "Vintage Tours & Travels",
+    slug: "vintage-tours-and-travels",
+    category: "grow",
+    industry: "retail",
+    techStack: ["React", "Tailwind CSS", "Google Maps API", "SEO Optimization"],
+    heroGradient: "from-cyan-900 to-emerald-950",
+    isFeatured: true,
+    clientName: "Vintage Tours & Travels India",
     timeline: "8 weeks",
     overview:
-      "A custom, scalable agency workflow operating tool designed to manage teams, leads, and invoicing with zero monthly per-seat fees.",
+      "A complete organic search optimization and custom package booking engine that positioned the brand on Page 1 for premium adventure tours.",
     problem:
-      "Our client was managing projects and invoicing across five fragmented SaaS tools, resulting in disconnected client data and mounting subscription overhead. They needed a single, unified database system that could scale to hundreds of client processes without per-seat licensing penalties.",
+      "The agency was losing organic traffic to massive aggregators. Their site had poor mobile UX, slow load times, and no clear booking flow for international customers seeking custom Himalayan itineraries.",
     solution:
-      "We designed and built a bespoke workflow operating system using Next.js and NestJS. The platform features role-based access control, a secure customer portal, drag-and-drop task boards, and automated invoice runs powered by PostgreSQL databases.",
+      "We rebuilt the customer journey with a mobile-first catalog, integrated a dynamic travel package planner, structured schema tags for local search relevance, and optimized media rendering to achieve 98+ PageSpeed scores.",
     results: [
-      { metric: "₹0", label: "Monthly SaaS Fees" },
-      { metric: "40%", label: "Operational Efficiency" },
-      { metric: "12,000+", label: "Active Projects Managed" },
+      { metric: "+180%", label: "Organic Search Traffic" },
+      { metric: "No. 1", label: "Local Map Rankings" },
+      { metric: "4.2x", label: "Inbound Package Queries" },
     ],
     gallery: [
-      "from-slate-800 to-slate-900",
-      "from-blue-900/50 to-indigo-900/50",
-      "from-emerald-950 to-teal-900",
+      "from-cyan-950 to-emerald-950",
+      "from-teal-900 to-green-950",
+      "from-emerald-900 to-cyan-900",
     ],
   },
   {
-    title: "Education Institute Growth",
-    slug: "education-institute-growth",
-    category: "grow",
-    industry: "education",
-    techStack: ["Google Ads", "Meta Ads", "SEO"],
-    heroGradient: "from-orange-950 to-red-950",
-    isFeatured: true,
-    clientName: "Dehradun Coaching Academy",
-    timeline: "12 weeks",
-    overview:
-      "A high-converting search and social advertising funnel coupled with local search optimizations to drive direct student admissions.",
-    problem:
-      "A local coaching academy relied purely on pamphlets and local word-of-mouth, failing to capture digital search intent in their area. They struggled to run ads that yielded high-intent enrollment leads, and their site ranked poorly for key terms.",
-    solution:
-      "We audited their site and performed on-page local SEO optimizations. Concurrently, we launched targeted search campaigns on Google Ads and demographic-filtered lead forms on Meta Ads, driving users to optimized landing page builders.",
-    results: [
-      { metric: "3.2x", label: "Increase in Enquiries" },
-      { metric: "Page 1", label: "Google Local Map Pack" },
-      { metric: "-45%", label: "Cost-Per-Lead Reduction" },
-    ],
-    gallery: [
-      "from-yellow-950 to-amber-900",
-      "from-orange-950 to-red-950",
-      "from-stone-900 to-neutral-950",
-    ],
-  },
-  {
-    title: "AI-Powered CRM System",
-    slug: "ai-powered-crm",
+    title: "Adruva Resto System",
+    slug: "adruva-resto-system",
     category: "automate",
     industry: "technology",
-    techStack: ["React", "Node.js", "OpenAI"],
-    heroGradient: "from-emerald-950 to-teal-950",
+    techStack: ["React", "Prisma", "Tailwind CSS", "Node.js", "WebSocket"],
+    heroGradient: "from-rose-950 to-orange-950",
     isFeatured: true,
-    clientName: "Regional Real Estate Group",
+    clientName: "Adruva Hospitality Group",
     timeline: "6 weeks",
     overview:
-      "An automated agent qualifying CRM integrated with OpenAI to score, route, and follow up with incoming properties requests 24/7.",
+      "An advanced offline-first restaurant SaaS platform with contactless QR code menus, instant order dispatching, and live billing metrics.",
     problem:
-      "Sales agents were spending 15+ hours weekly answering standard repetitive property questions and manually routing leads from Web portals. Inbound leads arriving outside business hours routinely went cold before follow-ups occurred.",
+      "Restaurants suffered high cart abandonment on tables during rush hours. Waiters spent too much time writing manual tickets, leading to dispatch errors and lost analytics data.",
     solution:
-      "We integrated n8n automations linking their listing portals with a private database and the OpenAI API. The AI assistant now qualifies user intent via WhatsApp instantly, catalogs preferences, and routes hot leads to agents with full chat summaries.",
+      "We designed a localized QR-menu browser app that requires zero app installs. Customers scan, order, and pay directly. The system syncs in real-time with the kitchen dashboard via WebSockets and features local backup database sync in case of Internet dropouts.",
     results: [
-      { metric: "24/7", label: "Lead Response Coverage" },
-      { metric: "18 hours", label: "Saved per Agent Weekly" },
-      { metric: "82%", label: "WhatsApp Engagement Rate" },
+      { metric: "25%", label: "Faster Table Turnover" },
+      { metric: "-90%", label: "Order Dispatch Errors" },
+      { metric: "18%", label: "Average Bill Value Growth" },
     ],
     gallery: [
-      "from-zinc-900 to-indigo-950",
-      "from-indigo-900 to-purple-950",
-      "from-cyan-950 to-blue-950",
+      "from-rose-950 to-orange-950",
+      "from-red-900 to-amber-950",
+      "from-orange-900/60 to-rose-950",
     ],
   },
   {

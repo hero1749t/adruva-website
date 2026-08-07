@@ -200,38 +200,36 @@ const getProcessSteps = (slug: string) => {
     },
   ];
 };
-
 const mockProjects = [
-  // Build
   {
-    title: "Dehradun Yoga Shala Platform",
+    title: "Bali Yoga Teacher Training",
     category: "build",
-    industry: "Wellness",
+    industry: "Education",
     description:
-      "Booking engine and headless website integration for Dehradun's premium yoga studio.",
-    tech: ["Next.js", "Framer Motion", "Tailwind"],
+      "A high-performance headless booking engine and CRM database built to manage yoga teacher training course enrollments and payments worldwide.",
+    tech: ["Next.js", "NestJS", "PostgreSQL", "Tailwind CSS", "TanStack Query"],
     gradient: "from-orange-500/80 to-navy-950/80",
-    slug: "yoga-shala",
+    slug: "bali-yoga-teacher-training",
   },
   {
     title: "Adruva Resto System",
     category: "build",
     industry: "Hospitality",
     description:
-      "A custom POS and billing interface for local restaurants with safe offline sync.",
-    tech: ["React", "Prisma", "Tailwind CSS"],
+      "An advanced offline-first restaurant SaaS platform with contactless QR code menus, instant order dispatching, and live billing metrics.",
+    tech: ["React", "Prisma", "Tailwind CSS", "Node.js", "WebSocket"],
     gradient: "from-teal-600/80 to-navy-900/80",
-    slug: "adruva-resto",
+    slug: "adruva-resto-system",
   },
   {
-    title: "Doon Logistics ERP",
+    title: "Vintage Tours & Travels",
     category: "build",
-    industry: "Logistics",
+    industry: "Travel",
     description:
-      "Custom inventory tracker and driver portal for regional shipping provider.",
-    tech: ["Next.js", "NestJS", "PostgreSQL"],
+      "A complete organic search optimization and custom package booking engine that positioned the brand on Page 1 for premium adventure tours.",
+    tech: ["React", "Tailwind CSS", "Google Maps API", "SEO Optimization"],
     gradient: "from-blue-600/80 to-navy-900/80",
-    slug: "doon-logistics",
+    slug: "vintage-tours-and-travels",
   },
   // Automate
   {
