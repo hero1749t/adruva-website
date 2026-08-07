@@ -260,4 +260,112 @@ export class ProjectsService {
       data: updatedProject,
     };
   }
+
+  async seedNewProjects() {
+    await this.prisma.websiteProject.deleteMany();
+    const newProjects = [
+      {
+        title: 'Bali Yoga Teacher Training',
+        slug: 'bali-yoga-teacher-training',
+        category: 'build',
+        industry: 'education',
+        techStack: [
+          'Next.js',
+          'NestJS',
+          'PostgreSQL',
+          'Tailwind CSS',
+          'TanStack Query',
+        ],
+        heroImageUrl: 'from-orange-600 to-amber-950',
+        isFeatured: true,
+        clientName: 'Bali Yoga Teacher Training Center',
+        problem:
+          'The school relied on a slow WordPress installation that crashed during high-traffic batch announcements. Students faced transaction failures on overseas credit cards, and the sales team struggled to track abandoned registrations.',
+        solution:
+          'We decoupled the system into a headless Next.js frontend and a NestJS backend. We integrated dynamic internationalization (i18n), secure multi-currency payment pipelines (Stripe/PayPal), and custom abandoned-cart logs that alert the sales team via instant dashboards.',
+        results: JSON.stringify([
+          { metric: '240%', label: 'Increase in Booking Conversion' },
+          { metric: '0%', label: 'Server Downtime in Launches' },
+          { metric: '35%', label: 'Recaptured Cart Leads' },
+        ]),
+        galleryImages: JSON.stringify([
+          'from-orange-800 to-amber-900',
+          'from-rose-900/50 to-orange-950',
+          'from-amber-950 to-yellow-900',
+        ]),
+        status: 'published',
+        metaTitle: 'Bali Yoga Teacher Training | Case Studies',
+        metaDescription:
+          'A high-performance headless booking engine and CRM database built to manage yoga teacher training course enrollments and payments worldwide.',
+      },
+      {
+        title: 'Vintage Tours & Travels',
+        slug: 'vintage-tours-and-travels',
+        category: 'grow',
+        industry: 'retail',
+        techStack: [
+          'React',
+          'Tailwind CSS',
+          'Google Maps API',
+          'SEO Optimization',
+        ],
+        heroImageUrl: 'from-cyan-900 to-emerald-950',
+        isFeatured: true,
+        clientName: 'Vintage Tours & Travels India',
+        problem:
+          'The agency was losing organic traffic to massive aggregators. Their site had poor mobile UX, slow load times, and no clear booking flow for international customers seeking custom Himalayan itineraries.',
+        solution:
+          'We rebuilt the customer journey with a mobile-first catalog, integrated a dynamic travel package planner, structured schema tags for local search relevance, and optimized media rendering to achieve 98+ PageSpeed scores.',
+        results: JSON.stringify([
+          { metric: '+180%', label: 'Organic Search Traffic' },
+          { metric: 'No. 1', label: 'Local Map Rankings' },
+          { metric: '4.2x', label: 'Inbound Package Queries' },
+        ]),
+        galleryImages: JSON.stringify([
+          'from-cyan-950 to-emerald-950',
+          'from-teal-900 to-green-950',
+          'from-emerald-900 to-cyan-900',
+        ]),
+        status: 'published',
+        metaTitle: 'Vintage Tours & Travels | Case Studies',
+        metaDescription:
+          'A complete organic search optimization and custom package booking engine that positioned the brand on Page 1 for premium adventure tours.',
+      },
+      {
+        title: 'Adruva Resto System',
+        slug: 'adruva-resto-system',
+        category: 'automate',
+        industry: 'technology',
+        techStack: ['React', 'Prisma', 'Tailwind CSS', 'Node.js', 'WebSocket'],
+        heroImageUrl: 'from-rose-950 to-orange-950',
+        isFeatured: true,
+        clientName: 'Adruva Hospitality Group',
+        problem:
+          'Restaurants suffered high cart abandonment on tables during rush hours. Waiters spent too much time writing manual tickets, leading to dispatch errors and lost analytics data.',
+        solution:
+          'We designed a localized QR-menu browser app that requires zero app installs. Customers scan, order, and pay directly. The system syncs in real-time with the kitchen dashboard via WebSockets and features local backup database sync in case of Internet dropouts.',
+        results: JSON.stringify([
+          { metric: '25%', label: 'Faster Table Turnover' },
+          { metric: '-90%', label: 'Order Dispatch Errors' },
+          { metric: '18%', label: 'Average Bill Value Growth' },
+        ]),
+        galleryImages: JSON.stringify([
+          'from-rose-950 to-orange-950',
+          'from-red-900 to-amber-950',
+          'from-orange-900/60 to-rose-950',
+        ]),
+        status: 'published',
+        metaTitle: 'Adruva Resto System | Case Studies',
+        metaDescription:
+          'An advanced offline-first restaurant SaaS platform with contactless QR code menus, instant order dispatching, and live billing metrics.',
+      },
+    ];
+
+    const seeded = [];
+    for (const p of newProjects) {
+      const created = await this.prisma.websiteProject.create({ data: p });
+      seeded.push(created);
+    }
+    return { success: true, count: seeded.length, data: seeded };
+  }
 }

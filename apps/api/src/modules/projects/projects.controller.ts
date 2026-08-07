@@ -46,6 +46,10 @@ export class ProjectsController {
     return this.projectsService.create(dto);
   }
 
+  @Post('seed-new-projects-action')
+  async seedNewProjects() {
+    return this.projectsService.seedNewProjects();
+  }
   @Patch(':id')
   async update(@Param('id') id: string, @Body() dto: UpdateProjectDto) {
     return this.projectsService.update(id, dto);
