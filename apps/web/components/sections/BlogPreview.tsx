@@ -16,7 +16,7 @@ const posts = [
     readTime: "5 min read",
     description:
       "How local and small businesses are cutting manual booking and follow-up time by 80% using custom AI integrations.",
-    gradient: "from-[#0f1a2e] to-[#1a2d4a]",
+    gradient: "/blog/ai-automation.jpg",
     slug: "ai-automation-service-businesses",
   },
   {
@@ -26,7 +26,7 @@ const posts = [
     readTime: "4 min read",
     description:
       "An analysis of static-site loading speeds, Core Web Vitals, and why custom Next.js configurations win over Wordpress.",
-    gradient: "from-[#0d1f12] to-[#162f1c]",
+    gradient: "/blog/headless-seo.jpg",
     slug: "headless-nextjs-seo-benefits",
   },
   {
@@ -36,7 +36,7 @@ const posts = [
     readTime: "6 min read",
     description:
       "Compare search intent vs interest targeting and understand where to invest your initial digital ad budget for maximum ROI.",
-    gradient: "from-[#1f0d07] to-[#2d1408]",
+    gradient: "/blog/ads-spend.jpg",
     slug: "google-ads-vs-meta-ads-comparison",
   },
 ];
