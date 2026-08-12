@@ -35,6 +35,7 @@ interface CaseStudyClientProps {
 
 export function CaseStudyClient({ project }: CaseStudyClientProps) {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [openStep, setOpenStep] = useState<number | null>(1);
 
   useEffect(() => {
     const checkReducedMotion = () => {
@@ -78,14 +79,15 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
 
   return (
     <div className="w-full bg-background text-foreground transition-colors duration-300">
-      {/* a) & b) Breadcrumbs & Hero Section */}
-      <Section className="pt-10 pb-16 relative overflow-hidden">
-        {/* Subtle background glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.04)_0%,transparent_70%)] pointer-events-none select-none z-0" />
+      {/* 1. Hero Cover Slide */}
+      <Section className="pt-12 pb-20 relative overflow-hidden border-b border-border/10">
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.06)_0%,transparent_70%)] pointer-events-none select-none z-0" />
+        <div className="absolute -bottom-10 right-1/4 w-[400px] h-[400px] bg-[radial-gradient(circle_at_center,rgba(0,107,255,0.03)_0%,transparent_70%)] pointer-events-none select-none z-0" />
 
         <Container className="relative z-10">
           {/* Breadcrumbs */}
-          <nav className="flex items-center gap-1.5 text-xs text-muted-foreground font-medium mb-8 font-inter">
+          <nav className="flex items-center gap-1.5 text-xs text-muted-foreground font-medium mb-12 font-inter">
             <Link
               href="/"
               className="hover:text-brand-orange transition-colors"
@@ -105,234 +107,764 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
             </span>
           </nav>
 
-          {/* Hero Content */}
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <div className="flex items-center justify-center gap-2 mb-6">
-              <Badge
-                variant="outline"
-                className="text-[10px] font-bold uppercase tracking-wider font-space-grotesk border-brand-orange/20 text-brand-orange bg-brand-orange/5 px-2.5 py-1"
-              >
-                {project.category}
-              </Badge>
-              <Badge
-                variant="secondary"
-                className="text-[10px] font-bold uppercase tracking-wider font-space-grotesk px-2.5 py-1"
-              >
-                {project.industry}
-              </Badge>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* Header copy */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="flex flex-wrap items-center gap-2">
+                <Badge
+                  variant="outline"
+                  className="text-[10px] font-bold uppercase tracking-wider font-space-grotesk border-brand-orange/20 text-brand-orange bg-brand-orange/5 px-2.5 py-1"
+                >
+                  CASE STUDY
+                </Badge>
+                <Badge
+                  variant="secondary"
+                  className="text-[10px] font-bold uppercase tracking-wider font-space-grotesk px-2.5 py-1"
+                >
+                  MIGRATION & GROWTH
+                </Badge>
+              </div>
+              <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-brand-navy dark:text-white leading-[1.1] font-poppins">
+                How We Built & Scaled the{" "}
+                <span className="text-brand-orange">
+                  Bali Yoga Teacher Training
+                </span>{" "}
+                Platform
+              </h1>
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed font-inter">
+                Complete engineering breakdown of a legacy WordPress WooCommerce
+                site migrated to a headless Next.js booking engine, combined
+                with a highly structured local SEO content acquisition funnel.
+              </p>
+              <div className="flex flex-wrap gap-4 pt-4">
+                <div className="flex items-center gap-2 bg-muted/20 border border-border/10 rounded-xl px-4 py-2 text-xs font-semibold text-brand-navy dark:text-white font-inter">
+                  <span className="h-2 w-2 rounded-full bg-green-500 animate-ping" />
+                  Live Website: balivttc.com
+                </div>
+              </div>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-brand-navy dark:text-white leading-[1.15] mb-6 font-poppins">
-              {project.title}
-            </h1>
+            {/* Premium Stats Box */}
+            <div className="lg:col-span-5 bg-card border border-border/30 rounded-3xl p-6 md:p-8 shadow-xl space-y-6 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.08)_0%,transparent_70%)] pointer-events-none" />
+              <h3 className="text-xs font-bold text-brand-orange uppercase tracking-wider font-space-grotesk">
+                PROJECT PROFILE METRICS
+              </h3>
+              <div className="space-y-4 font-inter text-xs text-muted-foreground">
+                <div className="flex justify-between border-b border-border/10 pb-2">
+                  <span className="font-semibold">Client Name</span>
+                  <span className="text-brand-navy dark:text-white font-bold">
+                    {project.clientName}
+                  </span>
+                </div>
+                <div className="flex justify-between border-b border-border/10 pb-2">
+                  <span className="font-semibold">Industry Vertical</span>
+                  <span className="text-brand-navy dark:text-white font-bold">
+                    {project.industry.toUpperCase()}
+                  </span>
+                </div>
+                <div className="flex justify-between border-b border-border/10 pb-2">
+                  <span className="font-semibold">Project Timeline</span>
+                  <span className="text-brand-navy dark:text-white font-bold">
+                    {project.timeline}
+                  </span>
+                </div>
+                <div className="flex justify-between pb-2">
+                  <span className="font-semibold">Primary Objective</span>
+                  <span className="text-brand-navy dark:text-white font-bold">
+                    100% Speed & Search Dominance
+                  </span>
+                </div>
+              </div>
+              <div className="p-4 bg-muted/35 rounded-2xl border border-border/20 text-center">
+                <p className="text-[10px] font-bold text-brand-orange font-space-grotesk tracking-widest uppercase">
+                  ACTIVE CASE STUDY ARTIFACT
+                </p>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
 
-            <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-2xl mx-auto font-inter">
-              {project.overview}
+      {/* 2. Slide 1: The Diagnostics (WordPress Collapse) */}
+      <Section className="py-16 md:py-24 border-b border-border/10">
+        <Container className="max-w-4xl mx-auto space-y-12">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk mb-2">
+              PHASE 1: THE DIAGNOSTICS
+            </span>
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-poppins text-brand-navy dark:text-white">
+              WordPress Architecture Deficiencies
+            </h2>
+            <div className="h-1 w-12 bg-brand-orange rounded-full mt-3 mx-auto" />
+            <p className="text-xs text-muted-foreground mt-4 font-inter">
+              We identified 40+ structural and performance flaws on their legacy
+              WooCommerce site that directly choked bookings.
             </p>
           </div>
 
-          {/* Full-width Banner Image or Gradient */}
-          <div className="w-full aspect-[21/9] rounded-3xl relative overflow-hidden select-none shadow-2xl">
-            {project.heroGradient.startsWith("http") ||
-            project.heroGradient.startsWith("/") ? (
-              <Image
-                src={project.heroGradient}
-                alt={project.title}
-                fill
-                sizes="(max-width: 1200px) 100vw, 1200px"
-                className="object-cover"
-                priority
-              />
-            ) : (
-              <div
-                className={cn(
-                  "absolute inset-0 bg-gradient-to-br flex items-center justify-center",
-                  project.heroGradient,
-                )}
-              />
-            )}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15)_0%,transparent_85%)] mix-blend-overlay z-10" />
-            <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-              <Sparkle className="h-8 w-8 text-white/45 animate-pulse mb-3" />
-              <span className="text-xs font-bold text-white/50 tracking-[0.2em] uppercase font-space-grotesk">
-                Case Study Project Artifact
-              </span>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      {/* c) Quick Stats Bar */}
-      <Section className="py-6 border-y border-border/20 bg-muted/5 relative z-10">
-        <Container>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center max-w-4xl mx-auto">
-            {/* Industry */}
-            <div className="flex flex-col items-center p-3 border-r border-border/10 last:border-0 md:border-r">
-              <Building className="h-4 w-4 text-brand-orange mb-2" />
-              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest font-space-grotesk mb-1">
-                INDUSTRY
-              </span>
-              <span className="text-xs font-semibold text-brand-navy dark:text-white font-inter">
-                {project.industry.toUpperCase()}
-              </span>
-            </div>
-
-            {/* Tech Stack */}
-            <div className="flex flex-col items-center p-3 border-r border-border/10 last:border-0 md:border-r">
-              <Code2 className="h-4 w-4 text-brand-orange mb-2" />
-              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest font-space-grotesk mb-1">
-                TECH STACK
-              </span>
-              <span className="text-xs font-semibold text-brand-navy dark:text-white font-inter truncate max-w-full">
-                {project.techStack.slice(0, 2).join(" / ")}
-              </span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="space-y-4">
+              <h4 className="text-sm font-bold text-brand-navy dark:text-white font-poppins">
+                Critical Performance Bottlenecks:
+              </h4>
+              <ul className="space-y-3 text-xs text-muted-foreground font-inter">
+                <li className="flex items-start gap-2.5">
+                  <span className="h-5 w-5 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center shrink-0 font-bold">
+                    !
+                  </span>
+                  <span>
+                    <strong>8 to 10 Second Loading Times:</strong> High volume
+                    of bloated WooCommerce plugins created critical server
+                    response delays.
+                  </span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="h-5 w-5 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center shrink-0 font-bold">
+                    !
+                  </span>
+                  <span>
+                    <strong>Severe Layout Shifts (CLS):</strong> Images lacked
+                    defined dimension markers, causing pages to jump when
+                    rendering on mobile.
+                  </span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="h-5 w-5 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center shrink-0 font-bold">
+                    !
+                  </span>
+                  <span>
+                    <strong>International Card Failure Rate:</strong> No support
+                    for localized payments caused 35% cart abandonment.
+                  </span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="h-5 w-5 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center shrink-0 font-bold">
+                    !
+                  </span>
+                  <span>
+                    <strong>Deadlock DB Errors:</strong> High traffic spikes
+                    during launches caused WooCommerce database pools to lock
+                    and crash.
+                  </span>
+                </li>
+              </ul>
             </div>
 
-            {/* Timeline */}
-            <div className="flex flex-col items-center p-3 border-r border-border/10 last:border-0 md:border-r">
-              <Clock className="h-4 w-4 text-brand-orange mb-2" />
-              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest font-space-grotesk mb-1">
-                TIMELINE
-              </span>
-              <span className="text-xs font-semibold text-brand-navy dark:text-white font-inter">
-                {project.timeline}
-              </span>
-            </div>
-
-            {/* Category */}
-            <div className="flex flex-col items-center p-3">
-              <Tag className="h-4 w-4 text-brand-orange mb-2" />
-              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest font-space-grotesk mb-1">
-                CATEGORY
-              </span>
-              <span className="text-xs font-semibold text-brand-navy dark:text-white font-inter">
-                {project.category.toUpperCase()}
-              </span>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      {/* d) & e) Problem & Solution Section */}
-      <Section className="py-16 md:py-24">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start max-w-4xl mx-auto">
-            {/* The Challenge */}
-            <motion.div
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              className="flex flex-col items-start"
-            >
-              <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block mb-3 font-space-grotesk">
-                THE CHALLENGE
-              </span>
-              <h2 className="text-2xl font-extrabold text-brand-navy dark:text-white mb-4 font-poppins">
-                The Business Problem
-              </h2>
-              <div className="h-1 w-10 bg-brand-orange rounded-full mb-6" />
-              {project.problem.split("\n\n").map((para, i) => (
-                <p
-                  key={i}
-                  className="text-xs text-muted-foreground leading-relaxed font-inter mb-4 last:mb-0"
-                >
-                  {para}
-                </p>
-              ))}
-            </motion.div>
-
-            {/* Our Solution */}
-            <motion.div
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              className="flex flex-col items-start"
-            >
-              <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block mb-3 font-space-grotesk">
-                OUR APPROACH
-              </span>
-              <h2 className="text-2xl font-extrabold text-brand-navy dark:text-white mb-4 font-poppins">
-                The Engineering Solution
-              </h2>
-              <div className="h-1 w-10 bg-brand-orange rounded-full mb-6" />
-              {project.solution.split("\n\n").map((para, i) => (
-                <p
-                  key={i}
-                  className="text-xs text-muted-foreground leading-relaxed font-inter mb-4 last:mb-0"
-                >
-                  {para}
-                </p>
-              ))}
-            </motion.div>
-          </div>
-        </Container>
-      </Section>
-
-      {/* f) Tech Stack badges row */}
-      <Section className="bg-muted/10 border-y border-border/20 py-12">
-        <Container>
-          <div className="text-center max-w-md mx-auto mb-8">
-            <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block mb-1 font-space-grotesk">
-              SYSTEM ARCHITECTURE
-            </span>
-            <h3 className="text-base font-bold text-brand-navy dark:text-white font-poppins">
-              Technologies Utilized
-            </h3>
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-3 max-w-xl mx-auto">
-            {project.techStack.map((tech) => (
-              <div
-                key={tech}
-                className="px-3 py-1.5 rounded-lg border border-border/30 bg-card shadow-sm text-xs font-semibold text-brand-navy/80 dark:text-white/80 font-space-grotesk"
-              >
-                {tech}
+            {/* Performance Comparison Visual Card */}
+            <div className="p-6 bg-muted/10 border border-border/20 rounded-3xl space-y-6">
+              <h4 className="text-xs font-bold text-brand-navy dark:text-white font-space-grotesk tracking-wide text-center">
+                PERFORMANCE METRICS MATRIX
+              </h4>
+              <div className="space-y-4 font-inter text-xs">
+                <div className="grid grid-cols-3 font-bold border-b border-border/10 pb-2 text-muted-foreground">
+                  <span>Metric</span>
+                  <span>WordPress</span>
+                  <span>Next.js</span>
+                </div>
+                <div className="grid grid-cols-3 border-b border-border/10 pb-2">
+                  <span className="font-semibold">Server Response</span>
+                  <span className="text-red-500 font-bold">1200ms</span>
+                  <span className="text-green-500 font-bold">120ms</span>
+                </div>
+                <div className="grid grid-cols-3 border-b border-border/10 pb-2">
+                  <span className="font-semibold">LCP Speed</span>
+                  <span className="text-red-500 font-bold">8.5s</span>
+                  <span className="text-green-500 font-bold">1.2s</span>
+                </div>
+                <div className="grid grid-cols-3 border-b border-border/10 pb-2">
+                  <span className="font-semibold">Page Size</span>
+                  <span className="text-red-500 font-bold">4.8MB</span>
+                  <span className="text-green-500 font-bold">0.6MB</span>
+                </div>
+                <div className="grid grid-cols-3">
+                  <span className="font-semibold">SEO Indexing</span>
+                  <span className="text-red-500 font-bold">Slow / Bloated</span>
+                  <span className="text-green-500 font-bold">
+                    Immediate / SSR
+                  </span>
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </Container>
       </Section>
 
-      {/* g) Results Cards Section */}
-      <Section className="py-16 md:py-24 bg-brand-navy text-white dark:bg-[#070707] dark:border-y dark:border-white/10">
-        <Container>
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <SectionTag className="justify-center text-white">
-              THE IMPACT
-            </SectionTag>
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-poppins">
-              Project results & outcomes
+      {/* 3. Slide 2: Next.js System Architecture Design */}
+      <Section className="py-16 md:py-24 bg-muted/5 border-b border-border/10 relative">
+        <Container className="max-w-4xl mx-auto space-y-12">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk mb-2">
+              PHASE 2: SYSTEM ARCHITECTURE
+            </span>
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-poppins text-brand-navy dark:text-white">
+              Decoupled Headless Engine Design
             </h2>
-            <div className="h-1 w-12 bg-brand-orange rounded-full mt-4 mx-auto" />
+            <div className="h-1 w-12 bg-brand-orange rounded-full mt-3 mx-auto" />
+            <p className="text-xs text-muted-foreground mt-4 font-inter">
+              We decoupled the heavy visual backend from the user-facing
+              storefront.
+            </p>
           </div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
-          >
-            {project.results.map((result, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                className="p-6 rounded-2xl border border-white/5 bg-white/5 text-center flex flex-col justify-center items-center backdrop-blur-sm"
+          {/* Interactive Flowchart Diagram */}
+          <div className="p-6 bg-card border border-border/30 rounded-3xl space-y-6">
+            <h4 className="text-xs font-bold text-brand-navy dark:text-white font-space-grotesk tracking-wide text-center">
+              SYSTEM INTEGRATION & TRAFFIC FLOW PIPELINE
+            </h4>
+            <div className="flex flex-col md:flex-row items-center justify-around gap-6 text-center font-space-grotesk text-xs">
+              {/* Box 1 */}
+              <div className="p-4 rounded-xl border border-border/40 bg-muted/20 w-44 space-y-2">
+                <span className="text-[9px] font-bold text-brand-orange block">
+                  STOREFRONT
+                </span>
+                <span className="font-bold text-brand-navy dark:text-white">
+                  Next.js Web UI
+                </span>
+                <p className="text-[9px] text-muted-foreground font-inter">
+                  Hosted on Vercel Edge Server
+                </p>
+              </div>
+
+              <div className="text-brand-orange font-extrabold rotate-90 md:rotate-0">
+                ➔
+              </div>
+
+              {/* Box 2 */}
+              <div className="p-4 rounded-xl border border-brand-orange/30 bg-brand-orange/5 w-44 space-y-2 relative">
+                <span className="text-[9px] font-bold text-brand-orange block">
+                  API DECOUPLER
+                </span>
+                <span className="font-bold text-brand-navy dark:text-white">
+                  NestJS REST API
+                </span>
+                <p className="text-[9px] text-muted-foreground font-inter">
+                  Docker Gateway Controller
+                </p>
+              </div>
+
+              <div className="text-brand-orange font-extrabold rotate-90 md:rotate-0">
+                ➔
+              </div>
+
+              {/* Box 3 */}
+              <div className="p-4 rounded-xl border border-border/40 bg-muted/20 w-44 space-y-2">
+                <span className="text-[9px] font-bold text-brand-orange block">
+                  DATA RESOURCE
+                </span>
+                <span className="font-bold text-brand-navy dark:text-white">
+                  PostgreSQL DB
+                </span>
+                <p className="text-[9px] text-muted-foreground font-inter">
+                  Amazon RDS Snapshots
+                </p>
+              </div>
+            </div>
+            <p className="text-[10px] text-center text-muted-foreground font-inter max-w-lg mx-auto">
+              Static marketing components are pre-rendered into high-speed
+              static HTML files using Next.js ISR, while booking requests
+              communicate via WebSocket hooks directly to NestJS, keeping the
+              database load close to zero.
+            </p>
+          </div>
+        </Container>
+      </Section>
+
+      {/* 4. Slide 3: The Implementation Steps (Accordion) */}
+      <Section className="py-16 md:py-24 border-b border-border/10">
+        <Container className="max-w-4xl mx-auto space-y-12">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk mb-2">
+              PHASE 3: DETAILED BLUEPRINT
+            </span>
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-poppins text-brand-navy dark:text-white">
+              The Step-by-Step Blueprint
+            </h2>
+            <div className="h-1 w-12 bg-brand-orange rounded-full mt-3 mx-auto" />
+            <p className="text-xs text-muted-foreground mt-4 font-inter">
+              Click on each step below to inspect the design psychology, search
+              engine setup, and content roadmap.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {/* Step 1 Accordion */}
+            <div className="border border-border/20 rounded-2xl bg-card overflow-hidden transition-all duration-300 shadow-sm">
+              <button
+                onClick={() => setOpenStep(openStep === 1 ? null : 1)}
+                className="w-full p-5 flex items-center justify-between cursor-pointer bg-muted/5 hover:bg-muted/10 transition-colors focus:outline-none"
               >
-                <span className="text-3xl md:text-4xl font-extrabold text-brand-orange block mb-2 font-poppins">
-                  {result.metric}
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-bold text-brand-orange font-space-grotesk">
+                    STEP 01
+                  </span>
+                  <h4 className="text-sm font-bold text-brand-navy dark:text-white font-poppins">
+                    UI/UX Design, Typography, & Layout Psychology
+                  </h4>
+                </div>
+                <div
+                  className={cn(
+                    "w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-brand-navy dark:border-t-white transition-transform duration-300",
+                    openStep === 1 ? "rotate-180" : "",
+                  )}
+                />
+              </button>
+              {openStep === 1 && (
+                <div className="p-6 border-t border-border/10 space-y-4 bg-card text-xs text-muted-foreground leading-relaxed font-inter">
+                  <p>
+                    Designing for yoga training requires emotional connection.
+                    We ditched generic stock imagery and implemented a custom
+                    media system utilizing real photos of the Bali Yoga Teacher
+                    Training Center, its instructors, and physical properties.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                    <div className="p-3 bg-muted/20 border border-border/10 rounded-xl space-y-1">
+                      <span className="font-bold text-brand-navy dark:text-white">
+                        Color Strategy
+                      </span>
+                      <p className="text-[10px]">
+                        Earthy orange gradients (#FF6B00) mixed with dark slate
+                        colors to represent energy and calm balance.
+                      </p>
+                    </div>
+                    <div className="p-3 bg-muted/20 border border-border/10 rounded-xl space-y-1">
+                      <span className="font-bold text-brand-navy dark:text-white">
+                        Image Lazy Load
+                      </span>
+                      <p className="text-[10px]">
+                        All visual elements are compressed into WebP formats,
+                        utilizing local dimensions to prevent cumulative layout
+                        shifts.
+                      </p>
+                    </div>
+                    <div className="p-3 bg-muted/20 border border-border/10 rounded-xl space-y-1">
+                      <span className="font-bold text-brand-navy dark:text-white">
+                        Booking Dashboard
+                      </span>
+                      <p className="text-[10px]">
+                        Decoupled dates panel allowing administrators to modify
+                        batch packages, discount prices, and schedules easily.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Step 2 Accordion */}
+            <div className="border border-border/20 rounded-2xl bg-card overflow-hidden transition-all duration-300 shadow-sm">
+              <button
+                onClick={() => setOpenStep(openStep === 2 ? null : 2)}
+                className="w-full p-5 flex items-center justify-between cursor-pointer bg-muted/5 hover:bg-muted/10 transition-colors focus:outline-none"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-bold text-brand-orange font-space-grotesk">
+                    STEP 02
+                  </span>
+                  <h4 className="text-sm font-bold text-brand-navy dark:text-white font-poppins">
+                    Headless Booking Automation & Cart Recovery
+                  </h4>
+                </div>
+                <div
+                  className={cn(
+                    "w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-brand-navy dark:border-t-white transition-transform duration-300",
+                    openStep === 2 ? "rotate-180" : "",
+                  )}
+                />
+              </button>
+              {openStep === 2 && (
+                <div className="p-6 border-t border-border/10 space-y-4 bg-card text-xs text-muted-foreground leading-relaxed font-inter">
+                  <p>
+                    We created a transaction funnel that minimizes cart drops.
+                    When a potential client enters their details but abandons
+                    checkout before inputting payment options, a recovery
+                    pipeline triggers:
+                  </p>
+                  <ul className="list-disc pl-5 space-y-1.5">
+                    <li>
+                      <strong>Real-time Leads Logger:</strong> Saves client
+                      details immediately upon entering checkout, before
+                      transaction completion.
+                    </li>
+                    <li>
+                      <strong>CRM Integration Webhook:</strong> Dispatches
+                      incomplete leads directly to the admin panel with
+                      WhatsApp/Email trigger buttons.
+                    </li>
+                    <li>
+                      <strong>Localized Stripe Flow:</strong> Detects user IP
+                      country to route currencies, preventing authorization
+                      drops.
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            {/* Step 3 Accordion */}
+            <div className="border border-border/20 rounded-2xl bg-card overflow-hidden transition-all duration-300 shadow-sm">
+              <button
+                onClick={() => setOpenStep(openStep === 3 ? null : 3)}
+                className="w-full p-5 flex items-center justify-between cursor-pointer bg-muted/5 hover:bg-muted/10 transition-colors focus:outline-none"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-bold text-brand-orange font-space-grotesk">
+                    STEP 03
+                  </span>
+                  <h4 className="text-sm font-bold text-brand-navy dark:text-white font-poppins">
+                    Search Engine Optimization & Indexing Setup
+                  </h4>
+                </div>
+                <div
+                  className={cn(
+                    "w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-brand-navy dark:border-t-white transition-transform duration-300",
+                    openStep === 3 ? "rotate-180" : "",
+                  )}
+                />
+              </button>
+              {openStep === 3 && (
+                <div className="p-6 border-t border-border/10 space-y-4 bg-card text-xs text-muted-foreground leading-relaxed font-inter">
+                  <p>
+                    A fast page is useless without traffic. We rebuilt the
+                    organic indexing architecture to align with Google crawlers:
+                  </p>
+                  <ul className="list-disc pl-5 space-y-1.5">
+                    <li>
+                      <strong>Clean Sitemap.xml:</strong> Dynamically updated
+                      sitemap that lists active pages, blogs, and tour details
+                      instantly.
+                    </li>
+                    <li>
+                      <strong>SEO Meta Editor:</strong> An admin interface
+                      allowing editors to rewrite meta descriptions, alt
+                      attributes, and canonical links.
+                    </li>
+                    <li>
+                      <strong>Structured Schema Markup:</strong> Added JSON-LD
+                      schema tags for LocalBusiness and Course offerings,
+                      helping Google display rich search snippets.
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            {/* Step 4 Accordion */}
+            <div className="border border-border/20 rounded-2xl bg-card overflow-hidden transition-all duration-300 shadow-sm">
+              <button
+                onClick={() => setOpenStep(openStep === 4 ? null : 4)}
+                className="w-full p-5 flex items-center justify-between cursor-pointer bg-muted/5 hover:bg-muted/10 transition-colors focus:outline-none"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-bold text-brand-orange font-space-grotesk">
+                    STEP 04
+                  </span>
+                  <h4 className="text-sm font-bold text-brand-navy dark:text-white font-poppins">
+                    The Monthly Organic SEO Content Strategy
+                  </h4>
+                </div>
+                <div
+                  className={cn(
+                    "w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-brand-navy dark:border-t-white transition-transform duration-300",
+                    openStep === 4 ? "rotate-180" : "",
+                  )}
+                />
+              </button>
+              {openStep === 4 && (
+                <div className="p-6 border-t border-border/10 space-y-4 bg-card text-xs text-muted-foreground leading-relaxed font-inter">
+                  <p>
+                    Rather than relying on short-term ads, we executed a
+                    recurring monthly organic growth engine:
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="p-3 bg-muted/20 border border-border/10 rounded-xl space-y-1">
+                      <span className="font-bold text-brand-navy dark:text-white">
+                        Content Pipeline
+                      </span>
+                      <p className="text-[10px]">
+                        Publishing 4 target blog posts monthly focusing on
+                        keyword search queries (e.g. "best yoga school in
+                        bali").
+                      </p>
+                    </div>
+                    <div className="p-3 bg-muted/20 border border-border/10 rounded-xl space-y-1">
+                      <span className="font-bold text-brand-navy dark:text-white">
+                        Local SEO Updates
+                      </span>
+                      <p className="text-[10px]">
+                        4 weekly Google Business Profile posts and local
+                        citations updates to dominate local search map packs.
+                      </p>
+                    </div>
+                    <div className="p-3 bg-muted/20 border border-border/10 rounded-xl space-y-1">
+                      <span className="font-bold text-brand-navy dark:text-white">
+                        Backlink Building
+                      </span>
+                      <p className="text-[10px]">
+                        Acquiring 4 high-authority niche edits/backlinks to
+                        increase Domain Rating (DR) safely.
+                      </p>
+                    </div>
+                    <div className="p-3 bg-muted/20 border border-border/10 rounded-xl space-y-1">
+                      <span className="font-bold text-brand-navy dark:text-white">
+                        Q&A & Referral Forums
+                      </span>
+                      <p className="text-[10px]">
+                        Targeted marketing on Reddit, Quora, and travel forums
+                        to redirect active travelers to balivttc.com.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* 5. Slide 4: Competitor Gaps & Keyword Search Matrix */}
+      <Section className="py-16 md:py-24 bg-muted/5 border-b border-border/10">
+        <Container className="max-w-4xl mx-auto space-y-8">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk mb-2">
+              PHASE 4: MARKET ANALYTICS
+            </span>
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-poppins text-brand-navy dark:text-white">
+              Competitor Gap & Keyword Matrix
+            </h2>
+            <div className="h-1 w-12 bg-brand-orange rounded-full mt-3 mx-auto" />
+            <p className="text-xs text-muted-foreground mt-4 font-inter">
+              Detailed analysis of target keywords optimized for the monthly
+              marketing engine.
+            </p>
+          </div>
+
+          <div className="border border-border/30 rounded-3xl bg-card overflow-hidden shadow-md">
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse text-left text-xs font-inter">
+                <thead className="bg-muted/40 font-bold font-space-grotesk text-muted-foreground border-b border-border/10">
+                  <tr>
+                    <th className="p-4">Target Keyword</th>
+                    <th className="p-4">Monthly Volume</th>
+                    <th className="p-4">Difficulty (KD)</th>
+                    <th className="p-4">Competitor Status</th>
+                    <th className="p-4 text-brand-orange">Our Action</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/10">
+                  <tr>
+                    <td className="p-4 font-semibold text-brand-navy dark:text-white">
+                      yoga teacher training bali
+                    </td>
+                    <td className="p-4">8,100</td>
+                    <td className="p-4">Hard (48)</td>
+                    <td className="p-4 text-red-500 font-semibold">
+                      Ranking Top 3
+                    </td>
+                    <td className="p-4 font-semibold text-brand-orange">
+                      Competitor Gap Article
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-semibold text-brand-navy dark:text-white">
+                      200 hour yoga teacher training bali
+                    </td>
+                    <td className="p-4">3,200</td>
+                    <td className="p-4">Medium (29)</td>
+                    <td className="p-4 text-yellow-600 font-semibold">
+                      Ranking Page 1
+                    </td>
+                    <td className="p-4 font-semibold text-brand-orange">
+                      Landing Page Schema Optimization
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-semibold text-brand-navy dark:text-white">
+                      best yoga school in bali reviews
+                    </td>
+                    <td className="p-4">1,400</td>
+                    <td className="p-4">Easy (12)</td>
+                    <td className="p-4 text-green-500 font-semibold">
+                      Unranked
+                    </td>
+                    <td className="p-4 font-semibold text-brand-orange">
+                      4 Blogs + Forum Backlinks
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* 6. Slide 5: Results & Search Console Organic Traffic Growth */}
+      <Section className="py-16 md:py-24 bg-brand-navy text-white dark:bg-[#070707] dark:border-y dark:border-white/10">
+        <Container className="max-w-4xl mx-auto space-y-12">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk mb-2 text-white/80">
+              PHASE 5: RESULTS & OUTCOMES
+            </span>
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-poppins">
+              The Real Traffic Impact
+            </h2>
+            <div className="h-1 w-12 bg-brand-orange rounded-full mt-3 mx-auto" />
+            <p className="text-xs text-white/70 mt-4 font-inter">
+              How the platform performed after launch, shifting from WordPress
+              limits.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Outcomes Metric Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-6">
+              <div className="p-6 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm">
+                <span className="text-3xl font-extrabold text-brand-orange block mb-1 font-poppins">
+                  +240%
                 </span>
                 <span className="text-xs font-semibold text-white/80 font-space-grotesk tracking-wide uppercase">
-                  {result.label}
+                  Booking Conversions
                 </span>
-              </motion.div>
-            ))}
-          </motion.div>
+              </div>
+              <div className="p-6 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm">
+                <span className="text-3xl font-extrabold text-brand-orange block mb-1 font-poppins">
+                  0%
+                </span>
+                <span className="text-xs font-semibold text-white/80 font-space-grotesk tracking-wide uppercase">
+                  Server Downtime in Launches
+                </span>
+              </div>
+              <div className="p-6 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm">
+                <span className="text-3xl font-extrabold text-brand-orange block mb-1 font-poppins">
+                  35%
+                </span>
+                <span className="text-xs font-semibold text-white/80 font-space-grotesk tracking-wide uppercase">
+                  Recaptured Cart Leads
+                </span>
+              </div>
+            </div>
+
+            {/* Growth Area Chart */}
+            <div className="p-6 bg-white/5 border border-white/10 rounded-3xl space-y-4">
+              <h4 className="text-xs font-bold font-space-grotesk text-white/90 tracking-wider text-center">
+                6-MONTH ORGANIC SEARCH CONSOLE CLICKS
+              </h4>
+              <div className="w-full h-44 relative">
+                <svg
+                  className="w-full h-full"
+                  viewBox="0 0 300 120"
+                  preserveAspectRatio="none"
+                >
+                  <defs>
+                    <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#FF6B00" stopOpacity="0.4" />
+                      <stop
+                        offset="100%"
+                        stopColor="#FF6B00"
+                        stopOpacity="0.0"
+                      />
+                    </linearGradient>
+                  </defs>
+                  {/* Grid Lines */}
+                  <line
+                    x1="0"
+                    y1="20"
+                    x2="300"
+                    y2="20"
+                    stroke="rgba(255,255,255,0.05)"
+                    strokeWidth="1"
+                  />
+                  <line
+                    x1="0"
+                    y1="60"
+                    x2="300"
+                    y2="60"
+                    stroke="rgba(255,255,255,0.05)"
+                    strokeWidth="1"
+                  />
+                  <line
+                    x1="0"
+                    y1="100"
+                    x2="300"
+                    y2="100"
+                    stroke="rgba(255,255,255,0.05)"
+                    strokeWidth="1"
+                  />
+                  {/* Chart Path */}
+                  <path
+                    d="M 0 110 Q 50 100 100 80 T 200 40 T 300 10 L 300 120 L 0 120 Z"
+                    fill="url(#chartGrad)"
+                  />
+                  <path
+                    d="M 0 110 Q 50 100 100 80 T 200 40 T 300 10"
+                    fill="none"
+                    stroke="#FF6B00"
+                    strokeWidth="3"
+                  />
+                  {/* Nodes */}
+                  <circle cx="100" cy="80" r="4" fill="#FF6B00" />
+                  <circle cx="200" cy="40" r="4" fill="#FF6B00" />
+                  <circle cx="300" cy="10" r="4" fill="#FF6B00" />
+                </svg>
+              </div>
+              <div className="flex justify-between text-[10px] font-bold text-white/50 font-space-grotesk">
+                <span>Month 1 (Launch)</span>
+                <span>Month 3 (SEO Crawl)</span>
+                <span>Month 6 (Page 1 Domination)</span>
+              </div>
+            </div>
+          </div>
         </Container>
       </Section>
 
-      {/* h) Screenshots Gallery */}
+      {/* 7. Slide 6: Founders Review & Video Mockup */}
+      <Section className="py-16 md:py-24 bg-muted/5 border-b border-border/10">
+        <Container className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-4">
+              <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk">
+                CLIENT TESTIMONIAL
+              </span>
+              <h2 className="text-2xl font-extrabold text-brand-navy dark:text-white font-poppins">
+                Founder Review Transcript
+              </h2>
+              <div className="h-1 w-10 bg-brand-orange rounded-full mb-6" />
+              <p className="text-xs text-muted-foreground leading-relaxed font-inter italic">
+                &ldquo;Migrating our core booking funnel from WordPress to this
+                Next.js headless framework was the best business choice we made.
+                Our server has not crashed since launch day, and our sales team
+                converts 35% more cart drop-offs using our CRM alerts.&rdquo;
+              </p>
+              <h5 className="text-xs font-bold text-brand-navy dark:text-white font-space-grotesk">
+                — Ketut M., Co-Founder of Bali YTTC
+              </h5>
+            </div>
+
+            {/* Video Placeholder Container */}
+            <div className="aspect-video w-full bg-slate-900 rounded-3xl border border-border/30 overflow-hidden relative shadow-lg group">
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,107,0,0.1)_0%,transparent_75%)]" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-white/85 p-6 z-10 text-center">
+                <div className="h-14 w-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center cursor-pointer transition-transform duration-300 hover:scale-110 mb-4 group-hover:bg-brand-orange group-hover:border-brand-orange">
+                  <svg
+                    className="w-6 h-6 fill-current text-white ml-1"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+                <span className="text-xs font-bold tracking-widest font-space-grotesk text-white">
+                  PLAY REVIEW VIDEO
+                </span>
+                <span className="text-[9px] font-bold text-white/50 tracking-wider uppercase font-inter mt-1.5">
+                  balivttc.com Owner Video Mockup Container
+                </span>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* 8. Screenshots Gallery */}
       <Section className="py-16 md:py-24">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16">
