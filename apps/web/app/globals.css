@@ -8,34 +8,34 @@
   /* Light Mode */
   :root {
     /* Backgrounds */
-    --background: 220 14% 98%;          /* #F4F5F7-ish base background */
+    --background: 220 14% 98%; /* #F4F5F7-ish base background */
     --background-secondary: 220 14% 96%; /* #F4F5F7 */
-    --background-tertiary: 220 13% 91%;  /* #E8EAED */
-    
+    --background-tertiary: 220 13% 91%; /* #E8EAED */
+
     /* Foreground/Text */
-    --foreground: 220 26% 14%;          /* #1A1F2E */
-    --foreground-secondary: 220 9% 46%;  /* #6B7280 */
-    --foreground-muted: 220 9% 64%;     /* #9CA3AF */
-    
+    --foreground: 220 26% 14%; /* #1A1F2E */
+    --foreground-secondary: 220 9% 46%; /* #6B7280 */
+    --foreground-muted: 220 9% 64%; /* #9CA3AF */
+
     /* Card */
-    --card: 0 0% 100%;                  /* #FFFFFF */
+    --card: 0 0% 100%; /* #FFFFFF */
     --card-foreground: 220 26% 14%;
-    
+
     /* Popover */
     --popover: 0 0% 100%;
     --popover-foreground: 220 26% 14%;
-    
+
     /* Border */
-    --border: 220 13% 91%;              /* #E8EAED */
-    --border-strong: 220 13% 82%;       /* #D1D5DB */
-    
+    --border: 220 13% 91%; /* #E8EAED */
+    --border-strong: 220 13% 82%; /* #D1D5DB */
+
     /* Brand Colors (HSL mapped) */
-    --brand-orange: 24 100% 50%;        /* #FF6B00 */
-    --brand-orange-hover: 24 100% 44%;  /* #E05E00 */
-    --brand-orange-light: 24 100% 97%;  /* #FFF5F0 */
-    --brand-navy: 214 68% 14%;          /* #0B1F3A */
-    --brand-blue: 211 96% 58%;          /* #2D8CFF */
-    
+    --brand-orange: 24 100% 50%; /* #FF6B00 */
+    --brand-orange-hover: 24 100% 44%; /* #E05E00 */
+    --brand-orange-light: 24 100% 97%; /* #FFF5F0 */
+    --brand-navy: 214 68% 14%; /* #0B1F3A */
+    --brand-blue: 211 96% 58%; /* #2D8CFF */
+
     /* Shadcn compatibility */
     --primary: 24 100% 50%;
     --primary-foreground: 0 0% 100%;
@@ -49,7 +49,7 @@
     --destructive-foreground: 0 0% 100%;
     --input: 220 13% 91%;
     --ring: 24 100% 50%;
-    
+
     /* Radii */
     --radius: 0.75rem;
     --radius-sm: 0.5rem;
@@ -60,46 +60,46 @@
   /* Dark Mode */
   .dark {
     /* Backgrounds */
-    --background: 220 26% 4%;           /* #080B10 */
-    --background-secondary: 214 68% 14%; /* #0B1F3A = navy */
-    --background-tertiary: 214 50% 18%;  /* slightly lighter navy */
-    
+    --background: 240 10% 3.9%; /* #09090b - Zinc/Coal Black */
+    --background-secondary: 240 10% 6%; /* #0f0f12 - Charcoal Card background */
+    --background-tertiary: 240 6% 10%; /* #18181b - Zinc 900 */
+
     /* Foreground/Text */
     --foreground: 0 0% 95%;
-    --foreground-secondary: 220 9% 64%;
-    --foreground-muted: 220 9% 46%;
-    
+    --foreground-secondary: 240 5% 65%;
+    --foreground-muted: 240 5% 45%;
+
     /* Card */
-    --card: 214 50% 10%;
+    --card: 240 10% 6%; /* #0f0f12 - Charcoal Card */
     --card-foreground: 0 0% 95%;
-    
+
     /* Popover */
-    --popover: 214 50% 10%;
+    --popover: 240 10% 6%;
     --popover-foreground: 0 0% 95%;
-    
+
     /* Border */
-    --border: 214 30% 20%;
-    --border-strong: 214 30% 30%;
-    
+    --border: 240 6% 15%; /* #27272a - Zinc 800 */
+    --border-strong: 240 6% 25%; /* #3f3f46 - Zinc 700 */
+
     /* Brand Colors (Dark Adaptations) */
     --brand-orange: 24 100% 50%;
     --brand-orange-hover: 24 100% 56%;
     --brand-orange-light: 24 100% 15%;
-    --brand-navy: 214 68% 14%;
+    --brand-navy: 240 10% 6%;
     --brand-blue: 211 96% 58%;
-    
+
     /* Shadcn compatibility */
     --primary: 24 100% 50%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 214 68% 14%;
+    --secondary: 240 6% 15%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 214 50% 10%;
-    --muted-foreground: 220 9% 64%;
+    --muted: 240 10% 6%;
+    --muted-foreground: 240 5% 65%;
     --accent: 24 100% 15%;
     --accent-foreground: 24 100% 60%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --input: 214 30% 20%;
+    --input: 240 6% 15%;
     --ring: 24 100% 50%;
   }
 }
@@ -108,24 +108,32 @@
   * {
     @apply border-border;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
-    font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
+    font-family: var(--font-inter), "Inter", system-ui, sans-serif;
     font-size: 15px;
     line-height: 1.75;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: hsl(var(--background));
     color: hsl(var(--foreground-secondary));
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-poppins), 'Poppins', sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-poppins), "Poppins", sans-serif;
     font-weight: 700;
     line-height: 1.15;
     letter-spacing: -0.02em;
@@ -174,7 +182,7 @@ body {
   background: hsl(var(--background));
 }
 ::-webkit-scrollbar-thumb {
-  background: #FF6B00;
+  background: #ff6b00;
   border-radius: 3px;
 }
 
@@ -187,40 +195,69 @@ body {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #FF6B00;
+  color: #ff6b00;
 }
 .section-tag::before {
-  content: '';
+  content: "";
   display: inline-block;
   width: 1rem;
   height: 1.5px;
-  background: #FF6B00;
+  background: #ff6b00;
   flex-shrink: 0;
 }
 
 /* Float animations for particles */
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0px) translateX(0px); }
-  33% { transform: translateY(-20px) translateX(10px); }
-  66% { transform: translateY(10px) translateX(-10px); }
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  33% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  66% {
+    transform: translateY(10px) translateX(-10px);
+  }
 }
 @keyframes float-medium {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-15px) rotate(180deg); }
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(180deg);
+  }
 }
 @keyframes float-fast {
-  0%, 100% { transform: translateY(0px) translateX(0px); }
-  25% { transform: translateY(-25px) translateX(15px); }
-  75% { transform: translateY(15px) translateX(-8px); }
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-25px) translateX(15px);
+  }
+  75% {
+    transform: translateY(15px) translateX(-8px);
+  }
 }
-.animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
-.animate-float-medium { animation: float-medium 5s ease-in-out infinite; }
-.animate-float-fast { animation: float-fast 6s ease-in-out infinite; }
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+.animate-float-medium {
+  animation: float-medium 5s ease-in-out infinite;
+}
+.animate-float-fast {
+  animation: float-fast 6s ease-in-out infinite;
+}
 
 /* Marquee infinite scroll */
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 .animate-marquee {
   animation: marquee 30s linear infinite;
@@ -231,8 +268,9 @@ body {
 
 /* Glow effects */
 .glow-orange {
-  box-shadow: 0 0 40px rgba(255, 107, 0, 0.15), 
-              0 0 80px rgba(255, 107, 0, 0.05);
+  box-shadow:
+    0 0 40px rgba(255, 107, 0, 0.15),
+    0 0 80px rgba(255, 107, 0, 0.05);
 }
 .glow-orange-text {
   text-shadow: 0 0 30px rgba(255, 107, 0, 0.4);
@@ -243,15 +281,17 @@ body {
   background: hsl(var(--card));
   border: 1px solid hsl(var(--border));
   border-radius: var(--radius);
-  transition: border-color 0.2s ease, 
-              transform 0.2s ease, 
-              box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 .card-base:hover {
   border-color: rgba(255, 107, 0, 0.4);
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.08), 
-              0 4px 8px rgba(255,107,0,0.06);
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.08),
+    0 4px 8px rgba(255, 107, 0, 0.06);
 }
 
 /* Document View Transitions Styling for circular theme wave */
