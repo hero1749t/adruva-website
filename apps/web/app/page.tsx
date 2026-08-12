@@ -100,8 +100,9 @@ export default async function Home() {
       email: "hello@adruvaSolution.com",
     },
     sameAs: [
-      "https://linkedin.com/company/adruva-solution",
-      "https://instagram.com/adruvaSolution",
+      "https://www.facebook.com/p/Adruva-solution-61559775392656/",
+      "https://www.instagram.com/adruvasolution/",
+      "https://www.linkedin.com/company/adruva-solution",
     ],
   };
 

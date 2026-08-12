@@ -65,10 +65,14 @@ export function Footer() {
     settings.officeAddress ||
     "Rajpur Road, Jakhan, Dehradun, Uttarakhand, India - 248001";
 
-  const facebookUrl = settings.facebookUrl || "https://facebook.com";
-  const linkedinUrl = settings.linkedinUrl || "https://linkedin.com";
-  const instagramUrl = settings.instagramUrl || "https://instagram.com";
-  const twitterUrl = settings.twitterUrl || "https://twitter.com";
+  const facebookUrl =
+    settings.facebookUrl ||
+    "https://www.facebook.com/p/Adruva-solution-61559775392656/";
+  const linkedinUrl =
+    settings.linkedinUrl || "https://www.linkedin.com/company/adruva-solution";
+  const instagramUrl =
+    settings.instagramUrl || "https://www.instagram.com/adruvasolution/";
+  const twitterUrl = settings.twitterUrl || "https://x.com/adruvasolution";
   const youtubeUrl = settings.youtubeUrl || "https://youtube.com";
 
   const whatsappNumber = settings.contactPhone
