@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import NextImage from "next/image";
 import {
   Check,
   ChevronRight,
@@ -208,7 +209,7 @@ const mockProjects = [
     description:
       "A high-performance headless booking engine and CRM database built to manage yoga teacher training course enrollments and payments worldwide.",
     tech: ["Next.js", "NestJS", "PostgreSQL", "Tailwind CSS", "TanStack Query"],
-    gradient: "from-orange-500/80 to-navy-950/80",
+    gradient: "/work/bali-yoga.jpg",
     slug: "bali-yoga-teacher-training",
   },
   {
@@ -218,7 +219,7 @@ const mockProjects = [
     description:
       "An advanced offline-first restaurant SaaS platform with contactless QR code menus, instant order dispatching, and live billing metrics.",
     tech: ["React", "Prisma", "Tailwind CSS", "Node.js", "WebSocket"],
-    gradient: "from-teal-600/80 to-navy-900/80",
+    gradient: "/work/adruva-resto.jpg",
     slug: "adruva-resto-system",
   },
   {
@@ -228,7 +229,7 @@ const mockProjects = [
     description:
       "A complete organic search optimization and custom package booking engine that positioned the brand on Page 1 for premium adventure tours.",
     tech: ["React", "Tailwind CSS", "Google Maps API", "SEO Optimization"],
-    gradient: "from-blue-600/80 to-navy-900/80",
+    gradient: "/work/vintage-tours.jpg",
     slug: "vintage-tours-and-travels",
   },
   // Automate
@@ -239,7 +240,7 @@ const mockProjects = [
     description:
       "Automated order-taking, WhatsApp dispatching system, and real-time CRM updates.",
     tech: ["NestJS", "WhatsApp Cloud API", "PostgreSQL"],
-    gradient: "from-blue-600/80 to-orange-600/80",
+    gradient: "/work/adruva-resto.jpg",
     slug: "lura-cafe",
   },
   {
@@ -249,7 +250,7 @@ const mockProjects = [
     description:
       "AI-powered WhatsApp lead qualifier and automated property catalog matching.",
     tech: ["Python", "OpenAI API", "n8n"],
-    gradient: "from-purple-600/80 to-pink-600/80",
+    gradient: "/work/ecommerce-app.jpg",
     slug: "real-estate-bot",
   },
   {
@@ -259,7 +260,7 @@ const mockProjects = [
     description:
       "Document extraction pipeline processing PDFs into accounting systems automatically.",
     tech: ["Python", "Make.com", "Google Drive API"],
-    gradient: "from-teal-600/80 to-emerald-600/80",
+    gradient: "/work/local-seo.jpg",
     slug: "auto-invoicing",
   },
   // Grow
@@ -270,7 +271,7 @@ const mockProjects = [
     description:
       "Google and Meta ad systems driving 150+ direct booking inquiries monthly.",
     tech: ["Google Ads", "Meta Pixel", "Retargeting"],
-    gradient: "from-green-600/80 to-navy-950/80",
+    gradient: "/work/vintage-tours.jpg",
     slug: "eco-stay-growth",
   },
   {
@@ -280,7 +281,7 @@ const mockProjects = [
     description:
       "Local Meta Ads campaign generating 300+ membership signups in 90 days.",
     tech: ["Meta Ads", "Lead Forms", "WhatsApp Flow"],
-    gradient: "from-red-600/80 to-orange-600/80",
+    gradient: "/work/ecommerce-app.jpg",
     slug: "gym-lead-funnel",
   },
   {
@@ -290,7 +291,7 @@ const mockProjects = [
     description:
       "Ranking on Page 1 for local search terms, yielding a 200% increase in patient bookings.",
     tech: ["SEO Audit", "Keyword Strategy", "GMB"],
-    gradient: "from-sky-600/80 to-indigo-900/80",
+    gradient: "/work/local-seo.jpg",
     slug: "clinic-seo",
   },
   // Design
@@ -301,7 +302,7 @@ const mockProjects = [
     description:
       "Logo, typeface, and complete modern product packaging visual identities.",
     tech: ["Brand Identity", "Logo Design", "Vector Assets"],
-    gradient: "from-yellow-500/80 to-orange-600/80",
+    gradient: "/work/brand-identity.jpg",
     slug: "doon-dairy",
   },
   {
@@ -311,7 +312,7 @@ const mockProjects = [
     description:
       "High-fidelity Figma wireframes and prototypes for a trekking portal.",
     tech: ["Figma", "UI/UX Design", "User Personas"],
-    gradient: "from-emerald-500/80 to-teal-900/80",
+    gradient: "/work/vintage-tours.jpg",
     slug: "trekking-ui",
   },
   {
@@ -321,7 +322,7 @@ const mockProjects = [
     description:
       "A dark-mode analytics dashboard designed for developer tool readability.",
     tech: ["Figma", "Style System", "Dashboard UI"],
-    gradient: "from-violet-600/80 to-navy-950/80",
+    gradient: "/work/brand-identity.jpg",
     slug: "saas-dashboard-design",
   },
 ];
@@ -733,15 +734,27 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
                   key={project.slug}
                   className="flex flex-col rounded-2xl border border-border/40 bg-card overflow-hidden transition-all duration-300 group hover:border-brand-orange/30 hover:shadow-[0_4px_20px_rgba(255,107,0,0.06)]"
                 >
-                  {/* Image Gradient Placeholder */}
-                  <div
-                    className={cn(
-                      "h-40 w-full bg-gradient-to-br flex items-center justify-center p-6 relative overflow-hidden select-none",
-                      project.gradient,
+                  {/* Image or Gradient Preview */}
+                  <div className="h-40 w-full relative overflow-hidden select-none">
+                    {project.gradient.startsWith("http") ||
+                    project.gradient.startsWith("/") ? (
+                      <NextImage
+                        src={project.gradient}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div
+                        className={cn(
+                          "absolute inset-0 bg-gradient-to-br",
+                          project.gradient,
+                        )}
+                      />
                     )}
-                  >
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.12)_0%,transparent_80%)] mix-blend-overlay" />
-                    <span className="text-[10px] font-extrabold tracking-widest text-white/50 uppercase font-space-grotesk">
+                    <div className="absolute inset-0 bg-black/15 z-10" />
+                    <span className="absolute bottom-3 left-3 text-[9px] font-extrabold tracking-widest text-white/95 uppercase font-space-grotesk bg-black/40 px-2 py-0.5 rounded backdrop-blur-sm z-20">
                       {project.industry} Case Study
                     </span>
                   </div>

@@ -38,20 +38,20 @@ export const projects: ProjectItem[] = [
     clientName: "Bali Yoga Teacher Training Center",
     timeline: "10 weeks",
     overview:
-      "A high-performance headless booking engine and CRM database built to manage yoga teacher training course enrollments and payments worldwide.",
+      "A high-performance headless booking engine and CRM database built to manage yoga teacher training course enrollments and payments worldwide. Developed to replace a legacy WooCommerce store, this system features a decoupled architecture that separates the static marketing pages from the dynamic booking funnel.",
     problem:
-      "The Bali Yoga Teacher Training Center was using a legacy WordPress and WooCommerce setup that struggled to handle traffic surges. Whenever new batches or seasonal discounts were announced, server response times spiked to over 15 seconds, frequently causing complete site crashes. This bottleneck directly led to lost bookings during peak sales windows.\n\nFurthermore, students enrolling from various parts of the world—including Europe, the USA, and South America—faced constant payment transaction failures. The legacy plugin stack lacked localized currency support and intelligent routing for international credit cards, causing frustrated customers to abandon their carts. The sales team had no visibility into these dropped registrations, with no way to follow up or recover high-value leads.",
+      "The Bali Yoga Teacher Training Center was using a legacy WordPress and WooCommerce setup that struggled to handle traffic surges. Whenever new batches or seasonal discounts were announced, server response times spiked to over 15 seconds, frequently causing complete site crashes. This bottleneck directly led to lost bookings during peak sales windows.\n\nFurthermore, students enrolling from various parts of the world—including Europe, the USA, and South America—faced constant payment transaction failures. The legacy plugin stack lacked localized currency support and intelligent routing for international credit cards, causing frustrated customers to abandon their carts. The sales team had no visibility into these dropped registrations, with no way to follow up or recover high-value leads.\n\nIn addition, the content editors found it extremely difficult to update course dates, pricing, and accommodation packages dynamically. The legacy Gutenberg page builder was slow and bloated, making it impossible to scale the business to multiple locations across Bali.",
     solution:
-      "To address these infrastructure and conversion challenges, we built a modern headless booking ecosystem from the ground up.\n\nWe separated the user experience by building a high-speed Next.js frontend deployed on Vercel. For the backend, we developed a robust, highly performant NestJS API running on a scalable Docker instance. This decoupled architecture brought server response times down to under 150ms and completely eliminated launch-day server crashes.\n\nTo optimize the global booking flow, we implemented dynamic internationalization (i18n) and integrated a smart payment router using Stripe and PayPal. The system automatically detects the student's country, displays localized pricing, and handles multi-currency transactions smoothly. We also built a custom database logging pipeline that captures incomplete registrations. When a student abandons their checkout, the sales team receives a real-time notification on a custom-designed dashboard, enabling them to reach out and recover sales immediately.",
+      "To address these infrastructure and conversion challenges, we built a modern headless booking ecosystem from the ground up.\n\nWe separated the user experience by building a high-speed Next.js frontend deployed on Vercel. For the backend, we developed a robust, highly performant NestJS API running on a scalable Docker instance. This decoupled architecture brought server response times down to under 150ms and completely eliminated launch-day server crashes.\n\nTo optimize the global booking flow, we implemented dynamic internationalization (i18n) and integrated a smart payment router using Stripe and PayPal. The system automatically detects the student's country, displays localized pricing, and handles multi-currency transactions smoothly. We also built a custom database logging pipeline that captures incomplete registrations. When a student abandons their checkout, the sales team receives a real-time notification on a custom-designed dashboard, enabling them to reach out and recover sales immediately.\n\nFor security, we configured CSRF protection, strict CORS origins, and encrypted database connections. The entire system is built to comply with PCI-DSS standards for cardholder data safety. An automated backup cron job runs every 6 hours, storing encrypted database snapshots in AWS S3 buckets to ensure zero data loss.",
     results: [
       { metric: "240%", label: "Increase in Booking Conversion" },
       { metric: "0%", label: "Server Downtime in Launches" },
       { metric: "35%", label: "Recaptured Cart Leads" },
     ],
     gallery: [
-      "from-orange-800 to-amber-900",
-      "from-rose-900/50 to-orange-950",
-      "from-amber-950 to-yellow-900",
+      "/work/bali-yoga.jpg",
+      "/work/vintage-tours.jpg",
+      "/work/adruva-resto.jpg",
     ],
   },
   {
@@ -65,20 +65,20 @@ export const projects: ProjectItem[] = [
     clientName: "Vintage Tours & Travels India",
     timeline: "8 weeks",
     overview:
-      "A complete organic search optimization and custom package booking engine that positioned the brand on Page 1 for premium adventure tours.",
+      "A complete organic search optimization and custom package booking engine that positioned the brand on Page 1 for premium adventure tours. Redesigned to support complex custom itineraries and local SEO rankings across the Himalayan region.",
     problem:
-      "Vintage Tours & Travels was losing significant organic search traffic to massive aggregator platforms. Their legacy site suffered from poor mobile optimization, slow load times on slow 3G/4G networks, and lacked a structured layout for displaying complex custom travel itineraries. This made it difficult for adventure travelers to explore packages and make direct queries.\n\nAdditionally, search engines could not properly index their high-quality Himalayan itineraries because the website lacked structured schema markup. Without local search relevance, the brand was virtually invisible on search result pages, even when potential clients searched for premium adventure tours in their target geographic regions.",
+      "Vintage Tours & Travels was losing significant organic search traffic to massive aggregator platforms. Their legacy site suffered from poor mobile optimization, slow load times on slow 3G/4G networks, and lacked a structured layout for displaying complex custom travel itineraries. This made it difficult for adventure travelers to explore packages and make direct queries.\n\nAdditionally, search engines could not properly index their high-quality Himalayan itineraries because the website lacked structured schema markup. Without local search relevance, the brand was virtually invisible on search result pages, even when potential clients searched for premium adventure tours in their target geographic regions.\n\nFurthermore, the agency had no centralized dashboard to manage client enquiries, track booking stages, or update package itineraries dynamically, leading to human errors and missed emails.",
     solution:
-      "We implemented a comprehensive digital transformation strategy focusing on mobile-first user experience and advanced search engine optimization (SEO).\n\nFirst, we redesigned and rebuilt the client interface using React and Tailwind CSS, focusing on micro-interactions and smooth navigation. We implemented a dynamic custom package planner that allows users to visualize and customize their itineraries interactively, integrated with the Google Maps API for visual route mapping. Every image and asset was optimized, bringing their Google PageSpeed score from 40 to 98+.\n\nTo drive organic growth, we structured detailed schema tags (local business, product, and breadcrumb schemas) across the entire platform. This optimization allowed search engines to index and feature their tours directly in search snippets. Within three months, the site ranked on Page 1 of Google for premium adventure travel keywords, bringing in a massive surge of organic inquiries without paid ad spend.",
+      "We implemented a comprehensive digital transformation strategy focusing on mobile-first user experience and advanced search engine optimization (SEO).\n\nFirst, we redesigned and rebuilt the client interface using React and Tailwind CSS, focusing on micro-interactions and smooth navigation. We implemented a dynamic custom package planner that allows users to visualize and customize their itineraries interactively, integrated with the Google Maps API for visual route mapping. Every image and asset was optimized, bringing their Google PageSpeed score from 40 to 98+.\n\nTo drive organic growth, we structured detailed schema tags (local business, product, and breadcrumb schemas) across the entire platform. This optimization allowed search engines to index and feature their tours directly in search snippets. Within three months, the site ranked on Page 1 of Google for premium adventure travel keywords, bringing in a massive surge of organic inquiries without paid ad spend.\n\nTo streamline back-office operations, we developed a customized CRM dashboard for the travel agents. The dashboard centralizes all booking inquiries, tracks client preferences, sends automated email quotes, and allows administrators to publish new tour itineraries with a single click, completely replacing legacy spreadsheets.",
     results: [
       { metric: "+180%", label: "Organic Search Traffic" },
       { metric: "No. 1", label: "Local Map Rankings" },
       { metric: "4.2x", label: "Inbound Package Queries" },
     ],
     gallery: [
-      "from-cyan-950 to-emerald-950",
-      "from-teal-900 to-green-950",
-      "from-emerald-900 to-cyan-900",
+      "/work/vintage-tours.jpg",
+      "/work/bali-yoga.jpg",
+      "/work/ecommerce-app.jpg",
     ],
   },
   {
@@ -92,9 +92,9 @@ export const projects: ProjectItem[] = [
     clientName: "Adruva Hospitality Group",
     timeline: "6 weeks",
     overview:
-      "An advanced offline-first restaurant SaaS platform with contactless QR code menus, instant order dispatching, and live billing metrics.",
+      "An advanced offline-first restaurant SaaS platform with contactless QR code menus, instant order dispatching, and live billing metrics. Engineered to handle high-traffic dine-in restaurants without internet dependencies.",
     problem:
-      "Traditional restaurants face a major operational bottleneck during rush hours. Waiters spend a significant portion of their shifts running back and forth between tables, cash registers, and the kitchen, leading to order dispatch delays and frequent kitchen communication errors.\n\nManual billing and ticket writing resulted in an average order error rate of 12%, causing food waste and customer dissatisfaction. Furthermore, restaurant owners had no real-time data on table turnover rates, peak sales hours, or dish popularity, making inventory management and staffing decisions highly inefficient.",
+      "Traditional restaurants face a major operational bottleneck during rush hours. Waiters spend a significant portion of their shifts running back and forth between tables, cash registers, and the kitchen, leading to order dispatch delays and frequent kitchen communication errors.\n\nManual billing and ticket writing resulted in an average order error rate of 12%, causing food waste and customer dissatisfaction. Furthermore, restaurant owners had no real-time data on table turnover rates, peak sales hours, or dish popularity, making inventory management and staffing decisions highly inefficient.\n\nA major concern for restaurant owners was internet reliability. If the cloud connection dropped during a busy dinner service, standard web-based POS systems would crash, halting all order entries and causing massive dining room chaos.",
     solution:
       "We engineered 'Adruva Resto', an offline-first restaurant automation SaaS platform designed to streamline operations from ordering to billing.\n\nWe created a web application that works by scanning table-specific QR codes. Customers can browse the rich, visual menu, customize orders (such as selecting spice levels or add-ons), and send orders directly to the kitchen without needing to install any app. The orders are dispatched instantly to a tablet-based kitchen dashboard via WebSockets.\n\nTo ensure uninterrupted operations during internet outages, we implemented a local backup synchronization system. Orders are stored locally in the browser's IndexedDB database and synchronized with a local kitchen server, then pushed to the cloud once the connection is restored. The backend dashboard provides owners with real-time billing metrics, daily revenue charts, table turnover statistics, and live inventory alerts, reducing order dispatch errors by 90% and increasing table turnover speed by 25%.",
     results: [
@@ -103,9 +103,9 @@ export const projects: ProjectItem[] = [
       { metric: "18%", label: "Average Bill Value Growth" },
     ],
     gallery: [
-      "from-rose-950 to-orange-950",
-      "from-red-900 to-amber-950",
-      "from-orange-900/60 to-rose-950",
+      "/work/adruva-resto.jpg",
+      "/work/ecommerce-app.jpg",
+      "/work/local-seo.jpg",
     ],
   },
   {
@@ -130,9 +130,9 @@ export const projects: ProjectItem[] = [
       { metric: "35%", label: "Repeat Customer Growth" },
     ],
     gallery: [
-      "from-slate-800 to-slate-900",
-      "from-blue-900/50 to-indigo-900/50",
-      "from-emerald-950 to-teal-900",
+      "/work/ecommerce-app.jpg",
+      "/work/adruva-resto.jpg",
+      "/work/brand-identity.jpg",
     ],
   },
   {
@@ -157,9 +157,9 @@ export const projects: ProjectItem[] = [
       { metric: "150+", label: "Monthly Map Direction Clicks" },
     ],
     gallery: [
-      "from-yellow-950 to-amber-900",
-      "from-orange-950 to-red-950",
-      "from-stone-900 to-neutral-950",
+      "/work/local-seo.jpg",
+      "/work/brand-identity.jpg",
+      "/work/bali-yoga.jpg",
     ],
   },
   {
@@ -184,9 +184,9 @@ export const projects: ProjectItem[] = [
       { metric: "Consistent", label: "Brand Visual Alignment" },
     ],
     gallery: [
-      "from-zinc-900 to-indigo-950",
-      "from-indigo-900 to-purple-950",
-      "from-cyan-950 to-blue-950",
+      "/work/brand-identity.jpg",
+      "/work/local-seo.jpg",
+      "/work/vintage-tours.jpg",
     ],
   },
 ];

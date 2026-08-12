@@ -348,14 +348,26 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
               <Dialog key={index}>
                 <DialogTrigger
                   render={
-                    <button
-                      className={cn(
-                        "h-48 w-full rounded-2xl bg-gradient-to-br flex items-center justify-center relative overflow-hidden group focus:outline-none shadow-md border border-border/20 cursor-zoom-in transition-transform duration-300 hover:scale-[1.02]",
-                        gradient,
+                    <button className="h-48 w-full rounded-2xl flex items-center justify-center relative overflow-hidden group focus:outline-none shadow-md border border-border/20 cursor-zoom-in transition-transform duration-300 hover:scale-[1.02]">
+                      {gradient.startsWith("http") ||
+                      gradient.startsWith("/") ? (
+                        <Image
+                          src={gradient}
+                          alt={`Screenshot ${index + 1}`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div
+                          className={cn(
+                            "absolute inset-0 bg-gradient-to-br",
+                            gradient,
+                          )}
+                        />
                       )}
-                    >
-                      <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors" />
-                      <span className="text-[9px] font-bold text-white/60 tracking-wider uppercase font-space-grotesk">
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors z-10" />
+                      <span className="text-[9px] font-bold text-white/90 tracking-wider uppercase font-space-grotesk relative z-20 bg-black/40 px-2.5 py-1 rounded backdrop-blur-sm">
                         Screenshot {index + 1}
                       </span>
                     </button>
@@ -368,16 +380,27 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                   <DialogDescription className="sr-only">
                     Case study screenshot preview mockup
                   </DialogDescription>
-                  <div
-                    className={cn(
-                      "w-full aspect-video rounded-3xl bg-gradient-to-br flex items-center justify-center text-white font-extrabold text-xl shadow-2xl relative border border-white/10",
-                      gradient,
+                  <div className="w-full aspect-video rounded-3xl overflow-hidden shadow-2xl relative border border-white/10">
+                    {gradient.startsWith("http") || gradient.startsWith("/") ? (
+                      <Image
+                        src={gradient}
+                        alt={`Screenshot ${index + 1} Full Preview`}
+                        fill
+                        className="object-contain bg-black/95"
+                      />
+                    ) : (
+                      <div
+                        className={cn(
+                          "absolute inset-0 bg-gradient-to-br flex items-center justify-center text-white font-extrabold text-xl",
+                          gradient,
+                        )}
+                      >
+                        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15)_0%,transparent_85%)] mix-blend-overlay" />
+                        <span className="font-space-grotesk tracking-widest text-white/50 text-xs uppercase">
+                          SCREENSHOT {index + 1} FULL MOCKUP
+                        </span>
+                      </div>
                     )}
-                  >
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15)_0%,transparent_85%)] mix-blend-overlay" />
-                    <span className="font-space-grotesk tracking-widest text-white/50 text-xs uppercase">
-                      SCREENSHOT {index + 1} FULL MOCKUP
-                    </span>
                   </div>
                 </DialogContent>
               </Dialog>
@@ -449,15 +472,27 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                   key={project.slug}
                   className="flex flex-col rounded-2xl border border-border/40 bg-card overflow-hidden transition-all duration-300 group hover:border-brand-orange/30 hover:shadow-[0_4px_20px_rgba(255,107,0,0.06)]"
                 >
-                  {/* Image Gradient Placeholder */}
-                  <div
-                    className={cn(
-                      "h-40 w-full bg-gradient-to-br flex items-center justify-center p-6 relative overflow-hidden select-none",
-                      project.heroGradient,
+                  {/* Image or Gradient Preview */}
+                  <div className="h-40 w-full relative overflow-hidden select-none">
+                    {project.heroGradient.startsWith("http") ||
+                    project.heroGradient.startsWith("/") ? (
+                      <Image
+                        src={project.heroGradient}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div
+                        className={cn(
+                          "absolute inset-0 bg-gradient-to-br",
+                          project.heroGradient,
+                        )}
+                      />
                     )}
-                  >
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.12)_0%,transparent_80%)] mix-blend-overlay" />
-                    <span className="text-[9px] font-extrabold tracking-widest text-white/50 uppercase font-space-grotesk">
+                    <div className="absolute inset-0 bg-black/15 z-10" />
+                    <span className="absolute bottom-3 left-3 text-[9px] font-extrabold tracking-widest text-white/95 uppercase font-space-grotesk bg-black/40 px-2 py-0.5 rounded backdrop-blur-sm z-20">
                       {project.industry} Case Study
                     </span>
                   </div>
