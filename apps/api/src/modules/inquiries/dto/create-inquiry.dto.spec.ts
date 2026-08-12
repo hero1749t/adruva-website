@@ -38,7 +38,7 @@ describe('CreateInquiryDto', () => {
   });
 
   it('should allow optional fields like phone and message', async () => {
-    dto.phone = '+919876543210';
+    dto.phone = '+918383877088';
     dto.message = 'I am interested in Web Development services';
     dto.companyName = 'Example Corp';
     dto.serviceInterested = 'Web Development';

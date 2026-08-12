@@ -26,7 +26,7 @@ async function bootstrap() {
     const whatsappResult = await whatsappService.sendLeadNotification(
       'Test Lead User',
       'AI & Web Development',
-      '+919876543210',
+      '+918383877088',
     );
     console.log(
       `WhatsApp Send Result: ${whatsappResult ? 'SUCCESS' : 'FAILED'}`,

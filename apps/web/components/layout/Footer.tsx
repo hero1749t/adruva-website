@@ -60,7 +60,7 @@ export function Footer() {
   const settings = settingsData?.data || {};
 
   const contactEmail = settings.contactEmail || "hello@adruvasolution.com";
-  const contactPhone = settings.contactPhone || "+91 98765 43210";
+  const contactPhone = settings.contactPhone || "+91 83838 77088";
   const officeAddress =
     settings.officeAddress ||
     "Rajpur Road, Jakhan, Dehradun, Uttarakhand, India - 248001";
@@ -73,7 +73,7 @@ export function Footer() {
 
   const whatsappNumber = settings.contactPhone
     ? settings.contactPhone.replace(/[^0-9]/g, "")
-    : process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919876543210";
+    : process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918383877088";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=Hi%20Adruva!%20I'd%20like%20to%20discuss%20a%20project.`;
 
   const handleSubscribe = async (e: React.FormEvent) => {

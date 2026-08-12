@@ -353,7 +353,7 @@ export default function SettingsManager() {
                         onChange={(e) =>
                           handleInputChange("teamWhatsapp", e.target.value)
                         }
-                        placeholder="+919876543210"
+                        placeholder="+918383877088"
                         className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 text-xs font-mono"
                       />
                     </div>

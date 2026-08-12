@@ -11,7 +11,7 @@ const mockInquiry = {
   id: 'inq_123',
   name: 'John Doe',
   email: 'john@example.com',
-  phone: '9876543210',
+  phone: '8383877088',
   companyName: 'Test Corp',
   serviceInterested: 'web-development',
   budgetRange: '₹15,000',
@@ -84,7 +84,7 @@ describe('InquiriesService', () => {
     const dto = {
       name: 'John Doe',
       email: 'john@example.com',
-      phone: '9876543210',
+      phone: '8383877088',
       companyName: 'Test Corp',
       serviceInterested: 'web-development',
       budgetRange: '₹15,000',

@@ -82,7 +82,7 @@ export function ContactPageClient() {
   const settings = settingsData?.data || {};
 
   const contactEmail = settings.contactEmail || "hello@adruvasolution.com";
-  const contactPhone = settings.contactPhone || "+91 98765 43210";
+  const contactPhone = settings.contactPhone || "+91 83838 77088";
   const officeAddress =
     settings.officeAddress || "Rajpur Road, Jakhan, Dehradun";
 
@@ -150,7 +150,7 @@ export function ContactPageClient() {
 
   const whatsappNumber = settings.contactPhone
     ? settings.contactPhone.replace(/[^0-9]/g, "")
-    : process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919876543210";
+    : process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918383877088";
 
   const getWhatsAppFallbackUrl = () => {
     if (!submittedData) return "#";

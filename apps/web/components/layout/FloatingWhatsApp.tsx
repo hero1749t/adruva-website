@@ -21,7 +21,7 @@ export function FloatingWhatsApp({
 
   const phoneNumber = settings.contactPhone
     ? settings.contactPhone.replace(/[^0-9]/g, "")
-    : process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919876543210";
+    : process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918383877088";
 
   if (!phoneNumber) {
     return null;
