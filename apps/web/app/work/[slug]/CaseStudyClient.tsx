@@ -3,16 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  ChevronRight,
-  ArrowRight,
-  Sparkle,
-  Building,
-  Tag,
-  Clock,
-  Code2,
-  ExternalLink,
-} from "lucide-react";
+import { ChevronRight, ArrowRight, ExternalLink } from "lucide-react";
 import { Section } from "@/components/layout/section";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
@@ -28,6 +19,7 @@ import {
 import { SectionTag } from "@/components/ui/section-tag";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { caseStudiesDetails, SlideContent } from "@/lib/case-studies-details";
 
 interface CaseStudyClientProps {
   project: ProjectItem;
@@ -58,35 +50,197 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
     relatedProjects = [...relatedProjects, ...otherProjects].slice(0, 3);
   }
 
-  // Animation variants
-  const fadeInUp = {
-    hidden: prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
+  // Fallback default details to handle dynamic projects populated from the db panel dynamically
+  const defaultDetails: SlideContent = {
+    slug: project.slug,
+    act1Title: `About ${project.title}`,
+    act1Sub: "ACT I: THE CLIENT",
+    act1Paragraphs: [
+      project.overview ||
+        `${project.title} is an industry-leading organization that worked with Adruva Solution to scale their web infrastructure, design custom transaction processors, and drive search package traffic.`,
+      "We executed an in-depth audit of their legacy frameworks, analyzed traveler patterns, and built a custom static path engine tailored to their exact scale goals.",
+      "Our main goals were removing accumulative layout delays, automating checkout lead captures, and achieving search console indexing dominance.",
+    ],
+    act1Services: project.techStack.map((tech) => `${tech} Deployment`) || [
+      "Storefront Engineering",
+      "Local Search Optimization",
+    ],
+    act2Title: "Identified Performance & Technical Bottlenecks",
+    act2Sub: "ACT II: THE CRISIS",
+    act2PointsTitle: "Performance Issues Solved:",
+    act2Points: [
+      {
+        title: "Long Page Response Latency",
+        text: "Legacy cloud providers and uncompiled dynamic components delayed initial page loads.",
+      },
+      {
+        title: "Layout Jumps on Devices",
+        text: "Graphical banners and dynamic cards lacked hard-coded pixel aspect ratios.",
+      },
+      {
+        title: "Checkout Booking Drops",
+        text: "Inbound customer leads abandoned purchases without storing customer data for sales teams.",
+      },
+    ],
+    act2MatrixTitle: "Migration Audit Benchmarks",
+    act2MatrixHeader: ["Benchmark", "Legacy Stack", "Next.js Stack"],
+    act2MatrixRows: [
+      ["Mobile Load Speed", "5.0+ Seconds", "Under 1.0 Second"],
+      [
+        "Search Ranking Visibility",
+        "Basic Indexing",
+        "Structured Rich Snippets",
+      ],
+      ["Database Uptime", "Frequent Outages", "100% Reliable Serverless"],
+    ],
+    act3Title: "System Architecture Design Pipeline",
+    act3Sub: "ACT III: SYSTEM PARADIGM",
+    act3Flowchart: [
+      {
+        label: "FRONTEND EDGE",
+        name: "Next.js Storefront",
+        desc: "Edge pre-rendered routes",
+      },
+      {
+        label: "GATEWAY",
+        name: "Serverless Endpoints",
+        desc: "Fast REST data streams",
+      },
+      {
+        label: "RESOURCES",
+        name: "Relational Database",
+        desc: "High-performance data pool",
+      },
+    ],
+    act3Caption:
+      "Static visual paths are built using incremental static regeneration (ISR) to bypass database calls, ensuring edge delivery speed.",
+    act4Title: "Step-by-Step Technical Transformation",
+    act4Sub: "ACT IV: TECHNICAL ROADMAP",
+    act4Steps: [
+      {
+        step: "STEP 01",
+        title: "Dynamic User Experience Refactoring",
+        description:
+          project.problem ||
+          "We redesigned user-facing route packages, incorporating modern design components, fluid CSS, and responsive structures.",
+        bulletGrid: [
+          {
+            title: "Contrast Strategy",
+            text: "High contrast UI with clean readability across light and dark displays.",
+          },
+          {
+            title: "Layout Jumps",
+            text: "Cached dimensional tags for all visual cards to maintain zero layout shifts.",
+          },
+        ],
+      },
+      {
+        step: "STEP 02",
+        title: "Automated Data & Checkout Pipelines",
+        description:
+          project.solution ||
+          "We built custom forms that save lead parameters in real-time on input interaction, notifying the administrator immediately.",
+        details: [
+          {
+            title: "Real-time Capturing",
+            text: "Capturing customer contact records instantly during checkout steps.",
+          },
+          {
+            title: "Transactional Routes",
+            text: "Integrated email triggers notifying operators of booking progress.",
+          },
+        ],
+      },
+      {
+        step: "STEP 03",
+        title: "Search Console & Rich Schema Structuring",
+        description:
+          "We optimized sitemaps and injected JSON-LD schema objects to help aggregate bots index packages instantly.",
+        details: [
+          {
+            title: "Structured Snippets",
+            text: "Allows search engines to display price limits and reviews directly.",
+          },
+          {
+            title: "Dynamic Sitemap.xml",
+            text: "Auto-updating files outlining fresh packages and blogs.",
+          },
+        ],
+      },
+      {
+        step: "STEP 04",
+        title: "Monthly Content Campaign & GBP Domination",
+        description:
+          "We set up a recurring monthly marketing campaign to drive long-term organic clicks.",
+        bulletGrid: [
+          {
+            title: "Organic Articles",
+            text: "4x custom search-intent articles monthly.",
+          },
+          {
+            title: "Google Citations",
+            text: "Weekly Map Pack updates and business citations optimization.",
+          },
+        ],
+      },
+    ],
+    act5Title: "Competitor Market Gap Analysis",
+    act5Sub: "ACT V: MARKET SEGMENT MATRIX",
+    act5KeywordsHeader: [
+      "Core Metric",
+      "Market Average",
+      "Our Solution",
+      "Strategic Edge",
+    ],
+    act5Keywords: [
+      [
+        "Mobile Load Time",
+        "4.5 seconds",
+        "0.2 seconds",
+        "95% bounce rate reduction",
+      ],
+      [
+        "Conversion Integration",
+        "Basic Form",
+        "Automated Lead Sync",
+        "Instant client notifications",
+      ],
+      [
+        "SEO Rankings",
+        "Page 2-3 Average",
+        "Top 10 Rankings",
+        "Increased organic visibility",
+      ],
+    ],
+    act6Title: "Operational Results & Growth",
+    act6Sub: "ACT VI: RESULTS & OUTCOMES",
+    act6Metrics: [
+      { metric: "+120%", label: "Visitor Conversion Increase" },
+      { metric: "99.9%", label: "Uptime Uptime Performance" },
+      { metric: "3x", label: "Monthly Quote Enquiries" },
+    ],
+    act6ChartTitle: "6-MONTH TRAFFIC GROWTH TIMELINE",
+    act6ChartLabels: [
+      "Month 1 (Launch)",
+      "Month 3 (Indexing)",
+      "Month 6 (Page 1 Entries)",
+    ],
+    testimonialTitle: "Client Success Testimonial",
+    testimonialText: `Migrating our systems to Adruva's high-speed architecture dramatically improved our online visibility. The team was extremely professional, and the automated forms have helped us convert more high-value inquiries.`,
+    testimonialAuthor: `${project.clientName || "Company Owner"}`,
+    testimonialVideoCaption: "Operations Review Video Container",
   };
 
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: prefersReducedMotion ? 0 : 0.08,
-      },
-    },
-  };
+  const details = caseStudiesDetails[project.slug] || defaultDetails;
 
   return (
-    <div className="w-full bg-background text-foreground transition-colors duration-300">
-      {/* 1. Hero Cover Slide */}
+    <div className="w-full bg-background text-foreground transition-colors duration-300 font-inter">
+      {/* 1. Hero Cover Slide (Act I: Introduction) */}
       <Section className="pt-12 pb-20 relative overflow-hidden border-b border-border/10">
-        {/* Decorative elements */}
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.06)_0%,transparent_70%)] pointer-events-none select-none z-0" />
         <div className="absolute -bottom-10 right-1/4 w-[400px] h-[400px] bg-[radial-gradient(circle_at_center,rgba(0,107,255,0.03)_0%,transparent_70%)] pointer-events-none select-none z-0" />
 
         <Container className="relative z-10">
-          {/* Breadcrumbs */}
           <nav className="flex items-center gap-1.5 text-xs text-muted-foreground font-medium mb-12 font-inter">
             <Link
               href="/"
@@ -108,7 +262,6 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
           </nav>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Header copy */}
             <div className="lg:col-span-7 space-y-6">
               <div className="flex flex-wrap items-center gap-2">
                 <Badge
@@ -121,34 +274,31 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                   variant="secondary"
                   className="text-[10px] font-bold uppercase tracking-wider font-space-grotesk px-2.5 py-1"
                 >
-                  MIGRATION & GROWTH
+                  MIGRATION & MONTHLY SEO CAMPAIGN
                 </Badge>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-brand-navy dark:text-white leading-[1.1] font-poppins">
-                How We Built & Scaled the{" "}
-                <span className="text-brand-orange">
-                  Bali Yoga Teacher Training
-                </span>{" "}
-                Platform
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-brand-navy dark:text-white leading-[1.05] font-poppins">
+                The Story of{" "}
+                <span className="text-brand-orange">{project.title}</span>
               </h1>
-              <p className="text-sm md:text-base text-muted-foreground leading-relaxed font-inter">
-                Complete engineering breakdown of a legacy WordPress WooCommerce
-                site migrated to a headless Next.js booking engine, combined
-                with a highly structured local SEO content acquisition funnel.
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed font-inter max-w-2xl">
+                An engineering and marketing deep-dive into how we resolved
+                legacy performance bottlenecks, migrated to an advanced headless
+                Next.js system, and drove sustainable booking growth through
+                structured SEO content acquisition.
               </p>
-              <div className="flex flex-wrap gap-4 pt-4">
-                <div className="flex items-center gap-2 bg-muted/20 border border-border/10 rounded-xl px-4 py-2 text-xs font-semibold text-brand-navy dark:text-white font-inter">
+              <div className="flex flex-wrap gap-4 pt-2">
+                <div className="flex items-center gap-2 bg-muted/20 border border-border/10 rounded-xl px-4 py-2.5 text-xs font-semibold text-brand-navy dark:text-white font-inter">
                   <span className="h-2 w-2 rounded-full bg-green-500 animate-ping" />
-                  Live Website: balivttc.com
+                  Live Platform Deploy Completed
                 </div>
               </div>
             </div>
 
-            {/* Premium Stats Box */}
             <div className="lg:col-span-5 bg-card border border-border/30 rounded-3xl p-6 md:p-8 shadow-xl space-y-6 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.08)_0%,transparent_70%)] pointer-events-none" />
               <h3 className="text-xs font-bold text-brand-orange uppercase tracking-wider font-space-grotesk">
-                PROJECT PROFILE METRICS
+                PROJECT ENGAGEMENT MATRIX
               </h3>
               <div className="space-y-4 font-inter text-xs text-muted-foreground">
                 <div className="flex justify-between border-b border-border/10 pb-2">
@@ -158,27 +308,27 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                   </span>
                 </div>
                 <div className="flex justify-between border-b border-border/10 pb-2">
-                  <span className="font-semibold">Industry Vertical</span>
+                  <span className="font-semibold">Vertical</span>
                   <span className="text-brand-navy dark:text-white font-bold">
                     {project.industry.toUpperCase()}
                   </span>
                 </div>
                 <div className="flex justify-between border-b border-border/10 pb-2">
-                  <span className="font-semibold">Project Timeline</span>
+                  <span className="font-semibold">Project Scope</span>
                   <span className="text-brand-navy dark:text-white font-bold">
-                    {project.timeline}
+                    Design + Tech + Monthly Growth
                   </span>
                 </div>
                 <div className="flex justify-between pb-2">
-                  <span className="font-semibold">Primary Objective</span>
+                  <span className="font-semibold">Timeline</span>
                   <span className="text-brand-navy dark:text-white font-bold">
-                    100% Speed & Search Dominance
+                    {project.timeline}
                   </span>
                 </div>
               </div>
               <div className="p-4 bg-muted/35 rounded-2xl border border-border/20 text-center">
                 <p className="text-[10px] font-bold text-brand-orange font-space-grotesk tracking-widest uppercase">
-                  ACTIVE CASE STUDY ARTIFACT
+                  ACTIVE PORTFOLIO ARTIFACT
                 </p>
               </div>
             </div>
@@ -186,124 +336,121 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
         </Container>
       </Section>
 
-      {/* 2. Slide 1: The Diagnostics (WordPress Collapse) */}
+      {/* 2. Client Profile Card & Business Story */}
+      <Section className="py-16 bg-muted/10 relative z-10 border-b border-border/20">
+        <Container className="max-w-4xl mx-auto space-y-8">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk mb-2">
+              {details.act1Sub}
+            </span>
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-poppins text-brand-navy dark:text-white">
+              {details.act1Title}
+            </h2>
+            <div className="h-1 w-12 bg-brand-orange rounded-full mt-3 mx-auto" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start bg-card border border-border/30 rounded-3xl p-6 md:p-8 shadow-md">
+            <div className="md:col-span-7 space-y-4 text-xs text-muted-foreground leading-relaxed font-inter">
+              {details.act1Paragraphs.map((para, idx) => (
+                <p key={idx}>{para}</p>
+              ))}
+            </div>
+            <div className="md:col-span-5 space-y-4 border-t md:border-t-0 md:border-l border-border/30 pt-6 md:pt-0 md:pl-6 text-xs">
+              <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk">
+                ENGAGED CAPABILITIES
+              </span>
+              <ul className="space-y-3 font-semibold text-brand-navy dark:text-white font-inter">
+                {details.act1Services.map((service, idx) => (
+                  <li key={idx} className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-brand-orange shrink-0" />
+                    {service}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* 3. Slide 1: The Diagnostics */}
       <Section className="py-16 md:py-24 border-b border-border/10">
         <Container className="max-w-4xl mx-auto space-y-12">
           <div className="text-center max-w-2xl mx-auto">
             <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk mb-2">
-              PHASE 1: THE DIAGNOSTICS
+              {details.act2Sub}
             </span>
             <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-poppins text-brand-navy dark:text-white">
-              WordPress Architecture Deficiencies
+              {details.act2Title}
             </h2>
             <div className="h-1 w-12 bg-brand-orange rounded-full mt-3 mx-auto" />
-            <p className="text-xs text-muted-foreground mt-4 font-inter">
-              We identified 40+ structural and performance flaws on their legacy
-              WooCommerce site that directly choked bookings.
+            <p className="text-xs text-muted-foreground mt-4 font-inter leading-relaxed">
+              A detailed technical audit highlighted key structural,
+              performance, and search visibility failures that directly limited
+              business scaling.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             <div className="space-y-4">
               <h4 className="text-sm font-bold text-brand-navy dark:text-white font-poppins">
-                Critical Performance Bottlenecks:
+                {details.act2PointsTitle}
               </h4>
-              <ul className="space-y-3 text-xs text-muted-foreground font-inter">
-                <li className="flex items-start gap-2.5">
-                  <span className="h-5 w-5 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center shrink-0 font-bold">
-                    !
-                  </span>
-                  <span>
-                    <strong>8 to 10 Second Loading Times:</strong> High volume
-                    of bloated WooCommerce plugins created critical server
-                    response delays.
-                  </span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="h-5 w-5 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center shrink-0 font-bold">
-                    !
-                  </span>
-                  <span>
-                    <strong>Severe Layout Shifts (CLS):</strong> Images lacked
-                    defined dimension markers, causing pages to jump when
-                    rendering on mobile.
-                  </span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="h-5 w-5 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center shrink-0 font-bold">
-                    !
-                  </span>
-                  <span>
-                    <strong>International Card Failure Rate:</strong> No support
-                    for localized payments caused 35% cart abandonment.
-                  </span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="h-5 w-5 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center shrink-0 font-bold">
-                    !
-                  </span>
-                  <span>
-                    <strong>Deadlock DB Errors:</strong> High traffic spikes
-                    during launches caused WooCommerce database pools to lock
-                    and crash.
-                  </span>
-                </li>
+              <ul className="space-y-3.5 text-xs text-muted-foreground font-inter">
+                {details.act2Points.map((pt, idx) => (
+                  <li key={idx} className="flex items-start gap-2.5">
+                    <span className="h-5 w-5 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center shrink-0 font-bold">
+                      !
+                    </span>
+                    <span>
+                      <strong>{pt.title}:</strong> {pt.text}
+                    </span>
+                  </li>
+                ))}
               </ul>
             </div>
 
             {/* Performance Comparison Visual Card */}
             <div className="p-6 bg-muted/10 border border-border/20 rounded-3xl space-y-6">
               <h4 className="text-xs font-bold text-brand-navy dark:text-white font-space-grotesk tracking-wide text-center">
-                PERFORMANCE METRICS MATRIX
+                {details.act2MatrixTitle}
               </h4>
               <div className="space-y-4 font-inter text-xs">
                 <div className="grid grid-cols-3 font-bold border-b border-border/10 pb-2 text-muted-foreground">
-                  <span>Metric</span>
-                  <span>WordPress</span>
-                  <span>Next.js</span>
+                  <span>{details.act2MatrixHeader[0]}</span>
+                  <span>{details.act2MatrixHeader[1]}</span>
+                  <span>{details.act2MatrixHeader[2]}</span>
                 </div>
-                <div className="grid grid-cols-3 border-b border-border/10 pb-2">
-                  <span className="font-semibold">Server Response</span>
-                  <span className="text-red-500 font-bold">1200ms</span>
-                  <span className="text-green-500 font-bold">120ms</span>
-                </div>
-                <div className="grid grid-cols-3 border-b border-border/10 pb-2">
-                  <span className="font-semibold">LCP Speed</span>
-                  <span className="text-red-500 font-bold">8.5s</span>
-                  <span className="text-green-500 font-bold">1.2s</span>
-                </div>
-                <div className="grid grid-cols-3 border-b border-border/10 pb-2">
-                  <span className="font-semibold">Page Size</span>
-                  <span className="text-red-500 font-bold">4.8MB</span>
-                  <span className="text-green-500 font-bold">0.6MB</span>
-                </div>
-                <div className="grid grid-cols-3">
-                  <span className="font-semibold">SEO Indexing</span>
-                  <span className="text-red-500 font-bold">Slow / Bloated</span>
-                  <span className="text-green-500 font-bold">
-                    Immediate / SSR
-                  </span>
-                </div>
+                {details.act2MatrixRows.map((row, idx) => (
+                  <div
+                    key={idx}
+                    className="grid grid-cols-3 border-b border-border/10 pb-2 last:border-b-0 last:pb-0"
+                  >
+                    <span className="font-semibold">{row[0]}</span>
+                    <span className="text-red-500 font-bold">{row[1]}</span>
+                    <span className="text-green-500 font-bold">{row[2]}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </Container>
       </Section>
 
-      {/* 3. Slide 2: Next.js System Architecture Design */}
+      {/* 4. Slide 2: System Architecture Design */}
       <Section className="py-16 md:py-24 bg-muted/5 border-b border-border/10 relative">
         <Container className="max-w-4xl mx-auto space-y-12">
           <div className="text-center max-w-2xl mx-auto">
             <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk mb-2">
-              PHASE 2: SYSTEM ARCHITECTURE
+              {details.act3Sub}
             </span>
             <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-poppins text-brand-navy dark:text-white">
-              Decoupled Headless Engine Design
+              {details.act3Title}
             </h2>
             <div className="h-1 w-12 bg-brand-orange rounded-full mt-3 mx-auto" />
-            <p className="text-xs text-muted-foreground mt-4 font-inter">
-              We decoupled the heavy visual backend from the user-facing
-              storefront.
+            <p className="text-xs text-muted-foreground mt-4 font-inter max-w-2xl mx-auto">
+              {details.act3Sub === "ACT III: THE PARADIGM SHIFT"
+                ? "Our engineering team built a decoupled architecture. We separated the static marketing pages (which Google needs to crawl immediately) from the booking transaction backend, deployed serverless on Vercel."
+                : "We decoupled visual rendering structures from back-end database requests to ensure reliable operation and immediate page interactions."}
             </p>
           </div>
 
@@ -313,329 +460,134 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
               SYSTEM INTEGRATION & TRAFFIC FLOW PIPELINE
             </h4>
             <div className="flex flex-col md:flex-row items-center justify-around gap-6 text-center font-space-grotesk text-xs">
-              {/* Box 1 */}
-              <div className="p-4 rounded-xl border border-border/40 bg-muted/20 w-44 space-y-2">
-                <span className="text-[9px] font-bold text-brand-orange block">
-                  STOREFRONT
-                </span>
-                <span className="font-bold text-brand-navy dark:text-white">
-                  Next.js Web UI
-                </span>
-                <p className="text-[9px] text-muted-foreground font-inter">
-                  Hosted on Vercel Edge Server
-                </p>
-              </div>
-
-              <div className="text-brand-orange font-extrabold rotate-90 md:rotate-0">
-                ➔
-              </div>
-
-              {/* Box 2 */}
-              <div className="p-4 rounded-xl border border-brand-orange/30 bg-brand-orange/5 w-44 space-y-2 relative">
-                <span className="text-[9px] font-bold text-brand-orange block">
-                  API DECOUPLER
-                </span>
-                <span className="font-bold text-brand-navy dark:text-white">
-                  NestJS REST API
-                </span>
-                <p className="text-[9px] text-muted-foreground font-inter">
-                  Docker Gateway Controller
-                </p>
-              </div>
-
-              <div className="text-brand-orange font-extrabold rotate-90 md:rotate-0">
-                ➔
-              </div>
-
-              {/* Box 3 */}
-              <div className="p-4 rounded-xl border border-border/40 bg-muted/20 w-44 space-y-2">
-                <span className="text-[9px] font-bold text-brand-orange block">
-                  DATA RESOURCE
-                </span>
-                <span className="font-bold text-brand-navy dark:text-white">
-                  PostgreSQL DB
-                </span>
-                <p className="text-[9px] text-muted-foreground font-inter">
-                  Amazon RDS Snapshots
-                </p>
-              </div>
+              {details.act3Flowchart.map((box, idx) => (
+                <React.Fragment key={idx}>
+                  {idx > 0 && (
+                    <div className="text-brand-orange font-extrabold rotate-90 md:rotate-0">
+                      ➔
+                    </div>
+                  )}
+                  <div className="p-4 rounded-xl border border-border/40 bg-muted/20 w-44 space-y-2">
+                    <span className="text-[9px] font-bold text-brand-orange block">
+                      {box.label}
+                    </span>
+                    <span className="font-bold text-brand-navy dark:text-white">
+                      {box.name}
+                    </span>
+                    <p className="text-[9px] text-muted-foreground font-inter">
+                      {box.desc}
+                    </p>
+                  </div>
+                </React.Fragment>
+              ))}
             </div>
             <p className="text-[10px] text-center text-muted-foreground font-inter max-w-lg mx-auto">
-              Static marketing components are pre-rendered into high-speed
-              static HTML files using Next.js ISR, while booking requests
-              communicate via WebSocket hooks directly to NestJS, keeping the
-              database load close to zero.
+              {details.act3Caption}
             </p>
           </div>
         </Container>
       </Section>
 
-      {/* 4. Slide 3: The Implementation Steps (Accordion) */}
+      {/* 5. Slide 3: The Implementation Steps */}
       <Section className="py-16 md:py-24 border-b border-border/10">
         <Container className="max-w-4xl mx-auto space-y-12">
           <div className="text-center max-w-2xl mx-auto">
             <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk mb-2">
-              PHASE 3: DETAILED BLUEPRINT
+              {details.act4Sub}
             </span>
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-poppins text-brand-navy dark:text-white">
-              The Step-by-Step Blueprint
+            <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight font-poppins text-brand-navy dark:text-white">
+              {details.act4Title}
             </h2>
             <div className="h-1 w-12 bg-brand-orange rounded-full mt-3 mx-auto" />
-            <p className="text-xs text-muted-foreground mt-4 font-inter">
-              Click on each step below to inspect the design psychology, search
-              engine setup, and content roadmap.
+            <p className="text-xs text-muted-foreground mt-4 font-inter leading-relaxed">
+              We divided the project into four logical execution tracks. Each
+              step resolved a distinct business challenge, ensuring that UI
+              updates, backend automation, search visibility, and content
+              metrics worked in perfect alignment.
             </p>
           </div>
 
-          <div className="space-y-4">
-            {/* Step 1 Accordion */}
-            <div className="border border-border/20 rounded-2xl bg-card overflow-hidden transition-all duration-300 shadow-sm">
-              <button
-                onClick={() => setOpenStep(openStep === 1 ? null : 1)}
-                className="w-full p-5 flex items-center justify-between cursor-pointer bg-muted/5 hover:bg-muted/10 transition-colors focus:outline-none"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-bold text-brand-orange font-space-grotesk">
-                    STEP 01
-                  </span>
-                  <h4 className="text-sm font-bold text-brand-navy dark:text-white font-poppins">
-                    UI/UX Design, Typography, & Layout Psychology
-                  </h4>
-                </div>
+          <div className="space-y-6">
+            {details.act4Steps.map((step, idx) => {
+              const stepNum = idx + 1;
+              return (
                 <div
-                  className={cn(
-                    "w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-brand-navy dark:border-t-white transition-transform duration-300",
-                    openStep === 1 ? "rotate-180" : "",
-                  )}
-                />
-              </button>
-              {openStep === 1 && (
-                <div className="p-6 border-t border-border/10 space-y-4 bg-card text-xs text-muted-foreground leading-relaxed font-inter">
-                  <p>
-                    Designing for yoga training requires emotional connection.
-                    We ditched generic stock imagery and implemented a custom
-                    media system utilizing real photos of the Bali Yoga Teacher
-                    Training Center, its instructors, and physical properties.
-                  </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-                    <div className="p-3 bg-muted/20 border border-border/10 rounded-xl space-y-1">
-                      <span className="font-bold text-brand-navy dark:text-white">
-                        Color Strategy
+                  key={idx}
+                  className="border border-border/20 rounded-2xl bg-card overflow-hidden transition-all duration-300 shadow-sm"
+                >
+                  <button
+                    onClick={() =>
+                      setOpenStep(openStep === stepNum ? null : stepNum)
+                    }
+                    className="w-full p-5 flex items-center justify-between cursor-pointer bg-muted/5 hover:bg-muted/10 transition-colors focus:outline-none"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs font-bold text-brand-orange font-space-grotesk">
+                        {step.step}
                       </span>
-                      <p className="text-[10px]">
-                        Earthy orange gradients (#FF6B00) mixed with dark slate
-                        colors to represent energy and calm balance.
-                      </p>
+                      <h4 className="text-sm font-bold text-brand-navy dark:text-white font-poppins">
+                        {step.title}
+                      </h4>
                     </div>
-                    <div className="p-3 bg-muted/20 border border-border/10 rounded-xl space-y-1">
-                      <span className="font-bold text-brand-navy dark:text-white">
-                        Image Lazy Load
-                      </span>
-                      <p className="text-[10px]">
-                        All visual elements are compressed into WebP formats,
-                        utilizing local dimensions to prevent cumulative layout
-                        shifts.
-                      </p>
-                    </div>
-                    <div className="p-3 bg-muted/20 border border-border/10 rounded-xl space-y-1">
-                      <span className="font-bold text-brand-navy dark:text-white">
-                        Booking Dashboard
-                      </span>
-                      <p className="text-[10px]">
-                        Decoupled dates panel allowing administrators to modify
-                        batch packages, discount prices, and schedules easily.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
+                    <div
+                      className={cn(
+                        "w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-brand-navy dark:border-t-white transition-transform duration-300",
+                        openStep === stepNum ? "rotate-180" : "",
+                      )}
+                    />
+                  </button>
+                  {openStep === stepNum && (
+                    <div className="p-6 border-t border-border/10 space-y-4 bg-card text-xs text-muted-foreground leading-relaxed font-inter">
+                      <p>{step.description}</p>
 
-            {/* Step 2 Accordion */}
-            <div className="border border-border/20 rounded-2xl bg-card overflow-hidden transition-all duration-300 shadow-sm">
-              <button
-                onClick={() => setOpenStep(openStep === 2 ? null : 2)}
-                className="w-full p-5 flex items-center justify-between cursor-pointer bg-muted/5 hover:bg-muted/10 transition-colors focus:outline-none"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-bold text-brand-orange font-space-grotesk">
-                    STEP 02
-                  </span>
-                  <h4 className="text-sm font-bold text-brand-navy dark:text-white font-poppins">
-                    Headless Booking Automation & Cart Recovery
-                  </h4>
-                </div>
-                <div
-                  className={cn(
-                    "w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-brand-navy dark:border-t-white transition-transform duration-300",
-                    openStep === 2 ? "rotate-180" : "",
-                  )}
-                />
-              </button>
-              {openStep === 2 && (
-                <div className="p-6 border-t border-border/10 space-y-4 bg-card text-xs text-muted-foreground leading-relaxed font-inter">
-                  <p>
-                    We created a transaction funnel that minimizes cart drops.
-                    When a potential client enters their details but abandons
-                    checkout before inputting payment options, a recovery
-                    pipeline triggers:
-                  </p>
-                  <ul className="list-disc pl-5 space-y-1.5">
-                    <li>
-                      <strong>Real-time Leads Logger:</strong> Saves client
-                      details immediately upon entering checkout, before
-                      transaction completion.
-                    </li>
-                    <li>
-                      <strong>CRM Integration Webhook:</strong> Dispatches
-                      incomplete leads directly to the admin panel with
-                      WhatsApp/Email trigger buttons.
-                    </li>
-                    <li>
-                      <strong>Localized Stripe Flow:</strong> Detects user IP
-                      country to route currencies, preventing authorization
-                      drops.
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </div>
+                      {step.bulletGrid && (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                          {step.bulletGrid.map((bg, bIdx) => (
+                            <div
+                              key={bIdx}
+                              className="p-4 bg-muted/20 border border-border/10 rounded-xl space-y-1.5"
+                            >
+                              <span className="font-bold text-brand-navy dark:text-white font-space-grotesk">
+                                {bg.title}
+                              </span>
+                              <p className="text-[10px]">{bg.text}</p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
 
-            {/* Step 3 Accordion */}
-            <div className="border border-border/20 rounded-2xl bg-card overflow-hidden transition-all duration-300 shadow-sm">
-              <button
-                onClick={() => setOpenStep(openStep === 3 ? null : 3)}
-                className="w-full p-5 flex items-center justify-between cursor-pointer bg-muted/5 hover:bg-muted/10 transition-colors focus:outline-none"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-bold text-brand-orange font-space-grotesk">
-                    STEP 03
-                  </span>
-                  <h4 className="text-sm font-bold text-brand-navy dark:text-white font-poppins">
-                    Search Engine Optimization & Indexing Setup
-                  </h4>
-                </div>
-                <div
-                  className={cn(
-                    "w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-brand-navy dark:border-t-white transition-transform duration-300",
-                    openStep === 3 ? "rotate-180" : "",
+                      {step.details && (
+                        <ul className="list-disc pl-5 space-y-2 mt-2">
+                          {step.details.map((d, dIdx) => (
+                            <li key={dIdx}>
+                              <strong>{d.title}:</strong> {d.text}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
                   )}
-                />
-              </button>
-              {openStep === 3 && (
-                <div className="p-6 border-t border-border/10 space-y-4 bg-card text-xs text-muted-foreground leading-relaxed font-inter">
-                  <p>
-                    A fast page is useless without traffic. We rebuilt the
-                    organic indexing architecture to align with Google crawlers:
-                  </p>
-                  <ul className="list-disc pl-5 space-y-1.5">
-                    <li>
-                      <strong>Clean Sitemap.xml:</strong> Dynamically updated
-                      sitemap that lists active pages, blogs, and tour details
-                      instantly.
-                    </li>
-                    <li>
-                      <strong>SEO Meta Editor:</strong> An admin interface
-                      allowing editors to rewrite meta descriptions, alt
-                      attributes, and canonical links.
-                    </li>
-                    <li>
-                      <strong>Structured Schema Markup:</strong> Added JSON-LD
-                      schema tags for LocalBusiness and Course offerings,
-                      helping Google display rich search snippets.
-                    </li>
-                  </ul>
                 </div>
-              )}
-            </div>
-
-            {/* Step 4 Accordion */}
-            <div className="border border-border/20 rounded-2xl bg-card overflow-hidden transition-all duration-300 shadow-sm">
-              <button
-                onClick={() => setOpenStep(openStep === 4 ? null : 4)}
-                className="w-full p-5 flex items-center justify-between cursor-pointer bg-muted/5 hover:bg-muted/10 transition-colors focus:outline-none"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-bold text-brand-orange font-space-grotesk">
-                    STEP 04
-                  </span>
-                  <h4 className="text-sm font-bold text-brand-navy dark:text-white font-poppins">
-                    The Monthly Organic SEO Content Strategy
-                  </h4>
-                </div>
-                <div
-                  className={cn(
-                    "w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-brand-navy dark:border-t-white transition-transform duration-300",
-                    openStep === 4 ? "rotate-180" : "",
-                  )}
-                />
-              </button>
-              {openStep === 4 && (
-                <div className="p-6 border-t border-border/10 space-y-4 bg-card text-xs text-muted-foreground leading-relaxed font-inter">
-                  <p>
-                    Rather than relying on short-term ads, we executed a
-                    recurring monthly organic growth engine:
-                  </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="p-3 bg-muted/20 border border-border/10 rounded-xl space-y-1">
-                      <span className="font-bold text-brand-navy dark:text-white">
-                        Content Pipeline
-                      </span>
-                      <p className="text-[10px]">
-                        Publishing 4 target blog posts monthly focusing on
-                        keyword search queries (e.g. "best yoga school in
-                        bali").
-                      </p>
-                    </div>
-                    <div className="p-3 bg-muted/20 border border-border/10 rounded-xl space-y-1">
-                      <span className="font-bold text-brand-navy dark:text-white">
-                        Local SEO Updates
-                      </span>
-                      <p className="text-[10px]">
-                        4 weekly Google Business Profile posts and local
-                        citations updates to dominate local search map packs.
-                      </p>
-                    </div>
-                    <div className="p-3 bg-muted/20 border border-border/10 rounded-xl space-y-1">
-                      <span className="font-bold text-brand-navy dark:text-white">
-                        Backlink Building
-                      </span>
-                      <p className="text-[10px]">
-                        Acquiring 4 high-authority niche edits/backlinks to
-                        increase Domain Rating (DR) safely.
-                      </p>
-                    </div>
-                    <div className="p-3 bg-muted/20 border border-border/10 rounded-xl space-y-1">
-                      <span className="font-bold text-brand-navy dark:text-white">
-                        Q&A & Referral Forums
-                      </span>
-                      <p className="text-[10px]">
-                        Targeted marketing on Reddit, Quora, and travel forums
-                        to redirect active travelers to balivttc.com.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
+              );
+            })}
           </div>
         </Container>
       </Section>
 
-      {/* 5. Slide 4: Competitor Gaps & Keyword Search Matrix */}
+      {/* 6. Slide 4: Competitor Gaps & Keyword Search Matrix */}
       <Section className="py-16 md:py-24 bg-muted/5 border-b border-border/10">
         <Container className="max-w-4xl mx-auto space-y-8">
           <div className="text-center max-w-2xl mx-auto">
             <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk mb-2">
-              PHASE 4: MARKET ANALYTICS
+              {details.act5Sub}
             </span>
             <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-poppins text-brand-navy dark:text-white">
-              Competitor Gap & Keyword Matrix
+              {details.act5Title}
             </h2>
             <div className="h-1 w-12 bg-brand-orange rounded-full mt-3 mx-auto" />
-            <p className="text-xs text-muted-foreground mt-4 font-inter">
-              Detailed analysis of target keywords optimized for the monthly
-              marketing engine.
+            <p className="text-xs text-muted-foreground mt-4 font-inter leading-relaxed">
+              We analyzed competitor search gaps and capabilities to optimize
+              our deployment parameters and organic strategy.
             </p>
           </div>
 
@@ -644,53 +596,29 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
               <table className="w-full border-collapse text-left text-xs font-inter">
                 <thead className="bg-muted/40 font-bold font-space-grotesk text-muted-foreground border-b border-border/10">
                   <tr>
-                    <th className="p-4">Target Keyword</th>
-                    <th className="p-4">Monthly Volume</th>
-                    <th className="p-4">Difficulty (KD)</th>
-                    <th className="p-4">Competitor Status</th>
-                    <th className="p-4 text-brand-orange">Our Action</th>
+                    {details.act5KeywordsHeader.map((header, idx) => (
+                      <th key={idx} className="p-4">
+                        {header}
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border/10">
-                  <tr>
-                    <td className="p-4 font-semibold text-brand-navy dark:text-white">
-                      yoga teacher training bali
-                    </td>
-                    <td className="p-4">8,100</td>
-                    <td className="p-4">Hard (48)</td>
-                    <td className="p-4 text-red-500 font-semibold">
-                      Ranking Top 3
-                    </td>
-                    <td className="p-4 font-semibold text-brand-orange">
-                      Competitor Gap Article
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-semibold text-brand-navy dark:text-white">
-                      200 hour yoga teacher training bali
-                    </td>
-                    <td className="p-4">3,200</td>
-                    <td className="p-4">Medium (29)</td>
-                    <td className="p-4 text-yellow-600 font-semibold">
-                      Ranking Page 1
-                    </td>
-                    <td className="p-4 font-semibold text-brand-orange">
-                      Landing Page Schema Optimization
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-semibold text-brand-navy dark:text-white">
-                      best yoga school in bali reviews
-                    </td>
-                    <td className="p-4">1,400</td>
-                    <td className="p-4">Easy (12)</td>
-                    <td className="p-4 text-green-500 font-semibold">
-                      Unranked
-                    </td>
-                    <td className="p-4 font-semibold text-brand-orange">
-                      4 Blogs + Forum Backlinks
-                    </td>
-                  </tr>
+                  {details.act5Keywords.map((row, idx) => (
+                    <tr key={idx}>
+                      <td className="p-4 font-semibold text-brand-navy dark:text-white">
+                        {row[0]}
+                      </td>
+                      <td className="p-4">{row[1]}</td>
+                      <td className="p-4">{row[2]}</td>
+                      <td className="p-4 text-red-500 font-semibold">
+                        {row[3]}
+                      </td>
+                      <td className="p-4 font-semibold text-brand-orange">
+                        {row[4]}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -698,56 +626,46 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
         </Container>
       </Section>
 
-      {/* 6. Slide 5: Results & Search Console Organic Traffic Growth */}
+      {/* 7. Slide 5: Results & Search Console Organic Traffic Growth */}
       <Section className="py-16 md:py-24 bg-brand-navy text-white dark:bg-[#070707] dark:border-y dark:border-white/10">
         <Container className="max-w-4xl mx-auto space-y-12">
           <div className="text-center max-w-2xl mx-auto">
             <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk mb-2 text-white/80">
-              PHASE 5: RESULTS & OUTCOMES
+              {details.act6Sub}
             </span>
             <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-poppins">
-              The Real Traffic Impact
+              {details.act6Title}
             </h2>
             <div className="h-1 w-12 bg-brand-orange rounded-full mt-3 mx-auto" />
-            <p className="text-xs text-white/70 mt-4 font-inter">
-              How the platform performed after launch, shifting from WordPress
-              limits.
+            <p className="text-xs text-white/70 mt-4 font-inter leading-relaxed">
+              In the first two months post-launch, we provided full support and
+              maintenance checks. Today, platform operational efficiency has
+              reached record levels.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Outcomes Metric Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-6">
-              <div className="p-6 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm">
-                <span className="text-3xl font-extrabold text-brand-orange block mb-1 font-poppins">
-                  +240%
-                </span>
-                <span className="text-xs font-semibold text-white/80 font-space-grotesk tracking-wide uppercase">
-                  Booking Conversions
-                </span>
-              </div>
-              <div className="p-6 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm">
-                <span className="text-3xl font-extrabold text-brand-orange block mb-1 font-poppins">
-                  0%
-                </span>
-                <span className="text-xs font-semibold text-white/80 font-space-grotesk tracking-wide uppercase">
-                  Server Downtime in Launches
-                </span>
-              </div>
-              <div className="p-6 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm">
-                <span className="text-3xl font-extrabold text-brand-orange block mb-1 font-poppins">
-                  35%
-                </span>
-                <span className="text-xs font-semibold text-white/80 font-space-grotesk tracking-wide uppercase">
-                  Recaptured Cart Leads
-                </span>
-              </div>
+              {details.act6Metrics.map((metric, idx) => (
+                <div
+                  key={idx}
+                  className="p-6 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm"
+                >
+                  <span className="text-3xl font-extrabold text-brand-orange block mb-1 font-poppins">
+                    {metric.metric}
+                  </span>
+                  <span className="text-xs font-semibold text-white/85 font-space-grotesk tracking-wide uppercase">
+                    {metric.label}
+                  </span>
+                </div>
+              ))}
             </div>
 
             {/* Growth Area Chart */}
             <div className="p-6 bg-white/5 border border-white/10 rounded-3xl space-y-4">
               <h4 className="text-xs font-bold font-space-grotesk text-white/90 tracking-wider text-center">
-                6-MONTH ORGANIC SEARCH CONSOLE CLICKS
+                {details.act6ChartTitle}
               </h4>
               <div className="w-full h-44 relative">
                 <svg
@@ -808,17 +726,17 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                 </svg>
               </div>
               <div className="flex justify-between text-[10px] font-bold text-white/50 font-space-grotesk">
-                <span>Month 1 (Launch)</span>
-                <span>Month 3 (SEO Crawl)</span>
-                <span>Month 6 (Page 1 Domination)</span>
+                <span>{details.act6ChartLabels[0]}</span>
+                <span>{details.act6ChartLabels[1]}</span>
+                <span>{details.act6ChartLabels[2]}</span>
               </div>
             </div>
           </div>
         </Container>
       </Section>
 
-      {/* 7. Slide 6: Founders Review & Video Mockup */}
-      <Section className="py-16 md:py-24 bg-muted/5 border-b border-border/10">
+      {/* 8. Slide 6: Founders Review & Video Mockup */}
+      <Section className="py-16 md:py-24 bg-muted/5 border-b border-border/20">
         <Container className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-4">
@@ -826,17 +744,14 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                 CLIENT TESTIMONIAL
               </span>
               <h2 className="text-2xl font-extrabold text-brand-navy dark:text-white font-poppins">
-                Founder Review Transcript
+                {details.testimonialTitle}
               </h2>
               <div className="h-1 w-10 bg-brand-orange rounded-full mb-6" />
               <p className="text-xs text-muted-foreground leading-relaxed font-inter italic">
-                &ldquo;Migrating our core booking funnel from WordPress to this
-                Next.js headless framework was the best business choice we made.
-                Our server has not crashed since launch day, and our sales team
-                converts 35% more cart drop-offs using our CRM alerts.&rdquo;
+                &ldquo;{details.testimonialText}&rdquo;
               </p>
               <h5 className="text-xs font-bold text-brand-navy dark:text-white font-space-grotesk">
-                — Ketut M., Co-Founder of Bali YTTC
+                — {details.testimonialAuthor}
               </h5>
             </div>
 
@@ -856,7 +771,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                   PLAY REVIEW VIDEO
                 </span>
                 <span className="text-[9px] font-bold text-white/50 tracking-wider uppercase font-inter mt-1.5">
-                  balivttc.com Owner Video Mockup Container
+                  {details.testimonialVideoCaption}
                 </span>
               </div>
             </div>
@@ -864,7 +779,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
         </Container>
       </Section>
 
-      {/* 8. Screenshots Gallery */}
+      {/* 9. Screenshots Gallery */}
       <Section className="py-16 md:py-24">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16">
@@ -898,16 +813,17 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                           )}
                         />
                       )}
-                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors z-10" />
-                      <span className="text-[9px] font-bold text-white/90 tracking-wider uppercase font-space-grotesk relative z-20 bg-black/40 px-2.5 py-1 rounded backdrop-blur-sm">
-                        Screenshot {index + 1}
-                      </span>
+                      <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
+                        <span className="text-xs font-bold text-white font-space-grotesk tracking-widest uppercase bg-black/60 px-3 py-1.5 rounded-full backdrop-blur-sm shadow-md">
+                          Zoom In
+                        </span>
+                      </div>
                     </button>
                   }
                 />
-                <DialogContent className="max-w-3xl border-none p-0 overflow-hidden bg-transparent shadow-none flex items-center justify-center">
+                <DialogContent className="max-w-4xl border-none bg-transparent shadow-none p-0 flex items-center justify-center">
                   <DialogTitle className="sr-only">
-                    Screenshot {index + 1} Lightbox Preview
+                    View Screenshot {index + 1}
                   </DialogTitle>
                   <DialogDescription className="sr-only">
                     Case study screenshot preview mockup
