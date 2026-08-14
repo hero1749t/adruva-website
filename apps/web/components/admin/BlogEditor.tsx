@@ -64,6 +64,7 @@ export default function BlogEditor({
   const [metaDescription, setMetaDescription] = useState(
     initialData?.metaDescription || "",
   );
+  const [focusKeyword, setFocusKeyword] = useState("");
   const [readingTime, setReadingTime] = useState(
     (initialData?.readingTimeMinutes as number) || 3,
   );
@@ -223,6 +224,14 @@ export default function BlogEditor({
                 value={content}
                 onChange={setContent}
                 outputFormat="json"
+                title={title}
+                slug={slug}
+                seoTitle={metaTitle}
+                setSeoTitle={setMetaTitle}
+                seoDesc={metaDescription}
+                setSeoDesc={setMetaDescription}
+                focusKeyword={focusKeyword}
+                setFocusKeyword={setFocusKeyword}
               />
             </div>
           </Card>
