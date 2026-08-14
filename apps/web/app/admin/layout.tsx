@@ -25,6 +25,7 @@ import {
   Shield,
 } from "lucide-react";
 import { ThemeToggle } from "../../components/ui/theme-toggle";
+import NotificationsBell from "../../components/admin/NotificationsBell";
 
 type NavItem = {
   name: string;
@@ -385,6 +386,7 @@ export default function AdminLayout({
             </h1>
           </div>
           <div className="flex items-center gap-3">
+            <NotificationsBell />
             {isCollapsed && <ThemeToggle />}
             <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full border border-slate-100 dark:border-slate-900 bg-slate-50/50 dark:bg-slate-950/40 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
