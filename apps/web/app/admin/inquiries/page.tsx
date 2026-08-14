@@ -491,8 +491,32 @@ export default function InquiriesManager() {
             </div>
           )}
 
-          <DialogFooter className="pt-4 border-t border-slate-100 dark:border-slate-800/40">
-            <Button variant="outline" onClick={() => setIsOpen(false)}>
+          <DialogFooter className="pt-4 border-t border-slate-100 dark:border-slate-800/40 flex flex-wrap gap-2 justify-between items-center">
+            <div className="flex gap-2">
+              {activeInquiry?.phone && (
+                <a
+                  href={`tel:${activeInquiry.phone}`}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold transition shadow-sm"
+                >
+                  <Phone className="w-3.5 h-3.5" />
+                  <span>Call Client</span>
+                </a>
+              )}
+              {activeInquiry?.email && (
+                <a
+                  href={`mailto:${activeInquiry.email}?subject=Regarding your inquiry at Adruva Solution`}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-orange hover:bg-brand-orange-hover text-white text-xs font-bold transition shadow-sm"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                  <span>Mail Client</span>
+                </a>
+              )}
+            </div>
+            <Button
+              variant="outline"
+              className="rounded-lg"
+              onClick={() => setIsOpen(false)}
+            >
               Close
             </Button>
           </DialogFooter>
