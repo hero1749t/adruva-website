@@ -12,6 +12,7 @@ import {
 import { Badge } from "../../../components/ui/badge";
 import { Skeleton } from "../../../components/ui/skeleton";
 import { Button } from "../../../components/ui/button";
+import DashboardCharts from "../../../components/admin/DashboardCharts";
 import {
   Mail,
   Send,
@@ -58,6 +59,11 @@ export default function DashboardPage() {
   const { data: inquiriesData, isLoading: inquiriesLoading } = useQuery({
     queryKey: ["admin", "inquiries", { limit: 5 }],
     queryFn: () => apiFetch<PaginatedResponse<Inquiry>>("/inquiries?limit=5"),
+  });
+
+  const { data: chartInquiriesData } = useQuery({
+    queryKey: ["admin", "inquiries", { limit: 100 }],
+    queryFn: () => apiFetch<PaginatedResponse<Inquiry>>("/inquiries?limit=100"),
   });
 
   const { data: newsletterData, isLoading: newsletterLoading } = useQuery({
@@ -266,133 +272,9 @@ export default function DashboardPage() {
 
       {/* Analytics Chart & Quick Actions Row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Performance Chart Card */}
-        <Card className="lg:col-span-2 border border-slate-200/80 dark:border-slate-900/60 bg-white dark:bg-[#0c1220]/50 shadow-md rounded-2xl overflow-hidden">
-          <CardHeader className="pb-2">
-            <div className="flex justify-between items-center">
-              <div>
-                <CardTitle className="text-base font-bold font-poppins text-slate-900 dark:text-white flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-brand-orange" />
-                  <span>Traffic & Leads Trend</span>
-                </CardTitle>
-                <CardDescription className="text-slate-500 dark:text-slate-400 text-xs font-inter mt-0.5">
-                  Aggregate conversion activity from contact forms (Monthly)
-                </CardDescription>
-              </div>
-              <div className="flex items-center gap-1.5 text-xs font-bold text-slate-400 dark:text-slate-500 font-mono bg-slate-50 dark:bg-slate-950/60 px-2.5 py-1 rounded-full border border-slate-100 dark:border-slate-900">
-                <span className="w-2 h-2 rounded-full bg-brand-orange" />
-                <span>INQUIRIES</span>
-              </div>
-            </div>
-          </CardHeader>
-          <CardContent className="p-6">
-            {/* Custom Responsive SVG Chart */}
-            <div className="h-60 w-full bg-slate-50/40 dark:bg-slate-950/20 border border-slate-100 dark:border-slate-900/40 rounded-xl p-4 flex flex-col justify-between">
-              <svg
-                className="w-full h-full overflow-visible"
-                viewBox="0 0 600 180"
-                preserveAspectRatio="none"
-              >
-                <defs>
-                  <linearGradient
-                    id="chartGradient"
-                    x1="0"
-                    y1="0"
-                    x2="0"
-                    y2="1"
-                  >
-                    <stop offset="0%" stopColor="#FF6B00" stopOpacity="0.3" />
-                    <stop offset="100%" stopColor="#FF6B00" stopOpacity="0.0" />
-                  </linearGradient>
-                </defs>
-                {/* Horizontal Grid lines */}
-                <line
-                  x1="0"
-                  y1="45"
-                  x2="600"
-                  y2="45"
-                  stroke="rgba(148, 163, 184, 0.08)"
-                  strokeWidth="1"
-                />
-                <line
-                  x1="0"
-                  y1="90"
-                  x2="600"
-                  y2="90"
-                  stroke="rgba(148, 163, 184, 0.08)"
-                  strokeWidth="1"
-                />
-                <line
-                  x1="0"
-                  y1="135"
-                  x2="600"
-                  y2="135"
-                  stroke="rgba(148, 163, 184, 0.08)"
-                  strokeWidth="1"
-                />
-
-                {/* Chart Path Area fill */}
-                <path
-                  d="M0 160 Q 75 140, 150 110 T 300 120 T 450 60 T 600 30 L 600 180 L 0 180 Z"
-                  fill="url(#chartGradient)"
-                />
-
-                {/* Chart Trend Line */}
-                <path
-                  d="M0 160 Q 75 140, 150 110 T 300 120 T 450 60 T 600 30"
-                  fill="none"
-                  stroke="#FF6B00"
-                  strokeWidth="3.5"
-                  strokeLinecap="round"
-                />
-
-                {/* Coordinate Markers */}
-                <circle
-                  cx="150"
-                  cy="110"
-                  r="4.5"
-                  fill="#FF6B00"
-                  stroke="#fff"
-                  strokeWidth="2"
-                />
-                <circle
-                  cx="300"
-                  cy="120"
-                  r="4.5"
-                  fill="#FF6B00"
-                  stroke="#fff"
-                  strokeWidth="2"
-                />
-                <circle
-                  cx="450"
-                  cy="60"
-                  r="4.5"
-                  fill="#FF6B00"
-                  stroke="#fff"
-                  strokeWidth="2"
-                />
-                <circle
-                  cx="600"
-                  cy="30"
-                  r="4.5"
-                  fill="#FF6B00"
-                  stroke="#fff"
-                  strokeWidth="2"
-                />
-              </svg>
-
-              {/* Timeline labels */}
-              <div className="flex justify-between text-[10px] font-bold text-slate-400 dark:text-slate-500 font-mono border-t border-slate-100 dark:border-slate-900/60 pt-2.5 mt-2">
-                <span>MARCH</span>
-                <span>APRIL</span>
-                <span>MAY</span>
-                <span>JUNE</span>
-                <span>JULY</span>
-                <span>AUGUST</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="lg:col-span-2">
+          <DashboardCharts inquiries={chartInquiriesData?.data || []} />
+        </div>
 
         {/* Quick Actions & System Status Card */}
         <div className="flex flex-col gap-6">
