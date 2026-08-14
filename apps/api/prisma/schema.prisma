@@ -214,3 +214,16 @@ model WebsiteSetting {
 
   @@map("website_settings")
 }
+
+model WebsiteNotification {
+  id        String   @id @default(uuid())
+  type      String   // "inquiry", "application", "newsletter"
+  title     String
+  message   String
+  isRead    Boolean  @default(false)
+  link      String?  
+  createdAt DateTime @default(now())
+
+  @@map("website_notifications")
+}
+

@@ -17,6 +17,7 @@ import { ApplicationsModule } from './modules/applications/applications.module';
 import { CareersModule } from './modules/careers/careers.module';
 import { SettingsModule } from './modules/settings/settings.module';
 import { UploadModule } from './modules/upload/upload.module';
+import { NotificationsModule } from './modules/notifications/notifications.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { UploadModule } from './modules/upload/upload.module';
     CareersModule,
     SettingsModule,
     UploadModule,
+    NotificationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

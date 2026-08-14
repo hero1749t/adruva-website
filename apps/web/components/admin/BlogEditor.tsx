@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useEditor, EditorContent } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
 import { useQuery } from "@tanstack/react-query";
 import { apiFetch } from "../../lib/api";
 import { Card, CardContent } from "../ui/card";
@@ -12,20 +10,8 @@ import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import { Select, SelectItem, SelectValue } from "../ui/select";
 import { ImageUpload } from "./ImageUpload";
-import {
-  Bold,
-  Italic,
-  List,
-  ListOrdered,
-  Heading2,
-  Heading3,
-  Quote,
-  Code,
-  Undo,
-  Redo,
-  Save,
-  ArrowLeft,
-} from "lucide-react";
+import { Save, ArrowLeft } from "lucide-react";
+import TiptapEditor from "./TiptapEditor";
 import Link from "next/link";
 
 interface Author {
@@ -81,6 +67,12 @@ export default function BlogEditor({
   const [readingTime, setReadingTime] = useState(
     (initialData?.readingTimeMinutes as number) || 3,
   );
+  const [content, setContent] = useState<string>(() => {
+    if (!initialData?.content) return "";
+    return typeof initialData.content === "string"
+      ? initialData.content
+      : JSON.stringify(initialData.content);
+  });
 
   // Fetch active team members for author dropdown
   const { data: authorsData } = useQuery({
@@ -106,33 +98,6 @@ export default function BlogEditor({
     }
   };
 
-  // Tiptap Editor config
-  const editor = useEditor({
-    extensions: [StarterKit],
-    content: initialData?.content || "<p>Start writing article here...</p>",
-    editorProps: {
-      attributes: {
-        class:
-          "prose dark:prose-invert focus:outline-none min-h-[350px] max-w-none text-slate-800 dark:text-slate-200 text-sm font-inter p-4",
-      },
-    },
-  });
-
-  // Calculate reading time when content changes
-  useEffect(() => {
-    if (!editor) return;
-    const calculateTime = () => {
-      const text = editor.getText();
-      const words = text.trim().split(/\s+/).length;
-      setReadingTime(Math.max(1, Math.ceil(words / 200)));
-    };
-
-    editor.on("update", calculateTime);
-    return () => {
-      editor.off("update", calculateTime);
-    };
-  }, [editor]);
-
   const handlePublish = () => {
     handleFormSubmit("published");
   };
@@ -152,7 +117,12 @@ export default function BlogEditor({
       .map((t: string) => t.trim())
       .filter((t: string) => t.length > 0);
 
-    const contentJson = editor?.getJSON() || {};
+    let contentJson = {};
+    try {
+      contentJson = content ? JSON.parse(content) : {};
+    } catch (e) {
+      console.warn("JSON parsing failed, saving raw content");
+    }
 
     onSave({
       title,
@@ -169,10 +139,6 @@ export default function BlogEditor({
       status: submitStatus,
     });
   };
-
-  if (!editor) {
-    return null;
-  }
 
   return (
     <div className="space-y-6">
@@ -224,143 +190,40 @@ export default function BlogEditor({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Editor core block */}
         <div className="lg:col-span-2 space-y-4">
-          <Card className="border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#151f32] rounded-xl overflow-hidden shadow-sm">
-            {/* Rich text Toolbar */}
-            <div className="p-2.5 border-b border-slate-100 dark:border-slate-800/60 bg-slate-50 dark:bg-slate-900/30 flex flex-wrap gap-1 items-center">
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                className={`h-8 w-8 p-0 ${editor.isActive("bold") ? "bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white" : "text-slate-500"}`}
-                onClick={() => editor.chain().focus().toggleBold().run()}
-              >
-                <Bold className="w-4 h-4" />
-              </Button>
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                className={`h-8 w-8 p-0 ${editor.isActive("italic") ? "bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white" : "text-slate-500"}`}
-                onClick={() => editor.chain().focus().toggleItalic().run()}
-              >
-                <Italic className="w-4 h-4" />
-              </Button>
-              <div className="w-px h-6 bg-slate-200 dark:bg-slate-800 mx-1" />
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                className={`h-8 w-8 p-0 ${editor.isActive("heading", { level: 2 }) ? "bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white" : "text-slate-500"}`}
-                onClick={() =>
-                  editor.chain().focus().toggleHeading({ level: 2 }).run()
-                }
-              >
-                <Heading2 className="w-4 h-4" />
-              </Button>
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                className={`h-8 w-8 p-0 ${editor.isActive("heading", { level: 3 }) ? "bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white" : "text-slate-500"}`}
-                onClick={() =>
-                  editor.chain().focus().toggleHeading({ level: 3 }).run()
-                }
-              >
-                <Heading3 className="w-4 h-4" />
-              </Button>
-              <div className="w-px h-6 bg-slate-200 dark:bg-slate-800 mx-1" />
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                className={`h-8 w-8 p-0 ${editor.isActive("bulletList") ? "bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white" : "text-slate-500"}`}
-                onClick={() => editor.chain().focus().toggleBulletList().run()}
-              >
-                <List className="w-4 h-4" />
-              </Button>
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                className={`h-8 w-8 p-0 ${editor.isActive("orderedList") ? "bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white" : "text-slate-500"}`}
-                onClick={() => editor.chain().focus().toggleOrderedList().run()}
-              >
-                <ListOrdered className="w-4 h-4" />
-              </Button>
-              <div className="w-px h-6 bg-slate-200 dark:bg-slate-800 mx-1" />
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                className={`h-8 w-8 p-0 ${editor.isActive("blockquote") ? "bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white" : "text-slate-500"}`}
-                onClick={() => editor.chain().focus().toggleBlockquote().run()}
-              >
-                <Quote className="w-4 h-4" />
-              </Button>
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                className={`h-8 w-8 p-0 ${editor.isActive("code") ? "bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white" : "text-slate-500"}`}
-                onClick={() => editor.chain().focus().toggleCode().run()}
-              >
-                <Code className="w-4 h-4" />
-              </Button>
-              <div className="flex-grow" />
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                className="h-8 w-8 p-0 text-slate-500"
-                onClick={() => editor.chain().focus().undo().run()}
-              >
-                <Undo className="w-4 h-4" />
-              </Button>
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                className="h-8 w-8 p-0 text-slate-500"
-                onClick={() => editor.chain().focus().redo().run()}
-              >
-                <Redo className="w-4 h-4" />
-              </Button>
+          <Card className="border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#151f32] p-6 rounded-xl shadow-sm space-y-4">
+            <div className="space-y-1">
+              <Label htmlFor="post-title" className="text-xs font-semibold">
+                Post Title
+              </Label>
+              <Input
+                id="post-title"
+                placeholder="Enter article title..."
+                value={title}
+                onChange={(e) => handleTitleChange(e.target.value)}
+                className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-855 font-semibold text-base"
+              />
             </div>
 
-            {/* Input fields */}
-            <div className="p-6 space-y-4">
-              <div className="space-y-1">
-                <Label htmlFor="post-title" className="text-xs font-semibold">
-                  Post Title
-                </Label>
-                <Input
-                  id="post-title"
-                  placeholder="Enter article title..."
-                  value={title}
-                  onChange={(e) => handleTitleChange(e.target.value)}
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 font-semibold text-base"
-                />
-              </div>
+            <div className="space-y-1">
+              <Label htmlFor="post-slug" className="text-xs font-semibold">
+                URL Slug
+              </Label>
+              <Input
+                id="post-slug"
+                placeholder="enter-url-slug"
+                value={slug}
+                onChange={(e) => setSlug(generateSlug(e.target.value))}
+                className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-855 font-mono text-xs"
+              />
+            </div>
 
-              <div className="space-y-1">
-                <Label htmlFor="post-slug" className="text-xs font-semibold">
-                  URL Slug
-                </Label>
-                <Input
-                  id="post-slug"
-                  placeholder="enter-url-slug"
-                  value={slug}
-                  onChange={(e) => setSlug(generateSlug(e.target.value))}
-                  className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 font-mono text-xs"
-                />
-              </div>
-
-              <div className="space-y-1 pt-2">
-                <Label className="text-xs font-semibold">Content Body</Label>
-                <div className="border border-slate-200 dark:border-slate-800 rounded-lg overflow-hidden bg-slate-50/20 dark:bg-slate-950/30">
-                  <EditorContent editor={editor} />
-                </div>
-              </div>
+            <div className="space-y-1.5 pt-2">
+              <Label className="text-xs font-semibold">Content Body</Label>
+              <TiptapEditor
+                value={content}
+                onChange={setContent}
+                outputFormat="json"
+              />
             </div>
           </Card>
         </div>

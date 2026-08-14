@@ -52,6 +52,20 @@ export class InquiriesService {
       },
     });
 
+    // Create a dashboard notification for the new lead
+    try {
+      await this.prisma.websiteNotification.create({
+        data: {
+          type: 'inquiry',
+          title: 'New Client Inquiry',
+          message: `${inquiry.name} is interested in ${inquiry.serviceInterested || 'general services'}`,
+          link: `/admin/inquiries`,
+        },
+      });
+    } catch (e) {
+      this.logger.error('Failed to create notification for inquiry', e);
+    }
+
     // 3. Trigger parallel background notifications/integrations
     void Promise.allSettled([
       this.emailService.sendUserConfirmation(

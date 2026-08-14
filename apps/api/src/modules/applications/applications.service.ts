@@ -73,6 +73,20 @@ export class ApplicationsService {
       },
     });
 
+    // Create a dashboard notification for the new career application
+    try {
+      await this.prisma.websiteNotification.create({
+        data: {
+          type: 'application',
+          title: 'New Job Application',
+          message: `${application.fullName} applied for the ${application.jobTitle} position`,
+          link: `/admin/careers`,
+        },
+      });
+    } catch (e) {
+      this.logger.error('Failed to create notification for job application', e);
+    }
+
     this.logger.log(
       `Successfully created application ${application.id} for job ${dto.jobId}`,
     );
