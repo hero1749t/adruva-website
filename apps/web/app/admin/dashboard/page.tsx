@@ -415,7 +415,7 @@ export default function DashboardPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-900/40 text-slate-700 dark:text-slate-300 font-medium">
-                  {inquiriesData.data.map((inquiry) => (
+                  {inquiriesData.data.filter(Boolean).map((inquiry) => (
                     <tr
                       key={inquiry.id}
                       className="hover:bg-slate-50/50 dark:hover:bg-slate-900/15 transition-colors duration-150"

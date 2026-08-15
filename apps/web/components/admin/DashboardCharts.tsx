@@ -20,6 +20,13 @@ interface DashboardChartsProps {
 export default function DashboardCharts({
   inquiries = [],
 }: DashboardChartsProps) {
+  // Safe inquiries guard array to prevent null/undefined entries from crashing
+  const safeInquiries = useMemo(() => {
+    return Array.isArray(inquiries)
+      ? inquiries.filter((x): x is Inquiry => !!x)
+      : [];
+  }, [inquiries]);
+
   // 1. Process Monthly Trends for Line Chart
   const lineChartData = useMemo(() => {
     const months = [
@@ -45,8 +52,9 @@ export default function DashboardCharts({
     });
 
     // Populate counts based on real inquiry createdAt dates
-    inquiries.forEach((inq) => {
+    safeInquiries.forEach((inq) => {
       try {
+        if (!inq.createdAt) return;
         const date = new Date(inq.createdAt);
         if (date.getFullYear() === currentYear) {
           const monthName = months[date.getMonth()];
@@ -97,14 +105,14 @@ export default function DashboardCharts({
     const fillD = pathD ? `${pathD} L 500 120 L 0 120 Z` : "";
 
     return { points, pathD, fillD, last6Months };
-  }, [inquiries]);
+  }, [safeInquiries]);
 
   // 2. Process Categories for Donut Chart
   const donutChartData = useMemo(() => {
     const categories: { [key: string]: number } = {};
     let total = 0;
 
-    inquiries.forEach((inq) => {
+    safeInquiries.forEach((inq) => {
       let cat = inq.serviceInterested || "General Services";
       // Normalize names for cleaner visual breakdown
       if (cat.toLowerCase().includes("web")) cat = "Web Apps";
@@ -160,7 +168,7 @@ export default function DashboardCharts({
     });
 
     return { slices, list, total };
-  }, [inquiries]);
+  }, [safeInquiries]);
 
   return (
     <div className="grid grid-cols-1 lg:grid-span-2 md:grid-cols-2 gap-6">
