@@ -11,8 +11,12 @@ import { Textarea } from "../ui/textarea";
 import { Select, SelectItem, SelectValue } from "../ui/select";
 import { ImageUpload } from "./ImageUpload";
 import { Save, ArrowLeft } from "lucide-react";
-import TiptapEditor from "./TiptapEditor";
+import dynamic from "next/dynamic";
 import Link from "next/link";
+
+const TiptapEditor = dynamic(() => import("./TiptapEditor"), {
+  ssr: false,
+});
 
 interface Author {
   id: string;

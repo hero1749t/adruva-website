@@ -437,9 +437,10 @@ export default function TiptapEditor({
   });
 
   const getBlogImages = useCallback((): string[] => {
-    if (!blogsData?.data) return [];
+    if (!blogsData?.data || !Array.isArray(blogsData.data)) return [];
     const images: string[] = [];
     blogsData.data.forEach((blog) => {
+      if (!blog) return;
       if (blog.coverImageUrl) {
         images.push(blog.coverImageUrl);
       }
