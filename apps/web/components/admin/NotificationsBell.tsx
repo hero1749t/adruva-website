@@ -71,9 +71,10 @@ export default function NotificationsBell() {
         success: boolean;
         data: NotificationItem[];
       }>("/notifications?limit=25");
-      if (res.success && res.data) {
-        setNotifications(res.data);
-        const unreadCount = res.data.filter((n) => !n.isRead).length;
+      if (res.success && Array.isArray(res.data)) {
+        const safeData = res.data.filter((n): n is NotificationItem => !!n);
+        setNotifications(safeData);
+        const unreadCount = safeData.filter((n) => n && !n.isRead).length;
 
         // If unread count increased, play high-quality chime (unless silent/initial load)
         if (!silent && unreadCount > prevCountRef.current) {
@@ -102,12 +103,19 @@ export default function NotificationsBell() {
 
   // Broadcast Channel for multi-tab sync
   useEffect(() => {
-    const channel = new BroadcastChannel("admin-notifications");
-    channel.onmessage = (event) => {
-      if (event.data === "reload") {
-        fetchNotifications(true);
+    let channel: any = null;
+    try {
+      if (typeof window !== "undefined" && "BroadcastChannel" in window) {
+        channel = new BroadcastChannel("admin-notifications");
+        channel.onmessage = (event: MessageEvent) => {
+          if (event.data === "reload") {
+            fetchNotifications(true);
+          }
+        };
       }
-    };
+    } catch (e) {
+      console.warn("BroadcastChannel error:", e);
+    }
 
     // Initial Fetch
     fetchNotifications(true);
@@ -119,7 +127,13 @@ export default function NotificationsBell() {
 
     return () => {
       clearInterval(interval);
-      channel.close();
+      if (channel) {
+        try {
+          channel.close();
+        } catch (e) {
+          // ignore
+        }
+      }
     };
   }, []);
 
@@ -127,9 +141,15 @@ export default function NotificationsBell() {
     try {
       await apiFetch("/notifications/read-all", { method: "POST" });
       fetchNotifications(true);
-      const channel = new BroadcastChannel("admin-notifications");
-      channel.postMessage("reload");
-      channel.close();
+      try {
+        if (typeof window !== "undefined" && "BroadcastChannel" in window) {
+          const channel = new BroadcastChannel("admin-notifications");
+          channel.postMessage("reload");
+          channel.close();
+        }
+      } catch (e) {
+        // ignore
+      }
     } catch (e) {
       console.error("Failed to mark all notifications as read", e);
     }
@@ -139,15 +159,21 @@ export default function NotificationsBell() {
     try {
       await apiFetch(`/notifications/${id}/read`, { method: "PATCH" });
       fetchNotifications(true);
-      const channel = new BroadcastChannel("admin-notifications");
-      channel.postMessage("reload");
-      channel.close();
+      try {
+        if (typeof window !== "undefined" && "BroadcastChannel" in window) {
+          const channel = new BroadcastChannel("admin-notifications");
+          channel.postMessage("reload");
+          channel.close();
+        }
+      } catch (e) {
+        // ignore
+      }
     } catch (e) {
       console.error("Failed to mark notification as read", e);
     }
   };
 
-  const unreadCount = notifications.filter((n) => !n.isRead).length;
+  const unreadCount = notifications.filter((n) => n && !n.isRead).length;
 
   return (
     <div className="relative" ref={dropdownRef}>
