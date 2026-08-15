@@ -1,11 +1,18 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { useMutation } from '@tanstack/react-query';
-import { apiFetch } from '../../../../lib/api';
-import BlogEditor from '../../../../components/admin/BlogEditor';
-import toast from 'react-hot-toast';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import { apiFetch } from "../../../../lib/api";
+import dynamic from "next/dynamic";
+import toast from "react-hot-toast";
+
+const BlogEditor = dynamic(
+  () => import("../../../../components/admin/BlogEditor"),
+  {
+    ssr: false,
+  },
+);
 
 interface BlogEditorData {
   title?: string;
@@ -35,16 +42,16 @@ export default function NewBlogPage() {
 
   const createMutation = useMutation({
     mutationFn: (body: BlogEditorData) =>
-      apiFetch<CreateResponse>('/blog', {
-        method: 'POST',
+      apiFetch<CreateResponse>("/blog", {
+        method: "POST",
         body: JSON.stringify(body),
       }),
     onSuccess: (res) => {
       toast.success(`Blog post created successfully as ${res.data.status}!`);
-      router.push('/admin/blogs');
+      router.push("/admin/blogs");
     },
     onError: (err) => {
-      toast.error(err.message || 'Failed to create blog post');
+      toast.error(err.message || "Failed to create blog post");
       setIsSaving(false);
     },
   });
@@ -54,7 +61,5 @@ export default function NewBlogPage() {
     createMutation.mutate(data);
   };
 
-  return (
-    <BlogEditor onSave={handleSave} isSaving={isSaving} />
-  );
+  return <BlogEditor onSave={handleSave} isSaving={isSaving} />;
 }

@@ -1,12 +1,19 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter, useParams } from 'next/navigation';
-import { useQuery, useMutation } from '@tanstack/react-query';
-import { apiFetch } from '../../../../../lib/api';
-import BlogEditor from '../../../../../components/admin/BlogEditor';
-import { Skeleton } from '../../../../../components/ui/skeleton';
-import toast from 'react-hot-toast';
+import { useState } from "react";
+import { useRouter, useParams } from "next/navigation";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { apiFetch } from "../../../../../lib/api";
+import dynamic from "next/dynamic";
+import { Skeleton } from "../../../../../components/ui/skeleton";
+import toast from "react-hot-toast";
+
+const BlogEditor = dynamic(
+  () => import("../../../../../components/admin/BlogEditor"),
+  {
+    ssr: false,
+  },
+);
 
 interface BlogEditorData {
   title?: string;
@@ -42,7 +49,7 @@ export default function EditBlogPage() {
   const [isSaving, setIsSaving] = useState(false);
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ['admin', 'blog', id],
+    queryKey: ["admin", "blog", id],
     queryFn: () => apiFetch<BlogResponse>(`/blog/${id}`),
     enabled: !!id,
   });
@@ -50,15 +57,15 @@ export default function EditBlogPage() {
   const updateMutation = useMutation({
     mutationFn: (body: BlogEditorData) =>
       apiFetch<UpdateResponse>(`/blog/${id}`, {
-        method: 'PATCH',
+        method: "PATCH",
         body: JSON.stringify(body),
       }),
     onSuccess: (res) => {
       toast.success(`Blog post updated successfully as ${res.data.status}!`);
-      router.push('/admin/blogs');
+      router.push("/admin/blogs");
     },
     onError: (err) => {
-      toast.error(err.message || 'Failed to update blog post');
+      toast.error(err.message || "Failed to update blog post");
       setIsSaving(false);
     },
   });
@@ -83,12 +90,17 @@ export default function EditBlogPage() {
   if (isError || !data?.data) {
     return (
       <div className="p-8 text-center text-red-500 font-medium">
-        Failed to load blog post details. Please return to the list and try again.
+        Failed to load blog post details. Please return to the list and try
+        again.
       </div>
     );
   }
 
   return (
-    <BlogEditor initialData={data.data} onSave={handleSave} isSaving={isSaving} />
+    <BlogEditor
+      initialData={data.data}
+      onSave={handleSave}
+      isSaving={isSaving}
+    />
   );
 }
