@@ -8,8 +8,43 @@ async function bootstrap() {
 
   // Security
   app.use(helmet());
+
+  const allowedOrigins = [
+    'http://localhost:3000',
+    'https://adruvasolution.com',
+    'https://www.adruvasolution.com',
+  ];
+  if (process.env.FRONTEND_URL) {
+    allowedOrigins.push(process.env.FRONTEND_URL);
+    if (process.env.FRONTEND_URL.includes('www.')) {
+      allowedOrigins.push(process.env.FRONTEND_URL.replace('www.', ''));
+    } else if (process.env.FRONTEND_URL.includes('https://')) {
+      allowedOrigins.push(
+        process.env.FRONTEND_URL.replace('https://', 'https://www.'),
+      );
+    }
+  }
+
   app.enableCors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+    origin: (
+      origin: string | undefined,
+      callback: (err: Error | null, allow?: boolean) => void,
+    ) => {
+      // Allow requests with no origin (like mobile apps, postman or curl)
+      if (!origin) return callback(null, true);
+
+      const isAllowed =
+        allowedOrigins.includes(origin) ||
+        allowedOrigins.some(
+          (allowed) => origin.toLowerCase() === allowed.toLowerCase(),
+        );
+
+      if (isAllowed) {
+        callback(null, true);
+      } else {
+        callback(new Error(`Origin ${origin} not allowed by CORS`));
+      }
+    },
     credentials: true,
   });
 
