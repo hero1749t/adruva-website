@@ -273,7 +273,7 @@ export default function BlogEditor({
                   onChange={(e) => setAuthorId(e.target.value)}
                 >
                   <SelectValue placeholder="Select Author" />
-                  {authorsData?.data?.map((author) => (
+                  {authorsData?.data?.filter(Boolean).map((author) => (
                     <SelectItem key={author.id} value={author.id}>
                       {author.name}
                     </SelectItem>

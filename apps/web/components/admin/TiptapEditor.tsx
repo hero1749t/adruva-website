@@ -886,8 +886,10 @@ export default function TiptapEditor({
             <AlertTriangle className="w-4 h-4" />
             <span>
               Unsaved local draft found from{" "}
-              {new Date(draftData?.savedAt).toLocaleTimeString()}. Would you
-              like to restore it?
+              {draftData?.savedAt
+                ? new Date(draftData.savedAt).toLocaleTimeString()
+                : "recent session"}
+              . Would you like to restore it?
             </span>
           </div>
           <div className="flex gap-2">

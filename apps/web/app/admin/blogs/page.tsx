@@ -202,7 +202,7 @@ export default function BlogManager() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800/40 text-slate-700 dark:text-slate-300">
-                  {data.data.map((blog) => (
+                  {data.data.filter(Boolean).map((blog) => (
                     <tr
                       key={blog.id}
                       className="hover:bg-slate-50/50 dark:hover:bg-slate-900/10 transition-colors duration-150"

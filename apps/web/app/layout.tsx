@@ -35,7 +35,9 @@ export const metadata: Metadata = {
   description:
     "IT company India — web apps, mobile apps, AI solutions, SEO, Google ads. The last tech partner you'll ever need.",
   applicationName: "Adruva Solution",
-
+  alternates: {
+    canonical: "/",
+  },
   keywords: [
     "web development company India",
     "AI automation company India",
@@ -50,10 +52,19 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://adruvasolution.com",
     siteName: "Adruva Solution",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Adruva Solution | Your Business & Productivity Partner",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     creator: "@adruvaSolution",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
