@@ -189,6 +189,39 @@ export const projects: ProjectItem[] = [
       "/work/vintage-tours.jpg",
     ],
   },
+  {
+    title: "Hotel Arti Cottage",
+    slug: "hotel-arti-cottage",
+    category: "build",
+    industry: "retail",
+    techStack: [
+      "Next.js",
+      "Tailwind CSS",
+      "Vercel",
+      "Framer Motion",
+      "SEO Optimization",
+    ],
+    heroGradient: "/work/hotel-arti-cottage.jpg",
+    isFeatured: true,
+    clientName: "Hotel Arti Cottage Rishikesh",
+    timeline: "6 weeks",
+    overview:
+      "A high-converting, fully customized hospitality showcase website and room pricing calculator engine for Hotel Arti Cottage in Tapovan, Rishikesh. Rebuilt from the ground up using Next.js to provide a fast mobile booking funnel and locally-focused search engine optimization (SEO).",
+    problem:
+      "Hotel Arti Cottage in Rishikesh was struggling to capture direct digital bookings, relying heavily on high-commission OTA aggregators. Their previous website was slow, not mobile-responsive, and had no interactive tools to calculate rooms and seasonal rates dynamically for travelers.\n\nWithout a structured local search layout, the hotel was invisible to the surge of domestic and international travelers searching for quiet, clean boutique cottages near Tapovan. This absence of organic visibility and high cart friction prevented them from scaling direct customer bookings.",
+    solution:
+      "We engineered a custom guest acquisition website using Next.js and Tailwind CSS.\n\nWe implemented a dynamic, interactive Room Rate & Budget Calculator that allows prospective guests to select room types (Deluxe, Super Deluxe, Luxury Family Suite), input dates, and view transparent pricing instantly, with a one-click CTA to WhatsApp the host. We also integrated local schema tags, Google Maps APIs, and structured local SEO parameters to position them at the top of local Rishikesh travel searches.\n\nTo increase trust, we built an integrated Travel Blog and Rishikesh Guide showcase to answer common traveler search queries like Ganga Aarti and White-Water Rafting timings directly, converting blog readers into direct room leads.",
+    results: [
+      { metric: "+140%", label: "Direct Booking Growth" },
+      { metric: "No. 3", label: "Rank on Local Searches" },
+      { metric: "-100%", label: "OTA Commission Dependency" },
+    ],
+    gallery: [
+      "/work/hotel-arti-cottage.jpg",
+      "/work/vintage-tours.jpg",
+      "/work/bali-yoga.jpg",
+    ],
+  },
 ];
 
 export const WORK_SLUGS = projects.map((p) => p.slug);

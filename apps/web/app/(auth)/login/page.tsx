@@ -30,7 +30,6 @@ export default function LoginPage() {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [googleLoading, setGoogleLoading] = useState(false);
 
   const {
     register,
@@ -59,17 +58,6 @@ export default function LoginPage() {
     } catch {
       setError("An unexpected error occurred. Please try again.");
       setLoading(false);
-    }
-  };
-
-  const handleGoogleSignIn = async () => {
-    setError(null);
-    setGoogleLoading(true);
-    try {
-      await signIn("google", { callbackUrl: "/admin/dashboard" });
-    } catch {
-      setError("Google sign-in failed. Please try again.");
-      setGoogleLoading(false);
     }
   };
 
@@ -166,7 +154,7 @@ export default function LoginPage() {
 
             <Button
               type="submit"
-              disabled={loading || googleLoading}
+              disabled={loading}
               className="w-full bg-brand-orange hover:bg-brand-orange/90 text-white h-12 mt-6 transition-all duration-300 font-semibold flex items-center justify-center gap-2 rounded-lg"
             >
               {loading ? (
@@ -179,29 +167,6 @@ export default function LoginPage() {
               )}
             </Button>
           </form>
-
-          <div className="relative flex items-center justify-center my-6">
-            <div className="absolute w-full border-t border-white/10" />
-            <span className="relative bg-[#0d1624] px-4 text-xs text-brand-gray uppercase">
-              Or continue with
-            </span>
-          </div>
-
-          <Button
-            type="button"
-            variant="outline"
-            disabled={loading || googleLoading}
-            onClick={handleGoogleSignIn}
-            className="w-full border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 text-white h-12 flex items-center justify-center gap-3 transition-all duration-300 rounded-lg"
-          >
-            <svg className="w-5 h-5" viewBox="0 0 24 24">
-              <path
-                fill="#EA4335"
-                d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.136 4.114-3.41 0-6.19-2.78-6.19-6.19 0-3.41 2.78-6.19 6.19-6.19 1.543 0 2.94.57 4.027 1.517l3.056-3.055C18.995 1.77 15.825 1 12.24 1 5.922 1 1 5.922 1 12.24s4.922 11.24 11.24 11.24c6.318 0 10.97-4.444 10.97-11.16 0-.649-.078-1.25-.175-1.835h-10.8V10.285z"
-              />
-            </svg>
-            <span>{googleLoading ? "Redirecting..." : "Google Account"}</span>
-          </Button>
         </CardContent>
       </Card>
     </div>
