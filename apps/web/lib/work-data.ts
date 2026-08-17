@@ -252,7 +252,7 @@ export function mapDbProjectToProjectItem(dbProject: any): ProjectItem {
   }
 
   const liveUrlMap: Record<string, string> = {
-    "bali-yoga-teacher-training": "https://baliyogaschool.com",
+    "bali-yoga-teacher-training": "https://baliyttc.com",
     "vintage-tours-and-travels": "https://www.trivandrumcabs.com",
     "hotel-arti-cottage": "https://www.articottagerishikesh.in",
     "adruva-resto-system": "https://adruva-resto-demo.onrender.com",
