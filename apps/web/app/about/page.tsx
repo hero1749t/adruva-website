@@ -14,6 +14,9 @@ export const metadata: Metadata = {
       "We are your business and productivity partner based in Dehradun, India. We empower businesses with cutting-edge technology and digital growth systems.",
     type: "website",
   },
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 async function getLiveTeam() {

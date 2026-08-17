@@ -15,6 +15,9 @@ export const metadata: Metadata = {
       "Explore our digital services including Web Development, Mobile Apps, AI Automation, Digital Marketing (Google Ads, Meta Ads, SEO), and UI/UX Design.",
     type: "website",
   },
+  alternates: {
+    canonical: "/services",
+  },
 };
 
 async function getLiveServices() {

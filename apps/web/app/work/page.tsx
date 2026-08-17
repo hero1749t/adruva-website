@@ -15,6 +15,9 @@ export const metadata: Metadata = {
       "Explore our digital projects, software builds, AI automations, digital marketing, and design case studies that help local businesses scale.",
     type: "website",
   },
+  alternates: {
+    canonical: "/work",
+  },
 };
 
 async function getLiveProjects() {

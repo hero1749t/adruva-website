@@ -200,9 +200,9 @@ export function ContactPageClient() {
                 >
                   Get In Touch
                 </Badge>
-                <h2 className="text-3xl md:text-4xl font-extrabold font-poppins text-secondary dark:text-white leading-tight tracking-tight">
+                <h1 className="text-3xl md:text-4xl font-extrabold font-poppins text-secondary dark:text-white leading-tight tracking-tight">
                   Let&apos;s Build Something Great
-                </h2>
+                </h1>
                 <p className="text-base leading-relaxed text-text-secondary dark:text-gray-300 font-inter">
                   We work with local, service-based, and startup businesses to
                   build modern web frameworks, automate manual workflows, and

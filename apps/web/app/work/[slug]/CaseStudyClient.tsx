@@ -325,6 +325,19 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                     {project.timeline}
                   </span>
                 </div>
+                {project.liveUrl && (
+                  <div className="flex justify-between border-t border-border/10 pt-2 pb-2">
+                    <span className="font-semibold">Live Site</span>
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-brand-orange hover:underline font-bold flex items-center gap-1"
+                    >
+                      Visit Website <ExternalLink className="h-3 w-3" />
+                    </a>
+                  </div>
+                )}
               </div>
               <div className="p-4 bg-muted/35 rounded-2xl border border-border/20 text-center">
                 <p className="text-[10px] font-bold text-brand-orange font-space-grotesk tracking-widest uppercase">

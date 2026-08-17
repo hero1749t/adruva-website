@@ -18,6 +18,7 @@ export interface ProjectItem {
   clientName: string;
   timeline: string;
   overview: string;
+  liveUrl?: string;
 }
 
 export const projects: ProjectItem[] = [
@@ -250,6 +251,15 @@ export function mapDbProjectToProjectItem(dbProject: any): ProjectItem {
     }
   }
 
+  const liveUrlMap: Record<string, string> = {
+    "bali-yoga-teacher-training": "https://baliyogaschool.com",
+    "vintage-tours-and-travels": "https://www.trivandrumcabs.com",
+    "hotel-arti-cottage": "https://www.articottagerishikesh.in",
+    "adruva-resto-system": "https://adruva-resto-demo.onrender.com",
+    "ecommerce-mobile-app": "https://github.com/hero1749t/adruva-website",
+    "agency-management-platform": "https://adruva-crm-demo.onrender.com",
+  };
+
   return {
     title: dbProject.title,
     slug: dbProject.slug,
@@ -266,5 +276,6 @@ export function mapDbProjectToProjectItem(dbProject: any): ProjectItem {
     clientName: dbProject.clientName || "Adruva Client",
     timeline: "Ongoing",
     overview: dbProject.metaDescription || dbProject.title,
+    liveUrl: liveUrlMap[dbProject.slug] || undefined,
   };
 }

@@ -95,7 +95,9 @@ export default function RootLayout({
             </PublicLayoutWrapper>
           </div>
         </Providers>
-        <GoogleAnalytics gaId="G-XXXXXXXXXX" />
+        <GoogleAnalytics
+          gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-XXXXXXXXXX"}
+        />
       </body>
     </html>
   );
