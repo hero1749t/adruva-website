@@ -34,7 +34,9 @@ export class BlogService {
     }
 
     if (query.language) {
-      where.language = query.language;
+      if (query.language !== 'all') {
+        where.language = query.language;
+      }
     } else {
       // Default to english
       where.language = 'en';
