@@ -171,13 +171,13 @@ export default function AdminLayout({
   const sidebar = (
     <aside
       className={[
-        "h-screen flex flex-col bg-[#070b15] text-slate-200 border-r border-slate-900 shadow-2xl transition-all duration-300 relative z-20",
+        "h-screen flex flex-col bg-white dark:bg-[#070b15] text-slate-600 dark:text-slate-200 border-r border-slate-200 dark:border-slate-900 shadow-lg dark:shadow-2xl transition-all duration-300 relative z-20",
         isCollapsed ? "lg:w-20" : "lg:w-[17.5rem]",
         "w-[18.5rem]",
       ].join(" ")}
     >
       {/* Brand Header */}
-      <div className="h-16 flex items-center px-5 border-b border-slate-900/60 gap-3 justify-between">
+      <div className="h-16 flex items-center px-5 border-b border-slate-200/60 dark:border-slate-900/60 gap-3 justify-between">
         <Link
           href="/admin/dashboard"
           className={`flex items-center gap-3 outline-none hover:opacity-90 ${
@@ -190,7 +190,7 @@ export default function AdminLayout({
           </span>
           {!isCollapsed && (
             <span className="min-w-0">
-              <span className="block truncate text-sm font-extrabold leading-tight text-white font-poppins tracking-tight">
+              <span className="block truncate text-sm font-extrabold leading-tight text-slate-900 dark:text-white font-poppins tracking-tight">
                 Adruva Console
               </span>
               <span className="mt-0.5 block text-[9px] font-bold uppercase tracking-[0.2em] text-brand-orange">
@@ -202,7 +202,7 @@ export default function AdminLayout({
         <button
           type="button"
           onClick={() => setMobileMenuOpen(false)}
-          className="rounded-full p-1.5 text-slate-400 hover:bg-slate-900 hover:text-white lg:hidden border border-slate-800"
+          className="rounded-full p-1.5 text-slate-400 dark:text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white lg:hidden border border-slate-200 dark:border-slate-800"
         >
           <X size={16} />
         </button>
@@ -210,12 +210,12 @@ export default function AdminLayout({
 
       {/* Tip Message box */}
       {!isCollapsed && (
-        <div className="p-4 mx-4 mt-4 rounded-xl border border-slate-900 bg-slate-950/40 hidden lg:block">
-          <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+        <div className="p-4 mx-4 mt-4 rounded-xl border border-slate-200 dark:border-slate-900 bg-slate-50 dark:bg-slate-950/40 hidden lg:block">
+          <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
             <Sparkles size={12} className="text-brand-orange" />
             <span>Interactive Console</span>
           </div>
-          <p className="mt-1 text-[11px] leading-normal text-slate-500 font-inter">
+          <p className="mt-1 text-[11px] leading-normal text-slate-600 dark:text-slate-500 font-inter">
             Monitor client inquiries, post jobs, and manage sitemaps.
           </p>
         </div>
@@ -224,7 +224,7 @@ export default function AdminLayout({
       {/* Collapsible Trigger for Desktop */}
       <button
         onClick={() => setIsCollapsed(!isCollapsed)}
-        className="hidden lg:flex absolute top-4 -right-3.5 h-7 w-7 items-center justify-center rounded-full border border-slate-800 bg-[#070b15] text-slate-400 hover:text-white shadow-md cursor-pointer hover:border-slate-700 transition-colors"
+        className="hidden lg:flex absolute top-4 -right-3.5 h-7 w-7 items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#070b15] text-slate-400 hover:text-slate-600 dark:hover:text-white shadow-md cursor-pointer hover:border-slate-300 dark:hover:border-slate-700 transition-colors"
       >
         {isCollapsed ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
       </button>
@@ -241,11 +241,11 @@ export default function AdminLayout({
           return (
             <section key={group.title} className="space-y-1">
               {!isCollapsed ? (
-                <h4 className="px-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 py-1.5 font-poppins">
+                <h4 className="px-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 py-1.5 font-poppins">
                   {group.title}
                 </h4>
               ) : (
-                <div className="mx-auto my-2 hidden h-px w-8 bg-slate-900 lg:block" />
+                <div className="mx-auto my-2 hidden h-px w-8 bg-slate-200 dark:bg-slate-900 lg:block" />
               )}
 
               <div className="space-y-0.5">
@@ -263,8 +263,8 @@ export default function AdminLayout({
                         "group relative flex min-h-10 items-center gap-3 rounded-xl px-3 text-xs font-semibold outline-none transition-all duration-150",
                         isCollapsed ? "lg:justify-center lg:px-0" : "",
                         active
-                          ? "bg-slate-900/60 text-white shadow-sm ring-1 ring-slate-800/40"
-                          : "text-slate-400 hover:bg-slate-900/30 hover:text-white",
+                          ? "bg-brand-orange/10 dark:bg-slate-900/60 text-brand-orange dark:text-white shadow-sm ring-1 ring-brand-orange/20 dark:ring-slate-800/40"
+                          : "text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900/30 hover:text-slate-900 dark:hover:text-white",
                       ].join(" ")}
                     >
                       {active && !isCollapsed && (
@@ -275,7 +275,7 @@ export default function AdminLayout({
                           "flex h-7 w-7 shrink-0 items-center justify-center rounded-lg transition-transform duration-200 group-hover:scale-105",
                           active
                             ? "bg-brand-orange text-white shadow-md shadow-brand-orange/20"
-                            : "bg-slate-950 text-slate-500 border border-slate-900 group-hover:bg-slate-900 group-hover:text-white",
+                            : "bg-slate-50 dark:bg-slate-950 text-slate-400 dark:text-slate-500 border border-slate-200 dark:border-slate-900 group-hover:bg-slate-100 dark:group-hover:bg-slate-900 group-hover:text-slate-700 dark:group-hover:text-white",
                         ].join(" ")}
                       >
                         <Icon size={14} />
@@ -309,18 +309,18 @@ export default function AdminLayout({
       </nav>
 
       {/* Footer Profile */}
-      <div className="border-t border-slate-900 p-3 bg-[#05080f]/60 space-y-3">
+      <div className="border-t border-slate-200 dark:border-slate-900 p-3 bg-slate-50/50 dark:bg-[#05080f]/60 space-y-3">
         <div
-          className={`flex items-center gap-3 rounded-xl border border-slate-900 bg-slate-950/40 p-2.5 ${
+          className={`flex items-center gap-3 rounded-xl border border-slate-200 dark:border-slate-900 bg-white dark:bg-slate-950/40 p-2.5 ${
             isCollapsed ? "lg:justify-center lg:p-1.5" : ""
           }`}
         >
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-900 border border-slate-800 text-xs font-bold text-brand-orange font-poppins">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold text-brand-orange font-poppins">
             {userInitial}
           </span>
           {!isCollapsed && (
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-semibold text-white leading-tight truncate font-inter">
+              <p className="text-xs font-semibold text-slate-900 dark:text-white leading-tight truncate font-inter">
                 {session.user?.name || "Admin"}
               </p>
               <p className="text-[10px] text-slate-500 truncate capitalize font-mono mt-0.5">
@@ -332,7 +332,7 @@ export default function AdminLayout({
         </div>
         <button
           onClick={() => signOut({ callbackUrl: "/login" })}
-          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-slate-900 hover:border-red-500/20 bg-slate-950/20 hover:bg-red-500/10 text-slate-400 hover:text-red-400 text-xs font-semibold transition-all duration-200 cursor-pointer"
+          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-900 hover:border-red-500/20 bg-white dark:bg-slate-950/20 hover:bg-red-500/10 text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 text-xs font-semibold transition-all duration-200 cursor-pointer"
         >
           <LogOut size={13} />
           {!isCollapsed && <span>Logout</span>}

@@ -92,6 +92,31 @@ export function Navbar() {
   useEffect(() => {
     setSupportsHover(window.matchMedia("(hover: hover)").matches);
 
+    // Initialize Google Translate Element Widget
+    if (typeof window !== "undefined") {
+      if (!document.getElementById("google-translate-script")) {
+        const script = document.createElement("script");
+        script.id = "google-translate-script";
+        script.src =
+          "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+        script.async = true;
+        document.body.appendChild(script);
+      }
+
+      (window as any).googleTranslateElementInit = () => {
+        new (window as any).google.translate.TranslateElement(
+          {
+            pageLanguage: "en",
+            includedLanguages: "en,id,de,ko,ja,zh-CN,nl,ru,it,es,fr",
+            layout: (window as any).google.translate.TranslateElement
+              .InlineLayout.SIMPLE,
+            autoDisplay: false,
+          },
+          "google_translate_element",
+        );
+      };
+    }
+
     const sentinel = sentinelRef.current;
     if (!sentinel) return;
 
@@ -338,38 +363,86 @@ export function Navbar() {
             })}
           </nav>
 
-          <div className="hidden md:flex items-center gap-4 h-16">
-            <ThemeToggle />
-            <a
-              href={calendlyUrl}
-              target={calendlyUrl.startsWith("http") ? "_blank" : undefined}
-              rel={
-                calendlyUrl.startsWith("http")
-                  ? "noopener noreferrer"
-                  : undefined
-              }
-            >
-              <Button className="bg-brand-orange hover:bg-brand-orange-hover text-white text-xs px-5 h-9 rounded-full font-semibold flex items-center gap-1.5 shadow-[0_4px_14px_rgba(255,107,0,0.3)] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
-                <Calendar className="h-3.5 w-3.5" />
-                Book a Free Call
-              </Button>
-            </a>
-          </div>
+          {/* Action Actions Flex wrapper */}
+          <div className="flex items-center gap-3">
+            <div id="google_translate_element" className="scale-90" />
 
-          <div className="flex md:hidden items-center gap-3">
-            <ThemeToggle />
-            <button
-              onClick={() => setIsMobileMenuOpen(true)}
-              className={cn(
-                "p-2 rounded-lg border transition-colors",
-                isScrolled
-                  ? "border-border hover:bg-black/5 text-foreground"
-                  : "border-border hover:bg-muted text-foreground dark:text-white dark:border-white/10",
-              )}
-              aria-label="Open navigation menu"
-            >
-              <Menu className="h-5 w-5" />
-            </button>
+            <style
+              dangerouslySetInnerHTML={{
+                __html: `
+              .skiptranslate, .goog-te-banner-frame {
+                display: none !important;
+              }
+              body {
+                top: 0px !important;
+              }
+              .goog-te-gadget-simple {
+                background-color: transparent !important;
+                border: 1px solid rgba(226, 232, 240, 0.2) !important;
+                border-radius: 9999px !important;
+                padding: 4px 10px !important;
+                font-size: 11px !important;
+                display: flex !important;
+                align-items: center !important;
+                cursor: pointer !important;
+                transition: all 0.2s !important;
+              }
+              .dark .goog-te-gadget-simple {
+                border-color: rgba(255, 255, 255, 0.1) !important;
+              }
+              .goog-te-gadget-simple:hover {
+                border-color: rgba(255, 107, 0, 0.5) !important;
+              }
+              .goog-te-gadget-simple img {
+                display: none !important;
+              }
+              .goog-te-menu-value {
+                margin: 0 !important;
+                color: inherit !important;
+                font-weight: 600 !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.05em !important;
+              }
+              .goog-te-menu-value span {
+                color: inherit !important;
+              }
+            `,
+              }}
+            />
+
+            <div className="hidden md:flex items-center gap-4 h-16">
+              <ThemeToggle />
+              <a
+                href={calendlyUrl}
+                target={calendlyUrl.startsWith("http") ? "_blank" : undefined}
+                rel={
+                  calendlyUrl.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
+              >
+                <Button className="bg-brand-orange hover:bg-brand-orange-hover text-white text-xs px-5 h-9 rounded-full font-semibold flex items-center gap-1.5 shadow-[0_4px_14px_rgba(255,107,0,0.3)] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
+                  <Calendar className="h-3.5 w-3.5" />
+                  Book a Free Call
+                </Button>
+              </a>
+            </div>
+
+            <div className="flex md:hidden items-center gap-3">
+              <ThemeToggle />
+              <button
+                onClick={() => setIsMobileMenuOpen(true)}
+                className={cn(
+                  "p-2 rounded-lg border transition-colors",
+                  isScrolled
+                    ? "border-border hover:bg-black/5 text-foreground"
+                    : "border-border hover:bg-muted text-foreground dark:text-white dark:border-white/10",
+                )}
+                aria-label="Open navigation menu"
+              >
+                <Menu className="h-5 w-5" />
+              </button>
+            </div>
           </div>
         </div>
       </header>

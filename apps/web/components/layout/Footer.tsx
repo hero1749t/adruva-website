@@ -59,11 +59,11 @@ export function Footer() {
   });
   const settings = settingsData?.data || {};
 
-  const contactEmail = settings.contactEmail || "hello@adruvasolution.com";
-  const contactPhone = settings.contactPhone || "+91 83838 77088";
+  const contactEmail = settings.contactEmail || "info@adruvasolution.com";
+  const contactPhone = settings.contactPhone || "+91 91492 76799";
   const officeAddress =
     settings.officeAddress ||
-    "Rajpur Road, Jakhan, Dehradun, Uttarakhand, India - 248001";
+    "Near Bageshwari Devi Mandir, Shanti Nagar, Dhalwala, Rishikesh, Uttarakhand, India - 249137";
 
   const facebookUrl =
     settings.facebookUrl ||
@@ -77,7 +77,7 @@ export function Footer() {
 
   const whatsappNumber = settings.contactPhone
     ? settings.contactPhone.replace(/[^0-9]/g, "")
-    : process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918383877088";
+    : process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919149276799";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=Hi%20Adruva!%20I'd%20like%20to%20discuss%20a%20project.`;
 
   const handleSubscribe = async (e: React.FormEvent) => {
@@ -252,12 +252,20 @@ export function Footer() {
               </div>
               <div className="flex items-start gap-3">
                 <Phone className="h-4 w-4 text-brand-orange mt-0.5 shrink-0" />
-                <a
-                  href={`tel:${contactPhone.replace(/\s+/g, "")}`}
-                  className="hover:text-white transition-colors"
-                >
-                  {contactPhone}
-                </a>
+                <div className="flex flex-col space-y-1">
+                  <a
+                    href={`tel:${contactPhone.replace(/\s+/g, "")}`}
+                    className="hover:text-white transition-colors block"
+                  >
+                    {contactPhone}
+                  </a>
+                  <a
+                    href="tel:+918383877088"
+                    className="hover:text-white transition-colors text-xs text-gray-500 block"
+                  >
+                    +91 83838 77088
+                  </a>
+                </div>
               </div>
               <div className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 text-brand-orange mt-0.5 shrink-0" />
@@ -326,7 +334,7 @@ export function Footer() {
             © {new Date().getFullYear()} Adruva Solution. All rights reserved.
           </p>
           <p className="flex items-center gap-1">
-            Made with <span className="text-brand-orange">♥</span> in Dehradun
+            Made with <span className="text-brand-orange">♥</span> in Rishikesh
           </p>
         </div>
       </div>

@@ -23,8 +23,18 @@ export class BlogController {
     @Query('category') category?: string,
     @Query('status') status?: string,
     @Query('search') search?: string,
+    @Query('language') language?: string,
+    @Query('sort') sort?: string,
   ) {
-    return this.blogService.findAll({ page, limit, category, status, search });
+    return this.blogService.findAll({
+      page,
+      limit,
+      category,
+      status,
+      search,
+      language,
+      sort,
+    });
   }
 
   @Get(':param')
@@ -57,5 +67,32 @@ export class BlogController {
   @Patch(':id/publish')
   async togglePublish(@Param('id') id: string) {
     return this.blogService.togglePublish(id);
+  }
+
+  @Post(':id/view')
+  async incrementViews(@Param('id') id: string) {
+    return this.blogService.incrementViews(id);
+  }
+
+  @Post(':id/like')
+  async incrementLikes(@Param('id') id: string) {
+    return this.blogService.incrementLikes(id);
+  }
+
+  @Patch(':id/pin')
+  async togglePin(
+    @Param('id') id: string,
+    @Body('isPinned') isPinned?: boolean,
+    @Body('pinOrder') pinOrder?: number,
+  ) {
+    return this.blogService.togglePin(id, { isPinned, pinOrder });
+  }
+
+  @Post(':id/translate')
+  async autoTranslate(
+    @Param('id') id: string,
+    @Body('languages') languages: string[],
+  ) {
+    return this.blogService.autoTranslate(id, languages);
   }
 }

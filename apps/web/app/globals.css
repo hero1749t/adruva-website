@@ -8,26 +8,26 @@
   /* Light Mode */
   :root {
     /* Backgrounds */
-    --background: 220 14% 98%; /* #F4F5F7-ish base background */
-    --background-secondary: 220 14% 96%; /* #F4F5F7 */
-    --background-tertiary: 220 13% 91%; /* #E8EAED */
+    --background: 240 5.9% 96.1%; /* Soft clean Zinc-100 #F4F4F5 */
+    --background-secondary: 240 5.9% 90%; /* Zinc-200 #E4E4E7 */
+    --background-tertiary: 240 4.9% 83.9%; /* Zinc-300 #D4D4D8 */
 
     /* Foreground/Text */
-    --foreground: 220 26% 14%; /* #1A1F2E */
-    --foreground-secondary: 220 9% 46%; /* #6B7280 */
-    --foreground-muted: 220 9% 64%; /* #9CA3AF */
+    --foreground: 240 10% 3.9%; /* Deep Zinc-950 #09090B */
+    --foreground-secondary: 240 3.8% 46.1%; /* Zinc-500 #71717A */
+    --foreground-muted: 240 3.8% 65%; /* Zinc-400 #A1A1AA */
 
     /* Card */
-    --card: 0 0% 100%; /* #FFFFFF */
-    --card-foreground: 220 26% 14%;
+    --card: 0 0% 100%; /* Pure White #FFFFFF */
+    --card-foreground: 240 10% 3.9%;
 
     /* Popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 220 26% 14%;
+    --popover-foreground: 240 10% 3.9%;
 
     /* Border */
-    --border: 220 13% 91%; /* #E8EAED */
-    --border-strong: 220 13% 82%; /* #D1D5DB */
+    --border: 240 5.9% 90%; /* Zinc-200 border */
+    --border-strong: 240 4.9% 83.9%; /* Zinc-300 border */
 
     /* Brand Colors (HSL mapped) */
     --brand-orange: 24 100% 50%; /* #FF6B00 */
@@ -41,13 +41,13 @@
     --primary-foreground: 0 0% 100%;
     --secondary: 214 68% 14%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 9% 46%;
+    --muted: 240 5.9% 90%;
+    --muted-foreground: 240 3.8% 46.1%;
     --accent: 24 100% 97%;
     --accent-foreground: 24 100% 50%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --input: 220 13% 91%;
+    --input: 240 5.9% 90%;
     --ring: 24 100% 50%;
 
     /* Radii */
@@ -305,4 +305,28 @@ body {
 }
 ::view-transition-new(root) {
   z-index: 9999;
+}
+
+/* Premium Background Tech Grids & Noise Texture */
+.bg-grid-plus-dots {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M19 0h2v40h-2zM0 19h40v2H0z' fill='rgba(0,0,0,0.015)'/%3E%3Cpath d='M18 18h4v4h-4z' fill='rgba(0,0,0,0.04)'/%3E%3C/svg%3E");
+  background-size: 40px 40px;
+}
+.dark .bg-grid-plus-dots {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M19 0h2v40h-2zM0 19h40v2H0z' fill='rgba(255,255,255,0.008)'/%3E%3Cpath d='M18 18h4v4h-4z' fill='rgba(255,255,255,0.02)'/%3E%3C/svg%3E");
+  background-size: 40px 40px;
+}
+
+.bg-grain {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.018;
+  pointer-events: none;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+.dark .bg-grain {
+  opacity: 0.012;
 }

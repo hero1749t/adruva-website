@@ -52,7 +52,7 @@ const timeline = [
   {
     step: "01",
     title: "The Beginning",
-    desc: "Adruva was founded in Dehradun with a vision to bridge the gap between local businesses and premium engineering.",
+    desc: "Adruva was founded in Rishikesh with a vision to bridge the gap between local businesses and premium engineering.",
   },
   {
     step: "02",
@@ -207,7 +207,7 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
               </div>
               <div className="space-y-6 text-base md:text-lg text-slate-600 dark:text-gray-300 leading-relaxed font-inter">
                 <motion.p variants={fadeInUp}>
-                  In Dehradun and across regional business hubs, we noticed a
+                  In Rishikesh and across regional business hubs, we noticed a
                   persistent and frustrating gap: local businesses were
                   struggling to find quality technical development partners.
                   Many business owners had brilliant ideas but were constantly

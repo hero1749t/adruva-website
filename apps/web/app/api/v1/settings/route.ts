@@ -7,9 +7,10 @@ export async function GET() {
       siteName: "Adruva Solution",
       description:
         "AI-Powered Digital Transformation & Web/Mobile App Development Agency.",
-      contactEmail: "hello@adruvasolution.com",
-      contactPhone: "+91 98765 43210",
-      officeAddress: "Rajpur Road, Jakhan, Dehradun",
+      contactEmail: "info@adruvasolution.com",
+      contactPhone: "+91 91492 76799",
+      officeAddress:
+        "Near Bageshwari Devi Mandir, Shanti Nagar, Dhalwala, Rishikesh, Uttarakhand - 249137",
       facebookUrl: "https://facebook.com",
       instagramUrl: "https://instagram.com",
       linkedinUrl: "https://linkedin.com",

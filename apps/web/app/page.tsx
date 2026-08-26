@@ -90,14 +90,14 @@ export default async function Home() {
     description: "Full-service IT & digital growth company",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Dehradun",
+      addressLocality: "Rishikesh",
       addressRegion: "Uttarakhand",
       addressCountry: "IN",
     },
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
-      email: "hello@adruvaSolution.com",
+      email: "info@adruvasolution.com",
     },
     sameAs: [
       "https://www.facebook.com/p/Adruva-solution-61559775392656/",

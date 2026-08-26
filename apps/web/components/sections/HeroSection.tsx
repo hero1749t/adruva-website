@@ -1,17 +1,22 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, TrendingUp, Cpu } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
+import { OrbitalServices } from "@/components/ui/OrbitalServices";
+import Image from "next/image";
 
 const words = ["Need.", "Trust.", "Choose."];
 
 export function HeroSection() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const checkReducedMotion = () => {
@@ -27,6 +32,12 @@ export function HeroSection() {
 
     return () => clearInterval(interval);
   }, []);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!heroRef.current) return;
+    const { left, top } = heroRef.current.getBoundingClientRect();
+    setMousePos({ x: e.clientX - left, y: e.clientY - top });
+  };
 
   const calendlyUrl = "/contact";
 
@@ -49,14 +60,51 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative w-full min-h-[80vh] flex items-center justify-center overflow-hidden py-12 lg:py-16 bg-transparent transition-colors duration-300">
-      {/* Grid Pattern Overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+    <section
+      ref={heroRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative w-full min-h-[80vh] flex items-center justify-center overflow-hidden py-12 lg:py-16 bg-gradient-to-tr from-sky-50/50 via-white to-orange-50/30 dark:bg-none dark:bg-transparent transition-colors duration-300 group"
+    >
+      {/* Scope CSS animation variables for drifting background blobs */}
+      <style>{`
+        @keyframes bg-drift-1 {
+          0% { transform: translate(0px, 0px) scale(1); }
+          50% { transform: translate(50px, -40px) scale(1.15); }
+          100% { transform: translate(0px, 0px) scale(1); }
+        }
+        @keyframes bg-drift-2 {
+          0% { transform: translate(0px, 0px) scale(1.1); }
+          50% { transform: translate(-40px, 50px) scale(0.9); }
+          100% { transform: translate(0px, 0px) scale(1.1); }
+        }
+        .animate-bg-drift-1 {
+          animation: bg-drift-1 22s infinite ease-in-out;
+        }
+        .animate-bg-drift-2 {
+          animation: bg-drift-2 28s infinite ease-in-out;
+        }
+      `}</style>
 
-      {/* Radial Glows */}
+      {/* Original Dark Mode Grid Pattern Overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none z-0 hidden dark:block" />
+
+      {/* Radial fade to soften grid pattern around the center (light mode only) */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,hsl(var(--background))/30%_100%)] pointer-events-none z-0 dark:hidden" />
+
+      {/* Interactive Background Mouse Spotlight */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0"
+        style={{
+          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255,107,0,0.04), rgba(45,140,255,0.03), transparent 75%)`,
+        }}
+      />
+
+      {/* Radial Glow Drifting Blobs */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[10%] left-[5%] w-[450px] h-[450px] rounded-full bg-[radial-gradient(circle,rgba(255,107,0,0.06)_0%,transparent_70%)] blur-3xl" />
-        <div className="absolute top-[5%] right-[5%] w-[450px] h-[450px] rounded-full bg-[radial-gradient(circle,rgba(45,140,255,0.04)_0%,transparent_70%)] blur-3xl" />
+        <div className="absolute top-[10%] left-[5%] w-[450px] h-[450px] rounded-full bg-brand-orange/8 dark:bg-brand-orange/[0.04] blur-[90px] animate-bg-drift-1" />
+        <div className="absolute bottom-[10%] right-[5%] w-[450px] h-[450px] rounded-full bg-brand-blue/8 dark:bg-brand-blue/[0.03] blur-[90px] animate-bg-drift-2" />
       </div>
 
       {/* Floating Particles */}
@@ -169,89 +217,43 @@ export function HeroSection() {
                 </Button>
               </Link>
             </motion.div>
+
+            {/* Trusted By Section */}
+            <motion.div
+              variants={itemVariants}
+              className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+            >
+              <div className="flex -space-x-3">
+                {["dk", "lk", "nk", "sk"].map((avatar, i) => (
+                  <div
+                    key={avatar}
+                    className="relative w-10 h-10 rounded-full border-2 border-background overflow-hidden"
+                    style={{ zIndex: 10 - i }}
+                  >
+                    <Image
+                      src={`/team/${avatar}.jpg`}
+                      alt="Client Avatar"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
+                <div className="relative w-10 h-10 rounded-full border-2 border-background bg-zinc-800 flex items-center justify-center text-xs font-bold text-white z-0">
+                  50+
+                </div>
+              </div>
+              <p className="text-sm text-muted-foreground font-medium font-inter">
+                Trusted by{" "}
+                <span className="text-foreground font-bold">
+                  50+ Businesses
+                </span>
+              </p>
+            </motion.div>
           </motion.div>
 
-          {/* Right Column: Floating Dashboard Cards (Desktop Only) */}
-          <div className="hidden lg:col-span-5 lg:flex relative h-[380px] items-center justify-center">
-            {/* Background blob for mockups */}
-            <div className="absolute w-[320px] h-[320px] rounded-full bg-brand-orange/5 blur-3xl z-0" />
-
-            {/* Card 1: 15+ Projects */}
-            <motion.div
-              initial={
-                prefersReducedMotion
-                  ? { opacity: 1 }
-                  : { opacity: 0, scale: 0.9, y: 30 }
-              }
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="absolute top-2 left-2 w-44 p-3.5 rounded-2xl bg-card border border-border shadow-lg flex items-center gap-3 z-10 hover:border-brand-orange/40 hover:shadow-xl transition-all duration-300"
-            >
-              <div className="p-2 rounded-xl bg-green-500/10 text-green-500 shrink-0">
-                <CheckCircle2 className="h-4.5 w-4.5" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-base font-bold text-foreground font-poppins">
-                  15+
-                </span>
-                <span className="text-[10px] text-muted-foreground font-inter">
-                  Projects Delivered
-                </span>
-              </div>
-            </motion.div>
-
-            {/* Card 2: 100% On-time */}
-            <motion.div
-              initial={
-                prefersReducedMotion
-                  ? { opacity: 1 }
-                  : { opacity: 0, scale: 0.9, y: 30 }
-              }
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="absolute top-28 right-0 w-48 p-3.5 rounded-2xl bg-card border border-border shadow-lg flex flex-col gap-1.5 z-20 hover:border-brand-orange/40 hover:shadow-xl transition-all duration-300"
-            >
-              <div className="flex items-center justify-between">
-                <div className="p-2 rounded-xl bg-brand-blue/10 text-brand-blue shrink-0">
-                  <TrendingUp className="h-4.5 w-4.5" />
-                </div>
-                <span className="text-[9px] font-bold text-green-500 bg-green-500/10 px-1.5 py-0.5 rounded-full font-inter">
-                  +24% MoM
-                </span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xl font-black text-foreground font-poppins">
-                  100%
-                </span>
-                <span className="text-[10px] text-muted-foreground font-inter">
-                  On-Time Delivery
-                </span>
-              </div>
-            </motion.div>
-
-            {/* Card 3: AI Automation */}
-            <motion.div
-              initial={
-                prefersReducedMotion
-                  ? { opacity: 1 }
-                  : { opacity: 0, scale: 0.9, y: 30 }
-              }
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="absolute bottom-2 left-6 w-48 p-3.5 rounded-2xl bg-card border border-border shadow-lg flex items-center gap-3 z-30 hover:border-brand-orange/40 hover:shadow-xl transition-all duration-300"
-            >
-              <div className="p-2 rounded-xl bg-brand-orange/10 text-brand-orange shrink-0">
-                <Cpu className="h-4.5 w-4.5" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xs font-bold text-foreground font-poppins">
-                  AI Automation
-                </span>
-                <span className="text-[10px] text-muted-foreground font-inter">
-                  Systems Integrated
-                </span>
-              </div>
-            </motion.div>
+          {/* Right Column: Orbital Services Graphic (Desktop Only) */}
+          <div className="hidden lg:col-span-5 lg:flex relative h-[500px] items-center justify-center">
+            <OrbitalServices />
           </div>
         </div>
       </Container>

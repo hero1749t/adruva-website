@@ -23,6 +23,13 @@ export interface BlogPost {
     avatarInitials: string;
   };
   content: TiptapNode;
+  language?: string;
+  translations?: Array<{
+    id: string;
+    language: string;
+    slug: string;
+    title: string;
+  }>;
 }
 
 export const blogPosts: BlogPost[] = [
@@ -650,5 +657,19 @@ export function mapDbBlogToBlogPost(dbBlog: any): BlogPost {
       typeof dbBlog.content === "string"
         ? JSON.parse(dbBlog.content)
         : dbBlog.content,
+    language: dbBlog.language || "en",
+    translations: dbBlog.translationOf
+      ? [
+          {
+            id: dbBlog.translationOf.id,
+            language: dbBlog.translationOf.language || "en",
+            slug: dbBlog.translationOf.slug,
+            title: dbBlog.translationOf.title,
+          },
+          ...(dbBlog.translationOf.translations || []).filter(
+            (t: any) => t.id !== dbBlog.id,
+          ),
+        ]
+      : dbBlog.translations || [],
   };
 }

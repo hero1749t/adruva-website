@@ -316,13 +316,15 @@ const CustomBlockquote = Blockquote.extend({
   },
 });
 
-function cleanAndParseTiptapJson(value: string): any {
-  if (!value || !value.trim().startsWith("{")) return null;
+function cleanAndParseTiptapJson(value: any): any {
+  if (!value || typeof value !== "string") return null;
+  const trimmed = value.trim();
+  if (!trimmed.startsWith("{")) return null;
   try {
-    return JSON.parse(value);
+    return JSON.parse(trimmed);
   } catch (e) {
     try {
-      const repaired = value
+      const repaired = trimmed
         .replace(/\\{2,}"/g, '\\"')
         .replace(/[\u201c\u201d]/g, '"');
       return JSON.parse(repaired);
@@ -624,11 +626,12 @@ export default function TiptapEditor({
   // Sync external changes safely
   useEffect(() => {
     if (!editor || isCodeView) return;
+    if (editor.isFocused) return;
 
     let isValueJson = false;
     let parsedValue: any = null;
     try {
-      if (value && value.trim().startsWith("{")) {
+      if (value && typeof value === "string" && value.trim().startsWith("{")) {
         parsedValue = JSON.parse(value);
         isValueJson = true;
       }

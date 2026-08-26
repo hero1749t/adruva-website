@@ -63,7 +63,7 @@ export function TestimonialsSection() {
   };
 
   return (
-    <section className="w-full py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-transparent transition-colors duration-300 relative overflow-hidden">
+    <section className="w-full py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-slate-50/40 dark:bg-transparent transition-colors duration-300 relative overflow-hidden">
       {/* Premium Background Effects */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] bg-brand-orange/5 dark:bg-brand-orange/10 rounded-full blur-[120px]" />

@@ -59,4 +59,27 @@ export class UpdateBlogDto {
   @IsString()
   @IsOptional()
   status?: string;
+
+  @IsString()
+  @IsOptional()
+  language?: string;
+
+  @IsString()
+  @IsOptional()
+  translationOfId?: string;
+
+  @IsOptional()
+  isPinned?: boolean;
+
+  @IsInt()
+  @IsOptional()
+  pinOrder?: number;
+
+  @IsOptional()
+  imageAlignOffset?: any;
+
+  @IsArray()
+  @IsString({ each: true })
+  @IsOptional()
+  relatedBlogIds?: string[];
 }

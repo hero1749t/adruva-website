@@ -81,10 +81,11 @@ export function ContactPageClient() {
   });
   const settings = settingsData?.data || {};
 
-  const contactEmail = settings.contactEmail || "hello@adruvasolution.com";
-  const contactPhone = settings.contactPhone || "+91 83838 77088";
+  const contactEmail = settings.contactEmail || "info@adruvasolution.com";
+  const contactPhone = settings.contactPhone || "+91 91492 76799";
   const officeAddress =
-    settings.officeAddress || "Rajpur Road, Jakhan, Dehradun";
+    settings.officeAddress ||
+    "Near Bageshwari Devi Mandir, Shanti Nagar, Dhalwala, Rishikesh, Uttarakhand - 249137";
 
   const { executeRecaptcha } = useGoogleReCaptcha();
 
@@ -150,7 +151,7 @@ export function ContactPageClient() {
 
   const whatsappNumber = settings.contactPhone
     ? settings.contactPhone.replace(/[^0-9]/g, "")
-    : process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918383877088";
+    : process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919149276799";
 
   const getWhatsAppFallbackUrl = () => {
     if (!submittedData) return "#";
@@ -280,8 +281,8 @@ export function ContactPageClient() {
               {/* Google Maps Embed */}
               <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden border border-border/80 shadow-md">
                 <iframe
-                  title="Adruva Dehradun Office Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3442.8988673752533!2d78.0620247!3d30.3680979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390eb7ab2bbf7db5%3A0xc3485741fc32af9!2sRajpur%20Rd%2C%20Dehradun%2C%20Uttarakhand!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                  title="Adruva Rishikesh Office Location"
+                  src="https://maps.google.com/maps?q=Near%20Bageshwari%20Devi%20Mandir,%20Shanti%20Nagar,%20Dhalwala,%20Rishikesh,%20Uttarakhand%20249137&t=&z=15&ie=UTF8&iwloc=&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}

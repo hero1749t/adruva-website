@@ -5,6 +5,7 @@ import { Providers } from "./providers";
 import { PublicLayoutWrapper } from "@/components/layout/PublicLayoutWrapper";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { CursorGlow } from "@/components/ui/CursorGlow";
+import { DynamicBackground } from "@/components/ui/DynamicBackground";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 const poppins = Poppins({
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
     "web development company India",
     "AI automation company India",
     "digital marketing agency India",
-    "IT company Dehradun",
+    "IT company Rishikesh",
     "affordable software development India",
   ],
   authors: [{ name: "Adruva Solution" }],
@@ -88,8 +89,12 @@ export default function RootLayout({
         className={`${inter.variable} ${poppins.variable} ${spaceGrotesk.variable} antialiased`}
       >
         <Providers>
-          <div className="flex min-h-screen flex-col bg-background text-foreground transition-colors duration-300">
+          <div className="flex min-h-screen flex-col bg-background text-foreground transition-colors duration-300 relative">
+            {/* Premium tech-grid plus pattern overlay (only visible in light mode) */}
+            <div className="absolute inset-0 bg-grid-plus-dots pointer-events-none z-0 opacity-70 dark:hidden" />
+
             <CursorGlow />
+            <DynamicBackground />
             <PublicLayoutWrapper>
               <PageTransition>{children}</PageTransition>
             </PublicLayoutWrapper>

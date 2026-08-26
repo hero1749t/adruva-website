@@ -171,7 +171,7 @@ export function JobDetailClient({ job }: Props) {
 
   const getWhatsAppFallbackUrl = () => {
     if (!submittedData) return "#";
-    const number = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918383877088";
+    const number = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919149276799";
     const text = `Hi Adruva Solutions! I submitted a job application but couldn't reach the server.
 *Job Title:* ${job.title}
 *Name:* ${submittedData.fullName}
@@ -184,7 +184,7 @@ export function JobDetailClient({ job }: Props) {
 *LinkedIn:* ${submittedData.linkedinUrl || "N/A"}
 *Why Join:* ${submittedData.whyJoin}
 
-I will email my Resume PDF separately to hello@adruvasolution.com.`;
+I will email my Resume PDF separately to info@adruvasolution.com.`;
 
     return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
   };
@@ -506,7 +506,7 @@ I will email my Resume PDF separately to hello@adruvasolution.com.`;
                       </label>
                       <Input
                         type="tel"
-                        placeholder="e.g. +91 83838 77088"
+                        placeholder="e.g. +91 91492 76799"
                         {...register("phone")}
                         className={cn(
                           "border-border/80 focus-visible:ring-brand-orange text-xs h-9",

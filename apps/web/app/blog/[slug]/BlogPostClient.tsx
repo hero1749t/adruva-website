@@ -18,10 +18,25 @@ import {
   Check,
   User,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface BlogPostClientProps {
   post: BlogPost;
 }
+
+const SUPPORTED_LANGUAGES = [
+  { code: "en", name: "English" },
+  { code: "id", name: "Indonesian" },
+  { code: "de", name: "German" },
+  { code: "ko", name: "Korean" },
+  { code: "ja", name: "Japanese" },
+  { code: "zh", name: "Chinese" },
+  { code: "nl", name: "Dutch" },
+  { code: "ru", name: "Russian" },
+  { code: "it", name: "Italian" },
+  { code: "es", name: "Spanish" },
+  { code: "fr", name: "French" },
+];
 
 export function BlogPostClient({ post }: BlogPostClientProps) {
   const [copied, setCopied] = useState(false);
@@ -98,6 +113,41 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
           <div className="max-w-[760px] mx-auto">
             {/* Metadata Header */}
             <div className="space-y-6 text-center md:text-left">
+              {post.translations && post.translations.length > 0 && (
+                <div className="flex flex-wrap items-center gap-2 justify-center md:justify-start bg-slate-50 dark:bg-slate-900/60 p-2 rounded-lg border border-slate-100 dark:border-slate-800 text-xs font-semibold text-slate-500 mb-2 max-w-max">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-450 mr-1">
+                    Read in:
+                  </span>
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className={cn(
+                      "px-2 py-0.5 rounded transition-colors text-[10px] font-bold uppercase",
+                      post.language === "en"
+                        ? "bg-brand-orange text-white"
+                        : "hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400",
+                    )}
+                  >
+                    English
+                  </Link>
+                  {post.translations.map((trans) => (
+                    <Link
+                      key={trans.id}
+                      href={`/blog/${trans.slug}`}
+                      className={cn(
+                        "px-2 py-0.5 rounded transition-colors text-[10px] font-bold uppercase",
+                        post.language === trans.language
+                          ? "bg-brand-orange text-white"
+                          : "hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400",
+                      )}
+                    >
+                      {SUPPORTED_LANGUAGES.find(
+                        (l) => l.code === trans.language,
+                      )?.name || trans.language}
+                    </Link>
+                  ))}
+                </div>
+              )}
+
               <Badge className="bg-primary text-white border-none py-1 px-3 hover:bg-primary font-semibold text-xs tracking-wider uppercase">
                 {post.category}
               </Badge>
@@ -280,9 +330,20 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                       href={`/blog/${relatedPost.slug}`}
                       className="block relative aspect-[16/9] w-full overflow-hidden"
                     >
-                      <div
-                        className={`absolute inset-0 bg-gradient-to-br ${relatedPost.coverGradient} transform group-hover:scale-105 transition-transform duration-500`}
-                      />
+                      {relatedPost.coverGradient.startsWith("http") ||
+                      relatedPost.coverGradient.startsWith("/") ? (
+                        <Image
+                          src={relatedPost.coverGradient}
+                          alt={relatedPost.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          className="object-cover transform group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div
+                          className={`absolute inset-0 bg-gradient-to-br ${relatedPost.coverGradient} transform group-hover:scale-105 transition-transform duration-500`}
+                        />
+                      )}
                       <div className="absolute inset-0 bg-black/10" />
                       <div className="absolute top-3 left-3">
                         <Badge className="bg-primary text-white border-none py-0.5 px-2 text-[10px] hover:bg-primary font-medium">

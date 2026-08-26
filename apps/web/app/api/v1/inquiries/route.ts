@@ -25,7 +25,7 @@ export async function POST(req: Request) {
     const user = process.env.GMAIL_USER;
     const pass = process.env.GMAIL_APP_PASSWORD;
     const teamEmail =
-      process.env.TEAM_EMAIL || user || "hello@adruvasolution.com";
+      process.env.TEAM_EMAIL || user || "info@adruvasolution.com";
 
     if (!user || !pass) {
       console.warn(
