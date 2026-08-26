@@ -453,7 +453,7 @@ export class BlogService {
 
       let translatedContent = parentBlog.content;
       if (typeof translatedContent === 'string') {
-        translatedContent = `[${lang.toUpperCase()}] ${parentBlog.content}`;
+        translatedContent = `[${lang.toUpperCase()}] ${translatedContent}`;
       } else if (translatedContent && typeof translatedContent === 'object') {
         translatedContent = JSON.parse(JSON.stringify(translatedContent));
       }

@@ -20,7 +20,6 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
-  Globe,
   Sparkles,
   Shield,
 } from "lucide-react";
