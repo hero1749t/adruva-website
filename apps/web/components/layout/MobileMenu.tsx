@@ -36,14 +36,14 @@ export function MobileMenu({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-[100] bg-background/98 backdrop-blur-xl md:hidden flex flex-col justify-between p-6"
+          className="fixed inset-0 z-[100] bg-slate-950/98 dark:bg-zinc-950/98 backdrop-blur-xl md:hidden flex flex-col justify-between p-6"
           onClick={onClose}
         >
           {/* Close button (top-right, size 40x40) */}
           <div className="w-full flex justify-end">
             <button
               onClick={onClose}
-              className="w-10 h-10 flex items-center justify-center rounded-lg border border-border text-foreground hover:bg-muted transition-colors"
+              className="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-800 text-white hover:bg-slate-900 transition-colors"
               aria-label="Close menu"
             >
               <X className="h-5 w-5" />
@@ -60,7 +60,7 @@ export function MobileMenu({
                 key={link.href}
                 href={link.href}
                 onClick={onClose}
-                className="text-2xl font-bold text-foreground hover:text-brand-orange transition-colors font-poppins"
+                className="text-2xl font-bold text-white hover:text-brand-orange transition-colors font-poppins"
               >
                 {link.name}
               </Link>
