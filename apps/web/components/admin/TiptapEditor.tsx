@@ -781,46 +781,55 @@ export default function TiptapEditor({
     }
   };
 
-  if (!editor) return null;
-
-  const chars = editor.storage.characterCount?.characters() || 0;
-  const words = editor.storage.characterCount?.words() || 0;
+  const chars = editor?.storage?.characterCount?.characters() || 0;
+  const words = editor?.storage?.characterCount?.words() || 0;
 
   // Real-Time SEO & Readability Calculations
   const seoChecklist = useMemo(() => {
+    if (!editor) {
+      return {
+        wordCount: 0,
+        hasH2: false,
+        hasInternalLinks: false,
+        hasImages: false,
+        missingAltTags: false,
+        keywordInTitle: false,
+        keywordInDesc: false,
+        readability: { ease: 100, grade: "0.0" },
+      };
+    }
+
     let plainText = "";
     let h2Found = false;
     let internalLinkFound = false;
     let imageCount = 0;
     let missingAltCount = 0;
 
-    if (editor) {
-      plainText = editor.getText() || "";
-      editor.state.doc.descendants((node) => {
-        if (
-          node.type.name === "heading" &&
-          (node.attrs.level === 2 || node.attrs.level === 3)
-        ) {
-          h2Found = true;
+    plainText = editor.getText() || "";
+    editor.state.doc.descendants((node) => {
+      if (
+        node.type.name === "heading" &&
+        (node.attrs.level === 2 || node.attrs.level === 3)
+      ) {
+        h2Found = true;
+      }
+      if (node.type.name === "image") {
+        imageCount++;
+        if (!node.attrs.alt) {
+          missingAltCount++;
         }
-        if (node.type.name === "image") {
-          imageCount++;
-          if (!node.attrs.alt) {
-            missingAltCount++;
-          }
-        }
-        if (node.marks) {
-          node.marks.forEach((mark) => {
-            if (mark.type.name === "link" && mark.attrs.href) {
-              const href = mark.attrs.href;
-              if (href.startsWith("/") || href.includes("adruvasolution.com")) {
-                internalLinkFound = true;
-              }
+      }
+      if (node.marks) {
+        node.marks.forEach((mark) => {
+          if (mark.type.name === "link" && mark.attrs.href) {
+            const href = mark.attrs.href;
+            if (href.startsWith("/") || href.includes("adruvasolution.com")) {
+              internalLinkFound = true;
             }
-          });
-        }
-      });
-    }
+          }
+        });
+      }
+    });
 
     const wordsVal = plainText.trim().split(/\s+/).filter(Boolean).length;
     let readability = { ease: 100, grade: "0.0" };
@@ -880,6 +889,8 @@ export default function TiptapEditor({
       readability,
     };
   }, [editor, chars, title, seoDesc, focusKeyword]);
+
+  if (!editor) return null;
 
   const editorNode = (
     <div className="flex flex-col bg-white dark:bg-[#151f32] border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm">
