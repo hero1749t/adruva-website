@@ -179,6 +179,7 @@ export default function AdminLayout({
       <div className="h-16 flex items-center px-5 border-b border-slate-200/60 dark:border-slate-900/60 gap-3 justify-between">
         <Link
           href="/admin/dashboard"
+          scroll={false}
           className={`flex items-center gap-3 outline-none hover:opacity-90 ${
             isCollapsed ? "lg:justify-center lg:w-full" : ""
           }`}
@@ -256,6 +257,7 @@ export default function AdminLayout({
                     <Link
                       key={item.href}
                       href={item.href}
+                      scroll={false}
                       onClick={() => setMobileMenuOpen(false)}
                       title={isCollapsed ? item.name : undefined}
                       className={[
@@ -341,7 +343,7 @@ export default function AdminLayout({
   );
 
   return (
-    <div className="min-h-screen flex bg-slate-50 dark:bg-[#060814] text-slate-950 dark:text-slate-100 transition-colors duration-300">
+    <div className="min-h-screen lg:h-screen lg:overflow-hidden flex bg-slate-50 dark:bg-[#060814] text-slate-950 dark:text-slate-100 transition-colors duration-300">
       {/* Mobile Drawer Overlay */}
       {mobileMenuOpen && (
         <div

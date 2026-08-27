@@ -80,7 +80,7 @@ export class ApplicationsService {
           type: 'application',
           title: 'New Job Application',
           message: `${application.fullName} applied for the ${application.jobTitle} position`,
-          link: `/admin/careers`,
+          link: `/admin/applications`,
         },
       });
     } catch (e) {

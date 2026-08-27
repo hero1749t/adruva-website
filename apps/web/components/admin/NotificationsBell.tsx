@@ -69,12 +69,19 @@ export default function NotificationsBell() {
     try {
       const res = await apiFetch<{
         success: boolean;
-        data: NotificationItem[];
+        data: {
+          unread: NotificationItem[];
+          recent: NotificationItem[];
+        };
       }>("/notifications?limit=25");
-      if (res.success && Array.isArray(res.data)) {
-        const safeData = res.data.filter((n): n is NotificationItem => !!n);
+      if (res.success && res.data && Array.isArray(res.data.recent)) {
+        const safeData = res.data.recent.filter(
+          (n): n is NotificationItem => !!n,
+        );
         setNotifications(safeData);
-        const unreadCount = safeData.filter((n) => n && !n.isRead).length;
+        const unreadCount = Array.isArray(res.data.unread)
+          ? res.data.unread.length
+          : 0;
 
         // If unread count increased, play high-quality chime (unless silent/initial load)
         if (!silent && unreadCount > prevCountRef.current) {
