@@ -247,7 +247,7 @@ export default function AdminLayout({
       {/* Navigation Groups */}
       <nav className="min-h-0 flex-1 overflow-y-auto px-3 py-6 space-y-4 font-inter">
         {navGroups.map((group) => {
-          const userPermissions = (session?.user as any)?.permissions || [];
+          const userPermissions = session?.user?.permissions || [];
           const visibleItems = group.items.filter((item) => {
             if (!item.roles.includes(userRole)) return false;
 

@@ -98,6 +98,8 @@ const authOptions: NextAuthOptions = {
         (session.user as any).permissions = token.permissions || [];
         (session.user as any).accessToken = token.accessToken;
       }
+      // Also expose at root level for easy access via getSession()
+      (session as any).accessToken = token.accessToken;
       return session;
     },
   },

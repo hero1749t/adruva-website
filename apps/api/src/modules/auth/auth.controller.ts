@@ -8,11 +8,13 @@ import {
   Param,
   HttpCode,
   HttpStatus,
+  UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { GoogleVerifyDto } from './dto/google-verify.dto';
 import { Permissions } from '../../common/decorators/permissions.decorator';
+import { PermissionsGuard } from '../../common/guards/permissions.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -31,6 +33,7 @@ export class AuthController {
   }
 
   @Get('users')
+  @UseGuards(PermissionsGuard)
   @Permissions('owner')
   async getAllUsers() {
     const users = await this.authService.getAllUsers();
@@ -41,6 +44,7 @@ export class AuthController {
   }
 
   @Post('users')
+  @UseGuards(PermissionsGuard)
   @Permissions('owner')
   async createUser(
     @Body()
@@ -60,6 +64,7 @@ export class AuthController {
   }
 
   @Patch('users/:id')
+  @UseGuards(PermissionsGuard)
   @Permissions('owner')
   async updateUser(
     @Param('id') id: string,
@@ -74,6 +79,7 @@ export class AuthController {
   }
 
   @Delete('users/:id')
+  @UseGuards(PermissionsGuard)
   @Permissions('owner')
   async deleteUser(@Param('id') id: string) {
     await this.authService.deleteUser(id);
