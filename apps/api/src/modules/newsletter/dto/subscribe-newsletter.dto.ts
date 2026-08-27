@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class SubscribeNewsletterDto {
   @IsEmail()
@@ -6,6 +6,6 @@ export class SubscribeNewsletterDto {
   email: string;
 
   @IsString()
-  @IsNotEmpty()
-  recaptchaToken: string;
+  @IsOptional()
+  recaptchaToken?: string;
 }

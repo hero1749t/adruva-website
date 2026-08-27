@@ -4,13 +4,18 @@ import { Injectable, Logger } from '@nestjs/common';
 export class RecaptchaService {
   private readonly logger = new Logger(RecaptchaService.name);
 
-  async verify(token: string): Promise<boolean> {
+  async verify(token?: string): Promise<boolean> {
     const secret = process.env.RECAPTCHA_SECRET_KEY;
     if (!secret || secret === 'dummy_recaptcha_secret_key') {
       this.logger.warn(
         'reCAPTCHA secret key is not set or dummy. Bypassing verification.',
       );
       return true;
+    }
+
+    if (!token) {
+      this.logger.error('reCAPTCHA verification failed: token is missing');
+      return false;
     }
 
     try {

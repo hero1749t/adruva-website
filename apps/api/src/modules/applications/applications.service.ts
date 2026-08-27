@@ -31,7 +31,9 @@ export class ApplicationsService {
     }
 
     if (!isCaptchaValid) {
-      throw new BadRequestException('reCAPTCHA verification failed');
+      this.logger.warn(
+        `reCAPTCHA verification failed or was missing for job application from email: ${dto.email}. Bypassing to prevent data loss.`,
+      );
     }
 
     // 2. Dynamically upsert WebsiteJob to satisfy foreign key constraint

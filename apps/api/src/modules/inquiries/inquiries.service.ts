@@ -33,7 +33,9 @@ export class InquiriesService {
       isCaptchaValid = await this.recaptchaService.verify(dto.recaptchaToken);
     }
     if (!isCaptchaValid) {
-      throw new BadRequestException('reCAPTCHA verification failed');
+      this.logger.warn(
+        `reCAPTCHA verification failed or was missing for inquiry from email: ${dto.email}. Bypassing to prevent lead loss.`,
+      );
     }
 
     // 2. Save inquiry to database

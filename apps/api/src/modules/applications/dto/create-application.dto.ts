@@ -58,6 +58,6 @@ export class CreateApplicationDto {
   referralSource: string;
 
   @IsString()
-  @IsNotEmpty()
-  recaptchaToken: string;
+  @IsOptional()
+  recaptchaToken?: string;
 }

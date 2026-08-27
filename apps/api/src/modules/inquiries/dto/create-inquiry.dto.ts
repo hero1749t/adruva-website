@@ -34,6 +34,6 @@ export class CreateInquiryDto {
   message?: string;
 
   @IsString()
-  @IsNotEmpty()
-  recaptchaToken: string;
+  @IsOptional()
+  recaptchaToken?: string;
 }
