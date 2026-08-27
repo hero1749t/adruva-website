@@ -275,7 +275,21 @@ export default function AdminLayout({
               <div className="space-y-0.5">
                 {visibleItems.map((item) => {
                   const Icon = item.icon;
-                  const active = pathname.startsWith(item.href);
+                  // Exact match OR startsWith only if no more-specific item in the
+                  // entire nav also matches (prevents /admin/settings staying active
+                  // when the current path is /admin/settings/staff)
+                  const allHrefs = navGroups.flatMap((g) =>
+                    g.items.map((i) => i.href),
+                  );
+                  const active =
+                    pathname === item.href ||
+                    (pathname.startsWith(item.href + "/") &&
+                      !allHrefs.some(
+                        (h) =>
+                          h !== item.href &&
+                          h.startsWith(item.href) &&
+                          pathname.startsWith(h),
+                      ));
 
                   return (
                     <Link
