@@ -2,60 +2,225 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Container } from "@/components/layout/container";
-import { OrbitalServices } from "@/components/ui/OrbitalServices";
 import Image from "next/image";
+import { ArrowRight, Zap } from "lucide-react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { Container } from "@/components/layout/container";
 
-const words = ["Need.", "Trust.", "Choose."];
+/* ─── Rotating headline words ─── */
+const ROTATING_WORDS = ["Converts.", "Grows.", "Wins."];
 
+/* ─── Floating project mockup cards ─── */
+const MOCKUP_CARDS = [
+  {
+    id: "web",
+    label: "Web Platform",
+    sublabel: "Adruva Resto System",
+    src: "/work/adruva-resto.jpg",
+    color: "#FF6B00",
+    delay: 0,
+    floatDuration: 7,
+  },
+  {
+    id: "seo",
+    label: "SEO & Growth",
+    sublabel: "Vintage Tours & Travels",
+    src: "/work/vintage-tours.jpg",
+    color: "#2D8CFF",
+    delay: 0.12,
+    floatDuration: 9,
+  },
+  {
+    id: "app",
+    label: "Mobile App",
+    sublabel: "Bali Yoga School",
+    src: "/work/bali-yoga.jpg",
+    color: "#FF6B00",
+    delay: 0.22,
+    floatDuration: 8,
+  },
+];
+
+/* ─── Glass stat cards data ─── */
+const STATS = [
+  { value: "50+", label: "Clients Served" },
+  { value: "3x", label: "Avg. Revenue Growth" },
+  { value: "98%", label: "Client Retention" },
+  { value: "5yr", label: "In Business" },
+];
+
+/* ─── Animated counter hook ─── */
+function useCountUp(target: number, duration = 1200, trigger: boolean) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (!trigger) return;
+    let start = 0;
+    const step = Math.max(1, Math.ceil(target / (duration / 16)));
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(start);
+      }
+    }, 16);
+    return () => clearInterval(timer);
+  }, [target, duration, trigger]);
+  return count;
+}
+
+/* ─── Single stat card ─── */
+function StatCard({ value, label }: { value: string; label: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isVisible = useInView(ref, { once: true, margin: "-50px" });
+  const numericMatch = value.match(/(\d+)/);
+  const numericPart = numericMatch ? parseInt(numericMatch[1] ?? "0") : 0;
+  const suffix = value.replace(/\d+/, "");
+  const counted = useCountUp(numericPart, 1200, isVisible);
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isVisible ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="flex flex-col items-center justify-center px-5 py-4 rounded-2xl
+        bg-white/[0.04] border border-white/10 backdrop-blur-sm
+        hover:bg-white/[0.07] hover:border-white/20
+        transition-all duration-300 min-w-[110px]"
+    >
+      <span className="text-2xl font-black text-white tabular-nums font-poppins">
+        {numericPart > 0 ? counted : ""}
+        {suffix}
+      </span>
+      <span className="text-[11px] font-medium text-white/40 mt-0.5 text-center leading-tight">
+        {label}
+      </span>
+    </motion.div>
+  );
+}
+
+/* ─── Floating mockup card ─── */
+function MockupCard({
+  card,
+  index,
+}: {
+  card: (typeof MOCKUP_CARDS)[0];
+  index: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isVisible = useInView(ref, { once: true, margin: "-60px" });
+  const floatY = index === 1 ? 8 : -6;
+  const rotate = index === 0 ? "-1.5deg" : index === 1 ? "1.5deg" : "-1deg";
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, x: 50 }}
+      animate={isVisible ? { opacity: 1, x: 0 } : {}}
+      transition={{
+        delay: card.delay + 0.35,
+        duration: 0.7,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+    >
+      <motion.div
+        animate={{ y: [0, floatY, 0] }}
+        transition={{
+          duration: card.floatDuration,
+          repeat: Infinity,
+          ease: "easeInOut",
+          repeatType: "mirror",
+        }}
+        whileHover={{ scale: 1.03, rotate: "0deg" }}
+        style={{ rotate }}
+        className="relative rounded-2xl overflow-hidden border border-white/10
+          shadow-[0_20px_60px_rgba(0,0,0,0.5)] cursor-pointer
+          transition-all duration-500 group"
+      >
+        {/* Hover glow border */}
+        <div
+          className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100
+            transition-opacity duration-500 pointer-events-none z-10"
+          style={{
+            boxShadow: `inset 0 0 0 1px ${card.color}55, 0 0 30px ${card.color}22`,
+          }}
+        />
+
+        {/* Project image */}
+        <div className="relative w-full h-36 bg-[#111827]">
+          <Image
+            src={card.src}
+            alt={card.sublabel}
+            fill
+            className="object-cover"
+            sizes="320px"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        </div>
+
+        {/* Card label footer */}
+        <div className="flex items-center justify-between px-3 py-2.5 bg-[#0D1117] border-t border-white/[0.06]">
+          <div>
+            <p className="text-[11px] font-bold text-white/90 leading-none">
+              {card.label}
+            </p>
+            <p className="text-[10px] text-white/40 mt-0.5">{card.sublabel}</p>
+          </div>
+          <div
+            className="w-2 h-2 rounded-full animate-pulse"
+            style={{ backgroundColor: card.color }}
+          />
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+/* ══════════════════════════════════════════════
+   MAIN HERO COMPONENT
+══════════════════════════════════════════════ */
 export function HeroSection() {
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [wordIndex, setWordIndex] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
 
   useEffect(() => {
-    const checkReducedMotion = () => {
-      const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-      setPrefersReducedMotion(mediaQuery.matches);
-    };
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mq.matches);
+  }, []);
 
-    checkReducedMotion();
-
+  useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
-    }, 2500);
-
+      setWordIndex((i) => (i + 1) % ROTATING_WORDS.length);
+    }, 2600);
     return () => clearInterval(interval);
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!heroRef.current) return;
-    const { left, top } = heroRef.current.getBoundingClientRect();
-    setMousePos({ x: e.clientX - left, y: e.clientY - top });
+    const rect = heroRef.current.getBoundingClientRect();
+    setMousePos({
+      x: (e.clientX - rect.left) / rect.width,
+      y: (e.clientY - rect.top) / rect.height,
+    });
   };
 
-  const calendlyUrl = "/contact";
-
-  const containerVariants = {
+  const container = {
     hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.08,
-      },
-    },
+    show: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
   };
-
-  const itemVariants = {
-    hidden: prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 },
-    visible: {
+  const item = {
+    hidden: prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 },
+    show: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
+      transition: {
+        duration: 0.55,
+        ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+      },
     },
   };
 
@@ -63,198 +228,281 @@ export function HeroSection() {
     <section
       ref={heroRef}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="relative w-full min-h-[80vh] flex items-center justify-center overflow-hidden py-12 lg:py-16 bg-gradient-to-tr from-sky-50/50 via-white to-orange-50/30 dark:bg-none dark:bg-transparent transition-colors duration-300 group"
+      className="relative w-full min-h-[92vh] flex items-center justify-center overflow-hidden bg-[#070B14]"
     >
-      {/* Scope CSS animation variables for drifting background blobs */}
+      {/* Keyframes */}
       <style>{`
-        @keyframes bg-drift-1 {
-          0% { transform: translate(0px, 0px) scale(1); }
-          50% { transform: translate(50px, -40px) scale(1.15); }
-          100% { transform: translate(0px, 0px) scale(1); }
+        @keyframes spotlight-breathe {
+          0%, 100% { opacity: 0.18; }
+          50%       { opacity: 0.30; }
         }
-        @keyframes bg-drift-2 {
-          0% { transform: translate(0px, 0px) scale(1.1); }
-          50% { transform: translate(-40px, 50px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1.1); }
+        @keyframes blob-drift-a {
+          0%   { transform: translate(0, 0)     scale(1);    }
+          50%  { transform: translate(40px,-30px) scale(1.12); }
+          100% { transform: translate(0, 0)     scale(1);    }
         }
-        .animate-bg-drift-1 {
-          animation: bg-drift-1 22s infinite ease-in-out;
+        @keyframes blob-drift-b {
+          0%   { transform: translate(0, 0)      scale(1.08); }
+          50%  { transform: translate(-35px,25px) scale(0.92); }
+          100% { transform: translate(0, 0)      scale(1.08); }
         }
-        .animate-bg-drift-2 {
-          animation: bg-drift-2 28s infinite ease-in-out;
+        @keyframes dot-grid-pulse {
+          0%, 100% { opacity: 0.35; }
+          50%      { opacity: 0.55; }
         }
+        .hero-blob-a    { animation: blob-drift-a      22s ease-in-out infinite; }
+        .hero-blob-b    { animation: blob-drift-b      28s ease-in-out infinite; }
+        .hero-spotlight { animation: spotlight-breathe  6s ease-in-out infinite; }
+        .hero-dotgrid   { animation: dot-grid-pulse     9s ease-in-out infinite; }
       `}</style>
 
-      {/* Original Dark Mode Grid Pattern Overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none z-0 hidden dark:block" />
-
-      {/* Radial fade to soften grid pattern around the center (light mode only) */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,hsl(var(--background))/30%_100%)] pointer-events-none z-0 dark:hidden" />
-
-      {/* Interactive Background Mouse Spotlight */}
+      {/* Dot grid */}
       <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0"
+        className="absolute inset-0 hero-dotgrid pointer-events-none z-0"
         style={{
-          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255,107,0,0.04), rgba(45,140,255,0.03), transparent 75%)`,
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+          maskImage:
+            "radial-gradient(ellipse 85% 70% at 50% 45%, #000 50%, transparent 100%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 85% 70% at 50% 45%, #000 50%, transparent 100%)",
         }}
       />
 
-      {/* Radial Glow Drifting Blobs */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[10%] left-[5%] w-[450px] h-[450px] rounded-full bg-brand-orange/8 dark:bg-brand-orange/[0.04] blur-[90px] animate-bg-drift-1" />
-        <div className="absolute bottom-[10%] right-[5%] w-[450px] h-[450px] rounded-full bg-brand-blue/8 dark:bg-brand-blue/[0.03] blur-[90px] animate-bg-drift-2" />
-      </div>
+      {/* Orange glow blob — top-right */}
+      <div
+        className="absolute top-[-8%] right-[-4%] w-[520px] h-[520px] rounded-full pointer-events-none z-0 hero-blob-a"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(255,107,0,0.20) 0%, rgba(255,107,0,0.04) 55%, transparent 70%)",
+          filter: "blur(50px)",
+        }}
+      />
 
-      {/* Floating Particles */}
-      {!prefersReducedMotion && (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
-          <div className="particle bg-brand-orange/20 w-2 h-2 rounded-full absolute top-[15%] left-[8%] animate-float-slow" />
-          <div className="particle bg-brand-blue/25 w-2.5 h-2.5 rounded-full absolute top-[45%] left-[6%] animate-float-medium" />
-          <div className="particle bg-brand-orange/15 w-1.5 h-1.5 rounded-full absolute top-[70%] left-[12%] animate-float-fast" />
-          <div className="particle bg-brand-blue/20 w-2 h-2 rounded-full absolute top-[25%] right-[10%] animate-float-slow" />
-        </div>
-      )}
+      {/* Blue glow blob — bottom-left */}
+      <div
+        className="absolute bottom-[-5%] left-[-4%] w-[440px] h-[440px] rounded-full pointer-events-none z-0 hero-blob-b"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(45,140,255,0.14) 0%, rgba(45,140,255,0.03) 55%, transparent 70%)",
+          filter: "blur(55px)",
+        }}
+      />
 
-      <Container className="relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left Text Column */}
+      {/* Spotlight cone — top center */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] pointer-events-none z-0 hero-spotlight"
+        style={{
+          background:
+            "radial-gradient(ellipse 50% 60% at 50% 0%, rgba(255,255,255,0.09) 0%, transparent 70%)",
+        }}
+      />
+
+      {/* Mouse spotlight */}
+      <div
+        className="absolute inset-0 pointer-events-none z-0"
+        style={{
+          background: `radial-gradient(650px circle at ${mousePos.x * 100}% ${mousePos.y * 100}%,
+            rgba(255,107,0,0.055), rgba(45,140,255,0.04), transparent 60%)`,
+        }}
+      />
+
+      {/* ──────────── Main grid ──────────── */}
+      <Container className="relative z-10 w-full py-16 lg:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 items-center">
+          {/* ════ LEFT COLUMN ════ */}
           <motion.div
-            variants={containerVariants}
+            variants={container}
             initial="hidden"
-            animate="visible"
-            className="lg:col-span-7 flex flex-col items-center text-center lg:items-start lg:text-left max-w-2xl mx-auto lg:mx-0"
+            animate="show"
+            className="lg:col-span-6 xl:col-span-7 flex flex-col items-center text-center lg:items-start lg:text-left"
           >
             {/* Badge */}
-            <motion.div
-              variants={itemVariants}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-orange/10 border border-brand-orange/25 shadow-[0_0_12px_rgba(255,107,0,0.15)] text-sm font-medium text-brand-orange mb-4"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-brand-orange opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-orange"></span>
-              </span>
-              Now offering AI Automation & AI Ads
+            <motion.div variants={item}>
+              <div
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full
+                border border-[#FF6B00]/30 bg-[#FF6B00]/[0.08] text-[#FF6B00] text-xs
+                font-semibold mb-5 shadow-[0_0_16px_rgba(255,107,0,0.12)]"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-[#FF6B00] opacity-75 animate-ping" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF6B00]" />
+                </span>
+                Now accepting new projects
+              </div>
             </motion.div>
 
-            {/* Title */}
+            {/* Headline */}
             <motion.h1
-              variants={itemVariants}
-              className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground leading-[1.12] sm:leading-[1.05] mb-4 font-poppins"
+              variants={item}
+              className="text-[2.6rem] sm:text-5xl md:text-[3.4rem] xl:text-[3.8rem]
+                font-black tracking-tight text-white leading-[1.08] font-poppins mb-4"
             >
-              The Last Tech Partner <br className="hidden sm:inline" />
-              You&apos;ll Ever{" "}
-              <span className="inline-block min-w-[130px] text-brand-orange text-center lg:text-left">
-                {prefersReducedMotion ? (
-                  words[0]
-                ) : (
-                  <AnimatePresence mode="wait">
-                    <motion.span
-                      key={words[currentWordIndex]}
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -12 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                      className="inline-block w-full"
-                    >
-                      {words[currentWordIndex]}
-                    </motion.span>
-                  </AnimatePresence>
-                )}
+              The Digital System
+              <br />
+              Your Business{" "}
+              <span className="relative inline-block">
+                <span className="bg-gradient-to-r from-[#FF6B00] via-[#FF9A3C] to-[#FFB347] bg-clip-text text-transparent">
+                  {prefersReducedMotion ? (
+                    ROTATING_WORDS[0]
+                  ) : (
+                    <AnimatePresence mode="wait">
+                      <motion.span
+                        key={ROTATING_WORDS[wordIndex]}
+                        initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+                        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                        exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
+                        transition={{ duration: 0.35, ease: "easeOut" }}
+                        className="inline-block"
+                      >
+                        {ROTATING_WORDS[wordIndex]}
+                      </motion.span>
+                    </AnimatePresence>
+                  )}
+                </span>
+                {/* Animated underline */}
+                <motion.span
+                  className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, #FF6B00, #FFB347, transparent)",
+                  }}
+                  initial={{ scaleX: 0, originX: "0%" }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 0.9, duration: 0.7, ease: "easeOut" }}
+                />
               </span>
             </motion.h1>
 
-            {/* Subtext */}
+            {/* Sub-headline */}
             <motion.p
-              variants={itemVariants}
-              className="text-lg sm:text-xl font-medium text-muted-foreground tracking-tight mb-3 font-space-grotesk"
+              variants={item}
+              className="text-white/50 text-base sm:text-lg font-medium
+                max-w-[480px] leading-relaxed mb-7 font-inter"
             >
-              Digital Growth Systems for Local Businesses & Beyond
-            </motion.p>
-
-            {/* Description */}
-            <motion.p
-              variants={itemVariants}
-              className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6 max-w-[520px] font-inter"
-            >
-              From high-converting websites to customized AI-powered automation
-              — we build and optimize digital workflows that attract customers,
-              streamline growth, and scale your revenues honestly.
+              From conversion-optimized websites to AI-powered automation — we
+              build digital infrastructure that attracts customers, streamlines
+              operations, and scales revenue.
             </motion.p>
 
             {/* CTA Buttons */}
             <motion.div
-              variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto max-w-xs sm:max-w-none items-center justify-center lg:justify-start"
+              variants={item}
+              className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto
+                items-center justify-center lg:justify-start mb-8"
             >
-              <a
-                href={calendlyUrl}
-                target={calendlyUrl.startsWith("http") ? "_blank" : undefined}
-                rel={
-                  calendlyUrl.startsWith("http")
-                    ? "noopener noreferrer"
-                    : undefined
-                }
-                className="w-full sm:w-auto"
-              >
-                <Button
-                  size="lg"
-                  className="group w-full sm:w-auto bg-brand-orange hover:bg-orange-600 text-white font-semibold flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(255,107,0,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 h-12 px-7 rounded-full text-sm"
+              <Link href="/contact" className="w-full sm:w-auto">
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2
+                    px-7 h-12 rounded-full bg-[#FF6B00] text-white font-bold text-sm
+                    shadow-[0_4px_24px_rgba(255,107,0,0.4)]
+                    hover:shadow-[0_6px_32px_rgba(255,107,0,0.6)]
+                    hover:bg-[#e85e00] transition-all duration-200 font-poppins"
                 >
-                  Get a Free Audit
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </a>
+                  Get a Free Strategy Call
+                  <ArrowRight className="w-4 h-4" />
+                </motion.button>
+              </Link>
 
-              <Link href="/services" className="w-full sm:w-auto">
-                <Button
-                  variant="ghost"
-                  size="lg"
-                  className="w-full sm:w-auto text-foreground border border-border hover:border-brand-orange hover:text-brand-orange font-semibold h-12 px-7 rounded-full text-sm transition-all duration-200"
+              <Link href="/work" className="w-full sm:w-auto">
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2
+                    px-7 h-12 rounded-full border border-white/15 text-white/70 font-semibold
+                    text-sm hover:border-white/30 hover:text-white hover:bg-white/[0.04]
+                    transition-all duration-200 font-inter"
                 >
-                  View Services
-                </Button>
+                  View Our Work
+                </motion.button>
               </Link>
             </motion.div>
 
-            {/* Trusted By Section */}
+            {/* Trust avatars */}
             <motion.div
-              variants={itemVariants}
-              className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+              variants={item}
+              className="flex items-center gap-3 justify-center lg:justify-start"
             >
               <div className="flex -space-x-3">
-                {["dk", "lk", "nk", "sk"].map((avatar, i) => (
+                {["dk", "lk", "nk", "sk"].map((a, i) => (
                   <div
-                    key={avatar}
-                    className="relative w-10 h-10 rounded-full border-2 border-background overflow-hidden"
+                    key={a}
+                    className="relative w-9 h-9 rounded-full border-2 border-[#070B14]
+                      overflow-hidden ring-1 ring-white/10"
                     style={{ zIndex: 10 - i }}
                   >
                     <Image
-                      src={`/team/${avatar}.jpg`}
-                      alt="Client Avatar"
+                      src={`/team/${a}.jpg`}
+                      alt="Client"
                       fill
                       className="object-cover"
                     />
                   </div>
                 ))}
-                <div className="relative w-10 h-10 rounded-full border-2 border-background bg-zinc-800 flex items-center justify-center text-xs font-bold text-white z-0">
+                <div
+                  className="relative w-9 h-9 rounded-full border-2 border-[#070B14]
+                    bg-[#FF6B00]/20 flex items-center justify-center text-[10px]
+                    font-black text-[#FF6B00] ring-1 ring-white/10"
+                  style={{ zIndex: 0 }}
+                >
                   50+
                 </div>
               </div>
-              <p className="text-sm text-muted-foreground font-medium font-inter">
+              <p className="text-sm text-white/40 font-inter">
                 Trusted by{" "}
-                <span className="text-foreground font-bold">
-                  50+ Businesses
-                </span>
+                <span className="text-white/80 font-semibold">
+                  50+ businesses
+                </span>{" "}
+                across India
               </p>
             </motion.div>
           </motion.div>
 
-          {/* Right Column: Orbital Services Graphic (Desktop Only) */}
-          <div className="hidden lg:col-span-5 lg:flex relative h-[500px] items-center justify-center">
-            <OrbitalServices />
+          {/* ════ RIGHT COLUMN: Floating mockup cards ════ */}
+          <div className="hidden lg:flex lg:col-span-6 xl:col-span-5 flex-col gap-3 relative">
+            {/* Background glow behind cards */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(ellipse 70% 80% at 50% 50%, rgba(255,107,0,0.06) 0%, transparent 70%)",
+              }}
+            />
+
+            {MOCKUP_CARDS.map((card, i) => (
+              <div
+                key={card.id}
+                className={
+                  i === 1 ? "ml-10 xl:ml-14" : i === 2 ? "ml-5 xl:ml-8" : ""
+                }
+              >
+                <MockupCard card={card} index={i} />
+              </div>
+            ))}
+
+            {/* "Live client projects" label */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.6, duration: 0.5 }}
+              className="flex items-center gap-1.5 mt-1 justify-end pr-1"
+            >
+              <Zap className="w-3 h-3 text-[#FF6B00]" />
+              <span className="text-[11px] text-white/30 font-medium font-inter">
+                Live client projects
+              </span>
+            </motion.div>
           </div>
+        </div>
+
+        {/* ════ BOTTOM: Glass stat cards ════ */}
+        <div className="mt-14 lg:mt-16 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+          {STATS.map((s) => (
+            <StatCard key={s.label} value={s.value} label={s.label} />
+          ))}
         </div>
       </Container>
     </section>
