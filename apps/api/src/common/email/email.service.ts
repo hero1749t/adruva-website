@@ -90,6 +90,36 @@ export class EmailService {
     budget: string,
     timeline: string,
   ): Promise<boolean> {
+    try {
+      const template = await this.prisma.websiteEmailTemplate.findUnique({
+        where: { type: 'inquiry_acknowledgement' },
+      });
+
+      if (template) {
+        let html = template.content;
+        let subject = template.subject;
+
+        const vars: Record<string, string> = {
+          name,
+          service,
+          budget,
+          timeline,
+        };
+        template.variables.forEach((variable) => {
+          const value = vars[variable] || '';
+          html = html.replace(new RegExp(`{{${variable}}}`, 'g'), value);
+          subject = subject.replace(new RegExp(`{{${variable}}}`, 'g'), value);
+        });
+
+        return this.sendHtmlMail(to, subject, html);
+      }
+    } catch (e) {
+      this.logger.error(
+        'Failed to load DB template for inquiry. Falling back to plain text email.',
+        e,
+      );
+    }
+
     const subject = `We got your message, ${name}! 🚀`;
     const body = `Hi ${name},
 
@@ -106,6 +136,47 @@ In the meantime, feel free to check out our work: https://adruvaSolution.com/wor
 
 Best regards,
 Team Adruva Solution`;
+
+    return this.sendMail(to, subject, body);
+  }
+
+  async sendCandidateConfirmation(
+    to: string,
+    name: string,
+    jobTitle: string,
+  ): Promise<boolean> {
+    try {
+      const template = await this.prisma.websiteEmailTemplate.findUnique({
+        where: { type: 'job_acknowledgement' },
+      });
+
+      if (template) {
+        let html = template.content;
+        let subject = template.subject;
+
+        const vars: Record<string, string> = { name, jobTitle };
+        template.variables.forEach((variable) => {
+          const value = vars[variable] || '';
+          html = html.replace(new RegExp(`{{${variable}}}`, 'g'), value);
+          subject = subject.replace(new RegExp(`{{${variable}}}`, 'g'), value);
+        });
+
+        return this.sendHtmlMail(to, subject, html);
+      }
+    } catch (e) {
+      this.logger.error(
+        'Failed to load DB template for job application. Falling back to plain text email.',
+        e,
+      );
+    }
+
+    const subject = `Application Received: ${jobTitle}`;
+    const body = `Dear ${name},
+
+Thank you for applying for the ${jobTitle} position at Adruva Solution. We have received your application and will review it shortly.
+
+Best regards,
+People Operations`;
 
     return this.sendMail(to, subject, body);
   }
@@ -137,6 +208,27 @@ Message: ${inquiry.message || 'N/A'}`;
   }
 
   async sendNewsletterWelcome(to: string): Promise<boolean> {
+    try {
+      const template = await this.prisma.websiteEmailTemplate.findUnique({
+        where: { type: 'newsletter_welcome' },
+      });
+
+      if (template) {
+        let html = template.content;
+        let subject = template.subject;
+
+        html = html.replace(/{{email}}/g, to);
+        subject = subject.replace(/{{email}}/g, to);
+
+        return this.sendHtmlMail(to, subject, html);
+      }
+    } catch (e) {
+      this.logger.error(
+        'Failed to load DB template for newsletter. Falling back to plain text email.',
+        e,
+      );
+    }
+
     const subject = 'Welcome to Adruva Insights! 🎉';
     const body = `Thanks for subscribing!
 
@@ -172,6 +264,35 @@ Team Adruva Solution`;
     } catch (error) {
       this.logger.error(
         `Failed to send email to ${to}: ${(error as Error).message}`,
+      );
+      return false;
+    }
+  }
+
+  async sendHtmlMail(
+    to: string,
+    subject: string,
+    html: string,
+  ): Promise<boolean> {
+    const { transporter, sender } = await this.getTransporter();
+
+    if (!transporter) {
+      this.logger.log(`Mock HTML Email sent to: ${to} | Subject: ${subject}`);
+      return true;
+    }
+
+    try {
+      await transporter.sendMail({
+        from: `"Adruva Solution" <${sender}>`,
+        to,
+        subject,
+        html,
+      });
+      this.logger.log(`HTML Email successfully sent to: ${to}`);
+      return true;
+    } catch (error) {
+      this.logger.error(
+        `Failed to send HTML email to ${to}: ${(error as Error).message}`,
       );
       return false;
     }

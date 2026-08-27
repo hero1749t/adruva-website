@@ -31,6 +31,7 @@ type NavItem = {
   href: string;
   icon: any;
   roles: string[];
+  permissions?: string[];
   badge?: string;
   badgeColor?: string;
 };
@@ -161,6 +162,20 @@ export default function AdminLayout({
           name: "Settings",
           href: "/admin/settings",
           icon: Settings,
+          roles: ["owner", "manager"],
+          permissions: ["settings.edit"],
+        },
+        {
+          name: "Email Templates",
+          href: "/admin/settings/email-templates",
+          icon: Mail,
+          roles: ["owner", "manager"],
+          permissions: ["settings.edit"],
+        },
+        {
+          name: "Staff & RBAC",
+          href: "/admin/settings/staff",
+          icon: Shield,
           roles: ["owner"],
         },
       ],
@@ -232,9 +247,18 @@ export default function AdminLayout({
       {/* Navigation Groups */}
       <nav className="min-h-0 flex-1 overflow-y-auto px-3 py-6 space-y-4 font-inter">
         {navGroups.map((group) => {
-          const visibleItems = group.items.filter((item) =>
-            item.roles.includes(userRole),
-          );
+          const userPermissions = (session?.user as any)?.permissions || [];
+          const visibleItems = group.items.filter((item) => {
+            if (!item.roles.includes(userRole)) return false;
+
+            if (item.permissions && userRole !== "owner") {
+              const hasAll = item.permissions.every((perm) =>
+                userPermissions.includes(perm),
+              );
+              if (!hasAll) return false;
+            }
+            return true;
+          });
 
           if (visibleItems.length === 0) return null;
 

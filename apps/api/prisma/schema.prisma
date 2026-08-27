@@ -147,6 +147,7 @@ model WebsiteAdminUser {
   passwordHash String?
   googleId    String?
   role        String    @default("content_writer")
+  permissions String[]  @default([])
   isActive    Boolean   @default(true)
   lastLoginAt DateTime?
   createdAt   DateTime  @default(now())
@@ -235,5 +236,18 @@ model WebsiteNotification {
   createdAt DateTime @default(now())
 
   @@map("website_notifications")
+}
+
+model WebsiteEmailTemplate {
+  id        String   @id @default(uuid())
+  type      String   @unique // e.g. "inquiry_acknowledgement", "job_acknowledgement", "newsletter_welcome"
+  name      String
+  subject   String
+  content   String   @db.Text
+  variables String[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("website_email_templates")
 }
 

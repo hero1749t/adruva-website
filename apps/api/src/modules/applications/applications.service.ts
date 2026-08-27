@@ -8,6 +8,7 @@ import { PrismaService } from '../../prisma/prisma.service';
 import { CreateApplicationDto } from './dto/create-application.dto';
 import { UpdateApplicationDto } from './dto/update-application.dto';
 import { RecaptchaService } from '../../common/recaptcha/recaptcha.service';
+import { EmailService } from '../../common/email/email.service';
 import { Prisma } from '@prisma/client';
 
 @Injectable()
@@ -18,6 +19,7 @@ export class ApplicationsService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly recaptchaService: RecaptchaService,
+    private readonly emailService: EmailService,
   ) {}
 
   async create(dto: CreateApplicationDto, ipAddress?: string) {
@@ -91,6 +93,13 @@ export class ApplicationsService {
 
     this.logger.log(
       `Successfully created application ${application.id} for job ${dto.jobId}`,
+    );
+
+    // Send candidate confirmation email
+    void this.emailService.sendCandidateConfirmation(
+      application.email,
+      application.fullName,
+      application.jobTitle,
     );
 
     return {
