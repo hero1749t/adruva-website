@@ -614,6 +614,187 @@ export const blogPosts: BlogPost[] = [
       ],
     },
   },
+  {
+    title:
+      "Decoupled Architectures: Scaling Enterprise Performance with Headless Next.js & NestJS",
+    slug: "headless-nextjs-nestjs-enterprise-performance",
+    category: "Web Dev",
+    readingTime: "6 min read",
+    publishedDate: "August 29, 2026",
+    coverGradient: "/blog/headless-seo.jpg",
+    summary:
+      "Why global enterprises are abandoning monolithic content systems in favor of headless frontend layers and NestJS backends to achieve sub-100ms load times and infinite scale.",
+    author: {
+      name: "Deepu",
+      role: "CEO, Adruva",
+      avatarInitials: "D",
+    },
+    content: {
+      type: "doc",
+      content: [
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "As digital experiences grow more dynamic, traditional monolithic web systems like classic WordPress, Drupal, or Magento are struggling to meet the performance demands of modern users. Page load latency has a direct correlation with conversion rates; for every additional second your site takes to load, conversions drop by up to 20%. Today, global organizations are resolving this by moving towards ",
+            },
+            {
+              type: "text",
+              marks: [{ type: "bold" }],
+              text: "decoupled (headless) architectures",
+            },
+            {
+              type: "text",
+              text: ".",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "By separating the client-side presentation layer from the database and business logic, you gain granular control over performance, scalability, and security. In this guide, we break down why a combination of Next.js and NestJS represents the ultimate tech stack for enterprise-scale platforms.",
+            },
+          ],
+        },
+        {
+          type: "heading",
+          attrs: { level: 2 },
+          content: [
+            {
+              type: "text",
+              text: "The Next.js Edge: Sub-100ms Frontend Performance",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "Next.js has become the gold standard for frontend engineering. Here is why it outclasses classic site builders for global reach:",
+            },
+          ],
+        },
+        {
+          type: "bulletList",
+          content: [
+            {
+              type: "listItem",
+              content: [
+                {
+                  type: "paragraph",
+                  content: [
+                    {
+                      type: "text",
+                      marks: [{ type: "bold" }],
+                      text: "Incremental Static Regeneration (ISR): ",
+                    },
+                    {
+                      type: "text",
+                      text: "Instead of building all pages on every update, Next.js rebuilds specific pages in the background as new requests come in. This keeps your server load near zero while keeping page speeds blazing fast.",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "listItem",
+              content: [
+                {
+                  type: "paragraph",
+                  content: [
+                    {
+                      type: "text",
+                      marks: [{ type: "bold" }],
+                      text: "Edge Middleware: ",
+                    },
+                    {
+                      type: "text",
+                      text: "Run authentication checks, redirects, and localization rules at the CDN level, milliseconds away from your user, before the main application code even loads.",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "heading",
+          attrs: { level: 2 },
+          content: [
+            {
+              type: "text",
+              text: "The NestJS Core: Scalable Node.js Engineering",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "While Next.js excels at the user interface, it needs a robust, scalable backend to coordinate API queries, webhooks, and transactions. NestJS is the ideal solution because:",
+            },
+          ],
+        },
+        {
+          type: "bulletList",
+          content: [
+            {
+              type: "listItem",
+              content: [
+                {
+                  type: "paragraph",
+                  content: [
+                    {
+                      type: "text",
+                      marks: [{ type: "bold" }],
+                      text: "TypeScript by Default: ",
+                    },
+                    {
+                      type: "text",
+                      text: "Ensures type safety across the entire application development cycle, preventing critical runtime errors.",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "listItem",
+              content: [
+                {
+                  type: "paragraph",
+                  content: [
+                    {
+                      type: "text",
+                      marks: [{ type: "bold" }],
+                      text: "Modular Architecture: ",
+                    },
+                    {
+                      type: "text",
+                      text: "Inspired by Angular, NestJS organizes code into cohesive modules, making it exceptionally easy for growing teams to expand features without creating spaghetti code.",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "By decoupling the frontend (Next.js) from the backend (NestJS), you shield your database from direct traffic surges. Even if your website receives millions of hits, your API and database only handle the essential transactional queries, keeping infrastructure costs highly optimized.",
+            },
+          ],
+        },
+      ],
+    },
+  },
 ];
 
 export const BLOG_SLUGS = blogPosts.map((p) => p.slug);
