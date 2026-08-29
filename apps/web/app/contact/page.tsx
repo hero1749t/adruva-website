@@ -39,7 +39,8 @@ const contactLocalBusinessSchema = {
   "@type": "LocalBusiness",
   name: "Adruva Solution",
   url: BASE,
-  telephone: "+91-XXXXXXXXXX",
+  telephone: "+91-91492-76799",
+
   email: "info@adruvasolution.com",
   address: {
     "@type": "PostalAddress",

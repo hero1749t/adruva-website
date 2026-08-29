@@ -131,7 +131,8 @@ export default async function Home() {
     image: `${BASE}/og-image.png`,
     description:
       "Web development, mobile apps, AI automation, digital marketing agency in Rishikesh, Uttarakhand, India.",
-    telephone: "+91-XXXXXXXXXX",
+    telephone: "+91-91492-76799",
+
     email: "info@adruvasolution.com",
     priceRange: "₹₹",
     address: {
