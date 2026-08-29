@@ -118,6 +118,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     },
   };
 
+  const BASE = "https://adruvasolution.com";
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -126,18 +128,19 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://adruvasolution.com",
+        item: BASE,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Services",
-        item: "https://adruvasolution.com/services",
+        item: `${BASE}/services`,
       },
       {
         "@type": "ListItem",
         position: 3,
         name: service.name,
+        item: `${BASE}/services/${service.slug}`,
       },
     ],
   };
