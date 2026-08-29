@@ -1,0 +1,11 @@
+# Docker ignore files
+node_modules
+**/node_modules
+**/dist
+**/.next
+.git
+.turbo
+out
+npm-debug.log
+.env*
+!.env.example

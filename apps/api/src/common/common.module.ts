@@ -5,6 +5,8 @@ import { EmailService } from './email/email.service';
 import { WhatsappService } from './whatsapp/whatsapp.service';
 import { CrmWebhookService } from './crm-webhook/crm-webhook.service';
 import { CloudinaryService } from './cloudinary/cloudinary.service';
+import { R2Service } from './storage/r2.service';
+import { StorageService } from './storage/storage.service';
 import { PermissionsGuard } from './guards/permissions.guard';
 
 @Global()
@@ -21,6 +23,8 @@ import { PermissionsGuard } from './guards/permissions.guard';
     WhatsappService,
     CrmWebhookService,
     CloudinaryService,
+    R2Service,
+    StorageService,
     PermissionsGuard,
   ],
   exports: [
@@ -30,6 +34,8 @@ import { PermissionsGuard } from './guards/permissions.guard';
     WhatsappService,
     CrmWebhookService,
     CloudinaryService,
+    R2Service,
+    StorageService,
     PermissionsGuard,
   ],
 })

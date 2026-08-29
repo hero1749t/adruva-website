@@ -7,12 +7,12 @@ import {
   Query,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { CloudinaryService } from '../../common/cloudinary/cloudinary.service';
+import { StorageService } from '../../common/storage/storage.service';
 import { memoryStorage } from 'multer';
 
 @Controller('upload')
 export class UploadController {
-  constructor(private readonly cloudinaryService: CloudinaryService) {}
+  constructor(private readonly storageService: StorageService) {}
 
   @Post('image')
   @UseInterceptors(
@@ -45,7 +45,10 @@ export class UploadController {
     const allowedFolders = ['blogs', 'projects', 'team', 'og', 'general'];
     const safeFolder = allowedFolders.includes(folder) ? folder : 'general';
 
-    const result = await this.cloudinaryService.upload(file.buffer, safeFolder);
+    const result = await this.storageService.upload(file.buffer, safeFolder, {
+      filename: file.originalname,
+      mimeType: file.mimetype,
+    });
 
     return {
       success: true,
