@@ -73,10 +73,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${job.title} (${typeLabel}) | Careers`,
-    description: `Apply for the ${job.title} (${typeLabel}) position at Adruva Solution in Dehradun. ${job.description}`,
+    description: `Apply for the ${job.title} (${typeLabel}) position at Adruva Solution in Rishikesh, Uttarakhand. ${job.description}`,
     alternates: {
       canonical: `/careers/${params.slug}`,
     },
+
     openGraph: {
       title: `${job.title} | Careers`,
       description: job.description,
@@ -99,6 +100,8 @@ export default async function JobDetailPage({ params }: Props) {
     notFound();
   }
 
+  const BASE = "https://adruvasolution.com";
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -107,25 +110,74 @@ export default async function JobDetailPage({ params }: Props) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://adruvasolution.com",
+        item: BASE,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Careers",
-        item: "https://adruvasolution.com/careers",
+        item: `${BASE}/careers`,
       },
       {
         "@type": "ListItem",
         position: 3,
         name: job.title,
+        item: `${BASE}/careers/${job.slug}`,
       },
     ],
+  };
+
+  const jobPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    title: job.title,
+    description: job.description || "Join our team at Adruva Solution.",
+    datePosted: new Date().toISOString().split("T")[0],
+    validThrough: job.application_deadline
+      ? new Date(job.application_deadline).toISOString().split("T")[0]
+      : new Date(Date.now() + 90 * 24 * 60 * 60 * 1000)
+          .toISOString()
+          .split("T")[0], // 90 days default
+    employmentType:
+      job.type === "full_time"
+        ? "FULL_TIME"
+        : job.type === "internship"
+          ? "INTERN"
+          : "CONTRACTOR",
+    hiringOrganization: {
+      "@type": "Organization",
+      name: "Adruva Solution",
+      sameAs: BASE,
+      logo: `${BASE}/logo.png`,
+    },
+    jobLocation: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Rishikesh",
+        addressRegion: "Uttarakhand",
+        addressCountry: "IN",
+      },
+    },
+    jobLocationType: job.location_type === "remote" ? "TELECOMMUTE" : undefined,
+    baseSalary: job.salary_min
+      ? {
+          "@type": "MonetaryAmount",
+          currency: "INR",
+          value: {
+            "@type": "QuantitativeValue",
+            minValue: job.salary_min,
+            maxValue: job.salary_max || job.salary_min,
+            unitText: "MONTH",
+          },
+        }
+      : undefined,
   };
 
   return (
     <>
       <JsonLd schema={breadcrumbSchema} />
+      <JsonLd schema={jobPostingSchema} />
       <JobDetailClient job={job} />
     </>
   );
