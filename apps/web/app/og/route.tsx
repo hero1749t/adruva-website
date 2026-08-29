@@ -129,7 +129,7 @@ export async function GET(request: Request) {
               color: "#8A94A6",
             }}
           >
-            Dehradun, India
+            Rishikesh, India
           </div>
         </div>
       </div>,
