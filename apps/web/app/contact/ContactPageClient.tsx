@@ -281,8 +281,8 @@ export function ContactPageClient() {
               {/* Google Maps Embed */}
               <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden border border-border/80 shadow-md">
                 <iframe
-                  title="Adruva Rishikesh Office Location"
-                  src="https://maps.google.com/maps?q=Near%20Bageshwari%20Devi%20Mandir,%20Shanti%20Nagar,%20Dhalwala,%20Rishikesh,%20Uttarakhand%20249137&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  title="Adruva Solution Rishikesh Office Location"
+                  src="https://maps.google.com/maps?q=Adruva%20Solution,%20Shanti%20Nagar,%20Dhalwala,%20Rishikesh,%20Uttarakhand%20249137&t=&z=15&ie=UTF8&iwloc=&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
