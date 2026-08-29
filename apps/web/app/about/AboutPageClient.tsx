@@ -171,17 +171,17 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
               OUR STORY & VISION
             </div>
 
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6 font-poppins leading-[1.1]">
-              Engineering growth for <br className="hidden md:block" />
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6 font-poppins leading-[1.1]">
+              Web Development & AI Automation <br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-amber-500">
-                modern businesses
+                Agency in Rishikesh, India
               </span>
             </h1>
 
             <p className="text-lg md:text-xl text-slate-600 dark:text-gray-400 font-inter max-w-2xl leading-relaxed mb-10">
-              We are an elite team of developers, designers, and strategists
-              transforming complex business challenges into elegant digital
-              solutions.
+              We are an elite team of developers, designers, and growth
+              marketing strategists transforming complex business challenges
+              into elegant digital solutions.
             </p>
           </div>
         </Container>
@@ -201,8 +201,9 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
             >
               <div>
                 <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-6 font-poppins">
-                  Why We Started
+                  Our Rishikesh IT Agency Roots
                 </h2>
+
                 <div className="h-1.5 w-16 bg-brand-orange rounded-full" />
               </div>
               <div className="space-y-6 text-base md:text-lg text-slate-600 dark:text-gray-300 leading-relaxed font-inter">

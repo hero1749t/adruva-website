@@ -431,9 +431,9 @@ export function ServicesPreview({ initialServices }: ServicesPreviewProps) {
           <div className="flex flex-col items-start">
             <span className="section-tag mb-3">What We Do</span>
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground font-poppins">
-              Full-spectrum{" "}
+              Web Design, Custom Software &{" "}
               <span className="bg-gradient-to-r from-brand-blue to-brand-orange bg-clip-text text-transparent">
-                digital services
+                AI Automation Services
               </span>
             </h2>
           </div>

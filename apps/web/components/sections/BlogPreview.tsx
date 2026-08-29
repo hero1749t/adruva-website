@@ -94,7 +94,7 @@ export function BlogPreview({ initialPosts }: BlogPreviewProps) {
           <div className="flex flex-col items-start">
             <span className="section-tag mb-3">Insights</span>
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground font-poppins">
-              From our desk
+              AI, Web Development & Marketing Insights
             </h2>
           </div>
 

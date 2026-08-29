@@ -68,7 +68,7 @@ export function WorkPreview({ initialProjects }: WorkPreviewProps) {
           <div className="flex flex-col items-start">
             <span className="section-tag mb-3">Our Work</span>
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground font-poppins">
-              Projects we&apos;re proud of
+              Enterprise Web Design & Software Projects
             </h2>
           </div>
 
