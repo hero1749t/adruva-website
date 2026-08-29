@@ -5,14 +5,29 @@ import { AboutPageClient } from "./AboutPageClient";
 export const revalidate = 3600; // ISR: Revalidate every hour
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About Us | Adruva Solution — IT & Digital Growth Agency, Rishikesh",
   description:
-    "We are your business and productivity partner based in Rishikesh, India. We empower businesses with cutting-edge technology and digital growth systems.",
+    "Meet the team behind Adruva Solution — a full-service IT & digital growth agency based in Rishikesh, Uttarakhand, India. We empower businesses with cutting-edge technology, AI automation, and digital marketing systems.",
   openGraph: {
-    title: "About Us",
+    title: "About Adruva Solution | IT & Digital Agency, Rishikesh",
     description:
-      "We are your business and productivity partner based in Rishikesh, India. We empower businesses with cutting-edge technology and digital growth systems.",
+      "Meet the team behind Adruva Solution — web development, AI automation & digital marketing experts based in Rishikesh, India.",
     type: "website",
+    url: "https://adruvasolution.com/about",
+    images: [
+      {
+        url: `/og?title=${encodeURIComponent("About Adruva Solution")}&subtitle=${encodeURIComponent("IT & Digital Growth Agency — Rishikesh, India")}&type=default`,
+        width: 1200,
+        height: 630,
+        alt: "About Adruva Solution",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Adruva Solution | IT & Digital Agency, Rishikesh",
+    description:
+      "Web development, AI automation & digital marketing experts based in Rishikesh, India.",
   },
   alternates: {
     canonical: "/about",

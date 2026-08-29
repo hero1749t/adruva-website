@@ -30,41 +30,61 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL("https://adruvasolution.com"),
   title: {
-    default: "Adruva Solution | Your Business & Productivity Partner",
+    default:
+      "Adruva Solution | Web Development, AI Automation & Digital Marketing Agency in India",
     template: "%s | Adruva Solution",
   },
   description:
-    "IT company India — web apps, mobile apps, AI solutions, SEO, Google ads. The last tech partner you'll ever need.",
+    "Adruva Solution — Full-service IT & digital growth agency based in Rishikesh, India. We build high-converting websites, mobile apps, AI automation systems, run Google & Meta Ads, and drive SEO results for local businesses and growing brands.",
   applicationName: "Adruva Solution",
   alternates: {
     canonical: "/",
   },
   keywords: [
     "web development company India",
+    "web development company Rishikesh",
     "AI automation company India",
-    "digital marketing agency India",
+    "digital marketing agency Rishikesh",
+    "digital marketing agency Uttarakhand",
     "IT company Rishikesh",
+    "mobile app development India",
+    "Google Ads agency India",
+    "SEO agency India",
     "affordable software development India",
+    "adruva solution",
+    "adruvasolution.com",
   ],
-  authors: [{ name: "Adruva Solution" }],
+  authors: [{ name: "Adruva Solution", url: "https://adruvasolution.com" }],
   creator: "Adruva Solution",
+  publisher: "Adruva Solution",
+  category: "technology",
+  classification: "IT & Digital Services",
   openGraph: {
     type: "website",
     locale: "en_IN",
     url: "https://adruvasolution.com",
     siteName: "Adruva Solution",
+    title:
+      "Adruva Solution | Web Development, AI Automation & Digital Marketing",
+    description:
+      "Full-service IT & digital growth agency in Rishikesh, India. Websites, mobile apps, AI automation, Google Ads, Meta Ads, and SEO.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Adruva Solution | Your Business & Productivity Partner",
+        alt: "Adruva Solution | Web Development, AI Automation & Digital Marketing",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
+    site: "@adruvaSolution",
     creator: "@adruvaSolution",
+    title:
+      "Adruva Solution | Web Development, AI Automation & Digital Marketing",
+    description:
+      "Full-service IT & digital growth agency in Rishikesh, India. Websites, apps, AI automation, Google Ads & SEO.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -74,6 +94,8 @@ export const metadata: Metadata = {
       index: true,
       follow: true,
       "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
     },
   },
 };

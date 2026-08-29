@@ -81,24 +81,85 @@ export default async function Home() {
     getLiveServices(),
   ]);
 
-  const schema = {
+  const BASE = "https://adruvasolution.com";
+
+  const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${BASE}/#organization`,
     name: "Adruva Solution",
-    url: "https://adruvasolution.com",
-    logo: "https://adruvasolution.com/logo.png",
-    description: "Full-service IT & digital growth company",
+    url: BASE,
+    logo: {
+      "@type": "ImageObject",
+      url: `${BASE}/logo.png`,
+      width: 200,
+      height: 60,
+    },
+    description:
+      "Full-service IT & digital growth agency based in Rishikesh, India — websites, mobile apps, AI automation, Google Ads, Meta Ads, and SEO.",
+    foundingDate: "2021",
+    numberOfEmployees: { "@type": "QuantitativeValue", value: 10 },
     address: {
       "@type": "PostalAddress",
+      streetAddress: "Rishikesh",
       addressLocality: "Rishikesh",
       addressRegion: "Uttarakhand",
+      postalCode: "249201",
       addressCountry: "IN",
     },
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "customer service",
-      email: "info@adruvasolution.com",
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "customer service",
+        email: "info@adruvasolution.com",
+        availableLanguage: ["English", "Hindi"],
+      },
+    ],
+    sameAs: [
+      "https://www.facebook.com/p/Adruva-solution-61559775392656/",
+      "https://www.instagram.com/adruvasolution/",
+      "https://www.linkedin.com/company/adruva-solution",
+    ],
+  };
+
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": `${BASE}/#localbusiness`,
+    name: "Adruva Solution",
+    url: BASE,
+    image: `${BASE}/og-image.png`,
+    description:
+      "Web development, mobile apps, AI automation, digital marketing agency in Rishikesh, Uttarakhand, India.",
+    telephone: "+91-XXXXXXXXXX",
+    email: "info@adruvasolution.com",
+    priceRange: "₹₹",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Rishikesh",
+      addressLocality: "Rishikesh",
+      addressRegion: "Uttarakhand",
+      postalCode: "249201",
+      addressCountry: "IN",
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 30.0869,
+      longitude: 78.2676,
+    },
+    areaServed: [
+      { "@type": "State", name: "Uttarakhand" },
+      { "@type": "Country", name: "India" },
+    ],
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "09:00",
+        closes: "18:00",
+      },
+    ],
+    hasMap: "https://maps.google.com/?q=Rishikesh,Uttarakhand",
     sameAs: [
       "https://www.facebook.com/p/Adruva-solution-61559775392656/",
       "https://www.instagram.com/adruvasolution/",
@@ -109,13 +170,23 @@ export default async function Home() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${BASE}/#website`,
     name: "Adruva Solution",
-    url: "https://adruvasolution.com",
+    url: BASE,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${BASE}/blog?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
 
   return (
     <div className="w-full flex flex-col">
-      <JsonLd schema={schema} />
+      <JsonLd schema={organizationSchema} />
+      <JsonLd schema={localBusinessSchema} />
       <JsonLd schema={websiteSchema} />
 
       {/* 1. Hero Section */}

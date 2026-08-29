@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/terms",
   },
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function TermsPage() {

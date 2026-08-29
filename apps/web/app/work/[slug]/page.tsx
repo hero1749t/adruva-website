@@ -96,6 +96,26 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  const BASE = "https://adruvasolution.com";
+
+  const caseStudySchema = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "@id": `${BASE}/work/${project.slug}#casestudy`,
+    name: project.title,
+    description: project.overview,
+    url: `${BASE}/work/${project.slug}`,
+    image: project.gallery?.[0]
+      ? `${BASE}${project.gallery[0]}`
+      : `${BASE}/og-image.png`,
+    creator: {
+      "@type": "Organization",
+      name: "Adruva Solution",
+      url: BASE,
+    },
+    inLanguage: "en-IN",
+  };
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -104,24 +124,26 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://adruvasolution.com",
+        item: BASE,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Our Work",
-        item: "https://adruvasolution.com/work",
+        item: `${BASE}/work`,
       },
       {
         "@type": "ListItem",
         position: 3,
         name: project.title,
+        item: `${BASE}/work/${project.slug}`,
       },
     ],
   };
 
   return (
     <>
+      <JsonLd schema={caseStudySchema} />
       <JsonLd schema={breadcrumbSchema} />
       <CaseStudyClient project={project} />
     </>

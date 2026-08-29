@@ -103,18 +103,51 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  const BASE = "https://adruvasolution.com";
   const ogImageUrl = `/og?title=${encodeURIComponent(post.title)}&subtitle=${encodeURIComponent(post.summary)}&type=blog`;
+  const absoluteOgImage = `${BASE}${ogImageUrl}`;
 
   const blogSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "@id": `${BASE}/blog/${post.slug}#article`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${BASE}/blog/${post.slug}`,
+    },
     headline: post.title,
-    image: ogImageUrl || "/logo.png",
+    description: post.summary,
+    image: {
+      "@type": "ImageObject",
+      url: absoluteOgImage,
+      width: 1200,
+      height: 630,
+    },
     datePublished: post.publishedDate || new Date().toISOString(),
     dateModified: post.publishedDate || new Date().toISOString(),
-    author: { "@type": "Person", name: post.author.name || "Adruva Team" },
-    publisher: { "@type": "Organization", name: "Adruva Solution" },
-    description: post.summary,
+    author: {
+      "@type": "Person",
+      name: post.author?.name || "Adruva Team",
+      url: `${BASE}/about`,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Adruva Solution",
+      url: BASE,
+      logo: {
+        "@type": "ImageObject",
+        url: `${BASE}/logo.png`,
+        width: 200,
+        height: 60,
+      },
+    },
+    url: `${BASE}/blog/${post.slug}`,
+    inLanguage: "en-IN",
+    isPartOf: {
+      "@type": "Blog",
+      name: "Adruva Solution Blog",
+      url: `${BASE}/blog`,
+    },
   };
 
   const breadcrumbSchema = {
@@ -125,18 +158,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://adruvasolution.com",
+        item: BASE,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Blog",
-        item: "https://adruvasolution.com/blog",
+        item: `${BASE}/blog`,
       },
       {
         "@type": "ListItem",
         position: 3,
         name: post.title,
+        item: `${BASE}/blog/${post.slug}`,
       },
     ],
   };
