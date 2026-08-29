@@ -77,12 +77,12 @@ export function CTASection({
 
           <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
             {/* Title (Poppins) */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight leading-tight mb-4 font-poppins">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight leading-tight mb-4 font-poppins text-white">
               {title}
             </h2>
 
             {/* Subtitle (Inter) */}
-            <p className="text-xs sm:text-sm text-white/70 leading-relaxed mb-8 max-w-lg font-inter">
+            <p className="text-xs sm:text-sm text-white/80 leading-relaxed mb-8 max-w-lg font-inter">
               {subtitle}
             </p>
 
