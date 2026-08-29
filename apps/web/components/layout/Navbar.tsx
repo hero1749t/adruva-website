@@ -194,7 +194,7 @@ export function Navbar() {
             <div className="h-8 w-[40px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
               <Image
                 src="/logo-symbol-light.png"
-                alt="Adruva Logo"
+                alt="Adruva Solution Logo | Web Development & AI Automation Agency"
                 fill
                 sizes="40px"
                 className="object-contain hidden dark:block"
@@ -202,7 +202,7 @@ export function Navbar() {
               />
               <Image
                 src="/logo-symbol-dark.png"
-                alt="Adruva Logo"
+                alt="Adruva Solution Logo | Web Development & AI Automation Agency"
                 fill
                 sizes="40px"
                 className="object-contain block dark:hidden"

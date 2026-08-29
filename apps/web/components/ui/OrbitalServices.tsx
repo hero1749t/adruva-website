@@ -239,7 +239,7 @@ export function OrbitalServices() {
             <div className="relative w-full h-full drop-shadow-[0_15px_25px_rgba(45,140,255,0.35)]">
               <Image
                 src="/logo-symbol-light.png"
-                alt="Adruva Logo"
+                alt="Adruva Solution Central Tech Hub Logo"
                 fill
                 className="object-contain pointer-events-none"
                 priority

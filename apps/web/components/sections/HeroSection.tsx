@@ -232,7 +232,7 @@ export function HeroSection() {
                   >
                     <Image
                       src={`/team/${avatar}.jpg`}
-                      alt="Client Avatar"
+                      alt="Adruva Solution Client Partner"
                       fill
                       className="object-cover"
                     />
