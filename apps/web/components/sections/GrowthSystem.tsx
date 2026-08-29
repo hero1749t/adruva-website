@@ -17,34 +17,36 @@ const steps = [
     number: "01",
     icon: Target,
     title: "Attract",
-    description: "Targeted Google Ads, Meta Ads & data-driven SEO strategies.",
+    description:
+      "We launch high-intent Google Search campaigns, retarget prospects via Meta Ads, and deploy technical SEO frameworks to capture active buyers in your industry.",
   },
   {
     number: "02",
     icon: MousePointerClick,
     title: "Convert",
     description:
-      "High-performance websites and landing pages built to convert.",
+      "We code custom Next.js websites and landing pages that load under 1.5 seconds. Designed for pixel-perfect responsiveness and engineered to guide users directly to your CTAs.",
   },
   {
     number: "03",
     icon: Layers,
     title: "Manage",
     description:
-      "Custom CRM integrations to manage and organize inbound leads.",
+      "No more lost emails. We build custom lead dashboards, sync inquiries directly to secure PostgreSQL databases, and integrate with robust CRMs for seamless tracking.",
   },
   {
     number: "04",
     icon: Cpu,
     title: "Automate",
-    description: "AI-driven automated email/WhatsApp follow-ups and bookings.",
+    description:
+      "We integrate Meta WhatsApp APIs and automated email sequences. Inbound leads receive instant auto-replies, and bookings are scheduled automatically, saving up to 80% admin time.",
   },
   {
     number: "05",
     icon: TrendingUp,
     title: "Scale",
     description:
-      "Continuous optimization and campaigns built for compounding growth.",
+      "We run monthly conversion rate optimization sprints, audit site performance via GA4, and optimize ad copy to decrease acquisition costs and scale your revenues.",
   },
 ];
 

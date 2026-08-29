@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { StatsStrip } from "@/components/sections/StatsStrip";
 import { GrowthSystem } from "@/components/sections/GrowthSystem";
@@ -14,6 +15,24 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { mapDbBlogToBlogPost } from "@/lib/blog-data";
 import { mapDbProjectToProjectItem } from "@/lib/work-data";
 import { mapDbServiceToServiceItem } from "@/lib/services-data";
+
+export const metadata: Metadata = {
+  title:
+    "Adruva Solution | IT Services, Web Development & AI Automation Agency",
+  description:
+    "Empower your business with Adruva Solution. We deliver enterprise-grade web development, custom mobile applications, tailored AI automation systems, and high-ROI Google/Meta Ads from Rishikesh, India.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Adruva Solution | Web Development & AI Automation Agency",
+    description:
+      "We build high-converting websites, custom apps, and AI-powered workflows that attract customers and scale revenues honestly.",
+    url: "https://adruvasolution.com",
+    siteName: "Adruva Solution",
+    type: "website",
+  },
+};
 
 async function getLiveBlogs() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
@@ -184,11 +203,54 @@ export default async function Home() {
     },
   };
 
+  const siteNavigationSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SiteNavigationElement",
+        "@id": `${BASE}/#nav-about`,
+        name: "About Us",
+        url: `${BASE}/about`,
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": `${BASE}/#nav-services`,
+        name: "Our Services",
+        url: `${BASE}/services`,
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": `${BASE}/#nav-work`,
+        name: "Case Studies & Work",
+        url: `${BASE}/work`,
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": `${BASE}/#nav-blog`,
+        name: "Latest Insights & Blog",
+        url: `${BASE}/blog`,
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": `${BASE}/#nav-careers`,
+        name: "Careers",
+        url: `${BASE}/careers`,
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": `${BASE}/#nav-contact`,
+        name: "Contact & Booking",
+        url: `${BASE}/contact`,
+      },
+    ],
+  };
+
   return (
     <div className="w-full flex flex-col">
       <JsonLd schema={organizationSchema} />
       <JsonLd schema={localBusinessSchema} />
       <JsonLd schema={websiteSchema} />
+      <JsonLd schema={siteNavigationSchema} />
 
       {/* 1. Hero Section */}
       <HeroSection />
