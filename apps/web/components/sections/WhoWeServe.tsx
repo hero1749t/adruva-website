@@ -1,29 +1,56 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Calendar, ArrowRight } from "lucide-react";
+import {
+  Calendar,
+  ArrowRight,
+  Utensils,
+  Scissors,
+  Hospital,
+  Building2,
+  Compass,
+  Dumbbell,
+  GraduationCap,
+  Pill,
+  Plane,
+  ShoppingBag,
+  Home,
+  Car,
+  Camera,
+  Coffee,
+  Laptop,
+  BookOpen,
+  PartyPopper,
+  LucideIcon,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 
-const industries = [
-  { name: "Restaurants", emoji: "🍽️" },
-  { name: "Salons & Spas", emoji: "✂️" },
-  { name: "Clinics & Hospitals", emoji: "🏥" },
-  { name: "Real Estate", emoji: "🏢" },
-  { name: "Yoga Retreats", emoji: "🧘" },
-  { name: "Gyms & Fitness", emoji: "💪" },
-  { name: "Schools & Institutes", emoji: "🏫" },
-  { name: "Medical Practices", emoji: "💊" },
-  { name: "Travel Agencies", emoji: "✈️" },
-  { name: "Retail Businesses", emoji: "🛍️" },
-  { name: "Interior Design", emoji: "🏠" },
-  { name: "Auto Services", emoji: "🚗" },
-  { name: "Photography Studios", emoji: "📸" },
-  { name: "Bakeries & Cafes", emoji: "🎂" },
-  { name: "IT & Tech Startups", emoji: "💻" },
-  { name: "Coaching Centres", emoji: "📚" },
-  { name: "Event Management", emoji: "🎉" },
+interface IndustryItem {
+  name: string;
+  icon: LucideIcon;
+}
+
+const industries: IndustryItem[] = [
+  { name: "Restaurants", icon: Utensils },
+  { name: "Salons & Spas", icon: Scissors },
+  { name: "Clinics & Hospitals", icon: Hospital },
+  { name: "Real Estate", icon: Building2 },
+  { name: "Yoga Retreats", icon: Compass },
+  { name: "Gyms & Fitness", icon: Dumbbell },
+  { name: "Schools & Institutes", icon: GraduationCap },
+  { name: "Medical Practices", icon: Pill },
+
+  { name: "Travel Agencies", icon: Plane },
+  { name: "Retail Businesses", icon: ShoppingBag },
+  { name: "Interior Design", icon: Home },
+  { name: "Auto Services", icon: Car },
+  { name: "Photography Studios", icon: Camera },
+  { name: "Bakeries & Cafes", icon: Coffee },
+  { name: "IT & Tech Startups", icon: Laptop },
+  { name: "Coaching Centres", icon: BookOpen },
+  { name: "Event Management", icon: PartyPopper },
 ];
 
 export function WhoWeServe() {
@@ -82,16 +109,19 @@ export function WhoWeServe() {
           viewport={{ once: true, margin: "-60px" }}
           className="flex flex-wrap justify-center lg:justify-start gap-2.5 my-10"
         >
-          {industries.map((ind) => (
-            <motion.div
-              key={ind.name}
-              variants={itemVariants}
-              className="flex items-center gap-2 bg-background border border-border rounded-full px-4 py-2 text-sm font-medium text-foreground hover:border-brand-orange hover:text-brand-orange hover:bg-accent transition-all duration-150 cursor-pointer font-inter select-none"
-            >
-              <span>{ind.emoji}</span>
-              <span>{ind.name}</span>
-            </motion.div>
-          ))}
+          {industries.map((ind) => {
+            const Icon = ind.icon;
+            return (
+              <motion.div
+                key={ind.name}
+                variants={itemVariants}
+                className="flex items-center gap-2 bg-background border border-border rounded-full px-4 py-2.5 text-sm font-medium text-foreground hover:border-brand-orange hover:text-brand-orange hover:bg-accent transition-all duration-150 cursor-pointer font-inter select-none group"
+              >
+                <Icon className="w-4 h-4 text-zinc-400 dark:text-zinc-500 group-hover:text-brand-orange transition-colors shrink-0" />
+                <span>{ind.name}</span>
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         {/* Bottom CTA Box */}

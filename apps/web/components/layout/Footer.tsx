@@ -329,7 +329,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/6 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600 w-full text-center md:text-left">
+        <div className="border-t border-white/6 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-zinc-500 w-full text-center md:text-left">
           <p>
             © {new Date().getFullYear()} Adruva Solution. All rights reserved.
           </p>

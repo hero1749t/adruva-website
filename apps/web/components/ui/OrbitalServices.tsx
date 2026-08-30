@@ -195,7 +195,7 @@ export function OrbitalServices() {
           {[130, 175, 220].map((radius) => (
             <div
               key={`orbit-path-${radius}`}
-              className="absolute rounded-full border border-white/5"
+              className="absolute rounded-full border border-zinc-200/80 dark:border-white/5"
               style={{
                 width: radius * 2,
                 height: radius * 2,

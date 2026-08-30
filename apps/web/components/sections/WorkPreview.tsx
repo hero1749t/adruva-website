@@ -40,6 +40,7 @@ export function WorkPreview({ initialProjects }: WorkPreviewProps) {
       p.gradient ||
       p.heroGradient ||
       "from-[#0d1b2e] via-[#0f2549] to-[#162b4a]",
+    results: p.results || [],
   }));
 
   const containerVariants = {
@@ -133,6 +134,16 @@ export function WorkPreview({ initialProjects }: WorkPreviewProps) {
                     {project.industry} Case Study
                   </span>
                 </div>
+
+                {/* Key Business Metric Outcome in Top-Right */}
+                {project.results && project.results.length > 0 && (
+                  <div className="absolute top-4 right-4 z-20">
+                    <span className="text-[10px] font-black uppercase tracking-wider text-emerald-400 bg-black/50 backdrop-blur-md border border-emerald-500/30 px-3 py-1 rounded-md font-space-grotesk shadow-md flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                      {project.results[0].metric} {project.results[0].label}
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* Content Area (bottom) */}
