@@ -795,6 +795,476 @@ export const blogPosts: BlogPost[] = [
       ],
     },
   },
+  {
+    title:
+      "The True Cost of a Slow Website: Why Modern Brands are Switching to Custom Next.js",
+    slug: "true-cost-of-slow-website-custom-nextjs",
+    category: "Web Dev",
+    readingTime: "5 min read",
+    publishedDate: "September 4, 2026",
+    coverGradient: "/blog/web-design.jpg",
+    summary:
+      "How page load latency is silently draining your sales pipeline, and why switching from bloated WordPress templates to custom Next.js engineering can double your conversion rate.",
+    author: {
+      name: "Deepu",
+      role: "CEO & Tech Lead, Adruva",
+      avatarInitials: "D",
+    },
+    content: {
+      type: "doc",
+      content: [
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "Every business owner knows that traffic is hard to get. You spend thousands on Google Ads, Meta campaigns, and SEO to bring potential clients to your site. But what happens if your website takes ",
+            },
+            {
+              type: "text",
+              marks: [{ type: "bold" }],
+              text: "4 to 6 seconds to load",
+            },
+            {
+              type: "text",
+              text: "? The harsh reality is that most of those visitors leave before ever reading your headline.",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "Google's official consumer research shows that as page load time goes from ",
+            },
+            {
+              type: "text",
+              marks: [{ type: "bold" }],
+              text: "1s to 3s, the probability of bounce increases by 32%",
+            },
+            {
+              type: "text",
+              text: ". If it takes 5 seconds, the bounce probability surges by 90%. A slow website isn't just a technical annoyance — it is an active leak in your business revenue.",
+            },
+          ],
+        },
+        {
+          type: "heading",
+          attrs: { level: 2 },
+          content: [
+            {
+              type: "text",
+              text: "The Hidden Tax of Legacy WordPress & Template Builders",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "Many businesses start with WordPress or page builders like Elementor or Wix. While easy to set up initially, they carry massive long-term technical debt:",
+            },
+          ],
+        },
+        {
+          type: "bulletList",
+          content: [
+            {
+              type: "listItem",
+              content: [
+                {
+                  type: "paragraph",
+                  content: [
+                    {
+                      type: "text",
+                      marks: [{ type: "bold" }],
+                      text: "Plugin Bloat: ",
+                    },
+                    {
+                      type: "text",
+                      text: "Every additional plugin injects extra CSS, JavaScript, and database calls, dragging mobile PageSpeed scores down to the red zone (under 40/100).",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "listItem",
+              content: [
+                {
+                  type: "paragraph",
+                  content: [
+                    {
+                      type: "text",
+                      marks: [{ type: "bold" }],
+                      text: "Security Vulnerabilities: ",
+                    },
+                    {
+                      type: "text",
+                      text: "Outdated plugins are the #1 attack vector for malware and spam injections, risking your domain reputation on Google.",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "listItem",
+              content: [
+                {
+                  type: "paragraph",
+                  content: [
+                    {
+                      type: "text",
+                      marks: [{ type: "bold" }],
+                      text: "High Server Costs: ",
+                    },
+                    {
+                      type: "text",
+                      text: "Monolithic PHP engines generate every page dynamically from scratch on each visitor request, crashing whenever traffic spikes occur.",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "heading",
+          attrs: { level: 2 },
+          content: [
+            {
+              type: "text",
+              text: "Why Custom Next.js Delivers 3x Higher Conversion",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "By rebuilding your web platform with modern React & Next.js, your pages are pre-compiled into static HTML and cached across global edge CDN networks. The results are immediate:",
+            },
+          ],
+        },
+        {
+          type: "bulletList",
+          content: [
+            {
+              type: "listItem",
+              content: [
+                {
+                  type: "paragraph",
+                  content: [
+                    {
+                      type: "text",
+                      marks: [{ type: "bold" }],
+                      text: "Instant Sub-1 Second Loads: ",
+                    },
+                    {
+                      type: "text",
+                      text: "Pages render instantaneously on mobile, reducing bounce rates and keeping prospective buyers engaged.",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "listItem",
+              content: [
+                {
+                  type: "paragraph",
+                  content: [
+                    {
+                      type: "text",
+                      marks: [{ type: "bold" }],
+                      text: "Perfect 95+ Core Web Vitals: ",
+                    },
+                    {
+                      type: "text",
+                      text: "Google rewards lightning-fast websites with higher organic search rankings and lower Cost-Per-Click (CPC) on Google Search Ads.",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "heading",
+          attrs: { level: 3 },
+          content: [
+            {
+              type: "text",
+              text: "Ready to Upgrade Your Website Performance?",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "At Adruva Solution, we engineer high-performance custom web platforms designed specifically to turn cold clicks into qualified inquiries. Explore our ",
+            },
+            {
+              type: "text",
+              marks: [
+                {
+                  type: "link",
+                  attrs: { href: "/services/web-development" },
+                },
+              ],
+              text: "Custom Web Development Services",
+            },
+            {
+              type: "text",
+              text: " or ",
+            },
+            {
+              type: "text",
+              marks: [
+                {
+                  type: "link",
+                  attrs: { href: "/contact" },
+                },
+              ],
+              text: "Book a Free 30-Minute Architecture Call",
+            },
+            {
+              type: "text",
+              text: " to audit your current website speed.",
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    title:
+      "How Local Businesses in India Use WhatsApp Automation & AI to 3x Inbound Leads",
+    slug: "whatsapp-automation-ai-leads-india",
+    category: "AI & Tech",
+    readingTime: "4 min read",
+    publishedDate: "September 6, 2026",
+    coverGradient: "/blog/ai-automation.jpg",
+    summary:
+      "A practical blueprint for service businesses to capture 100% of website inquiries, auto-qualify leads via WhatsApp, and schedule discovery calls automatically 24/7.",
+    author: {
+      name: "Rohan Sharma",
+      role: "Head of Automation, Adruva",
+      avatarInitials: "RS",
+    },
+    content: {
+      type: "doc",
+      content: [
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "In the Indian market, WhatsApp is not just a messaging app — it is the primary operating system for commerce. Over 80% of Indian consumers prefer chatting on WhatsApp over filling static web forms or answering cold phone calls.",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "Yet, most local businesses — from dental clinics and yoga teacher trainings to real estate brokers and travel agencies — lose thousands of high-value inquiries every month simply because they cannot reply fast enough outside business hours.",
+            },
+          ],
+        },
+        {
+          type: "heading",
+          attrs: { level: 2 },
+          content: [
+            {
+              type: "text",
+              text: "The 5-Minute Lead Rule in India",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "Data from Harvard Business Review demonstrates that reaching out to a prospective lead within ",
+            },
+            {
+              type: "text",
+              marks: [{ type: "bold" }],
+              text: "5 minutes",
+            },
+            {
+              type: "text",
+              text: " increases your chance of converting them by ",
+            },
+            {
+              type: "text",
+              marks: [{ type: "bold" }],
+              text: "2100%",
+            },
+            {
+              type: "text",
+              text: " compared to waiting 30 minutes. When a prospect is on your site, their buying intent is at its peak. If you take 4 hours to reply, they have already messaged three of your competitors.",
+            },
+          ],
+        },
+        {
+          type: "heading",
+          attrs: { level: 2 },
+          content: [
+            {
+              type: "text",
+              text: "The 4-Step WhatsApp AI Automation Blueprint",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "Here is the exact automated lead pipeline we deploy for Adruva clients:",
+            },
+          ],
+        },
+        {
+          type: "bulletList",
+          content: [
+            {
+              type: "listItem",
+              content: [
+                {
+                  type: "paragraph",
+                  content: [
+                    {
+                      type: "text",
+                      marks: [{ type: "bold" }],
+                      text: "1. Instant Trigger: ",
+                    },
+                    {
+                      type: "text",
+                      text: "The moment a user enters their details on your website form, a webhook fires into the Meta WhatsApp Cloud API within 3 seconds.",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "listItem",
+              content: [
+                {
+                  type: "paragraph",
+                  content: [
+                    {
+                      type: "text",
+                      marks: [{ type: "bold" }],
+                      text: "2. Personalized Greeting: ",
+                    },
+                    {
+                      type: "text",
+                      text: "The user receives a verified WhatsApp greeting addressing them by name, along with key details about the service they inquired about.",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "listItem",
+              content: [
+                {
+                  type: "paragraph",
+                  content: [
+                    {
+                      type: "text",
+                      marks: [{ type: "bold" }],
+                      text: "3. AI Lead Qualification: ",
+                    },
+                    {
+                      type: "text",
+                      text: "A custom LLM agent answers common questions (pricing, dates, location, prerequisites) instantly using your approved knowledge base.",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "listItem",
+              content: [
+                {
+                  type: "paragraph",
+                  content: [
+                    {
+                      type: "text",
+                      marks: [{ type: "bold" }],
+                      text: "4. Automated Booking & CRM Sync: ",
+                    },
+                    {
+                      type: "text",
+                      text: "The bot shares a direct calendar booking link and logs the entire chat history into your team's PostgreSQL CRM dashboard.",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "heading",
+          attrs: { level: 3 },
+          content: [
+            {
+              type: "text",
+              text: "Automate Your Inbound Sales Pipeline Today",
+            },
+          ],
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              text: "Stop letting qualified leads slip through the cracks. Learn more about our custom integrations on our ",
+            },
+            {
+              type: "text",
+              marks: [
+                {
+                  type: "link",
+                  attrs: { href: "/services/ai-automation" },
+                },
+              ],
+              text: "AI Automation Solutions page",
+            },
+            {
+              type: "text",
+              text: " or ",
+            },
+            {
+              type: "text",
+              marks: [
+                {
+                  type: "link",
+                  attrs: { href: "/contact" },
+                },
+              ],
+              text: "Contact Our Engineering Team",
+            },
+            {
+              type: "text",
+              text: " to schedule a customized live demonstration.",
+            },
+          ],
+        },
+      ],
+    },
+  },
 ];
 
 export const BLOG_SLUGS = blogPosts.map((p) => p.slug);
