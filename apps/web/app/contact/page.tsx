@@ -5,14 +5,15 @@ import { JsonLd } from "@/components/seo/JsonLd";
 const BASE = "https://adruvasolution.com";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Free Strategy Call",
+  title:
+    "Contact Us | Free Strategy Consultation & Project Booking | Adruva Solution",
   description:
-    "Have a project in mind? Book a free 30-minute strategy call or send us a message. Adruva Solution specialises in Web Development, Mobile Apps, AI Automation, Google Ads, Meta Ads, and Local SEO — based in Rishikesh, India.",
+    "Have a project in mind? Book a free 30-minute discovery call with Adruva Solution. Custom web development, mobile apps, AI automation, and ROI-driven marketing from Rishikesh, India.",
   alternates: {
     canonical: "/contact",
   },
   openGraph: {
-    title: "Contact Adruva Solution | Free Strategy Call",
+    title: "Contact Adruva Solution | Free Strategy Consultation",
     description:
       "Book a free 30-minute discovery call. We specialise in websites, apps, AI automation & digital marketing — Rishikesh, India.",
     type: "website",
@@ -28,10 +29,29 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact Adruva Solution | Free Strategy Call",
+    title: "Contact Adruva Solution | Free Strategy Consultation",
     description:
       "Book a free strategy call — Web, Apps, AI Automation & Digital Marketing. Rishikesh, India.",
   },
+};
+
+const breadcrumbsSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: BASE,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Contact Us",
+      item: `${BASE}/contact`,
+    },
+  ],
 };
 
 const contactLocalBusinessSchema = {
@@ -40,13 +60,13 @@ const contactLocalBusinessSchema = {
   name: "Adruva Solution",
   url: BASE,
   telephone: "+91-91492-76799",
-
   email: "info@adruvasolution.com",
   address: {
     "@type": "PostalAddress",
+    streetAddress: "Shanti Nagar, Dhalwala",
     addressLocality: "Rishikesh",
     addressRegion: "Uttarakhand",
-    postalCode: "249201",
+    postalCode: "249137",
     addressCountry: "IN",
   },
   openingHoursSpecification: [
@@ -68,6 +88,7 @@ const contactLocalBusinessSchema = {
 export default function ContactPage() {
   return (
     <>
+      <JsonLd schema={breadcrumbsSchema} />
       <JsonLd schema={contactLocalBusinessSchema} />
       <ContactPageClient />
     </>

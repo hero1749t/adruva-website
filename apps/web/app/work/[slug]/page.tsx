@@ -64,25 +64,25 @@ export async function generateMetadata({
     return {};
   }
 
-  const ogTitle = `${project.title} | Case Studies`;
+  const ogTitle = `${project.title} Case Study | Adruva Solution`;
   const ogSubtitle = project.overview || "";
   const ogImageUrl = `/og?title=${encodeURIComponent(ogTitle)}&subtitle=${encodeURIComponent(ogSubtitle)}&type=work`;
 
   return {
-    title: `${project.title} | Case Studies`,
+    title: `${project.title} | Case Study & Results | Adruva Solution`,
     description: project.overview,
     alternates: {
       canonical: `/work/${params.slug}`,
     },
     openGraph: {
-      title: `${project.title} | Case Studies`,
+      title: `${project.title} | Case Study & Results | Adruva Solution`,
       description: project.overview,
       type: "website",
       images: [ogImageUrl],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${project.title} | Case Studies`,
+      title: `${project.title} | Case Study & Results | Adruva Solution`,
       description: project.overview,
       images: [ogImageUrl],
     },

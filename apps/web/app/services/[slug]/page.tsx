@@ -68,25 +68,25 @@ export async function generateMetadata({
     return {};
   }
 
-  const ogTitle = `${service.name} | Services`;
+  const ogTitle = `${service.name} Services | Adruva Solution`;
   const ogSubtitle = service.tagline || service.description || "";
   const ogImageUrl = `/og?title=${encodeURIComponent(ogTitle)}&subtitle=${encodeURIComponent(ogSubtitle)}&type=service`;
 
   return {
-    title: `${service.name} | Services`,
+    title: `${service.name} | Professional Services | Adruva Solution`,
     description: `${service.description} ${service.tagline || ""}`,
     alternates: {
       canonical: `/services/${params.slug}`,
     },
     openGraph: {
-      title: `${service.name} | Services`,
+      title: `${service.name} | Professional Services | Adruva Solution`,
       description: service.description || "",
       type: "website",
       images: [ogImageUrl],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${service.name} | Services`,
+      title: `${service.name} | Professional Services | Adruva Solution`,
       description: service.description || "",
       images: [ogImageUrl],
     },
@@ -104,7 +104,11 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     "@context": "https://schema.org",
     "@type": "Service",
     name: service.name,
-    provider: { "@type": "Organization", name: "Adruva Solution" },
+    provider: {
+      "@type": "Organization",
+      name: "Adruva Solution",
+      url: "https://adruvasolution.com",
+    },
     description: service.description,
     areaServed: "IN",
     offers: {
@@ -145,10 +149,28 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     ],
   };
 
+  const faqList = (service as any).faq || (service as any).faqs;
+  const faqSchema =
+    faqList && Array.isArray(faqList) && faqList.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqList.map((faq: any) => ({
+            "@type": "Question",
+            name: faq.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: faq.answer,
+            },
+          })),
+        }
+      : null;
+
   return (
     <>
       <JsonLd schema={serviceSchema} />
       <JsonLd schema={breadcrumbSchema} />
+      {faqSchema && <JsonLd schema={faqSchema} />}
       <ServicePageClient service={service} />
     </>
   );

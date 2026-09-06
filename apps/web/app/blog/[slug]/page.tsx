@@ -74,13 +74,13 @@ export async function generateMetadata({
   const ogImageUrl = `/og?title=${encodeURIComponent(ogTitle)}&subtitle=${encodeURIComponent(ogSubtitle)}&type=blog`;
 
   return {
-    title: `${post.title} | Blog`,
+    title: `${post.title} | Adruva Solution Blog`,
     description: post.summary,
     alternates: {
       canonical: `/blog/${post.slug}`,
     },
     openGraph: {
-      title: post.title,
+      title: `${post.title} | Adruva Solution Blog`,
       description: post.summary,
       type: "article",
       url: `/blog/${post.slug}`,
@@ -88,7 +88,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
+      title: `${post.title} | Adruva Solution Blog`,
       description: post.summary,
       images: [ogImageUrl],
     },

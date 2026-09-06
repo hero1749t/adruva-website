@@ -1,19 +1,22 @@
 import React from "react";
 import type { Metadata } from "next";
 import { AboutPageClient } from "./AboutPageClient";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const revalidate = 3600; // ISR: Revalidate every hour
 
+const BASE = "https://adruvasolution.com";
+
 export const metadata: Metadata = {
-  title: "About Us | Adruva Solution — IT & Digital Growth Agency, Rishikesh",
+  title: "About Us | Adruva Solution — Web & AI Development Agency, Rishikesh",
   description:
-    "Meet the team behind Adruva Solution — a full-service IT & digital growth agency based in Rishikesh, Uttarakhand, India. We empower businesses with cutting-edge technology, AI automation, and digital marketing systems.",
+    "Meet the engineering and growth team at Adruva Solution. We deliver robust custom software, high-performance web development, and custom AI integrations from Rishikesh, Uttarakhand, India.",
   openGraph: {
-    title: "About Adruva Solution | IT & Digital Agency, Rishikesh",
+    title: "About Adruva Solution | IT & AI Agency, Rishikesh",
     description:
-      "Meet the team behind Adruva Solution — web development, AI automation & digital marketing experts based in Rishikesh, India.",
+      "Meet the engineering and growth team at Adruva Solution — web development, AI automation & digital marketing experts based in Rishikesh, India.",
     type: "website",
-    url: "https://adruvasolution.com/about",
+    url: `${BASE}/about`,
     images: [
       {
         url: `/og?title=${encodeURIComponent("About Adruva Solution")}&subtitle=${encodeURIComponent("IT & Digital Growth Agency — Rishikesh, India")}&type=default`,
@@ -25,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Adruva Solution | IT & Digital Agency, Rishikesh",
+    title: "About Adruva Solution | IT & AI Agency, Rishikesh",
     description:
       "Web development, AI automation & digital marketing experts based in Rishikesh, India.",
   },
@@ -56,5 +59,58 @@ async function getLiveTeam() {
 
 export default async function AboutPage() {
   const liveTeam = await getLiveTeam();
-  return <AboutPageClient initialTeam={liveTeam} />;
+
+  const breadcrumbsSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: BASE,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "About Us",
+        item: `${BASE}/about`,
+      },
+    ],
+  };
+
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About Adruva Solution",
+    description:
+      "Company overview, mission, core values, and leadership team of Adruva Solution.",
+    url: `${BASE}/about`,
+    mainEntity: {
+      "@type": "Organization",
+      name: "Adruva Solution",
+      url: BASE,
+      logo: `${BASE}/logo.png`,
+      foundingLocation: {
+        "@type": "Place",
+        name: "Rishikesh, Uttarakhand, India",
+      },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Shanti Nagar, Dhalwala",
+        addressLocality: "Rishikesh",
+        addressRegion: "Uttarakhand",
+        postalCode: "249137",
+        addressCountry: "IN",
+      },
+    },
+  };
+
+  return (
+    <>
+      <JsonLd schema={breadcrumbsSchema} />
+      <JsonLd schema={aboutSchema} />
+      <AboutPageClient initialTeam={liveTeam} />
+    </>
+  );
 }
