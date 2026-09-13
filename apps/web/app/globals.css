@@ -8,47 +8,49 @@
   /* Light Mode */
   :root {
     /* Backgrounds */
-    --background: 240 5.9% 96.1%; /* Soft clean Zinc-100 #F4F4F5 */
-    --background-secondary: 240 5.9% 90%; /* Zinc-200 #E4E4E7 */
-    --background-tertiary: 240 4.9% 83.9%; /* Zinc-300 #D4D4D8 */
+    --background: 0 0% 98%; /* #F9F9F9 Clean Off-White Surface */
+    --background-secondary: 203 54% 95%; /* #EAF2F8 Soft Ice Tint */
+    --background-tertiary: 203 30% 90%; /* #DDE7EE */
 
     /* Foreground/Text */
-    --foreground: 240 10% 3.9%; /* Deep Zinc-950 #09090B */
-    --foreground-secondary: 240 3.8% 46.1%; /* Zinc-500 #71717A */
-    --foreground-muted: 240 3.8% 65%; /* Zinc-400 #A1A1AA */
+    --foreground: 0 0% 4%; /* #070707 Deep Typography Black */
+    --foreground-secondary: 215 19% 35%; /* Slate Gray #475569 */
+    --foreground-muted: 215 16% 55%; /* #64748B */
 
     /* Card */
     --card: 0 0% 100%; /* Pure White #FFFFFF */
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 0 0% 4%;
 
     /* Popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --popover-foreground: 0 0% 4%;
 
     /* Border */
-    --border: 240 5.9% 90%; /* Zinc-200 border */
-    --border-strong: 240 4.9% 83.9%; /* Zinc-300 border */
+    --border: 214 32% 91%; /* #E2E8F0 */
+    --border-strong: 214 20% 80%;
 
-    /* Brand Colors (HSL mapped) */
-    --brand-orange: 24 100% 50%; /* #FF6B00 */
-    --brand-orange-hover: 24 100% 44%; /* #E05E00 */
-    --brand-orange-light: 24 100% 97%; /* #FFF5F0 */
-    --brand-navy: 214 68% 14%; /* #0B1F3A */
-    --brand-blue: 211 96% 58%; /* #2D8CFF */
+    /* Brand Colors (HSL mapped from Brand Kit) */
+    --brand-blue: 220 100% 50%; /* #0066FF / #0052FF Electric Tech Blue */
+    --brand-blue-bright: 217 100% 54%; /* #1473FF */
+    --brand-ice: 203 54% 90%; /* #D6E8F3 Soft Ice Blue */
+    --brand-navy: 218 60% 8%; /* #081120 Obsidian Tech Navy */
+    --brand-teal: 179 98% 27%; /* #018A88 Deep Pine Teal */
+    --brand-orange: 25 100% 50%; /* #FF6B00 Energy Amber CTA */
+    --brand-orange-hover: 25 100% 44%;
 
-    /* Shadcn compatibility */
-    --primary: 24 100% 50%;
+    /* Shadcn compatibility - Primary is now Electric Blue */
+    --primary: 220 100% 50%; /* #0066FF Electric Blue */
     --primary-foreground: 0 0% 100%;
-    --secondary: 214 68% 14%;
+    --secondary: 218 60% 8%; /* #081120 Obsidian Navy */
     --secondary-foreground: 0 0% 100%;
-    --muted: 240 5.9% 90%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 24 100% 97%;
-    --accent-foreground: 24 100% 50%;
+    --muted: 203 30% 95%;
+    --muted-foreground: 215 16% 50%;
+    --accent: 203 54% 90%; /* Ice Blue Accent */
+    --accent-foreground: 220 100% 50%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --input: 240 5.9% 90%;
-    --ring: 24 100% 50%;
+    --input: 214 32% 91%;
+    --ring: 220 100% 50%;
 
     /* Radii */
     --radius: 0.75rem;
@@ -60,47 +62,49 @@
   /* Dark Mode */
   .dark {
     /* Backgrounds */
-    --background: 240 10% 3.9%; /* #09090b - Zinc/Coal Black */
-    --background-secondary: 240 10% 6%; /* #0f0f12 - Charcoal Card background */
-    --background-tertiary: 240 6% 10%; /* #18181b - Zinc 900 */
+    --background: 218 60% 8%; /* #081120 Obsidian Tech Navy */
+    --background-secondary: 217 56% 12%; /* #0E1A30 */
+    --background-tertiary: 217 45% 16%; /* #162442 */
 
     /* Foreground/Text */
-    --foreground: 0 0% 95%;
-    --foreground-secondary: 240 5% 65%;
-    --foreground-muted: 240 5% 45%;
+    --foreground: 210 40% 98%; /* Crisp White #F8FAFC */
+    --foreground-secondary: 215 20% 75%; /* #CBD5E1 */
+    --foreground-muted: 215 16% 55%; /* #64748B */
 
     /* Card */
-    --card: 240 10% 6%; /* #0f0f12 - Charcoal Card */
-    --card-foreground: 0 0% 95%;
+    --card: 217 56% 11%; /* #0D182E Dark Glass Card */
+    --card-foreground: 210 40% 98%;
 
     /* Popover */
-    --popover: 240 10% 6%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 217 56% 11%;
+    --popover-foreground: 210 40% 98%;
 
     /* Border */
-    --border: 240 6% 15%; /* #27272a - Zinc 800 */
-    --border-strong: 240 6% 25%; /* #3f3f46 - Zinc 700 */
+    --border: 217 33% 20%; /* #1E2D4A */
+    --border-strong: 217 33% 30%;
 
     /* Brand Colors (Dark Adaptations) */
-    --brand-orange: 24 100% 50%;
-    --brand-orange-hover: 24 100% 56%;
-    --brand-orange-light: 24 100% 15%;
-    --brand-navy: 240 10% 6%;
-    --brand-blue: 211 96% 58%;
+    --brand-blue: 220 100% 55%; /* Glowing Electric Blue */
+    --brand-blue-bright: 217 100% 60%;
+    --brand-ice: 203 54% 90%;
+    --brand-navy: 218 60% 8%;
+    --brand-teal: 179 98% 40%;
+    --brand-orange: 25 100% 50%;
+    --brand-orange-hover: 25 100% 56%;
 
     /* Shadcn compatibility */
-    --primary: 24 100% 50%;
+    --primary: 220 100% 55%; /* Electric Blue */
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 6% 15%;
+    --secondary: 217 33% 20%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 240 10% 6%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 24 100% 15%;
-    --accent-foreground: 24 100% 60%;
+    --muted: 217 33% 16%;
+    --muted-foreground: 215 20% 70%;
+    --accent: 217 56% 18%;
+    --accent-foreground: 220 100% 65%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --input: 240 6% 15%;
-    --ring: 24 100% 50%;
+    --input: 217 33% 20%;
+    --ring: 220 100% 55%;
   }
 }
 
@@ -114,7 +118,7 @@
   }
 
   body {
-    font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+    font-family: var(--font-manrope), "Manrope", system-ui, sans-serif;
     font-size: 15px;
     line-height: 1.75;
     -webkit-font-smoothing: antialiased;
@@ -133,17 +137,17 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-poppins), "Poppins", sans-serif;
+    font-family: var(--font-sora), "Sora", sans-serif;
     font-weight: 700;
     line-height: 1.15;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
     color: hsl(var(--foreground));
   }
 
   h1 {
     font-size: clamp(2.25rem, 5vw, 4rem);
     font-weight: 800;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.035em;
   }
 
   h2 {

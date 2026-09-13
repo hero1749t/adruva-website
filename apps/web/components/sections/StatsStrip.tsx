@@ -1,10 +1,14 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useRef } from 'react';
-import { cn } from '@/lib/utils';
-import { Container } from '@/components/layout/container';
+import React, { useState, useEffect, useRef } from "react";
+import { cn } from "@/lib/utils";
+import { Container } from "@/components/layout/container";
 
-function useCountUp(target: number, duration: number = 2000, start: boolean = false) {
+function useCountUp(
+  target: number,
+  duration: number = 2000,
+  start: boolean = false,
+) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -40,7 +44,12 @@ interface StatItemProps {
   prefersReducedMotion: boolean;
 }
 
-function StatItem({ target, suffix, label, prefersReducedMotion }: StatItemProps) {
+function StatItem({
+  target,
+  suffix,
+  label,
+  prefersReducedMotion,
+}: StatItemProps) {
   const [start, setStart] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const count = useCountUp(target, 2000, start && !prefersReducedMotion);
@@ -57,7 +66,7 @@ function StatItem({ target, suffix, label, prefersReducedMotion }: StatItemProps
           observer.unobserve(element);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     observer.observe(element);
@@ -72,11 +81,11 @@ function StatItem({ target, suffix, label, prefersReducedMotion }: StatItemProps
       ref={ref}
       className="flex flex-col items-center justify-center p-6 text-center gap-1"
     >
-      <span className="text-4xl md:text-5xl font-extrabold text-foreground font-poppins tracking-tight tabular-nums">
+      <span className="text-4xl md:text-5xl font-extrabold text-foreground font-sora tracking-tight tabular-nums">
         {prefersReducedMotion ? target : count}
-        <span className="text-brand-orange">{suffix}</span>
+        <span className="text-brand-blue">{suffix}</span>
       </span>
-      <span className="text-xs md:text-sm text-muted-foreground font-medium uppercase tracking-wider font-inter">
+      <span className="text-xs md:text-sm text-muted-foreground font-semibold uppercase tracking-wider font-space">
         {label}
       </span>
     </div>
@@ -87,19 +96,19 @@ export function StatsStrip() {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     setPrefersReducedMotion(mediaQuery.matches);
   }, []);
 
   const stats = [
-    { target: 15, suffix: '+', label: 'Projects Delivered' },
-    { target: 10, suffix: '+', label: 'Happy Clients' },
-    { target: 100, suffix: '%', label: 'On-Time Delivery' },
-    { target: 4, suffix: '+', label: 'Industries Served' },
+    { target: 50, suffix: "+", label: "Scaling Businesses" },
+    { target: 14, suffix: "", label: "Specialized Services" },
+    { target: 100, suffix: "%", label: "Transparent Scoping" },
+    { target: 4, suffix: " Divisions", label: "Integrated Ecosystem" },
   ];
 
   return (
-    <section className="w-full border-y border-border bg-background-secondary/50 dark:bg-brand-navy/30 py-10 transition-colors duration-300">
+    <section className="w-full border-y border-border/60 bg-card/50 dark:bg-[#070E1C] py-10 transition-colors duration-300">
       <Container>
         <div className="grid grid-cols-2 md:grid-cols-4 w-full">
           {stats.map((stat, idx) => (
@@ -107,10 +116,12 @@ export function StatsStrip() {
               key={idx}
               className={cn(
                 "w-full",
-                idx === 0 && "border-r border-b md:border-0 border-border",
-                idx === 1 && "border-b md:border-y-0 md:border-r-0 md:border-l border-border",
-                idx === 2 && "border-r md:border-y-0 md:border-r-0 md:border-l border-border",
-                idx === 3 && "border-0 md:border-l border-border"
+                idx === 0 && "border-r border-b md:border-0 border-border/60",
+                idx === 1 &&
+                  "border-b md:border-y-0 md:border-r-0 md:border-l border-border/60",
+                idx === 2 &&
+                  "border-r md:border-y-0 md:border-r-0 md:border-l border-border/60",
+                idx === 3 && "border-0 md:border-l border-border/60",
               )}
             >
               <StatItem

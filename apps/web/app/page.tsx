@@ -1,8 +1,10 @@
 import React from "react";
 import type { Metadata } from "next";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { StatsStrip } from "@/components/sections/StatsStrip";
+import { AboutAdruvaSection } from "@/components/sections/AboutAdruvaSection";
 import { GrowthSystem } from "@/components/sections/GrowthSystem";
+import { BrandPositioningSection } from "@/components/sections/BrandPositioningSection";
+import { StatsStrip } from "@/components/sections/StatsStrip";
 import { LogoMarquee } from "@/components/sections/LogoMarquee";
 import { ServicesPreview } from "@/components/sections/ServicesPreview";
 import { WhoWeServe } from "@/components/sections/WhoWeServe";
@@ -258,31 +260,37 @@ export default async function Home() {
       {/* 2. Stats Strip */}
       <StatsStrip />
 
-      {/* 3. Growth System (Methodology) */}
+      {/* 3. About Adruva Solution (The 4 Integrated Departments) */}
+      <AboutAdruvaSection />
+
+      {/* 4. The Thinking Behind Adruva (01 THINK, 02 BUILD, 03 CONNECT, 04 GROW) */}
       <GrowthSystem />
 
-      {/* 4. Client Logo Marquee */}
+      {/* 5. Brand Positioning (Bridging the Agency Gap) */}
+      <BrandPositioningSection />
+
+      {/* 6. Client Logo Marquee */}
       <LogoMarquee />
 
-      {/* 5. Services Preview */}
+      {/* 7. 14 Services Catalog Preview */}
       <ServicesPreview initialServices={liveServices || undefined} />
 
-      {/* 6. Who We Serve */}
+      {/* 8. Who We Serve (20 Strategic Verticals) */}
       <WhoWeServe />
 
-      {/* 7. Case Studies / Work Preview */}
+      {/* 9. Case Studies & Work Preview */}
       <WorkPreview initialProjects={liveProjects || undefined} />
 
-      {/* 8. Google Reviews Badge */}
+      {/* 10. Google Reviews Badge */}
       <ReviewsBadge />
 
-      {/* 9. Testimonials */}
+      {/* 11. Testimonials */}
       <TestimonialsSection />
 
-      {/* 10. Blog Preview */}
+      {/* 12. Blog Preview */}
       <BlogPreview initialPosts={liveBlogs || undefined} />
 
-      {/* 11. Final CTA Section */}
+      {/* 13. Final CTA Section */}
       <CTASection />
     </div>
   );
