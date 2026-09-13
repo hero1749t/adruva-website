@@ -131,12 +131,18 @@ export function Footer() {
                   className="object-contain"
                 />
               </div>
-              <span className="text-lg font-[800] tracking-tight text-white transition-colors font-poppins">
-                Adruva<span className="text-brand-orange">.</span>
-              </span>
+              <div className="flex flex-col">
+                <span className="text-base font-[800] tracking-tight text-white transition-colors font-sora leading-none">
+                  ADRUVA
+                </span>
+                <span className="text-[7.5px] font-bold tracking-[0.22em] text-brand-blue uppercase font-space mt-0.5">
+                  SOLUTION
+                </span>
+              </div>
             </Link>
-            <p className="text-sm text-gray-500 leading-[1.7] max-w-[260px] mb-6 font-inter">
-              Digital growth systems for local businesses and beyond.
+            <p className="text-sm text-gray-400 leading-relaxed max-w-[280px] mb-6 font-manrope">
+              Engineered for Growth. Scoped with Precision. Value-premium
+              digital and AI systems.
             </p>
 
             {/* Newsletter */}

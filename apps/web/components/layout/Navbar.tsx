@@ -209,9 +209,14 @@ export function Navbar() {
                 priority
               />
             </div>
-            <span className="text-lg font-[800] tracking-tight text-foreground transition-colors font-poppins">
-              Adruva<span className="text-brand-orange">.</span>
-            </span>
+            <div className="flex flex-col">
+              <span className="text-base font-[800] tracking-tight text-foreground transition-colors font-sora leading-none">
+                ADRUVA
+              </span>
+              <span className="text-[7.5px] font-bold tracking-[0.22em] text-brand-blue uppercase font-space mt-0.5">
+                SOLUTION
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Nav Links */}

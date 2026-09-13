@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, Inter, Space_Grotesk } from "next/font/google";
+import { Sora, Manrope, Space_Grotesk, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { PublicLayoutWrapper } from "@/components/layout/PublicLayoutWrapper";
@@ -8,22 +8,31 @@ import { CursorGlow } from "@/components/ui/CursorGlow";
 import { DynamicBackground } from "@/components/ui/DynamicBackground";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
-const poppins = Poppins({
+const sora = Sora({
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
-  variable: "--font-poppins",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-sora",
   display: "swap",
 });
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-manrope",
   display: "swap",
 });
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
+  weight: ["500", "600", "700"],
   variable: "--font-space-grotesk",
+  display: "swap",
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -114,7 +123,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${poppins.variable} ${spaceGrotesk.variable} antialiased`}
+        className={`${sora.variable} ${manrope.variable} ${spaceGrotesk.variable} ${ibmPlexMono.variable} font-manrope antialiased`}
       >
         <Providers>
           <div className="flex min-h-screen flex-col bg-background text-foreground transition-colors duration-300 relative">

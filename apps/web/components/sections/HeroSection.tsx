@@ -2,21 +2,36 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  Sparkles,
+  CheckCircle2,
+  ShieldCheck,
+  Zap,
+  Activity,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { OrbitalServices } from "@/components/ui/OrbitalServices";
 import Image from "next/image";
 
-const words = ["Need.", "Trust.", "Choose."];
+const phases = [
+  { step: "01", title: "THINK", desc: "Understand the real business problem" },
+  { step: "02", title: "BUILD", desc: "Create practical, scalable solutions" },
+  {
+    step: "03",
+    title: "CONNECT",
+    desc: "Bring tech, creativity & strategy together",
+  },
+  { step: "04", title: "GROW", desc: "Turn solutions into measurable ROI" },
+];
 
 export function HeroSection() {
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [activePhase, setActivePhase] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const checkReducedMotion = () => {
@@ -27,8 +42,8 @@ export function HeroSection() {
     checkReducedMotion();
 
     const interval = setInterval(() => {
-      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
-    }, 2500);
+      setActivePhase((prev) => (prev + 1) % phases.length);
+    }, 3500);
 
     return () => clearInterval(interval);
   }, []);
@@ -39,13 +54,11 @@ export function HeroSection() {
     setMousePos({ x: e.clientX - left, y: e.clientY - top });
   };
 
-  const calendlyUrl = "/contact";
-
   const containerVariants = {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.08,
+        staggerChildren: 0.09,
       },
     },
   };
@@ -63,62 +76,28 @@ export function HeroSection() {
     <section
       ref={heroRef}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="relative w-full min-h-[80vh] flex items-center justify-center overflow-hidden py-12 lg:py-16 bg-gradient-to-tr from-sky-50/50 via-white to-orange-50/30 dark:bg-none dark:bg-transparent transition-colors duration-300 group"
+      className="relative w-full min-h-[85vh] flex items-center justify-center overflow-hidden py-12 lg:py-16 bg-gradient-to-b from-sky-50/40 via-background to-background dark:from-[#0B1F3A]/40 dark:via-background dark:to-background transition-colors duration-300 group"
     >
-      {/* Scope CSS animation variables for drifting background blobs */}
-      <style>{`
-        @keyframes bg-drift-1 {
-          0% { transform: translate(0px, 0px) scale(1); }
-          50% { transform: translate(50px, -40px) scale(1.15); }
-          100% { transform: translate(0px, 0px) scale(1); }
-        }
-        @keyframes bg-drift-2 {
-          0% { transform: translate(0px, 0px) scale(1.1); }
-          50% { transform: translate(-40px, 50px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1.1); }
-        }
-        .animate-bg-drift-1 {
-          animation: bg-drift-1 22s infinite ease-in-out;
-        }
-        .animate-bg-drift-2 {
-          animation: bg-drift-2 28s infinite ease-in-out;
-        }
-      `}</style>
+      {/* Background Ambience Glows */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute top-[8%] left-[10%] w-[500px] h-[500px] rounded-full bg-brand-blue/10 dark:bg-brand-blue/[0.08] blur-[120px]" />
+        <div className="absolute bottom-[10%] right-[8%] w-[500px] h-[500px] rounded-full bg-brand-orange/10 dark:bg-brand-orange/[0.06] blur-[130px]" />
+        <div className="absolute top-[40%] right-[30%] w-[300px] h-[300px] rounded-full bg-brand-teal/10 dark:bg-brand-teal/[0.05] blur-[100px]" />
+      </div>
 
-      {/* Original Dark Mode Grid Pattern Overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none z-0 hidden dark:block" />
+      {/* Modern Engineering Dot Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:28px_28px] [mask-image:radial-gradient(ellipse_75%_65%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none z-0" />
 
-      {/* Radial fade to soften grid pattern around the center (light mode only) */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,hsl(var(--background))/30%_100%)] pointer-events-none z-0 dark:hidden" />
-
-      {/* Interactive Background Mouse Spotlight */}
+      {/* Interactive Mouse Spotlight */}
       <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0"
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0 hidden lg:block"
         style={{
-          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255,107,0,0.04), rgba(45,140,255,0.03), transparent 75%)`,
+          background: `radial-gradient(650px circle at ${mousePos.x}px ${mousePos.y}px, rgba(0,82,255,0.06), rgba(255,107,0,0.03), transparent 75%)`,
         }}
       />
 
-      {/* Radial Glow Drifting Blobs */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[10%] left-[5%] w-[450px] h-[450px] rounded-full bg-brand-orange/8 dark:bg-brand-orange/[0.04] blur-[90px] animate-bg-drift-1" />
-        <div className="absolute bottom-[10%] right-[5%] w-[450px] h-[450px] rounded-full bg-brand-blue/8 dark:bg-brand-blue/[0.03] blur-[90px] animate-bg-drift-2" />
-      </div>
-
-      {/* Floating Particles */}
-      {!prefersReducedMotion && (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
-          <div className="particle bg-brand-orange/20 w-2 h-2 rounded-full absolute top-[15%] left-[8%] animate-float-slow" />
-          <div className="particle bg-brand-blue/25 w-2.5 h-2.5 rounded-full absolute top-[45%] left-[6%] animate-float-medium" />
-          <div className="particle bg-brand-orange/15 w-1.5 h-1.5 rounded-full absolute top-[70%] left-[12%] animate-float-fast" />
-          <div className="particle bg-brand-blue/20 w-2 h-2 rounded-full absolute top-[25%] right-[10%] animate-float-slow" />
-        </div>
-      )}
-
       <Container className="relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* Left Text Column */}
           <motion.div
             variants={containerVariants}
@@ -126,133 +105,170 @@ export function HeroSection() {
             animate="visible"
             className="lg:col-span-7 flex flex-col items-center text-center lg:items-start lg:text-left max-w-2xl mx-auto lg:mx-0"
           >
-            {/* Badge */}
+            {/* Value-Premium Eyebrow Badge */}
             <motion.div
               variants={itemVariants}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-orange/10 border border-brand-orange/25 shadow-[0_0_12px_rgba(255,107,0,0.15)] text-sm font-medium text-brand-orange mb-4"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-blue/10 border border-brand-blue/30 shadow-[0_0_15px_rgba(0,82,255,0.15)] text-xs font-semibold text-brand-blue dark:text-blue-400 mb-5 font-space tracking-wide uppercase"
             >
               <span className="relative flex h-2 w-2">
-                <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-brand-orange opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-orange"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-blue opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-blue"></span>
               </span>
-              Now offering AI Automation & AI Ads
+              <span>Value-Premium Technology &amp; AI Agency</span>
+              <span className="text-muted-foreground/60 hidden sm:inline">
+                &bull;
+              </span>
+              <span className="text-muted-foreground hidden sm:inline font-mono text-[10px]">
+                AS-KB-001
+              </span>
             </motion.div>
 
-            {/* Title */}
+            {/* Main H1 Headline */}
             <motion.h1
               variants={itemVariants}
-              className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground leading-[1.12] sm:leading-[1.05] mb-4 font-poppins"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-extrabold tracking-tight text-foreground leading-[1.12] mb-4 font-sora"
             >
-              The Last Tech Partner <br className="hidden sm:inline" />
-              You&apos;ll Ever{" "}
-              <span className="inline-block min-w-[130px] text-brand-orange text-center lg:text-left">
-                {prefersReducedMotion ? (
-                  words[0]
-                ) : (
-                  <AnimatePresence mode="wait">
-                    <motion.span
-                      key={words[currentWordIndex]}
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -12 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                      className="inline-block w-full"
-                    >
-                      {words[currentWordIndex]}
-                    </motion.span>
-                  </AnimatePresence>
-                )}
+              Engineered for Growth. <br className="hidden sm:inline" />
+              <span className="bg-gradient-to-r from-brand-blue via-[#2D8CFF] to-brand-teal bg-clip-text text-transparent">
+                Scoped with Precision.
               </span>
             </motion.h1>
 
-            {/* Subtext */}
+            {/* Subtext Description */}
             <motion.p
               variants={itemVariants}
-              className="text-lg sm:text-xl font-medium text-muted-foreground tracking-tight mb-3 font-space-grotesk"
+              className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6 max-w-[560px] font-manrope font-normal"
             >
-              Digital Growth Systems for Local Businesses & Beyond
+              We empower modern businesses with high-velocity Next.js
+              applications, custom AI automation agents, and direct booking
+              systems that eliminate operational friction and scale revenues.
             </motion.p>
 
-            {/* Description */}
-            <motion.p
-              variants={itemVariants}
-              className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6 max-w-[520px] font-inter"
-            >
-              From high-converting websites to customized AI-powered automation
-              — we build and optimize digital workflows that attract customers,
-              streamline growth, and scale your revenues honestly.
-            </motion.p>
-
-            {/* CTA Buttons */}
+            {/* Interactive 4-Phase Growth Framework Strip (from Brand Kit) */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto max-w-xs sm:max-w-none items-center justify-center lg:justify-start"
+              className="w-full mb-6 p-2.5 rounded-xl border border-border/60 bg-card/60 backdrop-blur-sm shadow-sm"
             >
-              <a
-                href={calendlyUrl}
-                target={calendlyUrl.startsWith("http") ? "_blank" : undefined}
-                rel={
-                  calendlyUrl.startsWith("http")
-                    ? "noopener noreferrer"
-                    : undefined
-                }
-                className="w-full sm:w-auto"
-              >
+              <div className="flex items-center justify-between gap-1 sm:gap-2">
+                {phases.map((p, idx) => {
+                  const isActive = activePhase === idx;
+                  return (
+                    <button
+                      key={p.step}
+                      onClick={() => setActivePhase(idx)}
+                      className={`flex-1 text-left px-2 sm:px-3 py-1.5 rounded-lg transition-all duration-200 ${
+                        isActive
+                          ? "bg-brand-blue text-white shadow-md shadow-brand-blue/20"
+                          : "hover:bg-muted/50 text-muted-foreground"
+                      }`}
+                    >
+                      <div className="flex items-center gap-1.5">
+                        <span
+                          className={`text-[10px] font-mono font-bold ${
+                            isActive ? "text-blue-100" : "text-brand-blue"
+                          }`}
+                        >
+                          {p.step}
+                        </span>
+                        <span
+                          className={`text-xs font-bold font-sora ${
+                            isActive ? "text-white" : "text-foreground"
+                          }`}
+                        >
+                          {p.title}
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+              <div className="mt-2 pt-2 border-t border-border/40 px-2 flex items-center justify-between text-xs text-muted-foreground font-manrope">
+                <span className="flex items-center gap-1.5 text-foreground/85 font-medium">
+                  <Sparkles className="w-3.5 h-3.5 text-brand-blue shrink-0" />
+                  {phases[activePhase]?.desc ??
+                    "Understand the real business problem"}
+                </span>
+                <span className="hidden sm:inline font-mono text-[10px] text-muted-foreground/70">
+                  Step {(activePhase % phases.length) + 1} of 4
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Dual CTA Buttons */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col sm:flex-row gap-3.5 w-full sm:w-auto max-w-xs sm:max-w-none items-center justify-center lg:justify-start"
+            >
+              <Link href="/contact" className="w-full sm:w-auto">
                 <Button
                   size="lg"
-                  className="group w-full sm:w-auto bg-brand-orange hover:bg-orange-600 text-white font-semibold flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(255,107,0,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 h-12 px-7 rounded-full text-sm"
+                  className="group w-full sm:w-auto bg-brand-orange hover:bg-brand-orange-hover text-white font-semibold flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(255,107,0,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 h-12 px-7 rounded-xl text-sm font-space"
                 >
-                  Get a Free Audit
+                  Scope Your Project
                   <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
-              </a>
+              </Link>
 
               <Link href="/services" className="w-full sm:w-auto">
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   size="lg"
-                  className="w-full sm:w-auto text-foreground border border-border hover:border-brand-orange hover:text-brand-orange font-semibold h-12 px-7 rounded-full text-sm transition-all duration-200"
+                  className="w-full sm:w-auto text-foreground border-border hover:border-brand-blue hover:text-brand-blue font-semibold h-12 px-7 rounded-xl text-sm transition-all duration-200 font-space bg-card/40 backdrop-blur-sm"
                 >
-                  View Services
+                  Explore 14 Services
                 </Button>
               </Link>
             </motion.div>
 
-            {/* Trusted By Section */}
+            {/* Live Trust & Verification Badges */}
             <motion.div
               variants={itemVariants}
-              className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+              className="mt-7 pt-6 border-t border-border/50 w-full flex flex-wrap items-center justify-center lg:justify-start gap-5 text-xs text-muted-foreground font-manrope"
             >
-              <div className="flex -space-x-3">
-                {["dk", "lk", "nk", "sk"].map((avatar, i) => (
-                  <div
-                    key={avatar}
-                    className="relative w-10 h-10 rounded-full border-2 border-background overflow-hidden"
-                    style={{ zIndex: 10 - i }}
-                  >
-                    <Image
-                      src={`/team/${avatar}.jpg`}
-                      alt="Adruva Solution Client Partner"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                ))}
-                <div className="relative w-10 h-10 rounded-full border-2 border-background bg-zinc-800 flex items-center justify-center text-xs font-bold text-white z-0">
-                  50+
-                </div>
+              <div className="flex items-center gap-1.5 text-foreground font-medium">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                <span>Priced for Value &bull; Fixed Sprints</span>
               </div>
-              <p className="text-sm text-muted-foreground font-medium font-inter">
-                Trusted by{" "}
-                <span className="text-foreground font-bold">
-                  50+ Businesses
-                </span>
-              </p>
+              <div className="flex items-center gap-1.5 text-foreground font-medium">
+                <ShieldCheck className="w-4 h-4 text-brand-blue shrink-0" />
+                <span>30-Day Post-Launch Warranty</span>
+              </div>
+              <div className="flex items-center gap-1.5 text-foreground font-medium">
+                <Zap className="w-4 h-4 text-brand-orange shrink-0" />
+                <span>Zero Hidden Fees</span>
+              </div>
             </motion.div>
           </motion.div>
 
-          {/* Right Column: Orbital Services Graphic (Desktop Only) */}
-          <div className="hidden lg:col-span-5 lg:flex relative h-[500px] items-center justify-center">
+          {/* Right Column: Orbital Services Graphic with Live Telemetry Cards */}
+          <div className="hidden lg:col-span-5 lg:flex relative h-[520px] items-center justify-center">
+            {/* Floating Top Telemetry Pill */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="absolute top-2 right-4 z-20 bg-background/85 backdrop-blur-md border border-brand-blue/30 rounded-lg px-3 py-1.5 shadow-lg flex items-center gap-2 font-mono text-[11px]"
+            >
+              <Activity className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
+              <span className="text-foreground font-bold">
+                SYSTEM SLA: 99.99%
+              </span>
+            </motion.div>
+
+            {/* Floating Bottom Telemetry Pill */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="absolute bottom-4 left-4 z-20 bg-background/85 backdrop-blur-md border border-brand-orange/30 rounded-lg px-3 py-1.5 shadow-lg flex items-center gap-2 font-mono text-[11px]"
+            >
+              <span className="h-2 w-2 rounded-full bg-brand-orange animate-ping" />
+              <span className="text-foreground font-bold">
+                AVG LCP: &lt; 0.4s
+              </span>
+            </motion.div>
+
+            {/* Central Orbital System */}
             <OrbitalServices />
           </div>
         </div>
