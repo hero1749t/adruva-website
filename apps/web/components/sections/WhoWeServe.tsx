@@ -1,155 +1,160 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { Container } from "@/components/layout/container";
 import {
-  Calendar,
-  ArrowRight,
-  Utensils,
-  Scissors,
-  Hospital,
   Building2,
   Compass,
-  Dumbbell,
-  GraduationCap,
-  Pill,
-  Plane,
-  ShoppingBag,
-  Home,
-  Car,
-  Camera,
-  Coffee,
   Laptop,
-  BookOpen,
-  PartyPopper,
-  LucideIcon,
+  Hospital,
+  Briefcase,
+  Factory,
+  Home,
+  Landmark,
+  Utensils,
+  ShoppingCart,
+  Truck,
+  Dumbbell,
+  Sparkles,
+  ArrowRight,
+  ShieldCheck,
 } from "lucide-react";
-import { motion } from "framer-motion";
-import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
-interface IndustryItem {
-  name: string;
-  icon: LucideIcon;
-}
-
-const industries: IndustryItem[] = [
-  { name: "Restaurants", icon: Utensils },
-  { name: "Salons & Spas", icon: Scissors },
-  { name: "Clinics & Hospitals", icon: Hospital },
-  { name: "Real Estate", icon: Building2 },
-  { name: "Yoga Retreats", icon: Compass },
-  { name: "Gyms & Fitness", icon: Dumbbell },
-  { name: "Schools & Institutes", icon: GraduationCap },
-  { name: "Medical Practices", icon: Pill },
-
-  { name: "Travel Agencies", icon: Plane },
-  { name: "Retail Businesses", icon: ShoppingBag },
-  { name: "Interior Design", icon: Home },
-  { name: "Auto Services", icon: Car },
-  { name: "Photography Studios", icon: Camera },
-  { name: "Bakeries & Cafes", icon: Coffee },
-  { name: "IT & Tech Startups", icon: Laptop },
-  { name: "Coaching Centres", icon: BookOpen },
-  { name: "Event Management", icon: PartyPopper },
+const bands = [
+  {
+    title: "Band 1: Premium Priority Sectors",
+    badge: "CORE FOCUS",
+    sectors: [
+      {
+        name: "Hotels, Resorts & Luxury Stays",
+        icon: Building2,
+        desc: "Direct booking engines, zero OTA commission, guest WhatsApp CRM.",
+      },
+      {
+        name: "Yoga, Retreats & Wellness Centers",
+        icon: Compass,
+        desc: "High-ticket retreat funnels, multi-currency checkout, serene UI.",
+      },
+      {
+        name: "Technology, Startups & SaaS",
+        icon: Laptop,
+        desc: "Fast Next.js MVPs, full-stack React Native apps, scalable APIs.",
+      },
+      {
+        name: "Real Estate & Property Developers",
+        icon: Home,
+        desc: "High-conversion lead capture funnels, virtual tours, automated routing.",
+      },
+    ],
+  },
+  {
+    title: "Band 2: High Priority Enterprise Sectors",
+    badge: "HIGH GROWTH",
+    sectors: [
+      {
+        name: "Healthcare & Specialist Clinics",
+        icon: Hospital,
+        desc: "Patient appointment portals, HIPAA-conscious forms, local SEO 3-Pack.",
+      },
+      {
+        name: "Professional Corporate B2B Services",
+        icon: Briefcase,
+        desc: "Authority branding, corporate Next.js platforms, client portals.",
+      },
+      {
+        name: "Manufacturing & Industrial Trade",
+        icon: Factory,
+        desc: "B2B catalog systems, inquiry databases, international SEO.",
+      },
+      {
+        name: "Finance, Insurance & Fintech",
+        icon: Landmark,
+        desc: "Secure portal architectures, compliance document AI, high trust.",
+      },
+    ],
+  },
 ];
 
 export function WhoWeServe() {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-  useEffect(() => {
-    const checkReducedMotion = () => {
-      const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-      setPrefersReducedMotion(mediaQuery.matches);
-    };
-    checkReducedMotion();
-  }, []);
-
-  const calendlyUrl = "/contact";
-
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.04,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: prefersReducedMotion
-      ? { opacity: 1, scale: 1 }
-      : { opacity: 0, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.35, ease: "easeOut" },
-    },
-  };
+  const [activeBand, setActiveBand] = useState(0);
 
   return (
-    <section className="w-full bg-background-secondary/40 py-20 transition-colors duration-300">
+    <section className="relative w-full py-24 bg-background-secondary/30 dark:bg-[#060D1A] border-y border-border/60 transition-colors duration-300">
       <Container>
-        {/* Header */}
-        <div className="flex flex-col items-center text-center lg:items-start lg:text-left mb-10 mx-auto lg:mx-0 max-w-[600px] lg:max-w-none">
-          <span className="section-tag mb-3">WHO WE SERVE</span>
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground max-w-[600px] font-poppins">
-            If you have customers, we can help you grow.
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-blue/10 border border-brand-blue/30 text-xs font-semibold text-brand-blue font-space tracking-wide uppercase mb-4">
+            Ideal Customer Profile &bull; 20 Strategic Verticals
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground tracking-tight font-sora mb-4">
+            Tailored Engineering for{" "}
+            <span className="bg-gradient-to-r from-brand-blue to-brand-teal bg-clip-text text-transparent">
+              High-Growth Industries.
+            </span>
           </h2>
-          <p className="text-sm text-muted-foreground max-w-[500px] mt-4 font-inter">
-            We work with any local or service-based business looking to scale
-            operations and digital outreach.
+          <p className="text-base sm:text-lg text-muted-foreground font-manrope">
+            We partner with ambitious SMEs (5–150 employees) that value speed,
+            certainty, and tangible commercial impact.
           </p>
         </div>
 
-        {/* Industry Tags Cloud */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-          className="flex flex-wrap justify-center lg:justify-start gap-2.5 my-10"
-        >
-          {industries.map((ind) => {
-            const Icon = ind.icon;
-            return (
-              <motion.div
-                key={ind.name}
-                variants={itemVariants}
-                className="flex items-center gap-2 bg-background border border-border rounded-full px-4 py-2.5 text-sm font-medium text-foreground hover:border-brand-orange hover:text-brand-orange hover:bg-accent transition-all duration-150 cursor-pointer font-inter select-none group"
-              >
-                <Icon className="w-4 h-4 text-zinc-400 dark:text-zinc-500 group-hover:text-brand-orange transition-colors shrink-0" />
-                <span>{ind.name}</span>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+        {/* Priority Bands Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {bands.map((band) => (
+            <div
+              key={band.title}
+              className="p-7 rounded-2xl bg-card dark:bg-[#0A1428] border border-border/80 shadow-sm flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-6 pb-4 border-b border-border/40">
+                  <h3 className="text-lg font-bold text-foreground font-sora">
+                    {band.title}
+                  </h3>
+                  <span className="font-mono text-[10px] font-bold px-2.5 py-1 rounded bg-brand-blue/10 border border-brand-blue/30 text-brand-blue">
+                    {band.badge}
+                  </span>
+                </div>
 
-        {/* Bottom CTA Box */}
-        <div className="w-full bg-card border border-border rounded-[16px] p-7 md:p-8 flex flex-col md:flex-row justify-between items-center md:items-center text-center md:text-left gap-6 mt-8 shadow-sm">
-          <div className="flex flex-col gap-1.5 items-center md:items-start">
-            <h4 className="text-base font-bold text-foreground font-poppins">
-              Not sure if we serve your niche?
-            </h4>
-            <p className="text-sm text-muted-foreground font-inter">
-              Book a free 30-minute call to discuss your business requirements
-              and custom workflows.
-            </p>
-          </div>
+                <div className="space-y-4">
+                  {band.sectors.map((sec) => {
+                    const Icon = sec.icon;
+                    return (
+                      <div
+                        key={sec.name}
+                        className="p-4 rounded-xl bg-background-secondary/40 dark:bg-[#0D1932] border border-border/40 flex items-start gap-3.5 hover:border-brand-blue/40 transition-colors"
+                      >
+                        <div className="w-9 h-9 rounded-lg bg-brand-blue/10 border border-brand-blue/20 flex items-center justify-center text-brand-blue shrink-0 mt-0.5">
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className="font-sora font-bold text-sm text-foreground">
+                            {sec.name}
+                          </div>
+                          <div className="font-manrope text-xs text-muted-foreground mt-0.5 leading-relaxed">
+                            {sec.desc}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
 
-          <a
-            href={calendlyUrl}
-            target={calendlyUrl.startsWith("http") ? "_blank" : undefined}
-            rel={
-              calendlyUrl.startsWith("http") ? "noopener noreferrer" : undefined
-            }
-            className="w-full md:w-auto shrink-0"
-          >
-            <Button className="w-full md:w-auto bg-brand-orange hover:bg-orange-600 text-white font-semibold px-6 py-2.5 rounded-full flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(255,107,0,0.25)] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
-              <Calendar className="h-4 w-4" />
-              Book a Free Call
-              <ArrowRight className="h-4 w-4" />
-            </Button>
-          </a>
+              <div className="mt-6 pt-4 border-t border-border/40 flex items-center justify-between">
+                <span className="text-xs text-muted-foreground font-manrope">
+                  Full custom scoping available
+                </span>
+                <Link
+                  href="/contact"
+                  className="font-space text-xs font-semibold text-brand-blue flex items-center gap-1 hover:underline"
+                >
+                  Discuss Your Sector <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       </Container>
     </section>
