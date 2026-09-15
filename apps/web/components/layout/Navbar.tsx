@@ -114,16 +114,12 @@ export function Navbar() {
           setScrollY(entry.isIntersecting ? 0 : 100);
         }
       },
-      {
-        root: null, // viewport
-        threshold: 0,
-      },
+      { threshold: 0.1 },
     );
 
     observer.observe(sentinel);
 
     return () => {
-      observer.unobserve(sentinel);
       observer.disconnect();
     };
   }, []);
@@ -145,13 +141,13 @@ export function Navbar() {
     };
   }, [isServicesDropdownOpen]);
 
+  // Standard navbar links matching user specification
   const navLinks = [
     { name: "Services", href: "/services", isDropdown: true },
     { name: "Work", href: "/work" },
-    { name: "Approach", href: "/about#process" },
-    { name: "Industries", href: "/#industries" },
-    { name: "Insights", href: "/blog" },
+    { name: "Careers", href: "/careers" },
     { name: "About", href: "/about" },
+    { name: "Blog", href: "/blog" },
   ];
 
   const isScrolled = scrollY > 20;
@@ -165,24 +161,24 @@ export function Navbar() {
       />
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 h-16 flex items-center",
+          "fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 h-20 flex items-center",
           isScrolled
             ? "bg-white/95 dark:bg-[#07090D]/95 border-b border-border shadow-[0_1px_20px_rgba(0,0,0,0.06)] backdrop-blur-md"
-            : "bg-white/50 dark:bg-transparent backdrop-blur-[6px] dark:backdrop-blur-0 border-b border-border/10 dark:border-transparent",
+            : "bg-white/60 dark:bg-transparent backdrop-blur-[8px] dark:backdrop-blur-0 border-b border-border/10 dark:border-transparent",
         )}
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-between">
-          {/* Logo */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-between">
+          {/* Prominent Visible Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2.5 focus:outline-none group"
+            className="flex items-center gap-3 focus:outline-none group py-1"
           >
-            <div className="h-8 w-[40px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
+            <div className="h-10 sm:h-11 w-[46px] sm:w-[50px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
               <Image
                 src="/logo-symbol-light.png"
                 alt="Adruva Solution Logo | Technology & AI Agency"
                 fill
-                sizes="40px"
+                sizes="50px"
                 className="object-contain hidden dark:block"
                 priority
               />
@@ -190,23 +186,23 @@ export function Navbar() {
                 src="/logo-symbol-dark.png"
                 alt="Adruva Solution Logo | Technology & AI Agency"
                 fill
-                sizes="40px"
+                sizes="50px"
                 className="object-contain block dark:hidden"
                 priority
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-base font-[800] tracking-tight text-foreground transition-colors font-sora leading-none">
+              <span className="text-lg sm:text-xl font-[900] tracking-tight text-slate-900 dark:text-white transition-colors font-sora leading-none">
                 ADRUVA
               </span>
-              <span className="text-[7.5px] font-bold tracking-[0.22em] text-brand-blue uppercase font-space mt-0.5">
+              <span className="text-[8.5px] font-extrabold tracking-[0.25em] text-brand-blue uppercase font-space mt-1">
                 SOLUTION
               </span>
             </div>
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-6 h-16">
+          <nav className="hidden md:flex items-center gap-7 h-20">
             {navLinks.map((link) => {
               const isActive =
                 pathname === link.href ||
@@ -234,13 +230,12 @@ export function Navbar() {
                         }
                       }}
                       className={cn(
-                        "flex items-center gap-1 text-sm font-medium transition-colors hover:text-brand-blue text-foreground/75 hover:text-foreground dark:text-muted-foreground dark:hover:text-white font-manrope",
-                        isActive &&
-                          "text-foreground dark:text-white font-semibold",
+                        "flex items-center gap-1.5 text-sm font-semibold transition-colors hover:text-brand-blue text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white font-manrope",
+                        isActive && "text-brand-blue dark:text-white font-bold",
                       )}
                     >
                       {link.name}
-                      <ChevronDown className="h-4 w-4" />
+                      <ChevronDown className="h-4 w-4 opacity-70" />
                     </Link>
 
                     {/* Services Mega Menu Dropdown */}
@@ -251,7 +246,7 @@ export function Navbar() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -8 }}
                           transition={{ duration: 0.2, ease: "easeOut" }}
-                          className="fixed left-0 right-0 top-16 w-full bg-card border-b border-border shadow-2xl rounded-b-2xl z-50 overflow-hidden"
+                          className="fixed left-0 right-0 top-20 w-full bg-card border-b border-border shadow-2xl rounded-b-2xl z-50 overflow-hidden"
                           onMouseEnter={() => {
                             if (supportsHover) setIsServicesDropdownOpen(true);
                           }}
@@ -259,7 +254,7 @@ export function Navbar() {
                             if (supportsHover) setIsServicesDropdownOpen(false);
                           }}
                         >
-                          <div className="max-w-6xl mx-auto grid grid-cols-4 gap-8 px-8 py-8">
+                          <div className="max-w-7xl mx-auto grid grid-cols-4 gap-8 px-8 py-8">
                             {serviceCategories.map((category) => (
                               <div
                                 key={category.name}
@@ -275,12 +270,12 @@ export function Navbar() {
                                       <li key={service.slug}>
                                         <Link
                                           href={`/services/${service.slug}`}
-                                          className="flex items-center gap-2.5 py-1 px-2 -mx-2 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-slate-100 dark:hover:bg-brand-card-dark border-l-2 border-transparent hover:border-brand-blue transition-all duration-200"
+                                          className="flex items-center gap-2.5 py-1.5 px-2.5 -mx-2.5 rounded-xl text-sm text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-brand-card-dark border-l-2 border-transparent hover:border-brand-blue transition-all duration-200"
                                           onClick={() =>
                                             setIsServicesDropdownOpen(false)
                                           }
                                         >
-                                          <ServiceIcon className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-brand-blue" />
+                                          <ServiceIcon className="h-4 w-4 shrink-0 text-brand-blue/70" />
                                           <span className="font-medium font-manrope">
                                             {service.name}
                                           </span>
@@ -294,8 +289,8 @@ export function Navbar() {
                           </div>
 
                           {/* Dropdown footer banner */}
-                          <div className="bg-muted/40 border-t border-border px-8 py-3.5 flex items-center justify-between">
-                            <span className="text-[11px] text-muted-foreground font-medium font-manrope">
+                          <div className="bg-muted/40 border-t border-border px-8 py-4 flex items-center justify-between">
+                            <span className="text-xs text-slate-600 dark:text-slate-400 font-medium font-manrope">
                               Looking for custom software architecture or AI
                               automation? Let&apos;s engineer together.
                             </span>
@@ -320,15 +315,15 @@ export function Navbar() {
                   key={link.name}
                   href={link.href}
                   className={cn(
-                    "text-sm font-medium transition-colors hover:text-brand-blue relative text-foreground/75 hover:text-foreground dark:text-muted-foreground dark:hover:text-white flex items-center h-full font-manrope",
-                    isActive && "text-foreground dark:text-white font-semibold",
+                    "text-sm font-semibold transition-colors hover:text-brand-blue relative text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white flex items-center h-full font-manrope",
+                    isActive && "text-brand-blue dark:text-white font-bold",
                   )}
                 >
                   {link.name}
                   {isActive && (
                     <motion.div
                       layoutId="activeNavIndicator"
-                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-blue"
+                      className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-brand-blue"
                       transition={{
                         type: "spring",
                         stiffness: 380,
@@ -342,13 +337,13 @@ export function Navbar() {
           </nav>
 
           {/* Action Actions Flex wrapper */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3.5">
             <LanguageSelector />
 
-            <div className="hidden md:flex items-center gap-4 h-16">
+            <div className="hidden md:flex items-center gap-4 h-20">
               <ThemeToggle />
               <Link href="/contact">
-                <Button className="bg-brand-blue hover:bg-brand-blue-dark text-white text-xs px-5 h-9 rounded-lg font-semibold font-space flex items-center gap-1.5 shadow-[0_4px_14px_rgba(8,120,249,0.35)] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
+                <Button className="bg-brand-blue hover:bg-brand-blue-dark text-white text-xs px-5 h-10 rounded-xl font-bold font-space flex items-center gap-1.5 shadow-[0_4px_16px_rgba(8,120,249,0.35)] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
                   <Calendar className="h-3.5 w-3.5" />
                   Book a Consultation &rarr;
                 </Button>
@@ -360,7 +355,7 @@ export function Navbar() {
               <button
                 onClick={() => setIsMobileMenuOpen(true)}
                 className={cn(
-                  "p-2 rounded-lg border transition-colors",
+                  "p-2 rounded-xl border transition-colors",
                   isScrolled
                     ? "border-border hover:bg-black/5 text-foreground"
                     : "border-border hover:bg-muted text-foreground dark:text-white dark:border-white/10",

@@ -16,22 +16,17 @@ const services = [
   { name: "Mobile App Development", slug: "mobile-app-development" },
   { name: "SaaS & Custom Software", slug: "saas-custom-software" },
   { name: "AI Automation", slug: "ai-automation" },
-  { name: "AI Ads", slug: "ai-ads" },
-  { name: "Custom AI Solutions", slug: "custom-ai-solutions" },
-  { name: "Google Ads", slug: "google-ads" },
-  { name: "Meta Ads", slug: "meta-ads" },
-  { name: "SEO Services", slug: "seo" },
-  { name: "Social Media Management", slug: "social-media-management" },
-  { name: "Email Marketing", slug: "email-marketing" },
-  { name: "UI/UX Design", slug: "ui-ux-design" },
-  { name: "Graphic Designing", slug: "graphic-designing" },
-  { name: "Video Editing", slug: "video-editing" },
+  { name: "AI Ads & Workflows", slug: "ai-ads" },
+  { name: "Custom AI Systems", slug: "custom-ai-solutions" },
+  { name: "Technical SEO", slug: "seo" },
+  { name: "Google & Meta Ads", slug: "google-ads" },
+  { name: "UI/UX & Product Design", slug: "ui-ux-design" },
 ];
 
 const companyLinks = [
   { name: "About Us", href: "/about" },
   { name: "Our Work", href: "/work" },
-  { name: "Blog", href: "/blog" },
+  { name: "Blog & Insights", href: "/blog" },
   { name: "Careers", href: "/careers" },
   { name: "Contact", href: "/contact" },
 ];
@@ -65,21 +60,6 @@ export function Footer() {
     settings.officeAddress ||
     "Near Bageshwari Devi Mandir, Shanti Nagar, Dhalwala, Rishikesh, Uttarakhand, India - 249137";
 
-  const facebookUrl =
-    settings.facebookUrl ||
-    "https://www.facebook.com/p/Adruva-solution-61559775392656/";
-  const linkedinUrl =
-    settings.linkedinUrl || "https://www.linkedin.com/company/adruva-solution";
-  const instagramUrl =
-    settings.instagramUrl || "https://www.instagram.com/adruvasolution/";
-  const twitterUrl = settings.twitterUrl || "https://x.com/adruvasolution";
-  const youtubeUrl = settings.youtubeUrl || "https://youtube.com";
-
-  const whatsappNumber = settings.contactPhone
-    ? settings.contactPhone.replace(/[^0-9]/g, "")
-    : process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919149276799";
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=Hi%20Adruva!%20I'd%20like%20to%20discuss%20a%20project.`;
-
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
@@ -98,75 +78,82 @@ export function Footer() {
     try {
       await apiFetch<unknown>("/newsletter/subscribe", {
         method: "POST",
-        body: JSON.stringify({ email, recaptchaToken: token }),
+        body: JSON.stringify({ email, token }),
       });
-
       setStatus("success");
-      setMessage("You're subscribed! 🎉");
+      setMessage("Subscribed successfully!");
       setEmail("");
-    } catch (error) {
-      console.error("Newsletter subscription error:", error);
+    } catch (error: any) {
       setStatus("error");
       setMessage("Already subscribed or error occurred");
     }
   };
 
   return (
-    <footer className="w-full bg-[#0A0A0A] text-white border-t border-white/10 pt-16 pb-28 md:pb-8 transition-colors duration-300">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="w-full bg-slate-50 dark:bg-[#07090D] text-slate-900 dark:text-white border-t border-slate-200 dark:border-[#202936] pt-16 pb-28 md:pb-12 transition-colors duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Column 1: Brand & Newsletter */}
           <div className="flex flex-col space-y-4">
             <Link
               href="/"
-              className="flex items-center gap-2.5 focus:outline-none group"
+              className="flex items-center gap-3 focus:outline-none group py-1"
             >
-              <div className="h-8 w-[40px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
+              <div className="h-10 w-[46px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
                 <Image
                   src="/logo-symbol-light.png"
-                  alt="Adruva Solution Logo | Web Development & AI Automation Agency"
+                  alt="Adruva Solution Logo | Technology & AI Agency"
                   fill
-                  sizes="40px"
-                  className="object-contain"
+                  sizes="46px"
+                  className="object-contain hidden dark:block"
+                  priority
+                />
+                <Image
+                  src="/logo-symbol-dark.png"
+                  alt="Adruva Solution Logo | Technology & AI Agency"
+                  fill
+                  sizes="46px"
+                  className="object-contain block dark:hidden"
+                  priority
                 />
               </div>
               <div className="flex flex-col">
-                <span className="text-base font-[800] tracking-tight text-white transition-colors font-sora leading-none">
+                <span className="text-lg font-[900] tracking-tight text-slate-900 dark:text-white transition-colors font-sora leading-none">
                   ADRUVA
                 </span>
-                <span className="text-[7.5px] font-bold tracking-[0.22em] text-brand-blue uppercase font-space mt-0.5">
+                <span className="text-[8.5px] font-extrabold tracking-[0.25em] text-brand-blue uppercase font-space mt-1">
                   SOLUTION
                 </span>
               </div>
             </Link>
-            <p className="text-sm text-gray-400 leading-relaxed max-w-[280px] mb-6 font-manrope">
-              Engineered for Growth. Scoped with Precision. Value-premium
-              digital and AI systems.
+            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed max-w-[280px] mb-6 font-manrope">
+              We build the systems behind growing businesses. Custom software,
+              AI, automation & digital growth systems.
             </p>
 
             {/* Newsletter */}
             <div className="pt-2">
-              <span className="text-xs text-gray-500 block mb-2 font-manrope">
-                Stay updated
+              <span className="text-xs font-semibold text-slate-700 dark:text-slate-400 block mb-2 font-manrope">
+                Subscribe to Technical Insights
               </span>
               <form
                 onSubmit={handleSubscribe}
-                className="flex gap-2 max-w-[260px] w-full"
+                className="flex gap-2 max-w-[280px] w-full"
               >
                 <Input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
+                  placeholder="Enter work email"
                   required
                   disabled={status === "loading"}
-                  className="bg-white/5 border-white/10 text-white placeholder:text-gray-600 h-10 text-sm focus-visible:ring-1 focus-visible:ring-brand-blue/50 rounded-lg flex-1 outline-none"
+                  className="bg-white dark:bg-white/5 border-slate-300 dark:border-white/10 text-slate-900 dark:text-white placeholder:text-slate-400 h-10 text-xs focus-visible:ring-1 focus-visible:ring-brand-blue/50 rounded-xl flex-1 outline-none"
                 />
                 <Button
                   type="submit"
                   disabled={status === "loading"}
-                  className="bg-brand-blue hover:bg-orange-600 text-white w-10 h-10 p-0 shrink-0 rounded-lg flex items-center justify-center font-semibold text-sm transition-colors duration-200"
+                  className="bg-brand-blue hover:bg-brand-blue-dark text-white w-10 h-10 p-0 shrink-0 rounded-xl flex items-center justify-center font-semibold text-sm transition-colors duration-200"
                 >
                   {status === "loading" ? (
                     <Loader2 className="h-4 w-4 animate-spin" />
@@ -179,7 +166,7 @@ export function Footer() {
                 <span
                   className={cn(
                     "text-[10px] block mt-1.5 font-medium",
-                    status === "success" ? "text-green-400" : "text-red-400",
+                    status === "success" ? "text-emerald-500" : "text-red-500",
                   )}
                 >
                   {message}
@@ -190,15 +177,15 @@ export function Footer() {
 
           {/* Column 2: Services */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-white pb-2 mb-5 border-b border-white/8 font-sora">
-              Services
+            <h4 className="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white pb-2 mb-4 border-b border-slate-200 dark:border-white/10 font-sora">
+              Capabilities
             </h4>
             <ul className="flex flex-col space-y-2.5">
-              {services.slice(0, 6).map((item) => (
+              {services.map((item) => (
                 <li key={item.slug}>
                   <Link
                     href={`/services/${item.slug}`}
-                    className="text-sm text-gray-500 hover:text-white transition-colors duration-150 block"
+                    className="text-sm text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-blue transition-colors duration-150 block font-manrope"
                   >
                     {item.name}
                   </Link>
@@ -209,7 +196,7 @@ export function Footer() {
 
           {/* Column 3: Company */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-white pb-2 mb-5 border-b border-white/8 font-sora">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white pb-2 mb-4 border-b border-slate-200 dark:border-white/10 font-sora">
               Company
             </h4>
             <ul className="flex flex-col space-y-2.5 mb-6">
@@ -217,22 +204,23 @@ export function Footer() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-sm text-gray-500 hover:text-white transition-colors duration-150 block"
+                    className="text-sm text-slate-600 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-blue transition-colors duration-150 block font-manrope"
                   >
                     {item.name}
                   </Link>
                 </li>
               ))}
             </ul>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-white pb-2 mb-5 border-b border-white/8 font-sora">
+
+            <h4 className="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white pb-2 mb-4 border-b border-slate-200 dark:border-white/10 font-sora">
               Legal
             </h4>
-            <ul className="flex flex-col space-y-2.5">
+            <ul className="flex flex-col space-y-2">
               {legalLinks.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-sm text-gray-500 hover:text-white transition-colors duration-150 block"
+                    className="text-xs text-slate-500 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-blue transition-colors duration-150 block font-manrope"
                   >
                     {item.name}
                   </Link>
@@ -241,107 +229,60 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Contact & Social */}
+          {/* Column 4: Contact Information */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-white pb-2 mb-5 border-b border-white/8 font-sora">
-              Contact
+            <h4 className="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white pb-2 mb-4 border-b border-slate-200 dark:border-white/10 font-sora">
+              Contact & Studio
             </h4>
-            <div className="flex flex-col space-y-3.5 text-sm text-gray-400 mb-6 font-manrope">
+            <div className="flex flex-col space-y-4 text-sm text-slate-600 dark:text-slate-400 font-manrope">
               <div className="flex items-start gap-3">
                 <Mail className="h-4 w-4 text-brand-blue mt-0.5 shrink-0" />
-                <a
-                  href={`mailto:${contactEmail}`}
-                  className="hover:text-white transition-colors"
-                >
-                  {contactEmail}
-                </a>
-              </div>
-              <div className="flex items-start gap-3">
-                <Phone className="h-4 w-4 text-brand-blue mt-0.5 shrink-0" />
-                <div className="flex flex-col space-y-1">
+                <div>
+                  <span className="text-xs text-slate-500 block">Email Us</span>
                   <a
-                    href={`tel:${contactPhone.replace(/\s+/g, "")}`}
-                    className="hover:text-white transition-colors block"
+                    href={`mailto:${contactEmail}`}
+                    className="font-mono text-xs font-bold text-slate-900 dark:text-white hover:text-brand-blue"
                   >
-                    {contactPhone}
-                  </a>
-                  <a
-                    href="tel:+918383877088"
-                    className="hover:text-white transition-colors text-xs text-gray-500 block"
-                  >
-                    +91 83838 77088
+                    {contactEmail}
                   </a>
                 </div>
               </div>
+
+              <div className="flex items-start gap-3">
+                <Phone className="h-4 w-4 text-brand-blue mt-0.5 shrink-0" />
+                <div>
+                  <span className="text-xs text-slate-500 block">
+                    Call Direct
+                  </span>
+                  <a
+                    href={`tel:${contactPhone.replace(/s+/g, "")}`}
+                    className="font-mono text-xs font-bold text-slate-900 dark:text-white hover:text-brand-blue"
+                  >
+                    {contactPhone}
+                  </a>
+                </div>
+              </div>
+
               <div className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 text-brand-blue mt-0.5 shrink-0" />
-                <span className="whitespace-pre-line">{officeAddress}</span>
+                <div>
+                  <span className="text-xs text-slate-500 block">Location</span>
+                  <span className="text-xs leading-relaxed text-slate-700 dark:text-slate-300 block">
+                    {officeAddress}
+                  </span>
+                </div>
               </div>
-            </div>
-
-            {/* Social Icons */}
-            <div className="flex items-center gap-3">
-              {[
-                {
-                  label: "Facebook",
-                  href: facebookUrl,
-                  path: "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z",
-                },
-                {
-                  label: "LinkedIn",
-                  href: linkedinUrl,
-                  path: "M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z",
-                },
-                {
-                  label: "Instagram",
-                  href: instagramUrl,
-                  path: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051C.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z",
-                },
-                {
-                  label: "Twitter",
-                  href: twitterUrl,
-                  path: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z",
-                },
-                {
-                  label: "YouTube",
-                  href: youtubeUrl,
-                  path: "M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.524 3.545 12 3.545 12 3.545s-7.525 0-9.388.51a3.003 3.003 0 0 0-2.11 2.108C0 8.026 0 12 0 12s0 3.974.502 5.837a3.003 3.003 0 0 0 2.11 2.108c1.863.51 9.388.51 9.388.51s7.525 0 9.388-.51a3.003 3.003 0 0 0 2.11-2.108c.502-1.863.502-5.837.502-5.837s0-3.974-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z",
-                },
-                {
-                  label: "WhatsApp",
-                  href: whatsappUrl,
-                  path: "M12.004 0C5.378 0 .004 5.373.004 12c0 2.112.551 4.164 1.6 5.976L.004 24l6.19-1.624c1.769.965 3.765 1.472 5.81 1.472 6.626 0 12-5.373 12-12s-5.374-12-12-12zm6.606 17.075c-.274.767-1.357 1.424-2.196 1.516-.576.064-1.328.096-2.129-.16-3.238-1.033-5.323-4.329-5.485-4.545-.162-.216-1.309-1.745-1.309-3.328 0-1.583.829-2.361 1.125-2.679.296-.318.647-.398.864-.398.216 0 .432.008.62.016.196.008.459-.072.716.551.274.663.935 2.279 1.015 2.44.08.16.134.348.026.559-.108.211-.162.344-.324.532-.162.188-.344.42-.491.564-.162.156-.332.328-.14.659.192.331.855 1.408 1.832 2.279.864.771 1.593 1.258 1.916 1.42.324.162.513.136.705-.084.192-.22.829-.964 1.05-1.296.221-.332.441-.276.745-.164.304.112 1.936.912 2.26 1.076.324.164.54.244.62.38.08.136.08.788-.194 1.556z",
-                },
-              ].map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-[34px] h-[34px] rounded-lg border border-white/10 hover:border-brand-blue text-gray-500 hover:text-brand-blue hover:bg-brand-blue/10 transition-all duration-150 flex items-center justify-center bg-transparent shrink-0"
-                  aria-label={social.label}
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="h-4 w-4 fill-current"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d={social.path} />
-                  </svg>
-                </a>
-              ))}
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/6 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-zinc-500 w-full text-center md:text-left">
+        <div className="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400 font-manrope">
           <p>
-            © {new Date().getFullYear()} Adruva Solution. All rights reserved.
+            &copy; {new Date().getFullYear()} Adruva Solution. All rights
+            reserved.
           </p>
-          <p className="flex items-center gap-1">
-            Made with <span className="text-brand-blue">♥</span> in Rishikesh
-          </p>
+          <p>Engineered for Growth &bull; Scoped with Precision</p>
         </div>
       </div>
     </footer>

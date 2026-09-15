@@ -2,8 +2,11 @@
 
 import React from "react";
 import Link from "next/link";
-import { X, Calendar } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { X, Calendar, ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -11,81 +14,107 @@ interface MobileMenuProps {
   calendlyUrl?: string;
 }
 
+const navLinks = [
+  { name: "Services", href: "/services" },
+  { name: "Work", href: "/work" },
+  { name: "Careers", href: "/careers" },
+  { name: "About", href: "/about" },
+  { name: "Blog", href: "/blog" },
+  { name: "Contact", href: "/contact" },
+];
+
 export function MobileMenu({
   isOpen,
   onClose,
-  calendlyUrl: propCalendlyUrl,
+  calendlyUrl = "/contact",
 }: MobileMenuProps) {
-  const calendlyUrl = "/contact";
-
-  const menuLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "Our Work", href: "/work" },
-    { name: "Blog", href: "/blog" },
-    { name: "Careers", href: "/careers" },
-    { name: "Contact", href: "/contact" },
-  ];
+  const pathname = usePathname();
 
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-[100] bg-slate-950/98 dark:bg-zinc-950/98 backdrop-blur-xl md:hidden flex flex-col justify-between p-6"
-          onClick={onClose}
+          className="fixed inset-0 z-50 bg-white/95 dark:bg-[#07090D]/95 backdrop-blur-xl flex flex-col justify-between p-6 md:hidden"
         >
-          {/* Close button (top-right, size 40x40) */}
-          <div className="w-full flex justify-end">
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-border/40 pb-4">
+            <Link
+              href="/"
+              onClick={onClose}
+              className="flex items-center gap-3"
+            >
+              <div className="h-10 w-[46px] relative shrink-0">
+                <Image
+                  src="/logo-symbol-light.png"
+                  alt="Adruva Logo"
+                  fill
+                  sizes="46px"
+                  className="object-contain hidden dark:block"
+                />
+                <Image
+                  src="/logo-symbol-dark.png"
+                  alt="Adruva Logo"
+                  fill
+                  sizes="46px"
+                  className="object-contain block dark:hidden"
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-lg font-[900] tracking-tight text-slate-900 dark:text-white font-sora leading-none">
+                  ADRUVA
+                </span>
+                <span className="text-[8.5px] font-extrabold tracking-[0.25em] text-brand-blue uppercase font-space mt-1">
+                  SOLUTION
+                </span>
+              </div>
+            </Link>
+
             <button
               onClick={onClose}
-              className="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-800 text-white hover:bg-slate-900 transition-colors"
+              className="p-2.5 rounded-xl border border-border/80 text-foreground hover:bg-black/5 dark:hover:bg-white/5"
               aria-label="Close menu"
             >
-              <X className="h-5 w-5" />
+              <X className="w-5 h-5" />
             </button>
           </div>
 
-          {/* Links (large text-2xl, centered, stacked with gap-6) */}
-          <nav
-            className="flex-grow flex flex-col items-center justify-center gap-6"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {menuLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={onClose}
-                className="text-2xl font-bold text-white hover:text-brand-blue transition-colors font-sora"
-              >
-                {link.name}
-              </Link>
-            ))}
+          {/* Navigation Links */}
+          <nav className="flex flex-col space-y-4 py-8">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={onClose}
+                  className={cn(
+                    "text-2xl font-bold font-sora transition-colors py-2 flex items-center justify-between",
+                    isActive
+                      ? "text-brand-blue"
+                      : "text-slate-800 dark:text-slate-200 hover:text-brand-blue",
+                  )}
+                >
+                  <span>{link.name}</span>
+                  <ArrowRight className="w-5 h-5 opacity-40" />
+                </Link>
+              );
+            })}
           </nav>
 
-          {/* CTA: Full-width orange button at bottom */}
-          <div
-            className="w-full pt-4 pb-2"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <a
+          {/* Footer CTA */}
+          <div className="pt-6 border-t border-border/40">
+            <Link
               href={calendlyUrl}
-              target={calendlyUrl.startsWith("http") ? "_blank" : undefined}
-              rel={
-                calendlyUrl.startsWith("http")
-                  ? "noopener noreferrer"
-                  : undefined
-              }
-              className="w-full flex h-12 items-center justify-center gap-2 rounded-full text-sm font-semibold text-white bg-brand-blue hover:bg-brand-blue/90 transition-all shadow-[0_4px_14px_rgba(8, 120, 249,0.3)] active:scale-95"
               onClick={onClose}
+              className="w-full flex h-12 items-center justify-center gap-2 rounded-xl text-sm font-bold font-space text-white bg-brand-blue hover:bg-brand-blue-dark shadow-[0_4px_16px_rgba(8,120,249,0.35)]"
             >
-              <Calendar className="h-4 w-4" />
-              Book a Free Call
-            </a>
+              <Calendar className="w-4 h-4" />
+              <span>Book a Consultation</span>
+            </Link>
           </div>
         </motion.div>
       )}
