@@ -148,6 +148,7 @@ export function Navbar() {
     { name: "Careers", href: "/careers" },
     { name: "About", href: "/about" },
     { name: "Blog", href: "/blog" },
+    { name: "Contact", href: "/contact" },
   ];
 
   const isScrolled = scrollY > 20;
@@ -171,14 +172,14 @@ export function Navbar() {
           {/* Prominent Visible Logo */}
           <Link
             href="/"
-            className="flex items-center gap-3 focus:outline-none group py-1"
+            className="flex items-center gap-3.5 focus:outline-none group py-1"
           >
-            <div className="h-10 sm:h-11 w-[46px] sm:w-[50px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
+            <div className="h-11 sm:h-12 w-[52px] sm:w-[58px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
               <Image
                 src="/logo-symbol-light.png"
                 alt="Adruva Solution Logo | Technology & AI Agency"
                 fill
-                sizes="50px"
+                sizes="60px"
                 className="object-contain hidden dark:block"
                 priority
               />
@@ -186,23 +187,23 @@ export function Navbar() {
                 src="/logo-symbol-dark.png"
                 alt="Adruva Solution Logo | Technology & AI Agency"
                 fill
-                sizes="50px"
+                sizes="60px"
                 className="object-contain block dark:hidden"
                 priority
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-lg sm:text-xl font-[900] tracking-tight text-slate-900 dark:text-white transition-colors font-sora leading-none">
+              <span className="text-xl sm:text-2xl font-[900] tracking-tight text-slate-900 dark:text-white transition-colors font-sora leading-none">
                 ADRUVA
               </span>
-              <span className="text-[8.5px] font-extrabold tracking-[0.25em] text-brand-blue uppercase font-space mt-1">
+              <span className="text-[9.5px] sm:text-[10px] font-extrabold tracking-[0.28em] text-brand-blue uppercase font-space mt-1">
                 SOLUTION
               </span>
             </div>
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-7 h-20">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-7 h-20">
             {navLinks.map((link) => {
               const isActive =
                 pathname === link.href ||

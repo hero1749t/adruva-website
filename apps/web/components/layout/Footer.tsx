@@ -98,14 +98,14 @@ export function Footer() {
           <div className="flex flex-col space-y-4">
             <Link
               href="/"
-              className="flex items-center gap-3 focus:outline-none group py-1"
+              className="flex items-center gap-3.5 focus:outline-none group py-1"
             >
-              <div className="h-10 w-[46px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
+              <div className="h-11 w-[54px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
                 <Image
                   src="/logo-symbol-light.png"
                   alt="Adruva Solution Logo | Technology & AI Agency"
                   fill
-                  sizes="46px"
+                  sizes="60px"
                   className="object-contain hidden dark:block"
                   priority
                 />
@@ -113,16 +113,16 @@ export function Footer() {
                   src="/logo-symbol-dark.png"
                   alt="Adruva Solution Logo | Technology & AI Agency"
                   fill
-                  sizes="46px"
+                  sizes="60px"
                   className="object-contain block dark:hidden"
                   priority
                 />
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-[900] tracking-tight text-slate-900 dark:text-white transition-colors font-sora leading-none">
+                <span className="text-xl font-[900] tracking-tight text-slate-900 dark:text-white transition-colors font-sora leading-none">
                   ADRUVA
                 </span>
-                <span className="text-[8.5px] font-extrabold tracking-[0.25em] text-brand-blue uppercase font-space mt-1">
+                <span className="text-[9.5px] font-extrabold tracking-[0.28em] text-brand-blue uppercase font-space mt-1">
                   SOLUTION
                 </span>
               </div>

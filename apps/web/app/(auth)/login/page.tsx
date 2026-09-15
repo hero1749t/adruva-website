@@ -74,21 +74,26 @@ export default function LoginPage() {
         <CardHeader className="space-y-2 text-center pt-8 px-6 sm:px-8">
           <Link
             href="/"
-            className="mx-auto flex flex-col items-center gap-1.5 focus:outline-none group mb-2"
+            className="mx-auto flex items-center gap-3 focus:outline-none group mb-2"
           >
-            <div className="h-8 w-[40px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
+            <div className="h-10 w-[50px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
               <Image
                 src="/logo-symbol-light.png"
                 alt="Adruva Logo"
                 fill
-                sizes="40px"
+                sizes="50px"
                 className="object-contain"
                 priority
               />
             </div>
-            <span className="text-xl font-[800] tracking-tight text-white transition-colors font-sora mt-1">
-              Adruva<span className="text-brand-blue">.</span>
-            </span>
+            <div className="flex flex-col text-left">
+              <span className="text-xl font-[900] tracking-tight text-white font-sora leading-none">
+                ADRUVA
+              </span>
+              <span className="text-[9.5px] font-extrabold tracking-[0.28em] text-brand-blue uppercase font-space mt-1">
+                SOLUTION
+              </span>
+            </div>
           </Link>
           <CardDescription className="text-brand-gray text-sm font-manrope">
             Access the administrative console to manage content & leads
