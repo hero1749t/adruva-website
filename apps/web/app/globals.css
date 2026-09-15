@@ -5,52 +5,51 @@
 @tailwind utilities;
 
 @layer base {
-  /* Light Mode */
+  /* Light Mode (Consultative, Editorial Clarity) */
   :root {
     /* Backgrounds */
-    --background: 0 0% 98%; /* #F9F9F9 Clean Off-White Surface */
-    --background-secondary: 203 54% 95%; /* #EAF2F8 Soft Ice Tint */
-    --background-tertiary: 203 30% 90%; /* #DDE7EE */
+    --background: 0 0% 100%; /* #FFFFFF Pure White */
+    --background-secondary: 216 33% 97%; /* #F6F8FC Soft Light Surface */
+    --background-tertiary: 214 32% 95%; /* #EAF2FF Tint */
 
     /* Foreground/Text */
-    --foreground: 0 0% 4%; /* #070707 Deep Typography Black */
-    --foreground-secondary: 215 19% 35%; /* Slate Gray #475569 */
-    --foreground-muted: 215 16% 55%; /* #64748B */
+    --foreground: 220 23% 5%; /* #0A0C10 Near Black */
+    --foreground-secondary: 215 16% 35%; /* #475569 Slate */
+    --foreground-muted: 218 14% 46%; /* #667085 Neutral Grey */
 
     /* Card */
-    --card: 0 0% 100%; /* Pure White #FFFFFF */
-    --card-foreground: 0 0% 4%;
+    --card: 210 20% 97%; /* #F5F7FA Light Card */
+    --card-foreground: 220 23% 5%;
 
     /* Popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 4%;
+    --popover-foreground: 220 23% 5%;
 
     /* Border */
-    --border: 214 32% 91%; /* #E2E8F0 */
-    --border-strong: 214 20% 80%;
+    --border: 216 20% 92%; /* #E6EAF0 */
+    --border-strong: 216 20% 84%;
 
-    /* Brand Colors (HSL mapped from Brand Kit) */
-    --brand-blue: 220 100% 50%; /* #0066FF / #0052FF Electric Tech Blue */
-    --brand-blue-bright: 217 100% 54%; /* #1473FF */
-    --brand-ice: 203 54% 90%; /* #D6E8F3 Soft Ice Blue */
-    --brand-navy: 218 60% 8%; /* #081120 Obsidian Tech Navy */
-    --brand-teal: 179 98% 27%; /* #018A88 Deep Pine Teal */
-    --brand-orange: 25 100% 50%; /* #FF6B00 Energy Amber CTA */
-    --brand-orange-hover: 25 100% 44%;
+    /* Brand Colors */
+    --brand-blue: 212 96% 50%; /* #0878F9 Adruva Blue */
+    --brand-blue-bright: 211 100% 54%; /* #1685FF */
+    --brand-blue-dark: 215 93% 41%; /* #0757C9 */
+    --brand-navy: 220 30% 4%; /* #07090D */
+    --brand-teal: 179 98% 27%; /* #018A88 */
+    --brand-orange: 25 100% 50%; /* #FF6B00 */
 
-    /* Shadcn compatibility - Primary is now Electric Blue */
-    --primary: 220 100% 50%; /* #0066FF Electric Blue */
+    /* Shadcn compatibility */
+    --primary: 212 96% 50%; /* #0878F9 */
     --primary-foreground: 0 0% 100%;
-    --secondary: 218 60% 8%; /* #081120 Obsidian Navy */
-    --secondary-foreground: 0 0% 100%;
-    --muted: 203 30% 95%;
-    --muted-foreground: 215 16% 50%;
-    --accent: 203 54% 90%; /* Ice Blue Accent */
-    --accent-foreground: 220 100% 50%;
+    --secondary: 210 20% 97%; /* #F5F7FA */
+    --secondary-foreground: 220 23% 5%;
+    --muted: 216 33% 97%;
+    --muted-foreground: 218 14% 46%;
+    --accent: 214 32% 95%;
+    --accent-foreground: 212 96% 50%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --input: 214 32% 91%;
-    --ring: 220 100% 50%;
+    --input: 216 20% 92%;
+    --ring: 212 96% 50%;
 
     /* Radii */
     --radius: 0.75rem;
@@ -59,52 +58,51 @@
     --radius-full: 9999px;
   }
 
-  /* Dark Mode */
+  /* Dark Mode (Technology Command Center) */
   .dark {
     /* Backgrounds */
-    --background: 218 60% 8%; /* #081120 Obsidian Tech Navy */
-    --background-secondary: 217 56% 12%; /* #0E1A30 */
-    --background-tertiary: 217 45% 16%; /* #162442 */
+    --background: 220 30% 4%; /* #07090D Deep Black Ground */
+    --background-secondary: 218 30% 7%; /* #0D1118 */
+    --background-tertiary: 216 28% 12%; /* #141B26 */
 
     /* Foreground/Text */
-    --foreground: 210 40% 98%; /* Crisp White #F8FAFC */
+    --foreground: 210 20% 97%; /* #F5F7FA Crisp Light Text */
     --foreground-secondary: 215 20% 75%; /* #CBD5E1 */
-    --foreground-muted: 215 16% 55%; /* #64748B */
+    --foreground-muted: 215 13% 65%; /* #9AA4B2 Muted Slate */
 
     /* Card */
-    --card: 217 56% 11%; /* #0D182E Dark Glass Card */
-    --card-foreground: 210 40% 98%;
+    --card: 216 30% 10%; /* #111720 Command Center Glass Card */
+    --card-foreground: 210 20% 97%;
 
     /* Popover */
-    --popover: 217 56% 11%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 216 30% 10%;
+    --popover-foreground: 210 20% 97%;
 
     /* Border */
-    --border: 217 33% 20%; /* #1E2D4A */
-    --border-strong: 217 33% 30%;
+    --border: 216 25% 17%; /* #202936 Technical Border */
+    --border-strong: 216 25% 26%;
 
-    /* Brand Colors (Dark Adaptations) */
-    --brand-blue: 220 100% 55%; /* Glowing Electric Blue */
-    --brand-blue-bright: 217 100% 60%;
-    --brand-ice: 203 54% 90%;
-    --brand-navy: 218 60% 8%;
-    --brand-teal: 179 98% 40%;
+    /* Brand Colors */
+    --brand-blue: 211 100% 54%; /* #1685FF Electric Blue Glow */
+    --brand-blue-bright: 211 100% 60%;
+    --brand-blue-dark: 215 93% 41%;
+    --brand-navy: 220 30% 4%;
+    --brand-teal: 179 98% 38%;
     --brand-orange: 25 100% 50%;
-    --brand-orange-hover: 25 100% 56%;
 
     /* Shadcn compatibility */
-    --primary: 220 100% 55%; /* Electric Blue */
+    --primary: 211 100% 54%; /* #1685FF */
     --primary-foreground: 0 0% 100%;
-    --secondary: 217 33% 20%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 217 33% 16%;
-    --muted-foreground: 215 20% 70%;
-    --accent: 217 56% 18%;
-    --accent-foreground: 220 100% 65%;
+    --secondary: 216 30% 10%; /* #111720 */
+    --secondary-foreground: 210 20% 97%;
+    --muted: 218 30% 7%;
+    --muted-foreground: 215 13% 65%;
+    --accent: 216 28% 14%;
+    --accent-foreground: 211 100% 60%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --input: 217 33% 20%;
-    --ring: 220 100% 55%;
+    --input: 216 25% 17%;
+    --ring: 211 100% 54%;
   }
 }
 

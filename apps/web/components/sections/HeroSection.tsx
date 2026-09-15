@@ -7,300 +7,254 @@ import {
   Code2,
   Cpu,
   TrendingUp,
-  Palette,
-  Sparkles,
+  Layers,
   CheckCircle2,
   ShieldCheck,
-  Zap,
-  Activity,
-  Terminal,
-  Layers,
+  Sparkles,
+  ArrowDown,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
-import Image from "next/image";
 
-const departmentTabs = [
+const systemNodes = [
   {
     id: "tech",
-    num: "01",
-    label: "Technology",
+    title: "TECHNOLOGY",
+    badge: "ENGINEERING",
     icon: Code2,
-    title: "Custom Next.js & SaaS Platforms",
-    desc: "Typed SSR/SSG architectures, mobile apps (React Native), and custom database-driven portals built for zero latency.",
-    metrics: [
-      { label: "LCP PageSpeed", val: "< 0.4s" },
-      { label: "SLA Uptime", val: "99.99%" },
-      { label: "Stack", val: "Next.js 14 / NestJS" },
+    color: "from-blue-500/20 to-blue-600/10",
+    border: "border-brand-blue/30 group-hover:border-brand-blue",
+    text: "text-brand-blue",
+    capabilities: [
+      "Websites & PWAs",
+      "Mobile Apps (iOS/Android)",
+      "SaaS & Custom Software",
+      "APIs & Core Integrations",
     ],
-    tags: ["Web Apps", "Mobile", "SaaS", "E-Commerce"],
+    metric: "0.4s Median LCP",
   },
   {
     id: "ai",
-    num: "02",
-    label: "AI Automation",
+    title: "AI & AUTOMATION",
+    badge: "INTELLIGENCE",
     icon: Cpu,
-    title: "Autonomous Agents & Enterprise RAG",
-    desc: "24/7 intelligent customer workflows, WhatsApp CRM auto-qualification, and document intelligence systems.",
-    metrics: [
-      { label: "Task Automation", val: "80%+" },
-      { label: "Response Time", val: "< 2.0s" },
-      { label: "Model Stack", val: "LangChain / RAG" },
+    color: "from-teal-500/20 to-teal-600/10",
+    border: "border-brand-teal/30 group-hover:border-brand-teal",
+    text: "text-brand-teal",
+    capabilities: [
+      "Autonomous AI Agents",
+      "WhatsApp CRM Automation",
+      "Enterprise RAG & LLMs",
+      "Workflow Orchestration",
     ],
-    tags: ["AI Agents", "WhatsApp CRM", "Document AI", "Workflows"],
+    metric: "80%+ Ops Automated",
   },
   {
     id: "growth",
-    num: "03",
-    label: "Marketing",
+    title: "GROWTH & CREATIVE",
+    badge: "SCALE & BRAND",
     icon: TrendingUp,
-    title: "Technical SEO & Performance Pipelines",
-    desc: "Google Maps 3-Pack domination, programmatic organic search scaling, and CAPI server-side performance ads.",
-    metrics: [
-      { label: "Pipeline ROI", val: "+340%" },
-      { label: "Local Rank", val: "Top 3 Pack" },
-      { label: "Analytics", val: "GA4 / CAPI Sync" },
+    color: "from-indigo-500/20 to-indigo-600/10",
+    border: "border-indigo-500/30 group-hover:border-indigo-500",
+    text: "text-indigo-400",
+    capabilities: [
+      "Technical SEO & Local 3-Pack",
+      "CAPI Performance Ads",
+      "UI/UX Design Systems",
+      "Creative Conversion Media",
     ],
-    tags: ["Local SEO", "Google Ads", "Meta Ads", "Klaviyo CRM"],
-  },
-  {
-    id: "design",
-    num: "04",
-    label: "Creative",
-    icon: Palette,
-    title: "High-Conversion UI/UX & Identity",
-    desc: "Visual identity systems, Figma design-to-code components, investor pitch decks, and kinetic SaaS motion videos.",
-    metrics: [
-      { label: "Design Quality", val: "Awwwards Std" },
-      { label: "Conversion Lift", val: "3.2x Avg" },
-      { label: "Deliverables", val: "Figma + Tokens" },
-    ],
-    tags: ["UI/UX", "Brand Systems", "Motion Video", "Pitch Decks"],
+    metric: "3.2x Average ROI",
   },
 ];
 
 export function HeroSection() {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeNode, setActiveNode] = useState<string>("tech");
+
+  const selectedNode =
+    systemNodes.find((n) => n.id === activeNode) || systemNodes[0];
 
   return (
-    <section className="relative w-full min-h-[92vh] flex items-center justify-center overflow-hidden py-16 lg:py-24 bg-[#081120] text-white transition-colors duration-300">
-      {/* Brand Kit Ambient Lighting */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[10%] left-[15%] w-[600px] h-[600px] rounded-full bg-brand-blue/15 blur-[140px]" />
-        <div className="absolute bottom-[10%] right-[10%] w-[550px] h-[550px] rounded-full bg-brand-teal/10 blur-[150px]" />
-        <div className="absolute top-[40%] right-[35%] w-[350px] h-[350px] rounded-full bg-brand-orange/5 blur-[120px]" />
-      </div>
+    <section className="relative w-full min-h-[92vh] flex items-center justify-center overflow-hidden pt-24 pb-16 lg:pt-32 lg:pb-24 bg-background text-foreground transition-colors duration-300">
+      {/* Precision Engineering Dot Grid */}
+      <div className="absolute inset-0 bg-[radial-gradient(#0878F9_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.04] dark:opacity-[0.08] pointer-events-none" />
 
-      {/* Engineering Precision Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+      {/* Subtle Background Glows */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-brand-blue/5 dark:bg-brand-blue/10 rounded-full blur-[140px] pointer-events-none" />
 
       <Container className="relative z-10 w-full">
-        {/* Top Header Group */}
+        {/* Top Text Group */}
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto mb-12 lg:mb-16">
-          {/* Official Value-Premium Eyebrow Badge */}
+          {/* Positioning Eyebrow */}
           <motion.div
-            initial={{ opacity: 0, y: -12 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-brand-blue/15 border border-brand-blue/40 shadow-[0_0_20px_rgba(0,102,255,0.25)] text-xs font-semibold text-blue-400 mb-6 font-space tracking-wider uppercase"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-[#111720] border border-slate-200 dark:border-[#202936] text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-6 shadow-sm"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-blue opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-blue"></span>
-            </span>
-            <span>Technology &amp; Digital Growth Partner</span>
-            <span className="text-white/30">&bull;</span>
-            <span className="text-white/70 font-mono text-[10px]">
-              AS-KB-001
-            </span>
+            <span className="w-2 h-2 rounded-full bg-brand-blue animate-pulse" />
+            <span>Technology &bull; AI Systems &bull; Digital Growth</span>
           </motion.div>
 
-          {/* Grand H1 Headline in Sora */}
+          {/* Flagship Headline */}
           <motion.h1
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-extrabold tracking-tight text-white leading-[1.08] mb-6 font-sora"
+            className="font-sora text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1] mb-6"
           >
-            Engineered for Growth. <br />
-            <span className="bg-gradient-to-r from-brand-blue via-blue-400 to-brand-teal bg-clip-text text-transparent">
-              Scoped with Precision.
+            We Build the Systems Behind{" "}
+            <span className="bg-gradient-to-r from-brand-blue via-brand-teal to-brand-blue bg-clip-text text-transparent">
+              Growing Businesses.
             </span>
           </motion.h1>
 
-          {/* Subtext Description in Manrope */}
+          {/* Subtext */}
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-base sm:text-lg md:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto font-manrope font-normal mb-8"
+            className="font-manrope text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed mb-8"
           >
-            Adruva Solution is a single accountable partner for ambitious
-            businesses — combining{" "}
-            <span className="text-white font-semibold">
-              Engineering, AI Automation, Marketing, and Creative
-            </span>{" "}
-            as one integrated system built to scale revenues.
+            Digital products, custom software, AI, automation, growth and
+            creative—connected around the way your business actually works.
           </motion.p>
 
-          {/* Dual Action CTAs */}
+          {/* Dual Primary CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-center justify-center"
+            className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
           >
             <Link href="/contact" className="w-full sm:w-auto">
               <Button
                 size="lg"
-                className="w-full sm:w-auto bg-brand-blue hover:bg-brand-blue-bright text-white font-semibold flex items-center justify-center gap-2 shadow-[0_4px_25px_rgba(0,102,255,0.4)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 h-13 px-8 rounded-xl text-sm font-space"
+                className="w-full sm:w-auto bg-brand-blue hover:bg-brand-blue-dark text-white font-space font-semibold px-8 h-12 rounded-xl text-sm shadow-[0_4px_20px_rgba(8,120,249,0.35)] transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
-                Scope Your Project
-                <ArrowRight className="h-4 w-4" />
+                Start a Project
+                <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
 
-            <Link href="/services" className="w-full sm:w-auto">
+            <Link href="/work" className="w-full sm:w-auto">
               <Button
                 variant="outline"
                 size="lg"
-                className="w-full sm:w-auto text-white border-white/20 hover:border-brand-blue hover:bg-white/5 font-semibold h-13 px-8 rounded-xl text-sm transition-all duration-200 font-space backdrop-blur-md"
+                className="w-full sm:w-auto font-space font-semibold px-8 h-12 rounded-xl text-sm border-slate-300 dark:border-slate-700 hover:border-brand-blue hover:bg-slate-100 dark:hover:bg-[#111720] transition-colors"
               >
-                Explore 14 Services
+                Explore Our Work
               </Button>
             </Link>
           </motion.div>
         </div>
 
-        {/* ======================================================== */}
-        {/* BESPOKE DEVICE & INTERACTIVE SYSTEM SHOWCASE (Mockup) */}
-        {/* ======================================================== */}
+        {/* Dynamic Adruva System Map / Interactive Architecture Visual */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="relative max-w-5xl mx-auto rounded-2xl border border-white/10 bg-[#0B172C]/90 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.5)] overflow-hidden"
+          className="max-w-5xl mx-auto rounded-3xl bg-slate-50/80 dark:bg-[#0D1118]/80 border border-slate-200/80 dark:border-[#202936] p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden"
         >
-          {/* Window Title Bar */}
-          <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/10 bg-[#081120]/80">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-red-500/80" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-              <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
-              <span className="font-mono text-xs text-slate-400 ml-2 hidden sm:inline">
-                adruvasolution.com // ENTERPRISE SYSTEM HUB
-              </span>
+          {/* Interactive Header Bar */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-200/80 dark:border-[#202936] text-xs font-mono">
+            <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>ADRUVA SYSTEM ARCHITECTURE // CONNECTED CORE</span>
             </div>
-            <div className="flex items-center gap-2 font-mono text-[11px] text-emerald-400">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>SLA: 99.99% ONLINE</span>
-            </div>
+            <span className="text-[11px] text-brand-blue font-semibold uppercase">
+              Hover / Select Nodes to Inspect Capabilities
+            </span>
           </div>
 
-          {/* 4 Interactive Department Tabs */}
-          <div className="grid grid-cols-2 md:grid-cols-4 border-b border-white/10 bg-[#070D1A]/60">
-            {departmentTabs.map((tab, idx) => {
-              const Icon = tab.icon;
-              const isActive = activeTab === idx;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(idx)}
-                  className={`flex items-center gap-2.5 px-4 py-3.5 text-left transition-all duration-200 border-r border-white/5 last:border-r-0 ${
-                    isActive
-                      ? "bg-brand-blue/20 text-white border-b-2 border-b-brand-blue"
-                      : "text-slate-400 hover:text-white hover:bg-white/5"
-                  }`}
-                >
-                  <Icon
-                    className={`w-4 h-4 shrink-0 ${isActive ? "text-brand-blue" : "text-slate-400"}`}
-                  />
-                  <div>
-                    <span className="block font-mono text-[9px] text-brand-blue font-bold">
-                      {tab.num}
-                    </span>
-                    <span className="block font-sora text-xs font-bold truncate">
-                      {tab.label}
-                    </span>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
+          {/* Node Map Layout */}
+          <div className="py-8">
+            {/* Top Node: Business Core */}
+            <div className="flex justify-center mb-6">
+              <div className="px-6 py-3 rounded-2xl bg-white dark:bg-[#111720] border-2 border-brand-blue/40 dark:border-brand-blue/50 text-center shadow-md">
+                <span className="block text-[10px] font-mono uppercase font-bold text-brand-blue">
+                  ORIGIN
+                </span>
+                <span className="font-sora font-extrabold text-sm sm:text-base text-slate-900 dark:text-white">
+                  AMBITIOUS BUSINESS GOALS & OPERATIONS
+                </span>
+              </div>
+            </div>
 
-          {/* Department Detail Display */}
-          <div className="p-6 md:p-8">
-            {(() => {
-              const currentDept = (departmentTabs[activeTab] ??
-                departmentTabs[0])!;
-              return (
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentDept.id}
-                    initial={{ opacity: 0, x: 10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -10 }}
-                    transition={{ duration: 0.25 }}
-                    className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center"
+            {/* Connecting Vertical Stem */}
+            <div className="w-0.5 h-6 bg-gradient-to-b from-brand-blue to-slate-400 dark:to-slate-600 mx-auto" />
+
+            {/* 3 Interactive Connected Division Nodes */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+              {systemNodes.map((node) => {
+                const Icon = node.icon;
+                const isSelected = activeNode === node.id;
+                return (
+                  <button
+                    key={node.id}
+                    onMouseEnter={() => setActiveNode(node.id)}
+                    onClick={() => setActiveNode(node.id)}
+                    className={`group relative p-5 rounded-2xl text-left transition-all duration-300 border backdrop-blur-md ${
+                      isSelected
+                        ? "bg-white dark:bg-[#111720] border-brand-blue shadow-lg scale-[1.02]"
+                        : "bg-slate-100/70 dark:bg-[#0D1118]/60 border-slate-200 dark:border-[#202936] hover:border-slate-400 dark:hover:border-slate-600"
+                    }`}
                   >
-                    <div className="lg:col-span-7">
-                      <div className="inline-flex items-center gap-2 font-mono text-xs text-brand-blue font-bold uppercase mb-2">
-                        <Sparkles className="w-3.5 h-3.5" />
-                        <span>DIVISION {currentDept.num} ACTIVE</span>
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <div
+                        className={`w-9 h-9 rounded-xl flex items-center justify-center ${node.color} ${node.text}`}
+                      >
+                        <Icon className="w-4 h-4" />
                       </div>
-                      <h3 className="text-xl sm:text-2xl font-bold font-sora text-white mb-3">
-                        {currentDept.title}
-                      </h3>
-                      <p className="text-sm text-slate-300 leading-relaxed font-manrope mb-6">
-                        {currentDept.desc}
-                      </p>
-
-                      <div className="flex flex-wrap gap-2">
-                        {currentDept.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-slate-200"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
+                      <span className="font-mono text-[9px] font-bold px-2 py-0.5 rounded-full bg-slate-200/80 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                        {node.badge}
+                      </span>
                     </div>
 
-                    <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-3">
-                      {currentDept.metrics.map((m) => (
-                        <div
-                          key={m.label}
-                          className="p-3.5 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between"
+                    <h3 className="font-sora text-sm font-bold text-slate-900 dark:text-white mb-2">
+                      {node.title}
+                    </h3>
+
+                    <ul className="space-y-1.5 mb-4">
+                      {node.capabilities.map((cap) => (
+                        <li
+                          key={cap}
+                          className="flex items-center gap-1.5 text-xs text-slate-600 dark:text-slate-400 font-manrope"
                         >
-                          <span className="text-xs text-slate-400 font-manrope">
-                            {m.label}
-                          </span>
-                          <span className="font-mono text-sm font-bold text-brand-blue">
-                            {m.val}
-                          </span>
-                        </div>
+                          <span className="w-1 h-1 rounded-full bg-brand-blue" />
+                          <span>{cap}</span>
+                        </li>
                       ))}
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-              );
-            })()}
-          </div>
+                    </ul>
 
-          {/* Live System Footer */}
-          <div className="px-6 py-3.5 border-t border-white/10 bg-[#060B14] flex flex-wrap items-center justify-between gap-4 text-xs text-slate-400 font-manrope">
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-              <span>Transparent Package Pricing (AS-KB-001)</span>
+                    <div className="pt-3 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between text-[11px] font-mono">
+                      <span className="text-slate-500">Benchmark</span>
+                      <span className="font-bold text-brand-blue">
+                        {node.metric}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-brand-blue" />
-              <span>30-Day Post-Launch Warranty Included</span>
-            </div>
-            <div className="flex items-center gap-2 font-mono text-[11px] text-brand-orange">
-              <span>ZERO COMMODITY SPAGHETTI CODE</span>
+
+            {/* Connecting Vertical Stem */}
+            <div className="w-0.5 h-6 bg-gradient-to-b from-slate-400 dark:from-slate-600 to-emerald-500 mx-auto" />
+
+            {/* Bottom Node: Outcomes */}
+            <div className="flex justify-center mt-2">
+              <div className="px-6 py-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-center flex items-center gap-3">
+                <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
+                <div className="text-left">
+                  <span className="block text-[10px] font-mono uppercase font-bold text-emerald-600 dark:text-emerald-400">
+                    VERIFIED DELIVERABLES
+                  </span>
+                  <span className="font-sora font-bold text-xs sm:text-sm text-slate-900 dark:text-white">
+                    High-Converting Revenue Infrastructure &bull; Zero
+                    Operational Overhead
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </motion.div>

@@ -1,17 +1,15 @@
 import React from "react";
 import type { Metadata } from "next";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { AboutAdruvaSection } from "@/components/sections/AboutAdruvaSection";
-import { GrowthSystem } from "@/components/sections/GrowthSystem";
-import { BrandPositioningSection } from "@/components/sections/BrandPositioningSection";
-import { StatsStrip } from "@/components/sections/StatsStrip";
 import { LogoMarquee } from "@/components/sections/LogoMarquee";
+import { ProblemSolutionSection } from "@/components/sections/ProblemSolutionSection";
 import { ServicesPreview } from "@/components/sections/ServicesPreview";
-import { WhoWeServe } from "@/components/sections/WhoWeServe";
 import { WorkPreview } from "@/components/sections/WorkPreview";
-import { ReviewsBadge } from "@/components/sections/ReviewsBadge";
+import { HowWeThinkSection } from "@/components/sections/HowWeThinkSection";
+import { WhoWeServe } from "@/components/sections/WhoWeServe";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { BlogPreview } from "@/components/sections/BlogPreview";
+import { DiagnosticCTA } from "@/components/sections/DiagnosticCTA";
 import { CTASection } from "@/components/sections/CTASection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { mapDbBlogToBlogPost } from "@/lib/blog-data";
@@ -254,43 +252,37 @@ export default async function Home() {
       <JsonLd schema={websiteSchema} />
       <JsonLd schema={siteNavigationSchema} />
 
-      {/* 1. Hero Section */}
+      {/* SECTION 01 — HERO (Statement + Interactive System Map) */}
       <HeroSection />
 
-      {/* 2. Stats Strip */}
-      <StatsStrip />
-
-      {/* 3. About Adruva Solution (The 4 Integrated Departments) */}
-      <AboutAdruvaSection />
-
-      {/* 4. The Thinking Behind Adruva (01 THINK, 02 BUILD, 03 CONNECT, 04 GROW) */}
-      <GrowthSystem />
-
-      {/* 5. Brand Positioning (Bridging the Agency Gap) */}
-      <BrandPositioningSection />
-
-      {/* 6. Client Logo Marquee */}
+      {/* SECTION 02 — TRUST STRIP (Client Proof & Logos) */}
       <LogoMarquee />
 
-      {/* 7. 14 Services Catalog Preview */}
-      <ServicesPreview initialServices={liveServices || undefined} />
+      {/* SECTION 03 — THE PROBLEM (Disconnected Stack vs. Connected Adruva System) */}
+      <ProblemSolutionSection />
 
-      {/* 8. Who We Serve (20 Strategic Verticals) */}
-      <WhoWeServe />
+      {/* SECTION 04 & 05 — WHAT WE BUILD & INTERACTIVE CAPABILITY EXPERIENCE */}
+      <ServicesPreview />
 
-      {/* 9. Case Studies & Work Preview */}
+      {/* SECTION 06 — FEATURED WORK (Large Case Studies) */}
       <WorkPreview initialProjects={liveProjects || undefined} />
 
-      {/* 10. Google Reviews Badge */}
-      <ReviewsBadge />
+      {/* SECTION 07 — HOW WE THINK (7-Step Delivery Methodology) */}
+      <HowWeThinkSection />
 
-      {/* 11. Testimonials */}
+      {/* SECTION 08 — INDUSTRIES (Built Across Industries) */}
+      <WhoWeServe />
+
+      {/* SECTION 09 — CLIENT PROOF & TESTIMONIALS */}
       <TestimonialsSection />
 
-      {/* 12. Blog Preview */}
+      {/* SECTION 10 — ADRUVA INSIGHTS (Technology & Systems Publication) */}
       <BlogPreview initialPosts={liveBlogs || undefined} />
 
-      {/* 13. Final CTA Section */}
+      {/* SECTION 11 — NOT SURE WHAT YOU NEED? (Diagnostic Conversion Hook) */}
+      <DiagnosticCTA />
+
+      {/* SECTION 12 — FINAL CTA (Let's Build Something That Matters) */}
       <CTASection />
     </div>
   );

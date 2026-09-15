@@ -1,288 +1,310 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
   Code2,
-  Smartphone,
-  Megaphone,
   Cpu,
-  Search,
-  Share2,
-  Terminal,
-  Target,
+  TrendingUp,
   Palette,
-  Video,
-  Mail,
-  HelpCircle,
-  LucideIcon,
+  Check,
   Sparkles,
   Layers,
-  Zap,
-} from "lucide-react";
-import { motion } from "framer-motion";
-import { Container } from "@/components/layout/container";
-import { cn } from "@/lib/utils";
-
-const iconMap: Record<string, LucideIcon> = {
-  Code2,
+  Terminal,
   Smartphone,
-  Megaphone,
-  Cpu,
   Search,
   Share2,
-  Terminal,
-  Target,
-  Palette,
-  Video,
-  Mail,
-  HelpCircle,
-};
+} from "lucide-react";
+import { Container } from "@/components/layout/container";
+import { Button } from "@/components/ui/button";
 
-const services = [
+const capabilityDivisions = [
   {
-    iconName: "Code2",
-    name: "Web Development",
-    department: "TECH & SOFTWARE",
-    description:
-      "High-performance enterprise websites, modern PWAs, and custom portals built with Next.js, TypeScript & headless CMS architectures.",
-    price: "From ₹15,000",
-    slug: "web-development",
-    badge: "Enterprise Grade",
+    id: "tech",
+    num: "01",
+    name: "Technology & Engineering",
+    tagline:
+      "Custom digital products engineered for zero latency and continuous scale.",
+    icon: Code2,
     accent: "blue",
+    services: [
+      {
+        title: "Web Development",
+        slug: "web-development",
+        desc: "High-performance enterprise websites built with Next.js, TypeScript, and headless CMS architectures.",
+        stack: ["Next.js", "TypeScript", "Tailwind", "Vercel"],
+        price: "From ₹15,000",
+      },
+      {
+        title: "Mobile App Development",
+        slug: "mobile-app-development",
+        desc: "Native & cross-platform iOS and Android applications built with React Native and offline sync.",
+        stack: ["React Native", "Flutter", "Firebase", "REST APIs"],
+        price: "From ₹30,000",
+      },
+      {
+        title: "SaaS & Custom Software",
+        slug: "saas-custom-software",
+        desc: "Bespoke SaaS platforms, internal ERPs, customer portals, and microservices.",
+        stack: ["NestJS", "PostgreSQL", "Prisma", "AWS / Docker"],
+        price: "From ₹75,000",
+      },
+      {
+        title: "CRM & Business Systems",
+        slug: "saas-custom-software",
+        desc: "Tailored databases, pipeline trackers, and automated client onboarding infrastructure.",
+        stack: ["PostgreSQL", "Node.js", "Webhook APIs", "NextAuth"],
+        price: "Custom Scoped",
+      },
+    ],
   },
   {
-    iconName: "Smartphone",
-    name: "Mobile App Development",
-    department: "TECH & SOFTWARE",
-    description:
-      "Cross-platform iOS & Android mobile applications built with React Native & Flutter with offline-first synchronization.",
-    price: "From ₹30,000",
-    slug: "mobile-app-development",
-    badge: "iOS & Android",
+    id: "ai",
+    num: "02",
+    name: "AI & Automation",
+    tagline:
+      "Autonomous workflows and intelligent agents that eliminate manual operational drag.",
+    icon: Cpu,
+    accent: "teal",
+    services: [
+      {
+        title: "AI Automation",
+        slug: "ai-automation",
+        desc: "End-to-end business workflow automation connecting CRMs, email, payment, and operations.",
+        stack: ["Make.com", "n8n", "Zapier", "REST APIs"],
+        price: "Custom Scoped",
+      },
+      {
+        title: "AI Agents & Autonomous Workflows",
+        slug: "ai-automation",
+        desc: "24/7 intelligent WhatsApp and web chat qualification agents with natural conversation memory.",
+        stack: ["LangChain", "OpenAI / Claude", "Vector DB", "WhatsApp API"],
+        price: "Custom Scoped",
+      },
+      {
+        title: "Custom AI & Enterprise RAG",
+        slug: "custom-ai-solutions",
+        desc: "Internal document intelligence systems and fine-tuned domain models.",
+        stack: ["Pinecone", "LlamaIndex", "FastAPI", "Python"],
+        price: "Custom Scoped",
+      },
+      {
+        title: "AI Performance Ads",
+        slug: "ai-ads",
+        desc: "Algorithmic campaign optimization and dynamic creative testing pipelines.",
+        stack: ["Meta CAPI", "Google GA4", "Predictive Analytics"],
+        price: "Performance Based",
+      },
+    ],
+  },
+  {
+    id: "growth",
+    num: "03",
+    name: "Marketing & Growth",
+    tagline: "Data-engineered acquisition funnels and technical SEO dominance.",
+    icon: TrendingUp,
     accent: "blue",
+    services: [
+      {
+        title: "Technical SEO & Local Dominance",
+        slug: "seo",
+        desc: "On-page architecture, Core Web Vitals, Google Maps 3-Pack, and programmatic search funnels.",
+        stack: ["Schema.org", "Next.js SSR", "Search Console", "Ahrefs"],
+        price: "Monthly Retainer",
+      },
+      {
+        title: "Google & Search Intent Ads",
+        slug: "google-ads",
+        desc: "High-ROAS search, display, and performance max campaigns capturing purchase intent.",
+        stack: ["Google Ads", "Conversion Tracking", "Tag Manager"],
+        price: "Ad Spend + Fee",
+      },
+      {
+        title: "Meta & Social Performance Ads",
+        slug: "meta-ads",
+        desc: "Full-funnel creative testing and CAPI server-side tracking on Facebook and Instagram.",
+        stack: ["Meta Ads Manager", "Server CAPI", "Attribution Models"],
+        price: "Ad Spend + Fee",
+      },
+      {
+        title: "Social Media & Retention",
+        slug: "social-media-management",
+        desc: "Organic thought-leadership, viral 4K reels, and automated Klaviyo email flows.",
+        stack: ["Reels / Shorts", "Klaviyo CRM", "Automated Sequences"],
+        price: "Monthly Package",
+      },
+    ],
   },
   {
-    iconName: "Terminal",
-    name: "SaaS & Custom Software",
-    department: "TECH & SOFTWARE",
-    description:
-      "Bespoke SaaS platforms, internal ERPs, billing pipelines, and custom microservice architectures engineered for scale.",
-    price: "From ₹75,000",
-    slug: "saas-custom-software",
-    badge: "Full-Stack System",
+    id: "creative",
+    num: "04",
+    name: "Brand, Design & Creative",
+    tagline: "High-conversion UI/UX interaction systems and visual identities.",
+    icon: Palette,
     accent: "teal",
-  },
-  {
-    iconName: "Cpu",
-    name: "AI & Autonomous Systems",
-    department: "AI & AUTOMATION",
-    description:
-      "Multi-agent workflows, custom LLM fine-tuning, RAG enterprise knowledge bases, and CRM automation pipelines.",
-    price: "Custom Scoped",
-    slug: "ai-automation",
-    badge: "Multi-Agent AI",
-    accent: "teal",
-  },
-  {
-    iconName: "Search",
-    name: "SEO & Growth Engine",
-    department: "MARKETING & GROWTH",
-    description:
-      "Technical SEO audits, programmatic content architecture, Page 1 intent targeting, and high-converting inbound funnels.",
-    price: "Outcome Driven",
-    slug: "seo",
-    badge: "Organic Dominance",
-    accent: "blue",
-  },
-  {
-    iconName: "Share2",
-    name: "Brand & Creative Direction",
-    department: "CREATIVE & MEDIA",
-    description:
-      "Identity design systems, UI/UX interaction models, 4K reel production, and full-funnel paid advertising creative.",
-    price: "Value Packaged",
-    slug: "social-media-management",
-    badge: "High-Impact Assets",
-    accent: "teal",
+    services: [
+      {
+        title: "UI/UX & Interaction Design",
+        slug: "ui-ux-design",
+        desc: "Figma design systems, tokenized UI libraries, and conversion-optimized prototypes.",
+        stack: ["Figma", "Design Tokens", "Micro-interactions", "UX Audits"],
+        price: "Project Scoped",
+      },
+      {
+        title: "Brand Identity Systems",
+        slug: "graphic-designing",
+        desc: "Logo suites, typography guidelines, vector assets, and commercial brand kits.",
+        stack: ["Adobe Illustrator", "Vector Graphics", "Brand Guidelines"],
+        price: "Fixed Sprint",
+      },
+      {
+        title: "Video & Motion Media",
+        slug: "video-editing",
+        desc: "Product explainer videos, SaaS demos, and high-impact kinetic motion graphics.",
+        stack: ["Premiere Pro", "After Effects", "4K Production"],
+        price: "Sprint Package",
+      },
+    ],
   },
 ];
 
-interface ServiceCardProps {
-  service: any;
-  Icon: LucideIcon;
-}
+export function ServicesPreview() {
+  const [activeTab, setActiveTab] = useState<string>("tech");
 
-function ServiceCard({ service, Icon }: ServiceCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [coords, setCoords] = useState({ x: 0, y: 0 });
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const [hovered, setHovered] = useState(false);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!cardRef.current) return;
-    const { left, top, width, height } =
-      cardRef.current.getBoundingClientRect();
-    const xVal = e.clientX - left;
-    const yVal = e.clientY - top;
-
-    const xTilt = ((yVal - height / 2) / (height / 2)) * -5;
-    const yTilt = ((xVal - width / 2) / (width / 2)) * 5;
-
-    setCoords({ x: xVal, y: yVal });
-    setTilt({ x: xTilt, y: yTilt });
-  };
-
-  const handleMouseEnter = () => setHovered(true);
-  const handleMouseLeave = () => {
-    setHovered(false);
-    setTilt({ x: 0, y: 0 });
-  };
-
-  const isTeal = service.accent === "teal";
+  const currentDivision = (capabilityDivisions.find(
+    (d) => d.id === activeTab,
+  ) ?? capabilityDivisions[0])!;
 
   return (
-    <div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        transform: hovered
-          ? `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(-6px)`
-          : "none",
-        transition: hovered ? "none" : "all 0.5s cubic-bezier(0.25, 1, 0.5, 1)",
-        transformStyle: "preserve-3d",
-      }}
-      className="group relative flex flex-col justify-between p-7 rounded-2xl bg-white/80 dark:bg-brand-navy/60 border border-slate-200/80 dark:border-brand-ice/10 backdrop-blur-xl transition-all duration-300 min-h-[320px] shadow-sm hover:shadow-2xl hover:border-brand-blue/30 dark:hover:border-brand-blue/30 overflow-hidden"
-    >
-      {/* Interactive Cursor Spotlight */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
-        style={{
-          background: `radial-gradient(320px circle at ${coords.x}px ${coords.y}px, ${
-            isTeal ? "rgba(1, 138, 136, 0.08)" : "rgba(0, 102, 255, 0.08)"
-          }, transparent 80%)`,
-        }}
-      />
-
-      {/* Top Border Line */}
-      <div
-        className={cn(
-          "absolute top-0 left-0 right-0 h-[2px] transition-transform duration-300 scale-x-0 group-hover:scale-x-100 origin-left",
-          isTeal ? "bg-brand-teal" : "bg-brand-blue",
-        )}
-      />
-
-      <div>
-        {/* Header row: Department Tag & Badge */}
-        <div
-          className="flex items-center justify-between gap-2 mb-5"
-          style={{ transform: "translateZ(20px)" }}
-        >
-          <div
-            className={cn(
-              "w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-105 border",
-              isTeal
-                ? "bg-brand-teal/10 text-brand-teal border-brand-teal/20"
-                : "bg-brand-blue/10 text-brand-blue border-brand-blue/20",
-            )}
-          >
-            <Icon className="w-5 h-5" />
-          </div>
-          <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-800/60 px-2.5 py-1 rounded-full border border-slate-200/60 dark:border-slate-700/40">
-            {service.badge}
-          </span>
-        </div>
-
-        {/* Service Name */}
-        <h3
-          style={{ transform: "translateZ(25px)" }}
-          className="font-sora text-lg font-bold text-slate-900 dark:text-white mb-2 transition-colors duration-200 group-hover:text-brand-blue"
-        >
-          {service.name}
-        </h3>
-
-        {/* Description */}
-        <p
-          style={{ transform: "translateZ(15px)" }}
-          className="font-manrope text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6"
-        >
-          {service.description}
-        </p>
-      </div>
-
-      {/* Card Footer: Pricing & Action */}
-      <div
-        style={{ transform: "translateZ(20px)" }}
-        className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-brand-ice/5 w-full mt-auto"
-      >
-        <span className="font-space font-semibold text-xs text-brand-blue dark:text-brand-ice bg-brand-blue/5 dark:bg-brand-blue/15 px-3 py-1 rounded-md border border-brand-blue/10 dark:border-brand-blue/20">
-          {service.price}
-        </span>
-
-        <Link
-          href={`/services/${service.slug}`}
-          className="inline-flex items-center gap-1.5 font-space text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-brand-blue dark:hover:text-brand-ice transition-colors group/link"
-        >
-          Scope Solution
-          <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-1 text-brand-blue" />
-        </Link>
-      </div>
-    </div>
-  );
-}
-
-interface ServicesPreviewProps {
-  initialServices?: any[];
-}
-
-export function ServicesPreview({ initialServices }: ServicesPreviewProps) {
-  return (
-    <section className="relative w-full py-24 bg-slate-50/50 dark:bg-brand-navy/30 transition-colors duration-300 overflow-hidden border-y border-slate-200/60 dark:border-brand-ice/5">
-      {/* Background Decorative Glow */}
-      <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-brand-blue/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-brand-teal/5 rounded-full blur-[120px] pointer-events-none" />
-
-      <Container className="relative z-10">
+    <section className="relative w-full py-24 bg-background border-b border-border/60 transition-colors duration-300">
+      <Container>
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue font-mono text-xs font-semibold uppercase tracking-wider mb-4">
-              <Zap className="w-3.5 h-3.5" />
-              <span>Full-Stack Capabilities</span>
-            </div>
-            <h2 className="font-sora text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
-              Production-Grade Tech, AI &{" "}
-              <span className="bg-gradient-to-r from-brand-blue via-brand-teal to-brand-blue bg-clip-text text-transparent">
-                Growth Solutions
-              </span>
-            </h2>
-            <p className="font-manrope text-base text-slate-600 dark:text-slate-300 mt-3 max-w-xl">
-              From high-performance software architecture to autonomous AI
-              workflows and full-funnel marketing campaigns—engineered with SLA
-              guarantees.
-            </p>
-          </div>
-
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 font-space text-sm font-bold text-brand-blue dark:text-brand-ice hover:underline group self-start md:self-end"
-          >
-            Explore All 14 Core Capabilities
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </Link>
+        <div className="max-w-3xl mb-16">
+          <span className="font-mono text-xs font-bold uppercase tracking-wider text-brand-blue bg-brand-blue/10 px-3 py-1 rounded-full border border-brand-blue/20 mb-4 inline-block">
+            CAPABILITY ARCHITECTURE
+          </span>
+          <h2 className="font-sora text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+            What we actually build.
+          </h2>
+          <p className="font-manrope text-base text-slate-600 dark:text-slate-300 mt-4 leading-relaxed">
+            We structure our capabilities across four integrated engineering
+            divisions—providing end-to-end technical execution under a single
+            SLA framework.
+          </p>
         </div>
 
-        {/* 3x2 Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service) => {
-            const Icon = iconMap[service.iconName] || Code2;
+        {/* 4 Division Navigation Tabs */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+          {capabilityDivisions.map((div) => {
+            const Icon = div.icon;
+            const isActive = activeTab === div.id;
             return (
-              <ServiceCard key={service.slug} service={service} Icon={Icon} />
+              <button
+                key={div.id}
+                onClick={() => setActiveTab(div.id)}
+                className={`flex items-center gap-3 p-4 rounded-2xl text-left transition-all duration-200 border ${
+                  isActive
+                    ? "bg-brand-blue text-white border-brand-blue shadow-lg scale-[1.01]"
+                    : "bg-slate-50 dark:bg-[#111720] text-slate-700 dark:text-slate-300 border-slate-200 dark:border-[#202936] hover:border-slate-400 dark:hover:border-slate-600"
+                }`}
+              >
+                <div
+                  className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                    isActive
+                      ? "bg-white/20 text-white"
+                      : "bg-brand-blue/10 text-brand-blue"
+                  }`}
+                >
+                  <Icon className="w-4 h-4" />
+                </div>
+                <div>
+                  <span
+                    className={`block font-mono text-[9px] font-bold uppercase ${
+                      isActive
+                        ? "text-white/80"
+                        : "text-slate-400 dark:text-slate-500"
+                    }`}
+                  >
+                    DIV {div.num}
+                  </span>
+                  <span className="block font-sora text-xs font-bold truncate">
+                    {div.name}
+                  </span>
+                </div>
+              </button>
             );
           })}
+        </div>
+
+        {/* Active Division Capability Matrix */}
+        <div className="p-8 rounded-3xl bg-slate-50 dark:bg-[#0D1118] border border-slate-200 dark:border-[#202936] shadow-xl">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-[#202936] mb-8">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase text-brand-blue">
+                DIVISION {currentDivision.num} &bull;{" "}
+                {currentDivision.name.toUpperCase()}
+              </span>
+              <p className="font-manrope text-sm text-slate-600 dark:text-slate-300 mt-1">
+                {currentDivision.tagline}
+              </p>
+            </div>
+            <Link href="/services">
+              <Button
+                variant="outline"
+                size="sm"
+                className="font-space text-xs border-brand-blue/40 text-brand-blue hover:bg-brand-blue hover:text-white"
+              >
+                View Full Service Specs &rarr;
+              </Button>
+            </Link>
+          </div>
+
+          {/* 4 Cards Grid for the Active Division */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {currentDivision.services.map((srv) => (
+              <div
+                key={srv.title}
+                className="p-6 rounded-2xl bg-white dark:bg-[#111720] border border-slate-200/80 dark:border-[#202936] flex flex-col justify-between hover:border-brand-blue/40 hover:shadow-lg transition-all duration-300 group"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <h3 className="font-sora text-base font-bold text-slate-900 dark:text-white group-hover:text-brand-blue transition-colors">
+                      {srv.title}
+                    </h3>
+                    <span className="font-mono text-[10px] font-semibold text-brand-blue bg-brand-blue/10 px-2.5 py-0.5 rounded-full">
+                      {srv.price}
+                    </span>
+                  </div>
+
+                  <p className="font-manrope text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                    {srv.desc}
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex flex-wrap gap-1.5">
+                    {srv.stack.map((item) => (
+                      <span
+                        key={item}
+                        className="font-mono text-[10px] text-slate-500 bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+
+                  <Link
+                    href={`/services/${srv.slug}`}
+                    className="inline-flex items-center gap-1 font-space text-xs font-bold text-brand-blue hover:underline"
+                  >
+                    Scope Service
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </Container>
     </section>

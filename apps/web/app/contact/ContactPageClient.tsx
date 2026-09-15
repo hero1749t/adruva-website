@@ -197,34 +197,35 @@ export function ContactPageClient() {
               <div className="space-y-4">
                 <Badge
                   variant="outline"
-                  className="px-3 py-1 text-primary border-primary/20 bg-primary/5 uppercase tracking-wider text-xs font-semibold"
+                  className="px-3 py-1 text-brand-blue border-brand-blue/20 bg-brand-blue/5 uppercase tracking-wider text-xs font-mono font-semibold"
                 >
-                  Get In Touch
+                  Discovery & Consultation
                 </Badge>
-                <h1 className="text-3xl md:text-4xl font-extrabold font-poppins text-secondary dark:text-white leading-tight tracking-tight">
-                  Let&apos;s Build Something Great
+                <h1 className="text-3xl md:text-4xl font-extrabold font-sora text-slate-900 dark:text-white leading-tight tracking-tight">
+                  Let&apos;s figure out what to build.
                 </h1>
-                <p className="text-base leading-relaxed text-text-secondary dark:text-gray-300 font-inter">
-                  We work with local, service-based, and startup businesses to
-                  build modern web frameworks, automate manual workflows, and
-                  scale customer outreach.
+                <p className="text-base leading-relaxed text-slate-600 dark:text-slate-300 font-manrope">
+                  Tell us what you&apos;re trying to achieve, what&apos;s
+                  currently not working, and where you want to go. We&apos;ll
+                  help you architect the exact solution and provide a
+                  transparent, fixed-price scope.
                 </p>
               </div>
 
               {/* Contact Details List */}
-              <div className="space-y-4 font-inter">
+              <div className="space-y-4 font-manrope">
                 <a
                   href={`mailto:${contactEmail}`}
-                  className="flex items-center space-x-4 p-4 rounded-xl border border-border/60 bg-card hover:border-brand-orange/40 dark:hover:border-brand-orange/30 transition-all duration-300 shadow-sm"
+                  className="flex items-center space-x-4 p-4 rounded-xl border border-border/60 bg-card hover:border-brand-blue/40 dark:hover:border-brand-blue/30 transition-all duration-300 shadow-sm"
                 >
-                  <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-brand-orange/10 text-brand-orange shrink-0">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-brand-blue/10 text-brand-blue shrink-0">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs text-text-muted leading-none block">
-                      Email Us
+                    <span className="text-xs text-muted-foreground leading-none block">
+                      Email Engineering
                     </span>
-                    <span className="text-sm font-bold text-secondary dark:text-white mt-1 block">
+                    <span className="text-sm font-bold text-slate-900 dark:text-white mt-1 block font-mono">
                       {contactEmail}
                     </span>
                   </div>
@@ -232,30 +233,30 @@ export function ContactPageClient() {
 
                 <a
                   href={`tel:${contactPhone.replace(/\s+/g, "")}`}
-                  className="flex items-center space-x-4 p-4 rounded-xl border border-border/60 bg-card hover:border-brand-orange/40 dark:hover:border-brand-orange/30 transition-all duration-300 shadow-sm"
+                  className="flex items-center space-x-4 p-4 rounded-xl border border-border/60 bg-card hover:border-brand-blue/40 dark:hover:border-brand-blue/30 transition-all duration-300 shadow-sm"
                 >
-                  <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-brand-orange/10 text-brand-orange shrink-0">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-brand-blue/10 text-brand-blue shrink-0">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs text-text-muted leading-none block">
-                      Call Us
+                    <span className="text-xs text-muted-foreground leading-none block">
+                      Call Direct
                     </span>
-                    <span className="text-sm font-bold text-secondary dark:text-white mt-1 block">
+                    <span className="text-sm font-bold text-slate-900 dark:text-white mt-1 block font-mono">
                       {contactPhone}
                     </span>
                   </div>
                 </a>
 
                 <div className="flex items-center space-x-4 p-4 rounded-xl border border-border/60 bg-card shadow-sm">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-brand-orange/10 text-brand-orange shrink-0">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-brand-blue/10 text-brand-blue shrink-0">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs text-text-muted leading-none block">
-                      Visit Office
+                    <span className="text-xs text-muted-foreground leading-none block">
+                      Studio & Office
                     </span>
-                    <span className="text-sm font-bold text-secondary dark:text-white mt-1 block">
+                    <span className="text-sm font-bold text-slate-900 dark:text-white mt-1 block">
                       {officeAddress}
                     </span>
                   </div>
@@ -529,16 +530,16 @@ export function ContactPageClient() {
                     <Button
                       type="submit"
                       disabled={submitStatus === "loading"}
-                      className="w-full md:w-auto md:px-12 bg-brand-orange hover:bg-brand-orange/90 text-white py-6 rounded-xl font-bold flex items-center justify-center gap-2 group shadow-sm hover:shadow-brand-orange/20 transition-all duration-300"
+                      className="w-full md:w-auto md:px-12 bg-brand-blue hover:bg-brand-blue-dark text-white py-6 rounded-xl font-space font-bold flex items-center justify-center gap-2 group shadow-[0_4px_20px_rgba(8,120,249,0.35)] transition-all duration-300"
                     >
                       {submitStatus === "loading" ? (
                         <>
                           <Loader2 className="w-5 h-5 animate-spin" />
-                          Sending Message...
+                          Scheduling Consultation...
                         </>
                       ) : (
                         <>
-                          Send Message
+                          Book Consultation
                           <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
                         </>
                       )}

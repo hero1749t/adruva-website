@@ -1,195 +1,112 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
 import { Container } from "@/components/layout/container";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
+import { ArrowRight, BookOpen, Clock, Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-const posts = [
+const featuredInsights = [
   {
-    title: "The Rise of AI Automation in Service Businesses",
-    category: "AI & Tech",
-    date: "June 01, 2026",
-    readTime: "5 min read",
-    description:
-      "How local and small businesses are cutting manual booking and follow-up time by 80% using custom AI integrations.",
-    gradient: "/blog/ai-automation.jpg",
-    slug: "ai-automation-service-businesses",
-  },
-  {
-    title: "Why Headless Next.js Is Better for Your Business SEO",
-    category: "Web Dev",
-    date: "May 24, 2026",
-    readTime: "4 min read",
-    description:
-      "An analysis of static-site loading speeds, Core Web Vitals, and why custom Next.js configurations win over Wordpress.",
-    gradient: "/blog/headless-seo.jpg",
-    slug: "headless-nextjs-seo-benefits",
-  },
-  {
-    title: "Google Ads vs Meta Ads: Which Should You Choose?",
-    category: "Marketing",
-    date: "May 12, 2026",
+    title:
+      "Why Headless Next.js & NestJS Outperform Legacy WordPress for Enterprise Scale",
+    slug: "headless-nextjs-nestjs-vs-wordpress-enterprise",
+    category: "Technology",
     readTime: "6 min read",
-    description:
-      "Compare search intent vs interest targeting and understand where to invest your initial digital ad budget for maximum ROI.",
-    gradient: "/blog/ads-spend.jpg",
-    slug: "google-ads-vs-meta-ads-comparison",
+    date: "Sep 2026",
+    author: "Adruva Engineering",
+    excerpt:
+      "A deep dive into server-side rendering latency, security surface areas, and why modern architectures deliver <0.4s LCP scores.",
+  },
+  {
+    title:
+      "Autonomous WhatsApp CRM Qualification: Cutting 80% of Manual Sales Overhead",
+    slug: "ai-automation",
+    category: "AI Systems",
+    readTime: "5 min read",
+    date: "Aug 2026",
+    author: "AI Lab",
+    excerpt:
+      "How vector-embedded LLM workflows auto-qualify inbound customer inquiries and book calendar meetings without human delays.",
+  },
+  {
+    title:
+      "The Death of Third-Party Cookies: Why Meta Server-Side CAPI is Mandatory in 2026",
+    slug: "modern-web-design-trends-india-aggregators",
+    category: "Growth",
+    readTime: "7 min read",
+    date: "Aug 2026",
+    author: "Growth Team",
+    excerpt:
+      "Browser pixel tracking is losing over 35% of conversion events. Here is how server API gateways restore attribution fidelity.",
   },
 ];
 
-interface BlogPreviewProps {
-  initialPosts?: any[];
-}
-
-export function BlogPreview({ initialPosts }: BlogPreviewProps) {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-  useEffect(() => {
-    const checkReducedMotion = () => {
-      const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-      setPrefersReducedMotion(mediaQuery.matches);
-    };
-    checkReducedMotion();
-  }, []);
-
-  const displayPosts = (
-    initialPosts && initialPosts.length > 0 ? initialPosts : posts
-  ).map((p) => ({
-    title: p.title,
-    slug: p.slug,
-    category: p.category,
-    date: p.date || p.publishedDate || "June 01, 2026",
-    readTime: p.readTime || p.readingTime || "5 min read",
-    description: p.description || p.summary || "",
-    gradient: p.gradient || p.coverGradient || "from-[#0b1f3a] to-[#2d8cff]",
-  }));
-
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.08,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
-
+export function BlogPreview({ initialPosts }: { initialPosts?: any[] }) {
   return (
-    <section className="w-full py-20 bg-transparent transition-colors duration-300">
+    <section className="relative w-full py-24 bg-background border-b border-border/60 transition-colors duration-300">
       <Container>
-        {/* Header Row */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
-          <div className="flex flex-col items-start">
-            <span className="section-tag mb-3">Insights</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground font-poppins">
-              AI, Web Development & Marketing Insights
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+          <div className="max-w-2xl">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-brand-blue bg-brand-blue/10 px-3 py-1 rounded-full border border-brand-blue/20 mb-4 inline-block">
+              ADRUVA INSIGHTS
+            </span>
+            <h2 className="font-sora text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+              Technology, AI & growth architecture.
             </h2>
+            <p className="font-manrope text-base text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">
+              Technical breakdowns, engineering playbooks, and strategic
+              frameworks published by our core team.
+            </p>
           </div>
 
-          <Link
-            href="/blog"
-            className="group flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-brand-orange border-b border-border hover:border-brand-orange pb-0.5 transition-all duration-200 self-start"
-          >
-            All articles
-            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
+          <Link href="/blog" className="self-start md:self-end">
+            <Button
+              variant="outline"
+              className="font-space text-xs font-semibold border-slate-300 dark:border-slate-700 hover:border-brand-blue hover:text-brand-blue"
+            >
+              Explore All Publications &rarr;
+            </Button>
           </Link>
         </div>
 
-        {/* 3 Blog Cards Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
-        >
-          {displayPosts.map((post) => (
-            <motion.div
+        {/* 3 Publication Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {featuredInsights.map((post) => (
+            <Link
               key={post.slug}
-              variants={itemVariants}
-              className={cn(
-                "flex flex-col rounded-[14px] border border-border bg-card overflow-hidden transition-all duration-250 group",
-                "hover:border-brand-orange/40 hover:-translate-y-1",
-              )}
+              href={`/blog/${post.slug}`}
+              className="group p-6 rounded-3xl bg-slate-50 dark:bg-[#111720] border border-slate-200 dark:border-[#202936] flex flex-col justify-between hover:border-brand-blue/50 hover:shadow-xl transition-all duration-300"
             >
-              {/* Cover image area (top, 160px) */}
-              <div className="h-40 w-full relative overflow-hidden select-none">
-                {post.gradient.startsWith("http") ||
-                post.gradient.startsWith("/") ? (
-                  <Image
-                    src={post.gradient}
-                    alt={post.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                ) : (
-                  <div
-                    className={cn(
-                      "absolute inset-0 bg-gradient-to-br flex items-center justify-center",
-                      post.gradient,
-                    )}
-                  />
-                )}
-                <span className="text-xs font-bold uppercase tracking-widest text-white/30 font-space-grotesk absolute inset-0 m-auto flex items-center justify-center pointer-events-none z-10">
-                  {post.category} Post
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <span className="font-mono text-[10px] font-bold text-brand-blue bg-brand-blue/10 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                    {post.category}
+                  </span>
+                  <span className="flex items-center gap-1 text-[11px] text-slate-400 font-mono">
+                    <Clock className="w-3 h-3" />
+                    {post.readTime}
+                  </span>
+                </div>
+
+                <h3 className="font-sora text-lg font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-blue transition-colors leading-snug">
+                  {post.title}
+                </h3>
+
+                <p className="font-manrope text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                  {post.excerpt}
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between text-xs font-mono text-slate-500">
+                <span>{post.author}</span>
+                <span className="text-brand-blue font-bold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1 font-space">
+                  Read Article &rarr;
                 </span>
-
-                {/* Reading time badge (top-right) */}
-                <div className="absolute top-3 right-3 bg-black/40 text-white/70 text-xs px-2.5 py-0.5 rounded backdrop-blur-md border border-white/5 font-inter">
-                  {post.readTime}
-                </div>
               </div>
-
-              {/* Content area */}
-              <div className="p-5 flex-grow flex flex-col justify-between">
-                <div>
-                  {/* Meta row */}
-                  <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground uppercase mb-3 font-inter">
-                    <span className="text-brand-orange font-semibold">
-                      {post.category}
-                    </span>
-                    <span>·</span>
-                    <span>{post.date}</span>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-base font-semibold text-foreground mb-2 leading-snug font-poppins group-hover:text-brand-orange transition-colors line-clamp-2">
-                    {post.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-sm text-muted-foreground leading-relaxed font-inter mb-4 line-clamp-3">
-                    {post.description}
-                  </p>
-                </div>
-
-                {/* Read Article Link */}
-                <div className="border-t border-border/40 pt-4 mt-auto">
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="text-sm font-semibold text-brand-orange hover:text-brand-orange-hover transition-colors flex items-center gap-1 font-inter"
-                  >
-                    Read Article
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
+            </Link>
           ))}
-        </motion.div>
+        </div>
       </Container>
     </section>
   );

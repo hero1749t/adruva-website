@@ -1,51 +1,41 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
+import { Container } from "@/components/layout/container";
 
-const clients = [
-  'Lura Cafe',
-  'Dehradun Yoga Shala',
-  'Adruva Resto',
-  'Charm Engine',
-  'TT Retreats',
-  'Avni Joshi Setup',
-  'Menu Mitra',
-  'Skillinabox',
+const trustedBrands = [
+  "Lura Cafe",
+  "Dehradun Yoga Shala",
+  "Adruva Resto System",
+  "Charm Engine",
+  "TT Retreats",
+  "Vintage Tours & Travels",
+  "Bali Yoga Institute",
+  "Himalayan Wellness Co.",
 ];
 
 export function LogoMarquee() {
-  // Duplicate list to achieve a seamless infinite wrap loop
-  const marqueeItems = [...clients, ...clients, ...clients, ...clients];
-
   return (
-    <section className="w-full bg-background-secondary/30 py-8 overflow-hidden border-y border-border transition-colors duration-300">
-      
-      {/* Label */}
-      <div className="max-w-6xl mx-auto px-4 text-center mb-5">
-        <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground block font-inter">
-          TRUSTED BY BUSINESSES ACROSS INDIA
-        </span>
-      </div>
+    <section className="relative w-full py-12 bg-background border-b border-border/60 transition-colors duration-300">
+      <Container>
+        <div className="text-center mb-8">
+          <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
+            Trusted by businesses building what&apos;s next
+          </p>
+        </div>
 
-      {/* Marquee Container */}
-      <div 
-        className="relative w-full overflow-hidden flex py-2"
-        style={{
-          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
-          maskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
-        }}
-      >
-        <div className="flex items-center shrink-0 w-max animate-marquee">
-          {marqueeItems.map((client, idx) => (
-            <React.Fragment key={idx}>
-              <span className="text-sm font-medium text-muted-foreground/60 hover:text-foreground transition-colors duration-200 cursor-pointer font-inter whitespace-nowrap">
-                {client}
-              </span>
-              <span className="text-brand-orange opacity-60 mx-6 select-none">•</span>
-            </React.Fragment>
+        <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-75 grayscale hover:grayscale-0 transition-all duration-300">
+          {trustedBrands.map((brand) => (
+            <div
+              key={brand}
+              className="flex items-center gap-2 font-space text-sm sm:text-base font-bold text-slate-700 dark:text-slate-300 px-4 py-2 rounded-xl bg-slate-50 dark:bg-[#111720] border border-slate-200/60 dark:border-[#202936]"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-blue" />
+              <span>{brand}</span>
+            </div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

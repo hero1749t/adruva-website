@@ -1,160 +1,121 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import {
-  Building2,
-  Compass,
-  Laptop,
-  Hospital,
-  Briefcase,
-  Factory,
-  Home,
-  Landmark,
-  Utensils,
-  ShoppingCart,
-  Truck,
-  Dumbbell,
-  Sparkles,
   ArrowRight,
-  ShieldCheck,
+  Building2,
+  Utensils,
+  HeartPulse,
+  Laptop,
+  Scale,
+  GraduationCap,
+  Plane,
+  Stethoscope,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { motion } from "framer-motion";
 
-const bands = [
+const priorityIndustries = [
   {
-    title: "Band 1: Premium Priority Sectors",
-    badge: "CORE FOCUS",
-    sectors: [
-      {
-        name: "Hotels, Resorts & Luxury Stays",
-        icon: Building2,
-        desc: "Direct booking engines, zero OTA commission, guest WhatsApp CRM.",
-      },
-      {
-        name: "Yoga, Retreats & Wellness Centers",
-        icon: Compass,
-        desc: "High-ticket retreat funnels, multi-currency checkout, serene UI.",
-      },
-      {
-        name: "Technology, Startups & SaaS",
-        icon: Laptop,
-        desc: "Fast Next.js MVPs, full-stack React Native apps, scalable APIs.",
-      },
-      {
-        name: "Real Estate & Property Developers",
-        icon: Home,
-        desc: "High-conversion lead capture funnels, virtual tours, automated routing.",
-      },
-    ],
+    name: "Hospitality & Dining",
+    desc: "Hotels, resorts, luxury retreats, and multi-outlet restaurants needing offline POS, QR ordering, and reservation funnels.",
+    icon: Utensils,
+    useCase: "Table booking & POS sync",
   },
   {
-    title: "Band 2: High Priority Enterprise Sectors",
-    badge: "HIGH GROWTH",
-    sectors: [
-      {
-        name: "Healthcare & Specialist Clinics",
-        icon: Hospital,
-        desc: "Patient appointment portals, HIPAA-conscious forms, local SEO 3-Pack.",
-      },
-      {
-        name: "Professional Corporate B2B Services",
-        icon: Briefcase,
-        desc: "Authority branding, corporate Next.js platforms, client portals.",
-      },
-      {
-        name: "Manufacturing & Industrial Trade",
-        icon: Factory,
-        desc: "B2B catalog systems, inquiry databases, international SEO.",
-      },
-      {
-        name: "Finance, Insurance & Fintech",
-        icon: Landmark,
-        desc: "Secure portal architectures, compliance document AI, high trust.",
-      },
-    ],
+    name: "Travel & Wellness",
+    desc: "Yoga teacher trainings, retreat centers, and travel operators requiring multi-currency booking engines & WhatsApp CRM.",
+    icon: Plane,
+    useCase: "Global enrolment & payments",
+  },
+  {
+    name: "Real Estate & Property",
+    desc: "Developers, commercial brokerages, and proptech platforms requiring interactive floorplans & automated lead routing.",
+    icon: Building2,
+    useCase: "Lead qualification & 3D tour sync",
+  },
+  {
+    name: "Technology & SaaS",
+    desc: "High-growth startups, B2B platforms, and digital products needing custom web apps, APIs, and headless CMS architecture.",
+    icon: Laptop,
+    useCase: "Microservices & product engineering",
+  },
+  {
+    name: "Healthcare & Clinics",
+    desc: "Diagnostic labs, dental clinics, and wellness centers seeking HIPAA/data-safe appointment engines and reminder automation.",
+    icon: Stethoscope,
+    useCase: "Patient booking & SMS alerts",
+  },
+  {
+    name: "Professional Services",
+    desc: "Consultancies, law firms, and financial practices needing client onboarding portals and authority-building search ranking.",
+    icon: Scale,
+    useCase: "Client intake & portal security",
   },
 ];
 
 export function WhoWeServe() {
-  const [activeBand, setActiveBand] = useState(0);
-
   return (
-    <section className="relative w-full py-24 bg-background-secondary/30 dark:bg-[#060D1A] border-y border-border/60 transition-colors duration-300">
+    <section
+      id="industries"
+      className="relative w-full py-24 bg-background border-b border-border/60 transition-colors duration-300"
+    >
       <Container>
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-blue/10 border border-brand-blue/30 text-xs font-semibold text-brand-blue font-space tracking-wide uppercase mb-4">
-            Ideal Customer Profile &bull; 20 Strategic Verticals
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground tracking-tight font-sora mb-4">
-            Tailored Engineering for{" "}
-            <span className="bg-gradient-to-r from-brand-blue to-brand-teal bg-clip-text text-transparent">
-              High-Growth Industries.
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+          <div className="max-w-2xl">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-brand-blue bg-brand-blue/10 px-3 py-1 rounded-full border border-brand-blue/20 mb-4 inline-block">
+              VERTICAL EXPERTISE
             </span>
-          </h2>
-          <p className="text-base sm:text-lg text-muted-foreground font-manrope">
-            We partner with ambitious SMEs (5–150 employees) that value speed,
-            certainty, and tangible commercial impact.
-          </p>
+            <h2 className="font-sora text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+              Built across industries.
+            </h2>
+            <p className="font-manrope text-base text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">
+              We design specialized architecture tailored to the unique
+              operational workflows, compliance requirements, and customer
+              behavior of each sector.
+            </p>
+          </div>
+
+          <Link href="/contact" className="self-start md:self-end">
+            <span className="font-space text-xs font-bold text-brand-blue hover:underline inline-flex items-center gap-1.5">
+              Discuss Your Industry Requirements
+              <ArrowRight className="w-3.5 h-3.5" />
+            </span>
+          </Link>
         </div>
 
-        {/* Priority Bands Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {bands.map((band) => (
-            <div
-              key={band.title}
-              className="p-7 rounded-2xl bg-card dark:bg-[#0A1428] border border-border/80 shadow-sm flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-6 pb-4 border-b border-border/40">
-                  <h3 className="text-lg font-bold text-foreground font-sora">
-                    {band.title}
+        {/* 6 Priority Vertical Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {priorityIndustries.map((ind) => {
+            const Icon = ind.icon;
+            return (
+              <div
+                key={ind.name}
+                className="p-6 rounded-2xl bg-slate-50 dark:bg-[#111720] border border-slate-200 dark:border-[#202936] hover:border-brand-blue/40 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
+              >
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-brand-blue/10 text-brand-blue flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+                    <Icon className="w-5 h-5" />
+                  </div>
+
+                  <h3 className="font-sora text-base font-bold text-slate-900 dark:text-white mb-2 group-hover:text-brand-blue transition-colors">
+                    {ind.name}
                   </h3>
-                  <span className="font-mono text-[10px] font-bold px-2.5 py-1 rounded bg-brand-blue/10 border border-brand-blue/30 text-brand-blue">
-                    {band.badge}
+
+                  <p className="font-manrope text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                    {ind.desc}
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between text-[11px] font-mono">
+                  <span className="text-slate-500">Core Use Case</span>
+                  <span className="font-semibold text-brand-blue">
+                    {ind.useCase}
                   </span>
                 </div>
-
-                <div className="space-y-4">
-                  {band.sectors.map((sec) => {
-                    const Icon = sec.icon;
-                    return (
-                      <div
-                        key={sec.name}
-                        className="p-4 rounded-xl bg-background-secondary/40 dark:bg-[#0D1932] border border-border/40 flex items-start gap-3.5 hover:border-brand-blue/40 transition-colors"
-                      >
-                        <div className="w-9 h-9 rounded-lg bg-brand-blue/10 border border-brand-blue/20 flex items-center justify-center text-brand-blue shrink-0 mt-0.5">
-                          <Icon className="w-4 h-4" />
-                        </div>
-                        <div>
-                          <div className="font-sora font-bold text-sm text-foreground">
-                            {sec.name}
-                          </div>
-                          <div className="font-manrope text-xs text-muted-foreground mt-0.5 leading-relaxed">
-                            {sec.desc}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
               </div>
-
-              <div className="mt-6 pt-4 border-t border-border/40 flex items-center justify-between">
-                <span className="text-xs text-muted-foreground font-manrope">
-                  Full custom scoping available
-                </span>
-                <Link
-                  href="/contact"
-                  className="font-space text-xs font-semibold text-brand-blue flex items-center gap-1 hover:underline"
-                >
-                  Discuss Your Sector <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </Container>
     </section>

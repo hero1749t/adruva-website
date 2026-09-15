@@ -33,41 +33,52 @@ import Image from "next/image";
 
 const serviceCategories = [
   {
-    name: "Build",
+    name: "01 Technology & Engineering",
     icon: Code2,
     services: [
-      { name: "Web Dev", slug: "web-development", icon: Code2 },
-      { name: "Mobile App", slug: "mobile-app-development", icon: Smartphone },
-      { name: "SaaS", slug: "saas-custom-software", icon: Terminal },
+      { name: "Web Development", slug: "web-development", icon: Code2 },
+      {
+        name: "Mobile App Development",
+        slug: "mobile-app-development",
+        icon: Smartphone,
+      },
+      {
+        name: "SaaS & Custom Software",
+        slug: "saas-custom-software",
+        icon: Terminal,
+      },
     ],
   },
   {
-    name: "Automate",
+    name: "02 AI & Automation",
     icon: Cpu,
     services: [
       { name: "AI Automation", slug: "ai-automation", icon: Cpu },
-      { name: "AI Ads", slug: "ai-ads", icon: Megaphone },
-      { name: "Custom AI", slug: "custom-ai-solutions", icon: Zap },
+      { name: "AI Ads & Workflows", slug: "ai-ads", icon: Megaphone },
+      { name: "Custom AI Systems", slug: "custom-ai-solutions", icon: Zap },
     ],
   },
   {
-    name: "Grow",
+    name: "03 Marketing & Growth",
     icon: Target,
     services: [
-      { name: "Google Ads", slug: "google-ads", icon: Target },
-      { name: "Meta Ads", slug: "meta-ads", icon: Share2 },
-      { name: "SEO", slug: "seo", icon: Search },
-      { name: "Social Media", slug: "social-media-management", icon: Share2 },
-      { name: "Email Marketing", slug: "email-marketing", icon: Mail },
+      { name: "Technical SEO", slug: "seo", icon: Search },
+      { name: "Google & Search Ads", slug: "google-ads", icon: Target },
+      { name: "Meta & Social Ads", slug: "meta-ads", icon: Share2 },
+      {
+        name: "Social Media Growth",
+        slug: "social-media-management",
+        icon: Share2,
+      },
     ],
   },
   {
-    name: "Design",
+    name: "04 Brand & Creative",
     icon: Palette,
     services: [
-      { name: "UI/UX", slug: "ui-ux-design", icon: Layout },
-      { name: "Graphic Design", slug: "graphic-designing", icon: Palette },
-      { name: "Video Editing", slug: "video-editing", icon: Video },
+      { name: "UI/UX & Product Design", slug: "ui-ux-design", icon: Layout },
+      { name: "Brand Identity", slug: "graphic-designing", icon: Palette },
+      { name: "Video & Motion Media", slug: "video-editing", icon: Video },
     ],
   },
 ];
@@ -159,13 +170,12 @@ export function Navbar() {
   }, [isServicesDropdownOpen]);
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
     { name: "Services", href: "/services", isDropdown: true },
-    { name: "Our Work", href: "/work" },
-    { name: "Blog", href: "/blog" },
-    { name: "Careers", href: "/careers" },
-    { name: "Contact", href: "/contact" },
+    { name: "Work", href: "/work" },
+    { name: "Approach", href: "/about#process" },
+    { name: "Industries", href: "/#industries" },
+    { name: "Insights", href: "/blog" },
+    { name: "About", href: "/about" },
   ];
 
   const isScrolled = scrollY > 20;
@@ -181,8 +191,8 @@ export function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 h-16 flex items-center",
           isScrolled
-            ? "bg-white dark:bg-[#080B10] border-b border-border shadow-[0_1px_20px_rgba(0,0,0,0.06)]"
-            : "bg-white/40 dark:bg-transparent backdrop-blur-[6px] dark:backdrop-blur-0 border-b border-border/10 dark:border-transparent",
+            ? "bg-white/95 dark:bg-[#07090D]/95 border-b border-border shadow-[0_1px_20px_rgba(0,0,0,0.06)] backdrop-blur-md"
+            : "bg-white/50 dark:bg-transparent backdrop-blur-[6px] dark:backdrop-blur-0 border-b border-border/10 dark:border-transparent",
         )}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-between">
@@ -194,7 +204,7 @@ export function Navbar() {
             <div className="h-8 w-[40px] relative shrink-0 group-hover:scale-105 transition-transform duration-200">
               <Image
                 src="/logo-symbol-light.png"
-                alt="Adruva Solution Logo | Web Development & AI Automation Agency"
+                alt="Adruva Solution Logo | Technology & AI Agency"
                 fill
                 sizes="40px"
                 className="object-contain hidden dark:block"
@@ -202,7 +212,7 @@ export function Navbar() {
               />
               <Image
                 src="/logo-symbol-dark.png"
-                alt="Adruva Solution Logo | Web Development & AI Automation Agency"
+                alt="Adruva Solution Logo | Technology & AI Agency"
                 fill
                 sizes="40px"
                 className="object-contain block dark:hidden"
@@ -248,7 +258,7 @@ export function Navbar() {
                         }
                       }}
                       className={cn(
-                        "flex items-center gap-1 text-sm font-medium transition-colors hover:text-brand-orange text-foreground/75 hover:text-foreground dark:text-muted-foreground dark:hover:text-white",
+                        "flex items-center gap-1 text-sm font-medium transition-colors hover:text-brand-blue text-foreground/75 hover:text-foreground dark:text-muted-foreground dark:hover:text-white font-manrope",
                         isActive &&
                           "text-foreground dark:text-white font-semibold",
                       )}
@@ -265,7 +275,7 @@ export function Navbar() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -8 }}
                           transition={{ duration: 0.2, ease: "easeOut" }}
-                          className="fixed left-0 right-0 top-16 w-full bg-card border-b border-border shadow-lg rounded-b-xl z-50 overflow-hidden"
+                          className="fixed left-0 right-0 top-16 w-full bg-card border-b border-border shadow-2xl rounded-b-2xl z-50 overflow-hidden"
                           onMouseEnter={() => {
                             if (supportsHover) setIsServicesDropdownOpen(true);
                           }}
@@ -279,7 +289,7 @@ export function Navbar() {
                                 key={category.name}
                                 className="flex flex-col space-y-4"
                               >
-                                <h4 className="text-xs font-bold uppercase tracking-widest text-brand-orange font-space-grotesk">
+                                <h4 className="text-xs font-bold uppercase tracking-widest text-brand-blue font-space">
                                   {category.name}
                                 </h4>
                                 <ul className="flex flex-col space-y-2">
@@ -289,13 +299,13 @@ export function Navbar() {
                                       <li key={service.slug}>
                                         <Link
                                           href={`/services/${service.slug}`}
-                                          className="flex items-center gap-2.5 py-1 px-2 -mx-2 rounded-lg text-sm text-muted-foreground hover:text-foreground border-l-2 border-transparent hover:border-brand-orange transition-all duration-200"
+                                          className="flex items-center gap-2.5 py-1 px-2 -mx-2 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-slate-100 dark:hover:bg-brand-card-dark border-l-2 border-transparent hover:border-brand-blue transition-all duration-200"
                                           onClick={() =>
                                             setIsServicesDropdownOpen(false)
                                           }
                                         >
-                                          <ServiceIcon className="h-4 w-4 shrink-0 text-muted-foreground" />
-                                          <span className="font-medium font-inter">
+                                          <ServiceIcon className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-brand-blue" />
+                                          <span className="font-medium font-manrope">
                                             {service.name}
                                           </span>
                                         </Link>
@@ -309,31 +319,18 @@ export function Navbar() {
 
                           {/* Dropdown footer banner */}
                           <div className="bg-muted/40 border-t border-border px-8 py-3.5 flex items-center justify-between">
-                            <span className="text-[11px] text-muted-foreground font-medium font-inter">
-                              Need a customized digital strategy? Let&apos;s
-                              build together.
+                            <span className="text-[11px] text-muted-foreground font-medium font-manrope">
+                              Looking for custom software architecture or AI
+                              automation? Let&apos;s engineer together.
                             </span>
-                            {calendlyUrl.startsWith("http") ? (
-                              <a
-                                href={calendlyUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-xs font-bold text-brand-orange hover:text-brand-orange-hover transition-colors flex items-center gap-1 font-inter"
-                                onClick={() => setIsServicesDropdownOpen(false)}
-                              >
-                                Book a Free Call
-                                <ChevronRight className="h-3.5 w-3.5" />
-                              </a>
-                            ) : (
-                              <Link
-                                href={calendlyUrl}
-                                className="text-xs font-bold text-brand-orange hover:text-brand-orange-hover transition-colors flex items-center gap-1 font-inter"
-                                onClick={() => setIsServicesDropdownOpen(false)}
-                              >
-                                Book a Free Call
-                                <ChevronRight className="h-3.5 w-3.5" />
-                              </Link>
-                            )}
+                            <Link
+                              href="/contact"
+                              className="text-xs font-bold text-brand-blue hover:text-brand-blue-dark transition-colors flex items-center gap-1 font-space"
+                              onClick={() => setIsServicesDropdownOpen(false)}
+                            >
+                              Book a Consultation
+                              <ChevronRight className="h-3.5 w-3.5" />
+                            </Link>
                           </div>
                         </motion.div>
                       )}
@@ -347,7 +344,7 @@ export function Navbar() {
                   key={link.name}
                   href={link.href}
                   className={cn(
-                    "text-sm font-medium transition-colors hover:text-brand-orange relative text-foreground/75 hover:text-foreground dark:text-muted-foreground dark:hover:text-white flex items-center h-full",
+                    "text-sm font-medium transition-colors hover:text-brand-blue relative text-foreground/75 hover:text-foreground dark:text-muted-foreground dark:hover:text-white flex items-center h-full font-manrope",
                     isActive && "text-foreground dark:text-white font-semibold",
                   )}
                 >
@@ -355,7 +352,7 @@ export function Navbar() {
                   {isActive && (
                     <motion.div
                       layoutId="activeNavIndicator"
-                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-orange"
+                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-blue"
                       transition={{
                         type: "spring",
                         stiffness: 380,
@@ -372,65 +369,14 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             <div id="google_translate_element" className="scale-90" />
 
-            <style
-              dangerouslySetInnerHTML={{
-                __html: `
-              .skiptranslate, .goog-te-banner-frame {
-                display: none !important;
-              }
-              body {
-                top: 0px !important;
-              }
-              .goog-te-gadget-simple {
-                background-color: transparent !important;
-                border: 1px solid rgba(226, 232, 240, 0.2) !important;
-                border-radius: 9999px !important;
-                padding: 4px 10px !important;
-                font-size: 11px !important;
-                display: flex !important;
-                align-items: center !important;
-                cursor: pointer !important;
-                transition: all 0.2s !important;
-              }
-              .dark .goog-te-gadget-simple {
-                border-color: rgba(255, 255, 255, 0.1) !important;
-              }
-              .goog-te-gadget-simple:hover {
-                border-color: rgba(255, 107, 0, 0.5) !important;
-              }
-              .goog-te-gadget-simple img {
-                display: none !important;
-              }
-              .goog-te-menu-value {
-                margin: 0 !important;
-                color: inherit !important;
-                font-weight: 600 !important;
-                text-transform: uppercase !important;
-                letter-spacing: 0.05em !important;
-              }
-              .goog-te-menu-value span {
-                color: inherit !important;
-              }
-            `,
-              }}
-            />
-
             <div className="hidden md:flex items-center gap-4 h-16">
               <ThemeToggle />
-              <a
-                href={calendlyUrl}
-                target={calendlyUrl.startsWith("http") ? "_blank" : undefined}
-                rel={
-                  calendlyUrl.startsWith("http")
-                    ? "noopener noreferrer"
-                    : undefined
-                }
-              >
-                <Button className="bg-brand-orange hover:bg-brand-orange-hover text-white text-xs px-5 h-9 rounded-full font-semibold flex items-center gap-1.5 shadow-[0_4px_14px_rgba(255,107,0,0.3)] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
+              <Link href="/contact">
+                <Button className="bg-brand-blue hover:bg-brand-blue-dark text-white text-xs px-5 h-9 rounded-lg font-semibold font-space flex items-center gap-1.5 shadow-[0_4px_14px_rgba(8,120,249,0.3)] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
                   <Calendar className="h-3.5 w-3.5" />
-                  Book a Free Call
+                  Book a Consultation &rarr;
                 </Button>
-              </a>
+              </Link>
             </div>
 
             <div className="flex md:hidden items-center gap-3">
