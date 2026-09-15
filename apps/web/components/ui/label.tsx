@@ -20,7 +20,8 @@ export function Label({
         uppercase && "uppercase tracking-[0.1em]",
         variant === "sectionTag" &&
           "text-primary dark:text-primary tracking-[0.12em] block mb-2.5",
-        variant === "default" && "text-text-muted dark:text-text-muted",
+        variant === "default" &&
+          "text-slate-500 dark:text-slate-400 dark:text-slate-500 dark:text-slate-400",
         className,
       )}
       {...props}

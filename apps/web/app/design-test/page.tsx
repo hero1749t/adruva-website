@@ -293,7 +293,7 @@ export default function DesignTestPage() {
                   <AccordionTrigger className="font-sora font-semibold">
                     How do we build Next.js apps?
                   </AccordionTrigger>
-                  <AccordionContent className="font-manrope text-text-secondary text-sm">
+                  <AccordionContent className="font-manrope text-slate-600 dark:text-slate-400 text-sm">
                     We use Next.js 14 App Router, dynamic server layouts,
                     tailwind styling, and local fonts for maximum speed and core
                     web vitals optimization.
@@ -303,7 +303,7 @@ export default function DesignTestPage() {
                   <AccordionTrigger className="font-sora font-semibold">
                     Is the theme responsive?
                   </AccordionTrigger>
-                  <AccordionContent className="font-manrope text-text-secondary text-sm">
+                  <AccordionContent className="font-manrope text-slate-600 dark:text-slate-400 text-sm">
                     Yes! It maps CSS properties correctly so layouts
                     automatically shrink and expand from mobile up to desktop
                     configurations.

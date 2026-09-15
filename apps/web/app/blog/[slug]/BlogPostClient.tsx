@@ -80,7 +80,7 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
       <div className="bg-muted/30 py-4 border-b border-border transition-colors duration-300">
         <Container>
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2 text-sm text-text-muted">
+            <div className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
               <Link href="/" className="hover:text-primary transition-colors">
                 Home
               </Link>
@@ -92,7 +92,7 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                 Blog
               </Link>
               <span>/</span>
-              <span className="text-text-primary dark:text-white font-medium max-w-[200px] md:max-w-[400px] truncate">
+              <span className="text-slate-900 dark:text-white font-medium max-w-[200px] md:max-w-[400px] truncate">
                 {post.title}
               </span>
             </div>
@@ -152,7 +152,7 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                 {post.category}
               </Badge>
 
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold font-sora text-secondary dark:text-white leading-tight tracking-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold font-sora text-slate-900 dark:text-white leading-tight tracking-tight">
                 {post.title}
               </h1>
 
@@ -163,18 +163,18 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                     {post.author.avatarInitials}
                   </div>
                   <div className="text-left">
-                    <p className="text-sm font-semibold text-text-primary dark:text-white flex items-center gap-1">
-                      <User className="w-3.5 h-3.5 text-text-muted" />
+                    <p className="text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-1">
+                      <User className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
                       {post.author.name}
                     </p>
-                    <p className="text-xs text-text-muted">
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
                       {post.author.role}
                     </p>
                   </div>
                 </div>
 
                 {/* Date and Time */}
-                <div className="flex items-center justify-center space-x-4 text-sm text-text-muted font-manrope">
+                <div className="flex items-center justify-center space-x-4 text-sm text-slate-500 dark:text-slate-400 font-manrope">
                   <span className="flex items-center gap-1.5">
                     <Calendar className="w-4 h-4 text-primary/80" />
                     {post.publishedDate}
@@ -215,7 +215,7 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
 
             {/* Share & Actions Row */}
             <div className="mt-12 pt-6 border-t border-border/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="flex items-center gap-2 text-sm font-semibold text-secondary dark:text-white">
+              <div className="flex items-center gap-2 text-sm font-semibold text-slate-900 dark:text-white">
                 <Share2 className="w-4 h-4 text-primary" />
                 Share this article:
               </div>
@@ -241,7 +241,7 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                   href={shareUrls.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 text-secondary dark:text-white border border-border transition-colors duration-200"
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 text-slate-900 dark:text-white border border-border transition-colors duration-200"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -306,7 +306,7 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                   >
                     RECOMMENDED
                   </Badge>
-                  <h2 className="text-2xl md:text-3xl font-bold font-sora text-secondary dark:text-white mt-2">
+                  <h2 className="text-2xl md:text-3xl font-bold font-sora text-slate-900 dark:text-white mt-2">
                     Related Articles
                   </h2>
                 </div>
@@ -353,7 +353,7 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                     </Link>
 
                     <CardHeader className="p-5 pb-2 space-y-2">
-                      <div className="flex items-center space-x-3 text-[10px] text-text-muted font-manrope">
+                      <div className="flex items-center space-x-3 text-[10px] text-slate-500 dark:text-slate-400 font-manrope">
                         <span className="flex items-center gap-1">
                           <Calendar className="w-3 h-3 text-primary/70" />
                           {relatedPost.publishedDate}
@@ -367,14 +367,14 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                         href={`/blog/${relatedPost.slug}`}
                         className="block group-hover:text-primary transition-colors duration-200"
                       >
-                        <h3 className="text-base font-bold font-sora text-secondary dark:text-white line-clamp-2 leading-snug">
+                        <h3 className="text-base font-bold font-sora text-slate-900 dark:text-white line-clamp-2 leading-snug">
                           {relatedPost.title}
                         </h3>
                       </Link>
                     </CardHeader>
 
                     <CardContent className="p-5 pt-0 flex-grow">
-                      <p className="text-xs text-text-muted dark:text-gray-300 line-clamp-2 leading-relaxed font-manrope">
+                      <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-gray-300 line-clamp-2 leading-relaxed font-manrope">
                         {relatedPost.summary}
                       </p>
                     </CardContent>

@@ -201,7 +201,10 @@ export function DialogDescription({
 }: React.ComponentProps<"p">) {
   return (
     <p
-      className={cn("text-sm text-text-secondary font-manrope", className)}
+      className={cn(
+        "text-sm text-slate-600 dark:text-slate-400 font-manrope",
+        className,
+      )}
       {...props}
     />
   );

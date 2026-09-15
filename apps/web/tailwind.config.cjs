@@ -43,6 +43,11 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        text: {
+          primary: '#0F172A',
+          secondary: '#475569',
+          muted: '#64748B',
+        },
         brand: {
           blue: '#0878F9',
           'blue-dark': '#0757C9',

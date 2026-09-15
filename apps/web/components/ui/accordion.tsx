@@ -118,7 +118,7 @@ export function AccordionContent({
   return (
     <div
       className={cn(
-        "pt-0 pb-4 text-sm text-text-secondary font-manrope transition-all",
+        "pt-0 pb-4 text-sm text-slate-600 dark:text-slate-400 font-manrope transition-all",
         className,
       )}
       {...props}

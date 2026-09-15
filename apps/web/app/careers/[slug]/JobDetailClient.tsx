@@ -403,7 +403,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
             <div className="lg:col-span-5">
               <Card className="border-border/80 bg-card rounded-2xl shadow-xl overflow-hidden sticky top-24">
                 <CardHeader className="bg-muted/10 p-6 border-b border-border/40">
-                  <CardTitle className="text-xl font-bold font-sora text-secondary dark:text-white flex items-center gap-2">
+                  <CardTitle className="text-xl font-bold font-sora text-slate-900 dark:text-white flex items-center gap-2">
                     <Sparkles className="h-5 w-5 text-brand-blue fill-brand-blue" />
                     Apply for this Position
                   </CardTitle>
@@ -457,7 +457,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                     {/* Full Name */}
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
+                      <label className="text-[10px] font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                         Full Name <span className="text-brand-blue">*</span>
                       </label>
                       <Input
@@ -478,7 +478,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
 
                     {/* Email */}
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
+                      <label className="text-[10px] font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                         Email Address <span className="text-brand-blue">*</span>
                       </label>
                       <Input
@@ -499,7 +499,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
 
                     {/* Phone */}
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
+                      <label className="text-[10px] font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                         Phone Number <span className="text-brand-blue">*</span>
                       </label>
                       <Input
@@ -520,7 +520,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
 
                     {/* Current Location */}
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
+                      <label className="text-[10px] font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                         Current Location{" "}
                         <span className="text-brand-blue">*</span>
                       </label>
@@ -543,7 +543,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                     {/* Dropdowns: Qualification + Experience */}
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-1.5">
-                        <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
+                        <label className="text-[10px] font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                           Qualification{" "}
                           <span className="text-brand-blue">*</span>
                         </label>
@@ -569,7 +569,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
+                        <label className="text-[10px] font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                           Experience <span className="text-brand-blue">*</span>
                         </label>
                         <select
@@ -596,7 +596,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
 
                     {/* Resume File Upload Component */}
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
+                      <label className="text-[10px] font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                         Resume PDF <span className="text-brand-blue">*</span>
                       </label>
                       <input
@@ -646,7 +646,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                     {/* Links: Portfolio + LinkedIn */}
                     <div className="space-y-3 border-t border-border/15 pt-3">
                       <div className="space-y-1.5">
-                        <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
+                        <label className="text-[10px] font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                           Portfolio URL
                         </label>
                         <Input
@@ -663,7 +663,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
+                        <label className="text-[10px] font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                           LinkedIn Profile URL
                         </label>
                         <Input
@@ -682,7 +682,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
 
                     {/* Textareas: Cover Letter + Why Join */}
                     <div className="space-y-1.5 border-t border-border/15 pt-3">
-                      <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
+                      <label className="text-[10px] font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                         Cover Letter <span className="text-brand-blue">*</span>
                       </label>
                       <Textarea
@@ -702,7 +702,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
+                      <label className="text-[10px] font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                         Why do you want to join Adruva?{" "}
                         <span className="text-brand-blue">*</span>
                       </label>
@@ -724,7 +724,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
 
                     {/* Referral source */}
                     <div className="space-y-1.5 border-t border-border/15 pt-3">
-                      <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
+                      <label className="text-[10px] font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                         How did you hear about us?{" "}
                         <span className="text-brand-blue">*</span>
                       </label>

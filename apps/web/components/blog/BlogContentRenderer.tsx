@@ -11,7 +11,7 @@ const renderTextNode = (node: TiptapNode) => {
     for (const mark of node.marks) {
       if (mark.type === "bold") {
         element = (
-          <strong className="font-bold text-secondary dark:text-white">
+          <strong className="font-bold text-slate-900 dark:text-white">
             {element}
           </strong>
         );
@@ -65,7 +65,7 @@ const renderNode = (node: TiptapNode, index: number): React.ReactNode => {
       return (
         <p
           key={index}
-          className="text-lg leading-relaxed text-text-secondary dark:text-gray-300 font-manrope mb-4"
+          className="text-lg leading-relaxed text-slate-600 dark:text-slate-300 font-manrope mb-4"
         >
           {children}
         </p>
@@ -76,7 +76,7 @@ const renderNode = (node: TiptapNode, index: number): React.ReactNode => {
         return (
           <h2
             key={index}
-            className="text-2xl md:text-3xl font-bold font-sora text-secondary dark:text-white mt-10 mb-4 first:mt-0"
+            className="text-2xl md:text-3xl font-bold font-sora text-slate-900 dark:text-white mt-10 mb-4 first:mt-0"
           >
             {children}
           </h2>
@@ -86,7 +86,7 @@ const renderNode = (node: TiptapNode, index: number): React.ReactNode => {
         return (
           <h3
             key={index}
-            className="text-xl md:text-2xl font-semibold font-sora text-secondary dark:text-white mt-8 mb-3"
+            className="text-xl md:text-2xl font-semibold font-sora text-slate-900 dark:text-white mt-8 mb-3"
           >
             {children}
           </h3>
@@ -95,7 +95,7 @@ const renderNode = (node: TiptapNode, index: number): React.ReactNode => {
       return (
         <h4
           key={index}
-          className="text-lg md:text-xl font-semibold font-sora text-secondary dark:text-white mt-6 mb-2"
+          className="text-lg md:text-xl font-semibold font-sora text-slate-900 dark:text-white mt-6 mb-2"
         >
           {children}
         </h4>
@@ -105,7 +105,7 @@ const renderNode = (node: TiptapNode, index: number): React.ReactNode => {
       return (
         <ul
           key={index}
-          className="list-disc pl-6 space-y-2 mb-6 text-text-secondary dark:text-gray-300 font-manrope text-lg"
+          className="list-disc pl-6 space-y-2 mb-6 text-slate-600 dark:text-slate-300 font-manrope text-lg"
         >
           {children}
         </ul>
@@ -114,7 +114,7 @@ const renderNode = (node: TiptapNode, index: number): React.ReactNode => {
       return (
         <ol
           key={index}
-          className="list-decimal pl-6 space-y-2 mb-6 text-text-secondary dark:text-gray-300 font-manrope text-lg"
+          className="list-decimal pl-6 space-y-2 mb-6 text-slate-600 dark:text-slate-300 font-manrope text-lg"
         >
           {children}
         </ol>
@@ -129,7 +129,7 @@ const renderNode = (node: TiptapNode, index: number): React.ReactNode => {
       return (
         <blockquote
           key={index}
-          className="border-l-4 border-primary bg-secondary/5 dark:bg-secondary/15 px-6 py-4 my-6 italic text-text-secondary dark:text-gray-300 rounded-r font-manrope text-lg whitespace-pre-line"
+          className="border-l-4 border-primary bg-secondary/5 dark:bg-secondary/15 px-6 py-4 my-6 italic text-slate-600 dark:text-slate-300 rounded-r font-manrope text-lg whitespace-pre-line"
         >
           {children}
         </blockquote>

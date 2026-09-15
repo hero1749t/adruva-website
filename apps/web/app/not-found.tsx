@@ -28,11 +28,11 @@ export default function NotFoundPage() {
                 404
               </h1>
 
-              <h2 className="text-2xl md:text-3xl font-extrabold font-sora text-secondary dark:text-white leading-tight tracking-tight">
+              <h2 className="text-2xl md:text-3xl font-extrabold font-sora text-slate-900 dark:text-white leading-tight tracking-tight">
                 Lost in Space?
               </h2>
 
-              <p className="text-sm md:text-base leading-relaxed text-text-secondary dark:text-gray-300 font-manrope max-w-sm mx-auto">
+              <p className="text-sm md:text-base leading-relaxed text-slate-600 dark:text-slate-300 font-manrope max-w-sm mx-auto">
                 The page you are looking for might have been removed, had its
                 name changed, or is temporarily unavailable.
               </p>
@@ -55,10 +55,10 @@ export default function NotFoundPage() {
                 href="/contact"
                 className={cn(
                   buttonVariants({ variant: "outline", size: "lg" }),
-                  "border-border/80 text-text-primary dark:text-white px-6 py-6 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-muted transition-all duration-300 w-full sm:w-auto h-auto",
+                  "border-border/80 text-slate-900 dark:text-white px-6 py-6 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-muted transition-all duration-300 w-full sm:w-auto h-auto",
                 )}
               >
-                <HelpCircle className="w-4 h-4 text-text-muted" />
+                <HelpCircle className="w-4 h-4 text-slate-500 dark:text-slate-400" />
                 Contact Support
               </Link>
             </div>

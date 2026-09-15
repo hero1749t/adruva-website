@@ -27,12 +27,12 @@ export default function PrivacyPolicyPage() {
       {/* Breadcrumb */}
       <div className="bg-muted/30 py-4 border-b border-border transition-colors duration-300">
         <Container>
-          <div className="flex items-center space-x-2 text-sm text-text-muted">
+          <div className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
             <Link href="/" className="hover:text-primary transition-colors">
               Home
             </Link>
             <span>/</span>
-            <span className="text-text-primary dark:text-white font-medium">
+            <span className="text-slate-900 dark:text-white font-medium">
               Privacy Policy
             </span>
           </div>
@@ -51,10 +51,10 @@ export default function PrivacyPolicyPage() {
               >
                 Compliance
               </Badge>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold font-sora text-secondary dark:text-white leading-tight tracking-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold font-sora text-slate-900 dark:text-white leading-tight tracking-tight">
                 Privacy Policy
               </h1>
-              <div className="flex flex-wrap items-center gap-4 text-sm text-text-muted font-manrope py-2 border-b border-border/60">
+              <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400 font-manrope py-2 border-b border-border/60">
                 <span className="flex items-center gap-1.5">
                   <Clock className="w-4 h-4 text-primary/80" />
                   Last Updated: {currentDate}
@@ -67,7 +67,7 @@ export default function PrivacyPolicyPage() {
             </div>
 
             {/* Document body using styled elements */}
-            <div className="prose prose-lg dark:prose-invert font-manrope text-text-secondary dark:text-gray-300 space-y-6 leading-relaxed">
+            <div className="prose prose-lg dark:prose-invert font-manrope text-slate-600 dark:text-slate-300 space-y-6 leading-relaxed">
               <p>
                 At <strong>Adruva Solution</strong>, we respect your privacy and
                 are committed to protecting the personal information you share
@@ -79,7 +79,7 @@ export default function PrivacyPolicyPage() {
                 ) or submit inquiries through our forms.
               </p>
 
-              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-slate-900 dark:text-white mt-8 mb-4">
                 1. Information We Collect
               </h2>
               <p>
@@ -108,7 +108,7 @@ export default function PrivacyPolicyPage() {
                 </li>
               </ul>
 
-              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-slate-900 dark:text-white mt-8 mb-4">
                 2. How We Use Your Information
               </h2>
               <p>
@@ -132,7 +132,7 @@ export default function PrivacyPolicyPage() {
                 <li>Ensure site security and prevent automated form spam.</li>
               </ul>
 
-              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-slate-900 dark:text-white mt-8 mb-4">
                 3. Information Sharing and Disclosure
               </h2>
               <p>
@@ -149,7 +149,7 @@ export default function PrivacyPolicyPage() {
                 authorities (e.g., a court or government agency).
               </p>
 
-              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-slate-900 dark:text-white mt-8 mb-4">
                 4. Data Retention and Security
               </h2>
               <p>
@@ -161,7 +161,7 @@ export default function PrivacyPolicyPage() {
                 access or alteration.
               </p>
 
-              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-slate-900 dark:text-white mt-8 mb-4">
                 5. Your Rights
               </h2>
               <p>
@@ -173,7 +173,7 @@ export default function PrivacyPolicyPage() {
                 below.
               </p>
 
-              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-slate-900 dark:text-white mt-8 mb-4">
                 6. Contact Information
               </h2>
               <p>
@@ -183,19 +183,19 @@ export default function PrivacyPolicyPage() {
               <div className="bg-muted/30 p-6 rounded-xl border border-border/80 not-italic space-y-3 mt-4">
                 <div className="flex items-center space-x-3 text-sm">
                   <Mail className="w-5 h-5 text-primary shrink-0" />
-                  <span className="font-semibold text-secondary dark:text-white">
+                  <span className="font-semibold text-slate-900 dark:text-white">
                     info@adruvasolution.com
                   </span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm">
                   <Phone className="w-5 h-5 text-primary shrink-0" />
-                  <span className="font-semibold text-secondary dark:text-white">
+                  <span className="font-semibold text-slate-900 dark:text-white">
                     +91 98765 43210
                   </span>
                 </div>
                 <div className="flex items-start space-x-3 text-sm">
                   <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                  <span className="font-semibold text-secondary dark:text-white">
+                  <span className="font-semibold text-slate-900 dark:text-white">
                     Near Bageshwari Devi Mandir, Shanti Nagar, Dhalwala,
                     Rishikesh, Uttarakhand, India - 249137
                   </span>

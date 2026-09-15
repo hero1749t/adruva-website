@@ -27,12 +27,12 @@ export default function TermsPage() {
       {/* Breadcrumb */}
       <div className="bg-muted/30 py-4 border-b border-border transition-colors duration-300">
         <Container>
-          <div className="flex items-center space-x-2 text-sm text-text-muted">
+          <div className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
             <Link href="/" className="hover:text-primary transition-colors">
               Home
             </Link>
             <span>/</span>
-            <span className="text-text-primary dark:text-white font-medium">
+            <span className="text-slate-900 dark:text-white font-medium">
               Terms of Service
             </span>
           </div>
@@ -51,10 +51,10 @@ export default function TermsPage() {
               >
                 Legal Contract
               </Badge>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold font-sora text-secondary dark:text-white leading-tight tracking-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold font-sora text-slate-900 dark:text-white leading-tight tracking-tight">
                 Terms of Service
               </h1>
-              <div className="flex flex-wrap items-center gap-4 text-sm text-text-muted font-manrope py-2 border-b border-border/60">
+              <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400 font-manrope py-2 border-b border-border/60">
                 <span className="flex items-center gap-1.5">
                   <Clock className="w-4 h-4 text-primary/80" />
                   Last Updated: {currentDate}
@@ -67,7 +67,7 @@ export default function TermsPage() {
             </div>
 
             {/* Document body using styled elements */}
-            <div className="prose prose-lg dark:prose-invert font-manrope text-text-secondary dark:text-gray-300 space-y-6 leading-relaxed">
+            <div className="prose prose-lg dark:prose-invert font-manrope text-slate-600 dark:text-slate-300 space-y-6 leading-relaxed">
               <p>
                 Welcome to <strong>Adruva Solution</strong>. By accessing our
                 website, inquiring about our services, or signing a project
@@ -76,7 +76,7 @@ export default function TermsPage() {
                 engaging our services.
               </p>
 
-              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-slate-900 dark:text-white mt-8 mb-4">
                 1. Acceptance of Terms
               </h2>
               <p>
@@ -88,7 +88,7 @@ export default function TermsPage() {
                 prohibited from using our site and services.
               </p>
 
-              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-slate-900 dark:text-white mt-8 mb-4">
                 2. Scope of Services
               </h2>
               <p>
@@ -104,7 +104,7 @@ export default function TermsPage() {
                 general Terms.
               </p>
 
-              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-slate-900 dark:text-white mt-8 mb-4">
                 3. Client Obligations
               </h2>
               <p>
@@ -126,7 +126,7 @@ export default function TermsPage() {
                 </li>
               </ul>
 
-              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-slate-900 dark:text-white mt-8 mb-4">
                 4. Billing, Payments & Cancellations
               </h2>
               <p>
@@ -151,7 +151,7 @@ export default function TermsPage() {
                 </li>
               </ul>
 
-              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-slate-900 dark:text-white mt-8 mb-4">
                 5. Intellectual Property Transfer
               </h2>
               <p>
@@ -168,7 +168,7 @@ export default function TermsPage() {
                 signed beforehand.
               </p>
 
-              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-slate-900 dark:text-white mt-8 mb-4">
                 6. Governing Law & Dispute Resolution
               </h2>
               <p>
@@ -180,7 +180,7 @@ export default function TermsPage() {
                 in <strong>Rishikesh, Uttarakhand, India</strong>.
               </p>
 
-              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-slate-900 dark:text-white mt-8 mb-4">
                 7. Contact Information
               </h2>
               <p>
@@ -190,13 +190,13 @@ export default function TermsPage() {
               <div className="bg-muted/30 p-6 rounded-xl border border-border/80 not-italic space-y-3 mt-4">
                 <div className="flex items-center space-x-3 text-sm">
                   <Mail className="w-5 h-5 text-primary shrink-0" />
-                  <span className="font-semibold text-secondary dark:text-white">
+                  <span className="font-semibold text-slate-900 dark:text-white">
                     info@adruvasolution.com
                   </span>
                 </div>
                 <div className="flex items-start space-x-3 text-sm">
                   <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                  <span className="font-semibold text-secondary dark:text-white">
+                  <span className="font-semibold text-slate-900 dark:text-white">
                     Near Bageshwari Devi Mandir, Shanti Nagar, Dhalwala,
                     Rishikesh, Uttarakhand, India - 249137
                   </span>

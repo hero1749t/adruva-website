@@ -19,10 +19,11 @@ export function Text({
   const styles = {
     // Variants
     variants: {
-      body: "text-text-secondary dark:text-text-secondary leading-relaxed transition-colors duration-300",
+      body: "text-slate-600 dark:text-slate-400 leading-relaxed transition-colors duration-300",
       marketing:
-        "font-space text-text-primary dark:text-text-primary leading-normal transition-colors duration-300",
-      muted: "text-text-muted leading-relaxed transition-colors duration-300",
+        "font-space text-slate-900 dark:text-white dark:text-slate-900 dark:text-white leading-normal transition-colors duration-300",
+      muted:
+        "text-slate-500 dark:text-slate-400 leading-relaxed transition-colors duration-300",
     },
     // Sizes
     sizes: {

@@ -176,12 +176,12 @@ export function ContactPageClient() {
       {/* Breadcrumb */}
       <div className="bg-muted/30 py-4 border-b border-border transition-colors duration-300">
         <Container>
-          <div className="flex items-center space-x-2 text-sm text-text-muted">
+          <div className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
             <Link href="/" className="hover:text-primary transition-colors">
               Home
             </Link>
             <span>/</span>
-            <span className="text-text-primary dark:text-white font-medium">
+            <span className="text-slate-900 dark:text-white font-medium">
               Contact
             </span>
           </div>
@@ -298,10 +298,10 @@ export function ContactPageClient() {
             <div className="lg:col-span-7">
               <Card className="border-border/80 bg-card rounded-2xl shadow-xl overflow-hidden">
                 <CardHeader className="bg-muted/10 p-6 md:p-8 border-b border-border/40">
-                  <CardTitle className="text-2xl font-bold font-sora text-secondary dark:text-white">
+                  <CardTitle className="text-2xl font-bold font-sora text-slate-900 dark:text-white">
                     Send a Message
                   </CardTitle>
-                  <CardDescription className="text-text-muted mt-1.5 font-manrope">
+                  <CardDescription className="text-slate-500 dark:text-slate-400 mt-1.5 font-manrope">
                     Fill out the form below and our team will get back to you
                     within 24 hours.
                   </CardDescription>
@@ -351,7 +351,7 @@ export function ContactPageClient() {
                     {/* Name and Email Row */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
+                        <label className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                           Full Name <span className="text-brand-blue">*</span>
                         </label>
                         <Input
@@ -368,7 +368,7 @@ export function ContactPageClient() {
                       </div>
 
                       <div className="space-y-2">
-                        <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
+                        <label className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                           Email Address{" "}
                           <span className="text-brand-blue">*</span>
                         </label>
@@ -389,7 +389,7 @@ export function ContactPageClient() {
                     {/* Phone and Company Row */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
+                        <label className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                           Phone Number{" "}
                           <span className="text-brand-blue">*</span>
                         </label>
@@ -407,7 +407,7 @@ export function ContactPageClient() {
                       </div>
 
                       <div className="space-y-2">
-                        <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
+                        <label className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                           Company Name
                         </label>
                         <Input
@@ -427,7 +427,7 @@ export function ContactPageClient() {
                     {/* Dropdowns Row (Service, Budget, Timeline) */}
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                       <div className="space-y-2">
-                        <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
+                        <label className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                           Service Interested{" "}
                           <span className="text-brand-blue">*</span>
                         </label>
@@ -454,7 +454,7 @@ export function ContactPageClient() {
                       </div>
 
                       <div className="space-y-2">
-                        <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
+                        <label className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                           Budget Range{" "}
                           <span className="text-brand-blue">*</span>
                         </label>
@@ -481,7 +481,7 @@ export function ContactPageClient() {
                       </div>
 
                       <div className="space-y-2">
-                        <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
+                        <label className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                           Timeline <span className="text-brand-blue">*</span>
                         </label>
                         <select
@@ -509,7 +509,7 @@ export function ContactPageClient() {
 
                     {/* Message Area */}
                     <div className="space-y-2">
-                      <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
+                      <label className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                         Project Details{" "}
                         <span className="text-brand-blue">*</span>
                       </label>
