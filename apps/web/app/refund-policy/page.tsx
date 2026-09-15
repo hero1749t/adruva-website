@@ -51,10 +51,10 @@ export default function RefundPolicyPage() {
               >
                 Financial Terms
               </Badge>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold font-poppins text-secondary dark:text-white leading-tight tracking-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold font-sora text-secondary dark:text-white leading-tight tracking-tight">
                 Refund & Cancellation
               </h1>
-              <div className="flex flex-wrap items-center gap-4 text-sm text-text-muted font-inter py-2 border-b border-border/60">
+              <div className="flex flex-wrap items-center gap-4 text-sm text-text-muted font-manrope py-2 border-b border-border/60">
                 <span className="flex items-center gap-1.5">
                   <Clock className="w-4 h-4 text-primary/80" />
                   Last Updated: {currentDate}
@@ -67,7 +67,7 @@ export default function RefundPolicyPage() {
             </div>
 
             {/* Document body using styled elements */}
-            <div className="prose prose-lg dark:prose-invert font-inter text-text-secondary dark:text-gray-300 space-y-6 leading-relaxed">
+            <div className="prose prose-lg dark:prose-invert font-manrope text-text-secondary dark:text-gray-300 space-y-6 leading-relaxed">
               <p>
                 At <strong>Adruva Solution</strong>, we focus strictly on
                 delivering high-quality digital growth, AI automation, and
@@ -77,7 +77,7 @@ export default function RefundPolicyPage() {
                 cancellations are available.
               </p>
 
-              <h2 className="text-xl md:text-2xl font-bold font-poppins text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
                 1. Project Deposits & Kickoffs
               </h2>
               <p>
@@ -99,7 +99,7 @@ export default function RefundPolicyPage() {
                 </li>
               </ul>
 
-              <h2 className="text-xl md:text-2xl font-bold font-poppins text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
                 2. Milestone-Based Refunds
               </h2>
               <p>
@@ -120,7 +120,7 @@ export default function RefundPolicyPage() {
                 </li>
               </ul>
 
-              <h2 className="text-xl md:text-2xl font-bold font-poppins text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
                 3. Non-Refundable Items & Services
               </h2>
               <p>
@@ -147,7 +147,7 @@ export default function RefundPolicyPage() {
                 </li>
               </ul>
 
-              <h2 className="text-xl md:text-2xl font-bold font-poppins text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
                 4. Service Suspension and Cancellation
               </h2>
               <p>
@@ -167,7 +167,7 @@ export default function RefundPolicyPage() {
                 </li>
               </ul>
 
-              <h2 className="text-xl md:text-2xl font-bold font-poppins text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
                 5. Contact Us
               </h2>
               <p>

@@ -147,7 +147,7 @@ export function Footer() {
 
             {/* Newsletter */}
             <div className="pt-2">
-              <span className="text-xs text-gray-500 block mb-2 font-inter">
+              <span className="text-xs text-gray-500 block mb-2 font-manrope">
                 Stay updated
               </span>
               <form
@@ -161,12 +161,12 @@ export function Footer() {
                   placeholder="Enter your email"
                   required
                   disabled={status === "loading"}
-                  className="bg-white/5 border-white/10 text-white placeholder:text-gray-600 h-10 text-sm focus-visible:ring-1 focus-visible:ring-brand-orange/50 rounded-lg flex-1 outline-none"
+                  className="bg-white/5 border-white/10 text-white placeholder:text-gray-600 h-10 text-sm focus-visible:ring-1 focus-visible:ring-brand-blue/50 rounded-lg flex-1 outline-none"
                 />
                 <Button
                   type="submit"
                   disabled={status === "loading"}
-                  className="bg-brand-orange hover:bg-orange-600 text-white w-10 h-10 p-0 shrink-0 rounded-lg flex items-center justify-center font-semibold text-sm transition-colors duration-200"
+                  className="bg-brand-blue hover:bg-orange-600 text-white w-10 h-10 p-0 shrink-0 rounded-lg flex items-center justify-center font-semibold text-sm transition-colors duration-200"
                 >
                   {status === "loading" ? (
                     <Loader2 className="h-4 w-4 animate-spin" />
@@ -190,7 +190,7 @@ export function Footer() {
 
           {/* Column 2: Services */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-white pb-2 mb-5 border-b border-white/8 font-poppins">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-white pb-2 mb-5 border-b border-white/8 font-sora">
               Services
             </h4>
             <ul className="flex flex-col space-y-2.5">
@@ -209,7 +209,7 @@ export function Footer() {
 
           {/* Column 3: Company */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-white pb-2 mb-5 border-b border-white/8 font-poppins">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-white pb-2 mb-5 border-b border-white/8 font-sora">
               Company
             </h4>
             <ul className="flex flex-col space-y-2.5 mb-6">
@@ -224,7 +224,7 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-white pb-2 mb-5 border-b border-white/8 font-poppins">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-white pb-2 mb-5 border-b border-white/8 font-sora">
               Legal
             </h4>
             <ul className="flex flex-col space-y-2.5">
@@ -243,12 +243,12 @@ export function Footer() {
 
           {/* Column 4: Contact & Social */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-white pb-2 mb-5 border-b border-white/8 font-poppins">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-white pb-2 mb-5 border-b border-white/8 font-sora">
               Contact
             </h4>
-            <div className="flex flex-col space-y-3.5 text-sm text-gray-400 mb-6 font-inter">
+            <div className="flex flex-col space-y-3.5 text-sm text-gray-400 mb-6 font-manrope">
               <div className="flex items-start gap-3">
-                <Mail className="h-4 w-4 text-brand-orange mt-0.5 shrink-0" />
+                <Mail className="h-4 w-4 text-brand-blue mt-0.5 shrink-0" />
                 <a
                   href={`mailto:${contactEmail}`}
                   className="hover:text-white transition-colors"
@@ -257,7 +257,7 @@ export function Footer() {
                 </a>
               </div>
               <div className="flex items-start gap-3">
-                <Phone className="h-4 w-4 text-brand-orange mt-0.5 shrink-0" />
+                <Phone className="h-4 w-4 text-brand-blue mt-0.5 shrink-0" />
                 <div className="flex flex-col space-y-1">
                   <a
                     href={`tel:${contactPhone.replace(/\s+/g, "")}`}
@@ -274,7 +274,7 @@ export function Footer() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <MapPin className="h-4 w-4 text-brand-orange mt-0.5 shrink-0" />
+                <MapPin className="h-4 w-4 text-brand-blue mt-0.5 shrink-0" />
                 <span className="whitespace-pre-line">{officeAddress}</span>
               </div>
             </div>
@@ -318,7 +318,7 @@ export function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-[34px] h-[34px] rounded-lg border border-white/10 hover:border-brand-orange text-gray-500 hover:text-brand-orange hover:bg-brand-orange/10 transition-all duration-150 flex items-center justify-center bg-transparent shrink-0"
+                  className="w-[34px] h-[34px] rounded-lg border border-white/10 hover:border-brand-blue text-gray-500 hover:text-brand-blue hover:bg-brand-blue/10 transition-all duration-150 flex items-center justify-center bg-transparent shrink-0"
                   aria-label={social.label}
                 >
                   <svg
@@ -340,7 +340,7 @@ export function Footer() {
             © {new Date().getFullYear()} Adruva Solution. All rights reserved.
           </p>
           <p className="flex items-center gap-1">
-            Made with <span className="text-brand-orange">♥</span> in Rishikesh
+            Made with <span className="text-brand-blue">♥</span> in Rishikesh
           </p>
         </div>
       </div>

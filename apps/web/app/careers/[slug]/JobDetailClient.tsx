@@ -203,18 +203,18 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
       {/* Breadcrumb & Navigation */}
       <div className="bg-muted/30 py-4 border-b border-border transition-colors duration-300">
         <Container>
-          <div className="flex flex-wrap items-center justify-between gap-4 text-xs font-inter">
+          <div className="flex flex-wrap items-center justify-between gap-4 text-xs font-manrope">
             <div className="flex items-center space-x-2 text-muted-foreground">
               <Link
                 href="/"
-                className="hover:text-brand-orange transition-colors"
+                className="hover:text-brand-blue transition-colors"
               >
                 Home
               </Link>
               <span>/</span>
               <Link
                 href="/careers"
-                className="hover:text-brand-orange transition-colors"
+                className="hover:text-brand-blue transition-colors"
               >
                 Careers
               </Link>
@@ -223,7 +223,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
             </div>
             <Link
               href="/careers"
-              className="flex items-center gap-1 text-xs font-bold text-brand-orange hover:text-brand-orange/80 transition-colors"
+              className="flex items-center gap-1 text-xs font-bold text-brand-blue hover:text-brand-blue/80 transition-colors"
             >
               <ArrowLeft className="h-3.5 w-3.5" />
               Back to Careers
@@ -243,33 +243,33 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                 <div className="flex flex-wrap gap-2">
                   <Badge
                     variant="outline"
-                    className="bg-brand-orange/5 border-brand-orange/20 text-brand-orange text-[10px] px-2.5 py-0.5 rounded-full capitalize font-semibold font-space-grotesk"
+                    className="bg-brand-blue/5 border-brand-blue/20 text-brand-blue text-[10px] px-2.5 py-0.5 rounded-full capitalize font-semibold font-space"
                   >
                     {typeLabel}
                   </Badge>
                   <Badge
                     variant="secondary"
-                    className="bg-muted text-muted-foreground text-[10px] px-2.5 py-0.5 rounded-full capitalize font-semibold border-none font-space-grotesk"
+                    className="bg-muted text-muted-foreground text-[10px] px-2.5 py-0.5 rounded-full capitalize font-semibold border-none font-space"
                   >
                     {job.location_type}
                   </Badge>
                   <Badge
                     variant="outline"
-                    className="text-muted-foreground text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider font-semibold border-border font-space-grotesk"
+                    className="text-muted-foreground text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider font-semibold border-border font-space"
                   >
                     {job.department}
                   </Badge>
                 </div>
 
-                <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-navy dark:text-white font-poppins leading-tight tracking-tight">
+                <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-navy dark:text-white font-sora leading-tight tracking-tight">
                   {job.title}
                 </h1>
 
-                <div className="h-1 w-12 bg-brand-orange rounded-full" />
+                <div className="h-1 w-12 bg-brand-blue rounded-full" />
               </div>
 
               {/* Quick Info Strip */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-xl border border-border/40 bg-card/40 font-space-grotesk">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-xl border border-border/40 bg-card/40 font-space">
                 <div className="flex flex-col">
                   <span className="text-[9px] uppercase tracking-wider text-muted-foreground font-semibold">
                     Experience
@@ -302,16 +302,16 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                   <span className="text-[9px] uppercase tracking-wider text-muted-foreground font-semibold">
                     Salary / Stipend
                   </span>
-                  <span className="text-xs font-extrabold text-brand-orange mt-1">
+                  <span className="text-xs font-extrabold text-brand-blue mt-1">
                     {job.salary_label}
                   </span>
                 </div>
               </div>
 
               {/* Job description details */}
-              <div className="space-y-6 text-sm text-muted-foreground leading-relaxed font-inter">
+              <div className="space-y-6 text-sm text-muted-foreground leading-relaxed font-manrope">
                 <div className="space-y-3">
-                  <h3 className="text-base font-bold text-brand-navy dark:text-white font-poppins">
+                  <h3 className="text-base font-bold text-brand-navy dark:text-white font-sora">
                     About the Role
                   </h3>
                   <p>{job.description}</p>
@@ -319,7 +319,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
 
                 {/* Responsibilities */}
                 <div className="space-y-3">
-                  <h3 className="text-base font-bold text-brand-navy dark:text-white font-poppins">
+                  <h3 className="text-base font-bold text-brand-navy dark:text-white font-sora">
                     What You&apos;ll Do
                   </h3>
                   <ul className="list-disc pl-5 space-y-2">
@@ -331,7 +331,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
 
                 {/* Requirements */}
                 <div className="space-y-3">
-                  <h3 className="text-base font-bold text-brand-navy dark:text-white font-poppins">
+                  <h3 className="text-base font-bold text-brand-navy dark:text-white font-sora">
                     What We&apos;re Looking For
                   </h3>
                   <ul className="list-disc pl-5 space-y-2">
@@ -343,7 +343,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
 
                 {/* Skills required tag pills */}
                 <div className="space-y-3">
-                  <h3 className="text-base font-bold text-brand-navy dark:text-white font-poppins">
+                  <h3 className="text-base font-bold text-brand-navy dark:text-white font-sora">
                     Required Skills
                   </h3>
                   <div className="flex flex-wrap gap-2 pt-1">
@@ -360,7 +360,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
 
                 {/* Perks */}
                 <div className="space-y-3">
-                  <h3 className="text-base font-bold text-brand-navy dark:text-white font-poppins">
+                  <h3 className="text-base font-bold text-brand-navy dark:text-white font-sora">
                     Perks & Benefits
                   </h3>
                   <ul className="list-disc pl-5 space-y-2">
@@ -372,23 +372,23 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
 
                 {/* Process Steps */}
                 <div className="space-y-4 pt-4">
-                  <h3 className="text-base font-bold text-brand-navy dark:text-white font-poppins">
+                  <h3 className="text-base font-bold text-brand-navy dark:text-white font-sora">
                     Hiring Process for this Role
                   </h3>
-                  <div className="grid grid-cols-1 gap-3 font-space-grotesk">
+                  <div className="grid grid-cols-1 gap-3 font-space">
                     {job.process_steps.map((step) => (
                       <div
                         key={step.step}
                         className="flex items-center gap-3 p-3 rounded-lg border border-border/20 bg-card/25"
                       >
-                        <span className="flex items-center justify-center h-6 w-6 rounded-full bg-brand-orange/10 text-brand-orange text-xs font-bold shrink-0">
+                        <span className="flex items-center justify-center h-6 w-6 rounded-full bg-brand-blue/10 text-brand-blue text-xs font-bold shrink-0">
                           {step.step}
                         </span>
                         <div>
                           <span className="text-xs font-bold text-brand-navy dark:text-white block">
                             {step.title}
                           </span>
-                          <span className="text-[11px] text-muted-foreground leading-normal block font-inter mt-0.5">
+                          <span className="text-[11px] text-muted-foreground leading-normal block font-manrope mt-0.5">
                             {step.description}
                           </span>
                         </div>
@@ -403,17 +403,17 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
             <div className="lg:col-span-5">
               <Card className="border-border/80 bg-card rounded-2xl shadow-xl overflow-hidden sticky top-24">
                 <CardHeader className="bg-muted/10 p-6 border-b border-border/40">
-                  <CardTitle className="text-xl font-bold font-poppins text-secondary dark:text-white flex items-center gap-2">
-                    <Sparkles className="h-5 w-5 text-brand-orange fill-brand-orange" />
+                  <CardTitle className="text-xl font-bold font-sora text-secondary dark:text-white flex items-center gap-2">
+                    <Sparkles className="h-5 w-5 text-brand-blue fill-brand-blue" />
                     Apply for this Position
                   </CardTitle>
-                  <CardDescription className="text-xs text-muted-foreground mt-1.5 font-inter">
+                  <CardDescription className="text-xs text-muted-foreground mt-1.5 font-manrope">
                     Send in your details and PDF resume. We will respond within
                     7 business days.
                   </CardDescription>
                 </CardHeader>
 
-                <CardContent className="p-6 font-inter max-h-[75vh] overflow-y-auto">
+                <CardContent className="p-6 font-manrope max-h-[75vh] overflow-y-auto">
                   {/* Status Banners */}
                   {submitStatus === "success" && (
                     <div className="mb-6 p-4 rounded-xl bg-green-500/10 border border-green-500/20 text-green-700 dark:text-green-400 flex items-start gap-3">
@@ -458,14 +458,14 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                     {/* Full Name */}
                     <div className="space-y-1.5">
                       <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
-                        Full Name <span className="text-brand-orange">*</span>
+                        Full Name <span className="text-brand-blue">*</span>
                       </label>
                       <Input
                         type="text"
                         placeholder="e.g. Rahul Bisht"
                         {...register("fullName")}
                         className={cn(
-                          "border-border/80 focus-visible:ring-brand-orange text-xs h-9",
+                          "border-border/80 focus-visible:ring-brand-blue text-xs h-9",
                           errors.fullName && "border-red-500",
                         )}
                       />
@@ -479,15 +479,14 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                     {/* Email */}
                     <div className="space-y-1.5">
                       <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
-                        Email Address{" "}
-                        <span className="text-brand-orange">*</span>
+                        Email Address <span className="text-brand-blue">*</span>
                       </label>
                       <Input
                         type="email"
                         placeholder="e.g. rahul@example.com"
                         {...register("email")}
                         className={cn(
-                          "border-border/80 focus-visible:ring-brand-orange text-xs h-9",
+                          "border-border/80 focus-visible:ring-brand-blue text-xs h-9",
                           errors.email && "border-red-500",
                         )}
                       />
@@ -501,15 +500,14 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                     {/* Phone */}
                     <div className="space-y-1.5">
                       <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
-                        Phone Number{" "}
-                        <span className="text-brand-orange">*</span>
+                        Phone Number <span className="text-brand-blue">*</span>
                       </label>
                       <Input
                         type="tel"
                         placeholder="e.g. +91 91492 76799"
                         {...register("phone")}
                         className={cn(
-                          "border-border/80 focus-visible:ring-brand-orange text-xs h-9",
+                          "border-border/80 focus-visible:ring-brand-blue text-xs h-9",
                           errors.phone && "border-red-500",
                         )}
                       />
@@ -524,14 +522,14 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                     <div className="space-y-1.5">
                       <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
                         Current Location{" "}
-                        <span className="text-brand-orange">*</span>
+                        <span className="text-brand-blue">*</span>
                       </label>
                       <Input
                         type="text"
                         placeholder="e.g. Dehradun, Uttarakhand"
                         {...register("currentLocation")}
                         className={cn(
-                          "border-border/80 focus-visible:ring-brand-orange text-xs h-9",
+                          "border-border/80 focus-visible:ring-brand-blue text-xs h-9",
                           errors.currentLocation && "border-red-500",
                         )}
                       />
@@ -547,12 +545,12 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                       <div className="space-y-1.5">
                         <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
                           Qualification{" "}
-                          <span className="text-brand-orange">*</span>
+                          <span className="text-brand-blue">*</span>
                         </label>
                         <select
                           {...register("qualification")}
                           className={cn(
-                            "flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-xs ring-offset-background file:border-0 file:bg-transparent file:text-xs file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 border-border/80 focus-visible:ring-brand-orange",
+                            "flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-xs ring-offset-background file:border-0 file:bg-transparent file:text-xs file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 border-border/80 focus-visible:ring-brand-blue",
                             errors.qualification && "border-red-500",
                           )}
                         >
@@ -572,13 +570,12 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
 
                       <div className="space-y-1.5">
                         <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
-                          Experience{" "}
-                          <span className="text-brand-orange">*</span>
+                          Experience <span className="text-brand-blue">*</span>
                         </label>
                         <select
                           {...register("experienceLevel")}
                           className={cn(
-                            "flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-xs ring-offset-background file:border-0 file:bg-transparent file:text-xs file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 border-border/80 focus-visible:ring-brand-orange",
+                            "flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-xs ring-offset-background file:border-0 file:bg-transparent file:text-xs file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 border-border/80 focus-visible:ring-brand-blue",
                             errors.experienceLevel && "border-red-500",
                           )}
                         >
@@ -600,7 +597,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                     {/* Resume File Upload Component */}
                     <div className="space-y-1.5">
                       <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
-                        Resume PDF <span className="text-brand-orange">*</span>
+                        Resume PDF <span className="text-brand-blue">*</span>
                       </label>
                       <input
                         type="file"
@@ -613,7 +610,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                       <div
                         onClick={onUploadClick}
                         className={cn(
-                          "border border-dashed border-border/60 hover:border-brand-orange/50 rounded-lg p-4 flex flex-col items-center justify-center gap-1.5 cursor-pointer bg-muted/10 transition-colors",
+                          "border border-dashed border-border/60 hover:border-brand-blue/50 rounded-lg p-4 flex flex-col items-center justify-center gap-1.5 cursor-pointer bg-muted/10 transition-colors",
                           errors.resume && "border-red-500 bg-red-500/5",
                         )}
                       >
@@ -656,7 +653,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                           type="url"
                           placeholder="e.g. https://myportfolio.com"
                           {...register("portfolioUrl")}
-                          className="border-border/80 focus-visible:ring-brand-orange text-xs h-9"
+                          className="border-border/80 focus-visible:ring-brand-blue text-xs h-9"
                         />
                         {errors.portfolioUrl && (
                           <p className="text-[10px] text-red-500 mt-1">
@@ -673,7 +670,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                           type="url"
                           placeholder="e.g. https://linkedin.com/in/username"
                           {...register("linkedinUrl")}
-                          className="border-border/80 focus-visible:ring-brand-orange text-xs h-9"
+                          className="border-border/80 focus-visible:ring-brand-blue text-xs h-9"
                         />
                         {errors.linkedinUrl && (
                           <p className="text-[10px] text-red-500 mt-1">
@@ -686,15 +683,14 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                     {/* Textareas: Cover Letter + Why Join */}
                     <div className="space-y-1.5 border-t border-border/15 pt-3">
                       <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
-                        Cover Letter{" "}
-                        <span className="text-brand-orange">*</span>
+                        Cover Letter <span className="text-brand-blue">*</span>
                       </label>
                       <Textarea
                         rows={4}
                         placeholder="Explain your technical experiences, projects, and why you are suitable for this role (min 100 characters)..."
                         {...register("coverLetter")}
                         className={cn(
-                          "border-border/80 focus-visible:ring-brand-orange text-xs leading-normal resize-y",
+                          "border-border/80 focus-visible:ring-brand-blue text-xs leading-normal resize-y",
                           errors.coverLetter && "border-red-500",
                         )}
                       />
@@ -708,14 +704,14 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                     <div className="space-y-1.5">
                       <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
                         Why do you want to join Adruva?{" "}
-                        <span className="text-brand-orange">*</span>
+                        <span className="text-brand-blue">*</span>
                       </label>
                       <Textarea
                         rows={3}
                         placeholder="What excites you about working with our team (min 50 characters)..."
                         {...register("whyJoin")}
                         className={cn(
-                          "border-border/80 focus-visible:ring-brand-orange text-xs leading-normal resize-y",
+                          "border-border/80 focus-visible:ring-brand-blue text-xs leading-normal resize-y",
                           errors.whyJoin && "border-red-500",
                         )}
                       />
@@ -730,12 +726,12 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                     <div className="space-y-1.5 border-t border-border/15 pt-3">
                       <label className="text-[10px] font-bold text-text-primary dark:text-white uppercase tracking-wider">
                         How did you hear about us?{" "}
-                        <span className="text-brand-orange">*</span>
+                        <span className="text-brand-blue">*</span>
                       </label>
                       <select
                         {...register("referralSource")}
                         className={cn(
-                          "flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-xs ring-offset-background file:border-0 file:bg-transparent file:text-xs file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 border-border/80 focus-visible:ring-brand-orange",
+                          "flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-xs ring-offset-background file:border-0 file:bg-transparent file:text-xs file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 border-border/80 focus-visible:ring-brand-blue",
                           errors.referralSource && "border-red-500",
                         )}
                       >
@@ -757,7 +753,7 @@ I will email my Resume PDF separately to info@adruvasolution.com.`;
                     <Button
                       type="submit"
                       disabled={submitStatus === "loading"}
-                      className="w-full bg-brand-orange hover:bg-brand-orange/95 text-white py-5 rounded-xl font-bold flex items-center justify-center gap-1.5 transition-all duration-300 shadow-md hover:shadow-brand-orange/15 hover:shadow-lg"
+                      className="w-full bg-brand-blue hover:bg-brand-blue/95 text-white py-5 rounded-xl font-bold flex items-center justify-center gap-1.5 transition-all duration-300 shadow-md hover:shadow-brand-blue/15 hover:shadow-lg"
                     >
                       {submitStatus === "loading" ? (
                         <>

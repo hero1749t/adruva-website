@@ -203,10 +203,10 @@ export default function BlogManager() {
       {/* Title Header with Buttons */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-xl font-bold font-poppins text-slate-900 dark:text-white">
+          <h2 className="text-xl font-bold font-sora text-slate-900 dark:text-white">
             Sanctuary Blog Management
           </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 font-inter">
+          <p className="text-xs text-slate-500 dark:text-slate-400 font-manrope">
             Monitor client blog views, post updates, and structure translations.
           </p>
         </div>
@@ -221,7 +221,7 @@ export default function BlogManager() {
             <span>EXPORT CSV</span>
           </Button>
           <Link href="/admin/blogs/new">
-            <Button className="bg-brand-orange hover:bg-brand-orange-hover text-white flex items-center gap-2 text-xs font-semibold">
+            <Button className="bg-brand-blue hover:bg-brand-blue-dark text-white flex items-center gap-2 text-xs font-semibold">
               <Plus className="w-4 h-4" />
               <span>+ COMPOSE NEW POST</span>
             </Button>
@@ -231,7 +231,7 @@ export default function BlogManager() {
 
       {/* Tabs */}
       <div className="flex border-b border-slate-200 dark:border-slate-800">
-        <button className="px-4 py-2 text-xs font-bold text-slate-900 dark:text-white border-b-2 border-brand-orange">
+        <button className="px-4 py-2 text-xs font-bold text-slate-900 dark:text-white border-b-2 border-brand-blue">
           Published & Drafts
         </button>
         <button
@@ -257,7 +257,7 @@ export default function BlogManager() {
               }}
               className={`px-3 py-1 text-xs font-semibold rounded-lg capitalize transition-colors ${
                 statusFilter === status
-                  ? "bg-brand-orange text-white"
+                  ? "bg-brand-blue text-white"
                   : "bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
               }`}
             >
@@ -295,7 +295,7 @@ export default function BlogManager() {
                 setSearch(e.target.value);
                 setPage(1);
               }}
-              className="bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800 h-9 text-xs pl-8 focus:ring-1 focus:ring-brand-orange focus:border-brand-orange w-full"
+              className="bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800 h-9 text-xs pl-8 focus:ring-1 focus:ring-brand-blue focus:border-brand-blue w-full"
             />
           </div>
         </div>
@@ -331,7 +331,7 @@ export default function BlogManager() {
                     <th className="px-6 py-4 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 dark:divide-slate-800/40 text-slate-700 dark:text-slate-300 font-inter">
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800/40 text-slate-700 dark:text-slate-300 font-manrope">
                   {data.data.filter(Boolean).map((blog) => (
                     <tr
                       key={blog.id}
@@ -346,7 +346,7 @@ export default function BlogManager() {
                               className="w-10 h-7 rounded object-cover shadow-sm bg-slate-100 dark:bg-slate-900 shrink-0"
                             />
                           ) : (
-                            <div className="w-10 h-7 rounded bg-slate-100 dark:bg-slate-950 shrink-0 flex items-center justify-center text-slate-400 font-poppins font-bold text-[9px] border border-slate-200 dark:border-slate-800">
+                            <div className="w-10 h-7 rounded bg-slate-100 dark:bg-slate-950 shrink-0 flex items-center justify-center text-slate-400 font-sora font-bold text-[9px] border border-slate-200 dark:border-slate-800">
                               AD
                             </div>
                           )}
@@ -463,7 +463,7 @@ export default function BlogManager() {
                             <Button
                               variant="ghost"
                               size="sm"
-                              className="h-8 w-8 p-0 text-slate-600 hover:text-brand-orange hover:bg-brand-orange/5 dark:text-slate-400"
+                              className="h-8 w-8 p-0 text-slate-600 hover:text-brand-blue hover:bg-brand-blue/5 dark:text-slate-400"
                             >
                               <Edit className="w-3.5 h-3.5" />
                             </Button>
@@ -493,7 +493,7 @@ export default function BlogManager() {
       <Dialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
         <DialogContent className="sm:max-w-md bg-white dark:bg-[#151f32] border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl">
           <DialogHeader>
-            <DialogTitle className="font-poppins flex items-center gap-2">
+            <DialogTitle className="font-sora flex items-center gap-2">
               <Trash className="w-5 h-5 text-red-500" />
               <span>Delete Blog Post</span>
             </DialogTitle>

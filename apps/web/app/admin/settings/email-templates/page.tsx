@@ -248,15 +248,13 @@ export default function EmailTemplatesManager() {
                     onClick={() => selectTemplate(template)}
                     className={`w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-xs font-semibold transition-all text-left outline-none ${
                       active
-                        ? "bg-brand-orange/10 dark:bg-slate-900 text-brand-orange dark:text-white ring-1 ring-brand-orange/20 dark:ring-slate-800/60"
+                        ? "bg-brand-blue/10 dark:bg-slate-900 text-brand-blue dark:text-white ring-1 ring-brand-blue/20 dark:ring-slate-800/60"
                         : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900/30 hover:text-slate-900 dark:hover:text-white"
                     }`}
                   >
                     <Mail
                       size={16}
-                      className={
-                        active ? "text-brand-orange" : "text-slate-400"
-                      }
+                      className={active ? "text-brand-blue" : "text-slate-400"}
                     />
                     <div className="min-w-0 flex-1">
                       <div className="truncate font-medium">
@@ -300,7 +298,7 @@ export default function EmailTemplatesManager() {
                   </Button>
                   <Button
                     size="sm"
-                    className="h-8 text-xs font-semibold gap-1.5 bg-brand-orange hover:bg-brand-orange/90 text-white"
+                    className="h-8 text-xs font-semibold gap-1.5 bg-brand-blue hover:bg-brand-blue/90 text-white"
                     onClick={handleSave}
                     disabled={updateMutation.isPending}
                   >
@@ -321,7 +319,7 @@ export default function EmailTemplatesManager() {
                     onClick={() => setActiveViewTab("edit")}
                     className={`flex items-center gap-1.5 pb-3 text-xs font-bold border-b-2 transition-all outline-none ${
                       activeViewTab === "edit"
-                        ? "border-brand-orange text-brand-orange dark:text-white"
+                        ? "border-brand-blue text-brand-blue dark:text-white"
                         : "border-transparent text-slate-400 hover:text-slate-600 dark:hover:text-white"
                     }`}
                   >
@@ -332,7 +330,7 @@ export default function EmailTemplatesManager() {
                     onClick={() => setActiveViewTab("preview")}
                     className={`flex items-center gap-1.5 pb-3 text-xs font-bold border-b-2 transition-all outline-none ${
                       activeViewTab === "preview"
-                        ? "border-brand-orange text-brand-orange dark:text-white"
+                        ? "border-brand-blue text-brand-blue dark:text-white"
                         : "border-transparent text-slate-400 hover:text-slate-600 dark:hover:text-white"
                     }`}
                   >
@@ -359,7 +357,7 @@ export default function EmailTemplatesManager() {
                     {/* Variable Badges */}
                     <div className="space-y-2">
                       <label className="text-xs font-bold text-slate-600 dark:text-slate-400 flex items-center gap-1">
-                        <Info size={12} className="text-brand-orange" />
+                        <Info size={12} className="text-brand-blue" />
                         Dynamic Placeholders (Click to insert)
                       </label>
                       <div className="flex flex-wrap gap-1.5">
@@ -406,7 +404,7 @@ export default function EmailTemplatesManager() {
                           size="icon"
                           className={`h-7 w-8 ${
                             previewDevice === "desktop"
-                              ? "bg-white dark:bg-slate-950 text-brand-orange shadow-sm border border-slate-200/40 dark:border-slate-900"
+                              ? "bg-white dark:bg-slate-950 text-brand-blue shadow-sm border border-slate-200/40 dark:border-slate-900"
                               : "text-slate-400"
                           }`}
                           onClick={() => setPreviewDevice("desktop")}
@@ -419,7 +417,7 @@ export default function EmailTemplatesManager() {
                           size="icon"
                           className={`h-7 w-8 ${
                             previewDevice === "mobile"
-                              ? "bg-white dark:bg-slate-950 text-brand-orange shadow-sm border border-slate-200/40 dark:border-slate-900"
+                              ? "bg-white dark:bg-slate-950 text-brand-blue shadow-sm border border-slate-200/40 dark:border-slate-900"
                               : "text-slate-400"
                           }`}
                           onClick={() => setPreviewDevice("mobile")}
@@ -506,7 +504,7 @@ export default function EmailTemplatesManager() {
             </Button>
             <Button
               size="sm"
-              className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold gap-1.5"
+              className="bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold gap-1.5"
               onClick={handleSendTestMail}
               disabled={testMailMutation.isPending || !testRecipient}
             >

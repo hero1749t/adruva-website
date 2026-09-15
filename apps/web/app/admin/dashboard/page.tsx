@@ -209,11 +209,11 @@ export default function DashboardPage() {
       {/* Welcome Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white dark:bg-[#0c1220]/60 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-900/60 shadow-sm backdrop-blur-sm">
         <div>
-          <h2 className="text-xl font-bold font-poppins text-slate-900 dark:text-white flex items-center gap-2">
-            <Activity className="w-5 h-5 text-brand-orange animate-pulse" />
+          <h2 className="text-xl font-bold font-sora text-slate-900 dark:text-white flex items-center gap-2">
+            <Activity className="w-5 h-5 text-brand-blue animate-pulse" />
             <span>Operational Console</span>
           </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 font-inter mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 font-manrope mt-1">
             Real-time analytics and management dashboard for Adruva Solution.
           </p>
         </div>
@@ -221,7 +221,7 @@ export default function DashboardPage() {
           <Badge className="bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 font-mono text-[10px]">
             DATABASE: ONLINE
           </Badge>
-          <Badge className="bg-brand-orange/10 text-brand-orange border border-brand-orange/20 font-mono text-[10px]">
+          <Badge className="bg-brand-blue/10 text-brand-blue border border-brand-blue/20 font-mono text-[10px]">
             SSL SECURE
           </Badge>
         </div>
@@ -242,13 +242,13 @@ export default function DashboardPage() {
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between">
                     <div className="space-y-1">
-                      <p className="text-[10px] font-bold tracking-wider text-slate-500 dark:text-slate-400 uppercase font-poppins">
+                      <p className="text-[10px] font-bold tracking-wider text-slate-500 dark:text-slate-400 uppercase font-sora">
                         {stat.name}
                       </p>
                       {stat.loading ? (
                         <Skeleton className="h-8 w-16 mt-2" />
                       ) : (
-                        <p className="text-3xl font-extrabold font-poppins text-slate-900 dark:text-white tracking-tight mt-1">
+                        <p className="text-3xl font-extrabold font-sora text-slate-900 dark:text-white tracking-tight mt-1">
                           {stat.value}
                         </p>
                       )}
@@ -259,7 +259,7 @@ export default function DashboardPage() {
                       <Icon className="w-5 h-5" />
                     </div>
                   </div>
-                  <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-4 flex items-center gap-1.5 font-medium font-inter">
+                  <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-4 flex items-center gap-1.5 font-medium font-manrope">
                     <Clock className="w-3.5 h-3.5 opacity-70" />
                     <span>{stat.description}</span>
                   </p>
@@ -281,8 +281,8 @@ export default function DashboardPage() {
           {/* Quick Actions */}
           <Card className="border border-slate-200/80 dark:border-slate-900/60 bg-white dark:bg-[#0c1220]/50 shadow-md rounded-2xl">
             <CardHeader className="pb-3">
-              <CardTitle className="text-base font-bold font-poppins text-slate-900 dark:text-white flex items-center gap-2">
-                <Zap className="w-4 h-4 text-brand-orange" />
+              <CardTitle className="text-base font-bold font-sora text-slate-900 dark:text-white flex items-center gap-2">
+                <Zap className="w-4 h-4 text-brand-blue" />
                 <span>Console Actions</span>
               </CardTitle>
             </CardHeader>
@@ -298,7 +298,7 @@ export default function DashboardPage() {
                         >
                           <Icon className="h-4.5 w-4.5" />
                         </div>
-                        <span className="text-[10px] font-bold text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white uppercase tracking-wider font-poppins">
+                        <span className="text-[10px] font-bold text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white uppercase tracking-wider font-sora">
                           {action.label}
                         </span>
                       </div>
@@ -312,8 +312,8 @@ export default function DashboardPage() {
           {/* System status dashboard */}
           <Card className="border border-slate-200/80 dark:border-slate-900/60 bg-white dark:bg-[#0c1220]/50 shadow-md rounded-2xl">
             <CardHeader className="pb-2">
-              <CardTitle className="text-base font-bold font-poppins text-slate-900 dark:text-white flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-brand-orange" />
+              <CardTitle className="text-base font-bold font-sora text-slate-900 dark:text-white flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-brand-blue" />
                 <span>Systems Health</span>
               </CardTitle>
             </CardHeader>
@@ -349,7 +349,7 @@ export default function DashboardPage() {
                         <div className="w-8 h-8 rounded-lg bg-slate-900/40 dark:bg-slate-950 border border-slate-800 flex items-center justify-center text-slate-500">
                           <Icon size={14} />
                         </div>
-                        <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 font-inter">
+                        <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 font-manrope">
                           {sys.name}
                         </span>
                       </div>
@@ -374,17 +374,17 @@ export default function DashboardPage() {
       <Card className="border border-slate-200/80 dark:border-slate-900/60 bg-white dark:bg-[#0c1220]/50 shadow-md rounded-2xl overflow-hidden">
         <CardHeader className="flex flex-row items-center justify-between px-6 py-5 border-b border-slate-100 dark:border-slate-900/40">
           <div className="space-y-0.5">
-            <CardTitle className="text-base font-bold font-poppins text-slate-900 dark:text-white flex items-center gap-2">
-              <Mail className="w-4 h-4 text-brand-orange" />
+            <CardTitle className="text-base font-bold font-sora text-slate-900 dark:text-white flex items-center gap-2">
+              <Mail className="w-4 h-4 text-brand-blue" />
               <span>Recent Inquiries</span>
             </CardTitle>
-            <CardDescription className="text-slate-500 dark:text-slate-400 text-xs font-inter">
+            <CardDescription className="text-slate-500 dark:text-slate-400 text-xs font-manrope">
               The latest incoming customer and CRM contact logs
             </CardDescription>
           </div>
           <Link
             href="/admin/inquiries"
-            className="flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-brand-orange hover:text-brand-orange-hover transition-colors duration-150 font-poppins"
+            className="flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-brand-blue hover:text-brand-blue-dark transition-colors duration-150 font-sora"
           >
             <span>View All</span>
             <ChevronRight className="w-4 h-4" />
@@ -429,7 +429,7 @@ export default function DashboardPage() {
                       <td className="px-6 py-4 capitalize text-[11px]">
                         {inquiry.serviceInterested?.replace("-", " ") || "N/A"}
                       </td>
-                      <td className="px-6 py-4 text-[11px] font-semibold text-brand-orange">
+                      <td className="px-6 py-4 text-[11px] font-semibold text-brand-blue">
                         {inquiry.budgetRange || "N/A"}
                       </td>
                       <td className="px-6 py-4">

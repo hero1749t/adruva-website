@@ -374,21 +374,18 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
       {/* a) & b) Breadcrumbs & Hero Area */}
       <Section className="pt-10 pb-16 md:pt-12 md:pb-24 relative overflow-hidden">
         {/* Ambient background glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.05)_0%,transparent_70%)] pointer-events-none select-none z-0" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[radial-gradient(circle_at_center,rgba(8, 120, 249,0.05)_0%,transparent_70%)] pointer-events-none select-none z-0" />
 
         <Container className="relative z-10">
           {/* Breadcrumbs */}
-          <nav className="flex items-center gap-1.5 text-xs text-muted-foreground font-medium mb-8 font-inter">
-            <Link
-              href="/"
-              className="hover:text-brand-orange transition-colors"
-            >
+          <nav className="flex items-center gap-1.5 text-xs text-muted-foreground font-medium mb-8 font-manrope">
+            <Link href="/" className="hover:text-brand-blue transition-colors">
               Home
             </Link>
             <ChevronRight className="h-3.5 w-3.5 opacity-60" />
             <Link
               href="/services"
-              className="hover:text-brand-orange transition-colors"
+              className="hover:text-brand-blue transition-colors"
             >
               Services
             </Link>
@@ -401,23 +398,23 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 flex flex-col items-start">
               {/* Category Badge */}
-              <div className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-xs font-semibold text-brand-orange mb-6 font-space-grotesk uppercase tracking-wider">
-                <Sparkle className="h-3 w-3 fill-brand-orange text-brand-orange" />
+              <div className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-xs font-semibold text-brand-blue mb-6 font-space uppercase tracking-wider">
+                <Sparkle className="h-3 w-3 fill-brand-blue text-brand-teal" />
                 {service.category}
               </div>
 
               {/* Service Name Title */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-brand-navy dark:text-white leading-[1.15] mb-4 font-poppins">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-brand-navy dark:text-white leading-[1.15] mb-4 font-sora">
                 {service.name}
               </h1>
 
               {/* Tagline */}
-              <p className="text-lg md:text-xl font-bold text-brand-orange tracking-tight mb-6 font-space-grotesk">
+              <p className="text-lg md:text-xl font-bold text-brand-blue tracking-tight mb-6 font-space">
                 &ldquo;{service.tagline}&rdquo;
               </p>
 
               {/* Description */}
-              <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-2xl mb-8 font-inter">
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-2xl mb-8 font-manrope">
                 {service.description}
               </p>
 
@@ -433,7 +430,7 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
               >
                 <Button
                   size="lg"
-                  className="bg-brand-orange hover:bg-brand-orange/90 text-white font-bold h-12 px-6 rounded-lg text-xs flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(255,107,0,0.3)] transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                  className="bg-brand-blue hover:bg-brand-blue/90 text-white font-bold h-12 px-6 rounded-lg text-xs flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(8, 120, 249,0.3)] transition-transform hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <Calendar className="h-4 w-4" />
                   Book a Free Call
@@ -444,20 +441,20 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
 
             {/* Price tag quick info card */}
             <div className="lg:col-span-4 mt-8 lg:mt-0">
-              <div className="p-6 rounded-2xl border border-brand-orange/20 bg-gradient-to-br from-brand-orange/5 to-transparent shadow-xl relative overflow-hidden backdrop-blur-sm">
-                <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3 font-space-grotesk">
+              <div className="p-6 rounded-2xl border border-brand-blue/20 bg-gradient-to-br from-brand-blue/5 to-transparent shadow-xl relative overflow-hidden backdrop-blur-sm">
+                <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3 font-space">
                   PRICING STRUCTURE
                 </h3>
-                <span className="text-2xl md:text-3xl font-extrabold text-brand-navy dark:text-white block mb-2 font-poppins">
+                <span className="text-2xl md:text-3xl font-extrabold text-brand-navy dark:text-white block mb-2 font-sora">
                   {service.price}
                 </span>
-                <p className="text-xs text-muted-foreground leading-relaxed mb-6 font-inter">
+                <p className="text-xs text-muted-foreground leading-relaxed mb-6 font-manrope">
                   Transparent, value-driven rates tailored for local business
                   scaling. No hidden management charges.
                 </p>
                 <div className="border-t border-border/20 pt-4">
-                  <span className="text-[10px] font-bold text-brand-orange flex items-center gap-1.5 uppercase tracking-wider font-space-grotesk">
-                    <span className="h-1.5 w-1.5 rounded-full bg-brand-orange animate-ping" />
+                  <span className="text-[10px] font-bold text-brand-blue flex items-center gap-1.5 uppercase tracking-wider font-space">
+                    <span className="h-1.5 w-1.5 rounded-full bg-brand-blue animate-ping" />
                     Custom quote scope check
                   </span>
                 </div>
@@ -474,10 +471,10 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
             <SectionTag className="justify-center">
               WHY CHOOSE THIS SERVICE
             </SectionTag>
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-sora">
               Key outcomes & benefits
             </h2>
-            <div className="h-1 w-12 bg-brand-orange rounded-full mt-4 mx-auto" />
+            <div className="h-1 w-12 bg-brand-blue rounded-full mt-4 mx-auto" />
           </div>
 
           <motion.div
@@ -494,18 +491,18 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
                   key={index}
                   variants={fadeInUp}
                   whileHover={prefersReducedMotion ? {} : { y: -2 }}
-                  className="flex gap-4 p-5 rounded-2xl border border-border/40 bg-card hover:border-brand-orange/20 transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.02)]"
+                  className="flex gap-4 p-5 rounded-2xl border border-border/40 bg-card hover:border-brand-blue/20 transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.02)]"
                 >
                   <div className="flex-shrink-0">
-                    <div className="p-2.5 rounded-xl bg-brand-orange/10 text-brand-orange">
+                    <div className="p-2.5 rounded-xl bg-brand-blue/10 text-brand-blue">
                       <Icon className="h-5 w-5" />
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-brand-navy dark:text-white mb-1.5 font-poppins">
+                    <h3 className="text-sm font-bold text-brand-navy dark:text-white mb-1.5 font-sora">
                       {benefit.title}
                     </h3>
-                    <p className="text-xs text-muted-foreground leading-relaxed font-inter">
+                    <p className="text-xs text-muted-foreground leading-relaxed font-manrope">
                       {benefit.desc}
                     </p>
                   </div>
@@ -522,11 +519,11 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-5 flex flex-col items-start">
               <SectionTag>COMPREHENSIVE DELIVERY</SectionTag>
-              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white mb-6 font-poppins">
+              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white mb-6 font-sora">
                 What is included in the project?
               </h2>
-              <div className="h-1 w-12 bg-brand-orange rounded-full mb-6" />
-              <p className="text-xs text-muted-foreground leading-relaxed font-inter max-w-md">
+              <div className="h-1 w-12 bg-brand-blue rounded-full mb-6" />
+              <p className="text-xs text-muted-foreground leading-relaxed font-manrope max-w-md">
                 We manage everything end-to-end so you do not have to juggle
                 multiple vendors. From planning to final launches and
                 post-deployment configurations, we cover the full cycle.
@@ -548,11 +545,11 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
                     className="flex items-start gap-3 p-3.5 rounded-xl border border-border/20 bg-card hover:bg-muted/10 transition-colors duration-200"
                   >
                     <div className="flex-shrink-0 mt-0.5">
-                      <div className="h-5 w-5 rounded-full bg-brand-orange/10 text-brand-orange flex items-center justify-center">
+                      <div className="h-5 w-5 rounded-full bg-brand-blue/10 text-brand-blue flex items-center justify-center">
                         <Check className="h-3 w-3 stroke-[3]" />
                       </div>
                     </div>
-                    <span className="text-xs font-semibold leading-snug font-inter text-brand-navy/90 dark:text-white/90">
+                    <span className="text-xs font-semibold leading-snug font-manrope text-brand-navy/90 dark:text-white/90">
                       {item}
                     </span>
                   </motion.div>
@@ -568,10 +565,10 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16">
             <SectionTag className="justify-center">HOW WE WORK</SectionTag>
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-sora">
               Our step-by-step process
             </h2>
-            <div className="h-1 w-12 bg-brand-orange rounded-full mt-4 mx-auto" />
+            <div className="h-1 w-12 bg-brand-blue rounded-full mt-4 mx-auto" />
           </div>
 
           {/* Timeline Wrapper */}
@@ -593,8 +590,8 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
                   className="flex flex-col items-center md:items-start text-center md:text-left group"
                 >
                   {/* Step bubble */}
-                  <div className="h-20 w-20 rounded-full border-2 border-border bg-card text-brand-navy dark:text-white dark:border-white/10 flex items-center justify-center font-bold text-lg mb-6 group-hover:border-brand-orange group-hover:text-brand-orange transition-colors duration-300 relative shadow-md">
-                    <span className="font-space-grotesk">{step.number}</span>
+                  <div className="h-20 w-20 rounded-full border-2 border-border bg-card text-brand-navy dark:text-white dark:border-white/10 flex items-center justify-center font-bold text-lg mb-6 group-hover:border-brand-blue group-hover:text-brand-blue transition-colors duration-300 relative shadow-md">
+                    <span className="font-space">{step.number}</span>
 
                     {/* Vertical connecting line (Mobile only) */}
                     {index < processSteps.length - 1 && (
@@ -602,10 +599,10 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
                     )}
                   </div>
 
-                  <h3 className="text-sm font-bold text-brand-navy dark:text-white mb-2 font-poppins">
+                  <h3 className="text-sm font-bold text-brand-navy dark:text-white mb-2 font-sora">
                     {step.title}
                   </h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed max-w-xs font-inter">
+                  <p className="text-xs text-muted-foreground leading-relaxed max-w-xs font-manrope">
                     {step.desc}
                   </p>
                 </motion.div>
@@ -624,10 +621,10 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
                 <SectionTag className="justify-center">
                   OUR ENGINEERING STACK
                 </SectionTag>
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-sora">
                   Modern tools we build with
                 </h2>
-                <div className="h-1 w-12 bg-brand-orange rounded-full mt-4 mx-auto" />
+                <div className="h-1 w-12 bg-brand-blue rounded-full mt-4 mx-auto" />
               </div>
 
               <motion.div
@@ -642,9 +639,9 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
                     key={tech}
                     variants={fadeInUp}
                     whileHover={prefersReducedMotion ? {} : { scale: 1.05 }}
-                    className="px-4 py-2 rounded-xl border border-border/40 bg-card hover:border-brand-orange/30 shadow-sm transition-all duration-300"
+                    className="px-4 py-2 rounded-xl border border-border/40 bg-card hover:border-brand-blue/30 shadow-sm transition-all duration-300"
                   >
-                    <span className="text-xs font-bold text-brand-navy/90 dark:text-white/95 font-space-grotesk">
+                    <span className="text-xs font-bold text-brand-navy/90 dark:text-white/95 font-space">
                       {tech}
                     </span>
                   </motion.div>
@@ -657,20 +654,20 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
       {/* g) Pricing Block Section */}
       <Section className="bg-muted/10 border-y border-border/20">
         <Container>
-          <div className="max-w-xl mx-auto p-8 rounded-3xl border border-brand-orange/20 bg-card shadow-xl text-center relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-brand-orange/5 rounded-full filter blur-xl pointer-events-none -translate-y-1/2 translate-x-1/2" />
+          <div className="max-w-xl mx-auto p-8 rounded-3xl border border-brand-blue/20 bg-card shadow-xl text-center relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-brand-blue/5 rounded-full filter blur-xl pointer-events-none -translate-y-1/2 translate-x-1/2" />
 
-            <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-orange bg-brand-orange/10 px-3 py-1 rounded-full font-space-grotesk inline-block mb-4">
+            <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-blue bg-brand-blue/10 px-3 py-1 rounded-full font-space inline-block mb-4">
               INVESTMENT ESTIMATE
             </span>
-            <h2 className="text-xl md:text-2xl font-extrabold text-brand-navy dark:text-white mb-2 font-poppins">
+            <h2 className="text-xl md:text-2xl font-extrabold text-brand-navy dark:text-white mb-2 font-sora">
               Start building your growth setup
             </h2>
-            <span className="text-3xl md:text-4xl font-extrabold text-brand-orange block my-6 font-poppins">
+            <span className="text-3xl md:text-4xl font-extrabold text-brand-blue block my-6 font-sora">
               {service.price}
             </span>
 
-            <p className="text-xs text-muted-foreground leading-relaxed mb-8 font-inter">
+            <p className="text-xs text-muted-foreground leading-relaxed mb-8 font-manrope">
               All quotes are project-based and clear. We structure milestones so
               you only pay for completed deliverables. Inquire now to map your
               scope.
@@ -688,7 +685,7 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
             >
               <Button
                 size="lg"
-                className="w-full bg-brand-orange hover:bg-brand-orange/90 text-white font-bold h-12 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-[0_4px_14px_rgba(255,107,0,0.3)] transition-transform"
+                className="w-full bg-brand-blue hover:bg-brand-blue/90 text-white font-bold h-12 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-[0_4px_14px_rgba(8, 120, 249,0.3)] transition-transform"
               >
                 Inquire & Get Free Roadmap
                 <ArrowRight className="h-4 w-4" />
@@ -705,14 +702,14 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
               <div className="flex flex-col items-start">
                 <SectionTag>SUCCESS CASES</SectionTag>
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-sora">
                   Related client work
                 </h2>
-                <div className="h-1 w-12 bg-brand-orange rounded-full mt-4" />
+                <div className="h-1 w-12 bg-brand-blue rounded-full mt-4" />
               </div>
               <Link
                 href="/work"
-                className="group flex items-center gap-1.5 text-xs font-bold text-brand-orange hover:text-brand-orange-hover transition-colors font-inter"
+                className="group flex items-center gap-1.5 text-xs font-bold text-brand-blue hover:text-brand-blue-dark transition-colors font-manrope"
               >
                 View all case studies
                 <motion.span
@@ -732,7 +729,7 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
               {relatedProjects.map((project) => (
                 <div
                   key={project.slug}
-                  className="flex flex-col rounded-2xl border border-border/40 bg-card overflow-hidden transition-all duration-300 group hover:border-brand-orange/30 hover:shadow-[0_4px_20px_rgba(255,107,0,0.06)]"
+                  className="flex flex-col rounded-2xl border border-border/40 bg-card overflow-hidden transition-all duration-300 group hover:border-brand-blue/30 hover:shadow-[0_4px_20px_rgba(8, 120, 249,0.06)]"
                 >
                   {/* Image or Gradient Preview */}
                   <div className="h-40 w-full relative overflow-hidden select-none">
@@ -754,17 +751,17 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
                       />
                     )}
                     <div className="absolute inset-0 bg-black/15 z-10" />
-                    <span className="absolute bottom-3 left-3 text-[9px] font-extrabold tracking-widest text-white/95 uppercase font-space-grotesk bg-black/40 px-2 py-0.5 rounded backdrop-blur-sm z-20">
+                    <span className="absolute bottom-3 left-3 text-[9px] font-extrabold tracking-widest text-white/95 uppercase font-space bg-black/40 px-2 py-0.5 rounded backdrop-blur-sm z-20">
                       {project.industry} Case Study
                     </span>
                   </div>
 
                   <div className="p-5 flex-grow flex flex-col justify-between">
                     <div>
-                      <h3 className="text-sm font-bold text-brand-navy dark:text-white mb-2 font-poppins group-hover:text-brand-orange transition-colors">
+                      <h3 className="text-sm font-bold text-brand-navy dark:text-white mb-2 font-sora group-hover:text-brand-blue transition-colors">
                         {project.title}
                       </h3>
-                      <p className="text-xs text-muted-foreground leading-relaxed mb-4 font-inter">
+                      <p className="text-xs text-muted-foreground leading-relaxed mb-4 font-manrope">
                         {project.description}
                       </p>
                     </div>
@@ -775,7 +772,7 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
                           <Badge
                             key={t}
                             variant="secondary"
-                            className="bg-muted hover:bg-muted text-[9px] text-muted-foreground font-semibold px-2 py-0.5 rounded-sm border border-border/10 font-inter"
+                            className="bg-muted hover:bg-muted text-[9px] text-muted-foreground font-semibold px-2 py-0.5 rounded-sm border border-border/10 font-manrope"
                           >
                             {t}
                           </Badge>
@@ -784,7 +781,7 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
                       <div className="border-t border-border/10 pt-3">
                         <Link
                           href={`/work/${project.slug}`}
-                          className="text-xs font-bold text-brand-navy hover:text-brand-orange dark:text-white/80 dark:hover:text-brand-orange transition-colors flex items-center gap-1 font-inter"
+                          className="text-xs font-bold text-brand-navy hover:text-brand-blue dark:text-white/80 dark:hover:text-brand-blue transition-colors flex items-center gap-1 font-manrope"
                         >
                           View Case Study
                           <ExternalLink className="h-3 w-3 opacity-60" />
@@ -807,20 +804,20 @@ export function ServicePageClient({ service }: ServicePageClientProps) {
               <SectionTag className="justify-center">
                 COMMON INQUIRIES
               </SectionTag>
-              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
+              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-sora">
                 Frequently asked questions
               </h2>
-              <div className="h-1 w-12 bg-brand-orange rounded-full mt-4 mx-auto" />
+              <div className="h-1 w-12 bg-brand-blue rounded-full mt-4 mx-auto" />
             </div>
 
             <div className="max-w-2xl mx-auto p-4 md:p-6 rounded-2xl border border-border/30 bg-card shadow-sm">
               <Accordion>
                 {service.faq.map((item, index) => (
                   <AccordionItem key={index} value={`faq-${index}`}>
-                    <AccordionTrigger className="font-poppins text-brand-navy dark:text-white font-semibold">
+                    <AccordionTrigger className="font-sora text-brand-navy dark:text-white font-semibold">
                       {item.question}
                     </AccordionTrigger>
-                    <AccordionContent className="font-inter text-muted-foreground">
+                    <AccordionContent className="font-manrope text-muted-foreground">
                       {item.answer}
                     </AccordionContent>
                   </AccordionItem>

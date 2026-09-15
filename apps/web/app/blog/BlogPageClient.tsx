@@ -77,7 +77,7 @@ export function BlogPageClient({ initialPosts }: BlogPageClientProps) {
             >
               Insights
             </Badge>
-            <h1 className="text-4xl md:text-5xl font-extrabold font-poppins text-secondary dark:text-white tracking-tight">
+            <h1 className="text-4xl md:text-5xl font-extrabold font-sora text-secondary dark:text-white tracking-tight">
               Insights & Resources
             </h1>
             <p className="text-lg md:text-xl text-text-secondary dark:text-gray-300 font-space leading-relaxed">
@@ -186,14 +186,14 @@ export function BlogPageClient({ initialPosts }: BlogPageClientProps) {
                           href={`/blog/${post.slug}`}
                           className="block group-hover:text-primary transition-colors duration-200"
                         >
-                          <h3 className="text-xl font-bold font-poppins text-secondary dark:text-white line-clamp-2 leading-tight">
+                          <h3 className="text-xl font-bold font-sora text-secondary dark:text-white line-clamp-2 leading-tight">
                             {post.title}
                           </h3>
                         </Link>
                       </CardHeader>
 
                       <CardContent className="p-6 pt-0 flex-grow">
-                        <p className="text-sm text-text-secondary dark:text-gray-300 line-clamp-3 leading-relaxed font-inter">
+                        <p className="text-sm text-text-secondary dark:text-gray-300 line-clamp-3 leading-relaxed font-manrope">
                           {post.summary}
                         </p>
                       </CardContent>

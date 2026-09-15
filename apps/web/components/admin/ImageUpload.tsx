@@ -126,7 +126,7 @@ export function ImageUpload({
         >
           {hasError ? (
             <div className="w-full h-full flex flex-col items-center justify-center bg-slate-100 dark:bg-slate-900/60 text-slate-400 dark:text-slate-500 gap-1.5 p-4 text-center">
-              <ImageIcon className="w-8 h-8 opacity-60 text-brand-orange" />
+              <ImageIcon className="w-8 h-8 opacity-60 text-brand-blue" />
               <span className="text-[10px] font-semibold tracking-wide uppercase opacity-70">
                 Mock Preview Mode
               </span>
@@ -188,13 +188,13 @@ export function ImageUpload({
             "flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed cursor-pointer transition-all duration-200 p-8",
             aspectClass,
             isDragging
-              ? "border-brand-orange bg-brand-orange/5 scale-[1.01]"
-              : "border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 hover:border-brand-orange/60 hover:bg-brand-orange/5",
+              ? "border-brand-blue bg-brand-blue/5 scale-[1.01]"
+              : "border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 hover:border-brand-blue/60 hover:bg-brand-blue/5",
           )}
         >
           {isUploading ? (
             <>
-              <Loader2 className="w-8 h-8 text-brand-orange animate-spin" />
+              <Loader2 className="w-8 h-8 text-brand-blue animate-spin" />
               <p className="text-xs text-slate-500 font-medium">Uploading...</p>
             </>
           ) : (
@@ -203,14 +203,14 @@ export function ImageUpload({
                 className={cn(
                   "w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-200",
                   isDragging
-                    ? "bg-brand-orange/20"
+                    ? "bg-brand-blue/20"
                     : "bg-slate-100 dark:bg-slate-800",
                 )}
               >
                 <ImageIcon
                   className={cn(
                     "w-6 h-6",
-                    isDragging ? "text-brand-orange" : "text-slate-400",
+                    isDragging ? "text-brand-blue" : "text-slate-400",
                   )}
                 />
               </div>

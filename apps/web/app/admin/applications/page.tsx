@@ -173,10 +173,10 @@ export default function ApplicationsManager() {
       {/* Header Panel */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-xl font-bold font-poppins text-slate-900 dark:text-white">
+          <h2 className="text-xl font-bold font-sora text-slate-900 dark:text-white">
             Job Applications
           </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 font-inter">
+          <p className="text-xs text-slate-500 dark:text-slate-400 font-manrope">
             Review and track candidate profiles and submissions
           </p>
         </div>
@@ -343,8 +343,8 @@ export default function ApplicationsManager() {
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="sm:max-w-2xl bg-white dark:bg-[#151f32] border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="font-poppins flex items-center gap-2">
-              <Info className="w-5 h-5 text-brand-orange" />
+            <DialogTitle className="font-sora flex items-center gap-2">
+              <Info className="w-5 h-5 text-brand-blue" />
               <span>Application Review</span>
             </DialogTitle>
             <DialogDescription className="text-slate-500 dark:text-slate-400 text-xs">
@@ -434,7 +434,7 @@ export default function ApplicationsManager() {
                 {activeApp.email && (
                   <a
                     href={`mailto:${activeApp.email}?subject=Regarding your application for ${activeApp.jobTitle} at Adruva Solution`}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-900 text-brand-orange transition-colors"
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-900 text-brand-blue transition-colors"
                   >
                     <Mail className="w-3.5 h-3.5" />
                     <span>Reply via Email</span>
@@ -555,7 +555,7 @@ export default function ApplicationsManager() {
                     value={adminNotes}
                     onChange={(e) => setAdminNotes(e.target.value)}
                     placeholder="Enter review notes, interview feedback, or scheduling parameters..."
-                    className="w-full min-h-[80px] p-3 text-xs rounded-md border border-slate-200 dark:border-slate-850 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none font-inter leading-relaxed"
+                    className="w-full min-h-[80px] p-3 text-xs rounded-md border border-slate-200 dark:border-slate-850 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none font-manrope leading-relaxed"
                   />
                 </div>
               </div>
@@ -584,7 +584,7 @@ export default function ApplicationsManager() {
             <Button
               onClick={handleSaveChanges}
               disabled={updateMutation.isPending}
-              className="bg-brand-orange hover:bg-brand-orange-hover text-white"
+              className="bg-brand-blue hover:bg-brand-blue-dark text-white"
             >
               {updateMutation.isPending ? "Saving..." : "Save Evaluation"}
             </Button>

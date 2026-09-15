@@ -68,8 +68,8 @@ export function MobileBottomBar() {
         target={calendlyUrl.startsWith("http") ? "_blank" : undefined}
         rel={calendlyUrl.startsWith("http") ? "noopener noreferrer" : undefined}
         className={cn(
-          "flex-1 flex h-11 items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-transform active:scale-95 text-white bg-brand-orange hover:bg-brand-orange/90",
-          "shadow-[0_4px_14px_rgba(255,107,0,0.3)]",
+          "flex-1 flex h-11 items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-transform active:scale-95 text-white bg-brand-blue hover:bg-brand-blue/90",
+          "shadow-[0_4px_14px_rgba(8, 120, 249,0.3)]",
         )}
         style={{ flexGrow: 6 }}
       >

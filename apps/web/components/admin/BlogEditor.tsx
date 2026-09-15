@@ -324,10 +324,10 @@ export default function BlogEditor({
             </Button>
           </Link>
           <div>
-            <h2 className="text-xl font-bold font-poppins text-slate-900 dark:text-white">
+            <h2 className="text-xl font-bold font-sora text-slate-900 dark:text-white">
               {initialData ? "Edit Blog Post" : "Create Blog Post"}
             </h2>
-            <p className="text-xs text-slate-500 dark:text-slate-400 font-inter">
+            <p className="text-xs text-slate-500 dark:text-slate-400 font-manrope">
               Compose content, optimize search previews, and manage
               translations.
             </p>
@@ -349,7 +349,7 @@ export default function BlogEditor({
             type="button"
             onClick={() => handleFormSubmit("published")}
             disabled={isSaving}
-            className="flex-1 sm:flex-none bg-brand-orange hover:bg-brand-orange-hover text-white flex items-center justify-center gap-2 text-xs font-bold shadow-md shadow-brand-orange/20"
+            className="flex-1 sm:flex-none bg-brand-blue hover:bg-brand-blue-dark text-white flex items-center justify-center gap-2 text-xs font-bold shadow-md shadow-brand-blue/20"
           >
             <Save className="w-4 h-4" />
             <span>{isSaving ? "SAVING..." : "SAVE BLOG CHANGES"}</span>
@@ -390,7 +390,7 @@ export default function BlogEditor({
               onClick={() => setActiveTab("edit")}
               className={`flex items-center gap-1.5 px-4 py-2 text-xs font-bold border-b-2 transition-all ${
                 activeTab === "edit"
-                  ? "border-brand-orange text-slate-900 dark:text-white"
+                  ? "border-brand-blue text-slate-900 dark:text-white"
                   : "border-transparent text-slate-400 hover:text-slate-500"
               }`}
             >
@@ -401,7 +401,7 @@ export default function BlogEditor({
               onClick={() => setActiveTab("preview")}
               className={`flex items-center gap-1.5 px-4 py-2 text-xs font-bold border-b-2 transition-all ${
                 activeTab === "preview"
-                  ? "border-brand-orange text-slate-900 dark:text-white"
+                  ? "border-brand-blue text-slate-900 dark:text-white"
                   : "border-transparent text-slate-400 hover:text-slate-500"
               }`}
             >
@@ -476,7 +476,7 @@ export default function BlogEditor({
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* Laptop configuration */}
                     <div className="space-y-3">
-                      <h5 className="text-[10px] font-bold text-brand-orange uppercase">
+                      <h5 className="text-[10px] font-bold text-brand-blue uppercase">
                         Laptop Settings
                       </h5>
                       <div className="space-y-1">
@@ -495,7 +495,7 @@ export default function BlogEditor({
                               laptopX: parseInt(e.target.value),
                             }))
                           }
-                          className="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-orange"
+                          className="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-blue"
                         />
                       </div>
                       <div className="space-y-1">
@@ -514,7 +514,7 @@ export default function BlogEditor({
                               laptopY: parseInt(e.target.value),
                             }))
                           }
-                          className="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-orange"
+                          className="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-blue"
                         />
                       </div>
                       <div className="space-y-1">
@@ -533,14 +533,14 @@ export default function BlogEditor({
                               laptopZoom: parseInt(e.target.value),
                             }))
                           }
-                          className="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-orange"
+                          className="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-blue"
                         />
                       </div>
                     </div>
 
                     {/* Mobile configuration */}
                     <div className="space-y-3">
-                      <h5 className="text-[10px] font-bold text-brand-orange uppercase">
+                      <h5 className="text-[10px] font-bold text-brand-blue uppercase">
                         Mobile Settings
                       </h5>
                       <div className="space-y-1">
@@ -559,7 +559,7 @@ export default function BlogEditor({
                               mobileX: parseInt(e.target.value),
                             }))
                           }
-                          className="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-orange"
+                          className="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-blue"
                         />
                       </div>
                       <div className="space-y-1">
@@ -578,7 +578,7 @@ export default function BlogEditor({
                               mobileY: parseInt(e.target.value),
                             }))
                           }
-                          className="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-orange"
+                          className="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-blue"
                         />
                       </div>
                       <div className="space-y-1">
@@ -597,7 +597,7 @@ export default function BlogEditor({
                               mobileZoom: parseInt(e.target.value),
                             }))
                           }
-                          className="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-orange"
+                          className="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-blue"
                         />
                       </div>
                     </div>
@@ -671,17 +671,17 @@ export default function BlogEditor({
               <div className="max-w-xl mx-auto space-y-6">
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-bold uppercase bg-brand-orange/15 text-brand-orange px-2 py-0.5 rounded">
+                    <span className="text-[10px] font-bold uppercase bg-brand-blue/15 text-brand-blue px-2 py-0.5 rounded">
                       {category}
                     </span>
                     <span className="text-slate-400 text-xs">
                       • {readingTime} min read
                     </span>
                   </div>
-                  <h1 className="text-2xl font-extrabold font-poppins text-slate-900 dark:text-white leading-tight">
+                  <h1 className="text-2xl font-extrabold font-sora text-slate-900 dark:text-white leading-tight">
                     {title || "Untitled Article"}
                   </h1>
-                  <p className="text-slate-500 text-xs font-inter">
+                  <p className="text-slate-500 text-xs font-manrope">
                     Estimated published date: {new Date().toLocaleDateString()}{" "}
                     • Written by Adruva Expert
                   </p>
@@ -704,7 +704,7 @@ export default function BlogEditor({
                 )}
 
                 <article
-                  className="prose dark:prose-invert prose-xs text-slate-700 dark:text-slate-300 font-inter leading-relaxed max-w-none"
+                  className="prose dark:prose-invert prose-xs text-slate-700 dark:text-slate-300 font-manrope leading-relaxed max-w-none"
                   dangerouslySetInnerHTML={{
                     __html: content.startsWith("{")
                       ? "<p className='text-xs italic text-slate-400'>Rich Tiptap layout structure rendered in preview mode.</p>"
@@ -722,7 +722,7 @@ export default function BlogEditor({
               Google SEO Optimization Parameters
             </span>
 
-            <div className="space-y-4 font-inter text-xs">
+            <div className="space-y-4 font-manrope text-xs">
               <div className="space-y-1">
                 <Label
                   htmlFor="focusKeyword"
@@ -793,7 +793,7 @@ export default function BlogEditor({
                 </span>
                 <div className="border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0c1322] p-4 rounded-xl shadow-inner max-w-lg space-y-1.5 text-left font-sans">
                   <div className="flex items-center gap-2">
-                    <div className="w-5 h-5 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-[9px] font-bold text-brand-orange">
+                    <div className="w-5 h-5 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-[9px] font-bold text-brand-blue">
                       A
                     </div>
                     <div className="flex flex-col text-[10px] leading-tight">
@@ -827,7 +827,7 @@ export default function BlogEditor({
                 Publish Settings
               </span>
 
-              <div className="space-y-3.5 font-inter text-xs">
+              <div className="space-y-3.5 font-manrope text-xs">
                 <div className="space-y-1">
                   <Label className="font-bold text-slate-400 uppercase">
                     Category Tag:
@@ -898,7 +898,7 @@ export default function BlogEditor({
                       id="pin-post"
                       checked={isPinned}
                       onChange={(e) => setIsPinned(e.target.checked)}
-                      className="rounded border-slate-300 text-brand-orange focus:ring-brand-orange h-4 w-4 accent-brand-orange cursor-pointer"
+                      className="rounded border-slate-300 text-brand-blue focus:ring-brand-blue h-4 w-4 accent-brand-blue cursor-pointer"
                     />
                     <label
                       htmlFor="pin-post"
@@ -949,7 +949,7 @@ export default function BlogEditor({
                                       : prev,
                                 )
                               }
-                              className="rounded text-brand-orange h-3.5 w-3.5 accent-brand-orange cursor-pointer"
+                              className="rounded text-brand-blue h-3.5 w-3.5 accent-brand-blue cursor-pointer"
                             />
                             <label
                               htmlFor={`related-${b.id}`}
@@ -978,12 +978,12 @@ export default function BlogEditor({
                 <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block border-b border-slate-200 dark:border-slate-800 pb-2">
                   AI Language Auto-Translator
                 </span>
-                <p className="text-[10px] leading-normal text-slate-400 font-inter">
+                <p className="text-[10px] leading-normal text-slate-400 font-manrope">
                   Select target languages to translate the English version into.
                   This uses DeepL with Google fallback in the background.
                 </p>
 
-                <div className="grid grid-cols-2 gap-2 text-[10px] font-bold text-slate-500 font-inter pt-1">
+                <div className="grid grid-cols-2 gap-2 text-[10px] font-bold text-slate-500 font-manrope pt-1">
                   {SUPPORTED_LANGUAGES.filter((l) => l.code !== language).map(
                     (lang) => (
                       <div
@@ -995,7 +995,7 @@ export default function BlogEditor({
                           id={`trans-${lang.code}`}
                           checked={selectedTranslateLangs.includes(lang.code)}
                           onChange={() => toggleTranslateLang(lang.code)}
-                          className="rounded border-slate-300 text-brand-orange h-3.5 w-3.5 accent-brand-orange cursor-pointer"
+                          className="rounded border-slate-300 text-brand-blue h-3.5 w-3.5 accent-brand-blue cursor-pointer"
                         />
                         <label
                           htmlFor={`trans-${lang.code}`}
@@ -1031,7 +1031,7 @@ export default function BlogEditor({
                 SEO Readability Audit
               </span>
 
-              <div className="space-y-2.5 font-inter text-xs text-slate-500 font-medium">
+              <div className="space-y-2.5 font-manrope text-xs text-slate-500 font-medium">
                 {/* Meta Title check */}
                 <div className="flex items-center gap-2">
                   {metaTitle.length >= 30 && metaTitle.length <= 60 ? (

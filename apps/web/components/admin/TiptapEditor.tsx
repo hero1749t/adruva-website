@@ -388,7 +388,7 @@ function ToolBtn({
       disabled={disabled}
       className={`h-8 min-w-[32px] px-2 flex items-center justify-center rounded-lg text-xs font-semibold border transition-all duration-150 ${
         active
-          ? "bg-brand-orange border-brand-orange text-white shadow-sm"
+          ? "bg-brand-blue border-brand-blue text-white shadow-sm"
           : "bg-white dark:bg-[#151f32] border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-900"
       } ${disabled ? "opacity-40 cursor-not-allowed" : "cursor-pointer"}`}
     >
@@ -496,7 +496,7 @@ export default function TiptapEditor({
       Link.configure({
         openOnClick: false,
         HTMLAttributes: {
-          class: "text-brand-orange underline hover:text-brand-orange-hover",
+          class: "text-brand-blue underline hover:text-brand-blue-dark",
         },
       }),
       TextAlign.configure({
@@ -896,7 +896,7 @@ export default function TiptapEditor({
     <div className="flex flex-col bg-white dark:bg-[#151f32] border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm">
       {/* Restore Draft Banner */}
       {showRestoreBanner && (
-        <div className="bg-amber-500/10 border-b border-amber-500/20 px-6 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs font-inter z-20">
+        <div className="bg-amber-500/10 border-b border-amber-500/20 px-6 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs font-manrope z-20">
           <div className="flex items-center gap-2 text-amber-700 dark:text-amber-400 font-medium">
             <AlertTriangle className="w-4 h-4" />
             <span>
@@ -911,7 +911,7 @@ export default function TiptapEditor({
             <button
               type="button"
               onClick={handleRestoreDraft}
-              className="bg-brand-orange hover:bg-brand-orange-hover text-white px-3 py-1 rounded font-bold transition-all shadow-sm"
+              className="bg-brand-blue hover:bg-brand-blue-dark text-white px-3 py-1 rounded font-bold transition-all shadow-sm"
             >
               Restore Draft
             </button>
@@ -1156,7 +1156,7 @@ export default function TiptapEditor({
         {isUploading && (
           <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] flex items-center justify-center z-30">
             <div className="bg-white dark:bg-[#151f32] border border-slate-200 dark:border-slate-800 rounded-xl px-6 py-4 flex items-center gap-3 shadow-xl">
-              <div className="w-4 h-4 border-2 border-brand-orange border-t-transparent rounded-full animate-spin" />
+              <div className="w-4 h-4 border-2 border-brand-blue border-t-transparent rounded-full animate-spin" />
               <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                 {uploadProgress}
               </span>
@@ -1212,7 +1212,7 @@ export default function TiptapEditor({
       <div className="fixed inset-0 bg-[#060814]/98 z-[999999] flex flex-col p-6 overflow-y-auto">
         <div className="max-w-4xl w-full mx-auto flex-grow flex flex-col space-y-4">
           <div className="flex justify-between items-center text-slate-400">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-orange">
+            <span className="text-xs font-bold uppercase tracking-wider text-brand-blue">
               Zen Writing Workspace
             </span>
             <button
@@ -1238,10 +1238,10 @@ export default function TiptapEditor({
           {/* SEO Checklist & Scores */}
           <div className="bg-white dark:bg-[#151f32] border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm space-y-5">
             <div className="flex justify-between items-center pb-3 border-b border-slate-100 dark:border-slate-850">
-              <h4 className="text-sm font-bold font-poppins text-slate-900 dark:text-white">
+              <h4 className="text-sm font-bold font-sora text-slate-900 dark:text-white">
                 SEO Audit Checklist & Readability
               </h4>
-              <span className="text-[10px] uppercase font-bold text-brand-orange">
+              <span className="text-[10px] uppercase font-bold text-brand-blue">
                 Real-Time Scorer
               </span>
             </div>
@@ -1275,7 +1275,7 @@ export default function TiptapEditor({
               </div>
             </div>
 
-            <div className="space-y-2.5 font-inter text-xs text-slate-700 dark:text-slate-300">
+            <div className="space-y-2.5 font-manrope text-xs text-slate-700 dark:text-slate-300">
               <div className="flex items-center justify-between p-2 rounded-lg bg-slate-50/30 dark:bg-slate-900/10">
                 <span className="font-medium">Total Word Count</span>
                 <span
@@ -1373,16 +1373,16 @@ export default function TiptapEditor({
           {/* Google SERP Preview Card */}
           <div className="bg-white dark:bg-[#151f32] border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm space-y-4">
             <div className="flex justify-between items-center pb-3 border-b border-slate-100 dark:border-slate-850">
-              <h4 className="text-sm font-bold font-poppins text-slate-900 dark:text-white">
+              <h4 className="text-sm font-bold font-sora text-slate-900 dark:text-white">
                 Google Search Results Preview (Mobile)
               </h4>
-              <span className="text-[10px] text-slate-400 font-medium font-inter">
+              <span className="text-[10px] text-slate-400 font-medium font-manrope">
                 SERP Simulator
               </span>
             </div>
 
             {/* Inputs for Keyword / Meta Title / Meta Desc */}
-            <div className="space-y-3 font-inter text-xs">
+            <div className="space-y-3 font-manrope text-xs">
               <div>
                 <label className="text-[10px] uppercase font-bold text-slate-500 block mb-1">
                   Focus Keyword
@@ -1394,7 +1394,7 @@ export default function TiptapEditor({
                     setFocusKeyword && setFocusKeyword(e.target.value)
                   }
                   placeholder="e.g. mobile app development delhi"
-                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-lg p-2 text-xs focus:ring-1 focus:ring-brand-orange focus:outline-none"
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 rounded-lg p-2 text-xs focus:ring-1 focus:ring-brand-blue focus:outline-none"
                 />
               </div>
 
@@ -1415,7 +1415,7 @@ export default function TiptapEditor({
                     value={seoTitle}
                     onChange={(e) => setSeoTitle && setSeoTitle(e.target.value)}
                     placeholder="Enter customized SEO meta title..."
-                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-855 rounded-lg p-2 text-xs focus:ring-1 focus:ring-brand-orange focus:outline-none"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-855 rounded-lg p-2 text-xs focus:ring-1 focus:ring-brand-blue focus:outline-none"
                   />
                 </div>
 
@@ -1450,7 +1450,7 @@ export default function TiptapEditor({
                   value={seoDesc}
                   onChange={(e) => setSeoDesc && setSeoDesc(e.target.value)}
                   placeholder="Enter summary snippet (Optimal: 120-160 chars)..."
-                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-855 rounded-lg p-2 text-xs resize-none focus:ring-1 focus:ring-brand-orange focus:outline-none"
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-855 rounded-lg p-2 text-xs resize-none focus:ring-1 focus:ring-brand-blue focus:outline-none"
                 />
               </div>
             </div>
@@ -1494,7 +1494,7 @@ export default function TiptapEditor({
           >
             <div className="flex justify-between items-center px-6 py-4 border-b border-slate-200 dark:border-slate-800">
               <div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white font-poppins">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white font-sora">
                   Media Library Browser
                 </h3>
                 <p className="text-[10px] text-slate-500 font-medium">
@@ -1526,7 +1526,7 @@ export default function TiptapEditor({
                         insertAndSelectImage(src, altText);
                         setIsMediaOpen(false);
                       }}
-                      className="aspect-square w-full rounded-lg overflow-hidden border border-slate-200 dark:border-slate-855 cursor-pointer relative group hover:scale-[1.02] hover:border-brand-orange transition-all duration-200"
+                      className="aspect-square w-full rounded-lg overflow-hidden border border-slate-200 dark:border-slate-855 cursor-pointer relative group hover:scale-[1.02] hover:border-brand-blue transition-all duration-200"
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
@@ -1545,7 +1545,7 @@ export default function TiptapEditor({
               )}
             </div>
 
-            <div className="px-6 py-3 border-t border-slate-200 dark:border-slate-800 text-right text-[10px] text-slate-500 font-medium font-inter">
+            <div className="px-6 py-3 border-t border-slate-200 dark:border-slate-800 text-right text-[10px] text-slate-500 font-medium font-manrope">
               Click on an image to insert it directly at your current cursor
               position.
             </div>

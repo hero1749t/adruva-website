@@ -60,7 +60,7 @@ export function MobileMenu({
                 key={link.href}
                 href={link.href}
                 onClick={onClose}
-                className="text-2xl font-bold text-white hover:text-brand-orange transition-colors font-poppins"
+                className="text-2xl font-bold text-white hover:text-brand-blue transition-colors font-sora"
               >
                 {link.name}
               </Link>
@@ -80,7 +80,7 @@ export function MobileMenu({
                   ? "noopener noreferrer"
                   : undefined
               }
-              className="w-full flex h-12 items-center justify-center gap-2 rounded-full text-sm font-semibold text-white bg-brand-orange hover:bg-brand-orange/90 transition-all shadow-[0_4px_14px_rgba(255,107,0,0.3)] active:scale-95"
+              className="w-full flex h-12 items-center justify-center gap-2 rounded-full text-sm font-semibold text-white bg-brand-blue hover:bg-brand-blue/90 transition-all shadow-[0_4px_14px_rgba(8, 120, 249,0.3)] active:scale-95"
               onClick={onClose}
             >
               <Calendar className="h-4 w-4" />

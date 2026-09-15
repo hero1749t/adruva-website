@@ -234,24 +234,21 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
   const details = caseStudiesDetails[project.slug] || defaultDetails;
 
   return (
-    <div className="w-full bg-background text-foreground transition-colors duration-300 font-inter">
+    <div className="w-full bg-background text-foreground transition-colors duration-300 font-manrope">
       {/* 1. Hero Cover Slide (Act I: Introduction) */}
       <Section className="pt-12 pb-20 relative overflow-hidden border-b border-border/10">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.06)_0%,transparent_70%)] pointer-events-none select-none z-0" />
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(8, 120, 249,0.06)_0%,transparent_70%)] pointer-events-none select-none z-0" />
         <div className="absolute -bottom-10 right-1/4 w-[400px] h-[400px] bg-[radial-gradient(circle_at_center,rgba(0,107,255,0.03)_0%,transparent_70%)] pointer-events-none select-none z-0" />
 
         <Container className="relative z-10">
-          <nav className="flex items-center gap-1.5 text-xs text-muted-foreground font-medium mb-12 font-inter">
-            <Link
-              href="/"
-              className="hover:text-brand-orange transition-colors"
-            >
+          <nav className="flex items-center gap-1.5 text-xs text-muted-foreground font-medium mb-12 font-manrope">
+            <Link href="/" className="hover:text-brand-blue transition-colors">
               Home
             </Link>
             <ChevronRight className="h-3.5 w-3.5 opacity-60" />
             <Link
               href="/work"
-              className="hover:text-brand-orange transition-colors"
+              className="hover:text-brand-blue transition-colors"
             >
               Our Work
             </Link>
@@ -266,29 +263,29 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
               <div className="flex flex-wrap items-center gap-2">
                 <Badge
                   variant="outline"
-                  className="text-[10px] font-bold uppercase tracking-wider font-space-grotesk border-brand-orange/20 text-brand-orange bg-brand-orange/5 px-2.5 py-1"
+                  className="text-[10px] font-bold uppercase tracking-wider font-space border-brand-blue/20 text-brand-blue bg-brand-blue/5 px-2.5 py-1"
                 >
                   CASE STUDY
                 </Badge>
                 <Badge
                   variant="secondary"
-                  className="text-[10px] font-bold uppercase tracking-wider font-space-grotesk px-2.5 py-1"
+                  className="text-[10px] font-bold uppercase tracking-wider font-space px-2.5 py-1"
                 >
                   MIGRATION & MONTHLY SEO CAMPAIGN
                 </Badge>
               </div>
-              <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-brand-navy dark:text-white leading-[1.05] font-poppins">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-brand-navy dark:text-white leading-[1.05] font-sora">
                 The Story of{" "}
-                <span className="text-brand-orange">{project.title}</span>
+                <span className="text-brand-blue">{project.title}</span>
               </h1>
-              <p className="text-sm md:text-base text-muted-foreground leading-relaxed font-inter max-w-2xl">
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed font-manrope max-w-2xl">
                 An engineering and marketing deep-dive into how we resolved
                 legacy performance bottlenecks, migrated to an advanced headless
                 Next.js system, and drove sustainable booking growth through
                 structured SEO content acquisition.
               </p>
               <div className="flex flex-wrap gap-4 pt-2">
-                <div className="flex items-center gap-2 bg-muted/20 border border-border/10 rounded-xl px-4 py-2.5 text-xs font-semibold text-brand-navy dark:text-white font-inter">
+                <div className="flex items-center gap-2 bg-muted/20 border border-border/10 rounded-xl px-4 py-2.5 text-xs font-semibold text-brand-navy dark:text-white font-manrope">
                   <span className="h-2 w-2 rounded-full bg-green-500 animate-ping" />
                   Live Platform Deploy Completed
                 </div>
@@ -296,11 +293,11 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
             </div>
 
             <div className="lg:col-span-5 bg-card border border-border/30 rounded-3xl p-6 md:p-8 shadow-xl space-y-6 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle_at_center,rgba(255,107,0,0.08)_0%,transparent_70%)] pointer-events-none" />
-              <h3 className="text-xs font-bold text-brand-orange uppercase tracking-wider font-space-grotesk">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle_at_center,rgba(8, 120, 249,0.08)_0%,transparent_70%)] pointer-events-none" />
+              <h3 className="text-xs font-bold text-brand-blue uppercase tracking-wider font-space">
                 PROJECT ENGAGEMENT MATRIX
               </h3>
-              <div className="space-y-4 font-inter text-xs text-muted-foreground">
+              <div className="space-y-4 font-manrope text-xs text-muted-foreground">
                 <div className="flex justify-between border-b border-border/10 pb-2">
                   <span className="font-semibold">Client Name</span>
                   <span className="text-brand-navy dark:text-white font-bold">
@@ -332,7 +329,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-brand-orange hover:underline font-bold flex items-center gap-1"
+                      className="text-brand-blue hover:underline font-bold flex items-center gap-1"
                     >
                       Visit Website <ExternalLink className="h-3 w-3" />
                     </a>
@@ -340,7 +337,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                 )}
               </div>
               <div className="p-4 bg-muted/35 rounded-2xl border border-border/20 text-center">
-                <p className="text-[10px] font-bold text-brand-orange font-space-grotesk tracking-widest uppercase">
+                <p className="text-[10px] font-bold text-brand-blue font-space tracking-widest uppercase">
                   ACTIVE PORTFOLIO ARTIFACT
                 </p>
               </div>
@@ -353,29 +350,29 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
       <Section className="py-16 bg-muted/10 relative z-10 border-b border-border/20">
         <Container className="max-w-4xl mx-auto space-y-8">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk mb-2">
+            <span className="text-[10px] font-bold text-brand-blue uppercase tracking-wider block font-space mb-2">
               {details.act1Sub}
             </span>
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-poppins text-brand-navy dark:text-white">
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-sora text-brand-navy dark:text-white">
               {details.act1Title}
             </h2>
-            <div className="h-1 w-12 bg-brand-orange rounded-full mt-3 mx-auto" />
+            <div className="h-1 w-12 bg-brand-blue rounded-full mt-3 mx-auto" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start bg-card border border-border/30 rounded-3xl p-6 md:p-8 shadow-md">
-            <div className="md:col-span-7 space-y-4 text-xs text-muted-foreground leading-relaxed font-inter">
+            <div className="md:col-span-7 space-y-4 text-xs text-muted-foreground leading-relaxed font-manrope">
               {details.act1Paragraphs.map((para, idx) => (
                 <p key={idx}>{para}</p>
               ))}
             </div>
             <div className="md:col-span-5 space-y-4 border-t md:border-t-0 md:border-l border-border/30 pt-6 md:pt-0 md:pl-6 text-xs">
-              <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk">
+              <span className="text-[10px] font-bold text-brand-blue uppercase tracking-wider block font-space">
                 ENGAGED CAPABILITIES
               </span>
-              <ul className="space-y-3 font-semibold text-brand-navy dark:text-white font-inter">
+              <ul className="space-y-3 font-semibold text-brand-navy dark:text-white font-manrope">
                 {details.act1Services.map((service, idx) => (
                   <li key={idx} className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-brand-orange shrink-0" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-brand-blue shrink-0" />
                     {service}
                   </li>
                 ))}
@@ -389,14 +386,14 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
       <Section className="py-16 md:py-24 border-b border-border/10">
         <Container className="max-w-4xl mx-auto space-y-12">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk mb-2">
+            <span className="text-[10px] font-bold text-brand-blue uppercase tracking-wider block font-space mb-2">
               {details.act2Sub}
             </span>
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-poppins text-brand-navy dark:text-white">
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-sora text-brand-navy dark:text-white">
               {details.act2Title}
             </h2>
-            <div className="h-1 w-12 bg-brand-orange rounded-full mt-3 mx-auto" />
-            <p className="text-xs text-muted-foreground mt-4 font-inter leading-relaxed">
+            <div className="h-1 w-12 bg-brand-blue rounded-full mt-3 mx-auto" />
+            <p className="text-xs text-muted-foreground mt-4 font-manrope leading-relaxed">
               A detailed technical audit highlighted key structural,
               performance, and search visibility failures that directly limited
               business scaling.
@@ -405,10 +402,10 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             <div className="space-y-4">
-              <h4 className="text-sm font-bold text-brand-navy dark:text-white font-poppins">
+              <h4 className="text-sm font-bold text-brand-navy dark:text-white font-sora">
                 {details.act2PointsTitle}
               </h4>
-              <ul className="space-y-3.5 text-xs text-muted-foreground font-inter">
+              <ul className="space-y-3.5 text-xs text-muted-foreground font-manrope">
                 {details.act2Points.map((pt, idx) => (
                   <li key={idx} className="flex items-start gap-2.5">
                     <span className="h-5 w-5 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center shrink-0 font-bold">
@@ -424,10 +421,10 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
 
             {/* Performance Comparison Visual Card */}
             <div className="p-6 bg-muted/10 border border-border/20 rounded-3xl space-y-6">
-              <h4 className="text-xs font-bold text-brand-navy dark:text-white font-space-grotesk tracking-wide text-center">
+              <h4 className="text-xs font-bold text-brand-navy dark:text-white font-space tracking-wide text-center">
                 {details.act2MatrixTitle}
               </h4>
-              <div className="space-y-4 font-inter text-xs">
+              <div className="space-y-4 font-manrope text-xs">
                 <div className="grid grid-cols-3 font-bold border-b border-border/10 pb-2 text-muted-foreground">
                   <span>{details.act2MatrixHeader[0]}</span>
                   <span>{details.act2MatrixHeader[1]}</span>
@@ -453,14 +450,14 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
       <Section className="py-16 md:py-24 bg-muted/5 border-b border-border/10 relative">
         <Container className="max-w-4xl mx-auto space-y-12">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk mb-2">
+            <span className="text-[10px] font-bold text-brand-blue uppercase tracking-wider block font-space mb-2">
               {details.act3Sub}
             </span>
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-poppins text-brand-navy dark:text-white">
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-sora text-brand-navy dark:text-white">
               {details.act3Title}
             </h2>
-            <div className="h-1 w-12 bg-brand-orange rounded-full mt-3 mx-auto" />
-            <p className="text-xs text-muted-foreground mt-4 font-inter max-w-2xl mx-auto">
+            <div className="h-1 w-12 bg-brand-blue rounded-full mt-3 mx-auto" />
+            <p className="text-xs text-muted-foreground mt-4 font-manrope max-w-2xl mx-auto">
               {details.act3Sub === "ACT III: THE PARADIGM SHIFT"
                 ? "Our engineering team built a decoupled architecture. We separated the static marketing pages (which Google needs to crawl immediately) from the booking transaction backend, deployed serverless on Vercel."
                 : "We decoupled visual rendering structures from back-end database requests to ensure reliable operation and immediate page interactions."}
@@ -469,32 +466,32 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
 
           {/* Interactive Flowchart Diagram */}
           <div className="p-6 bg-card border border-border/30 rounded-3xl space-y-6">
-            <h4 className="text-xs font-bold text-brand-navy dark:text-white font-space-grotesk tracking-wide text-center">
+            <h4 className="text-xs font-bold text-brand-navy dark:text-white font-space tracking-wide text-center">
               SYSTEM INTEGRATION & TRAFFIC FLOW PIPELINE
             </h4>
-            <div className="flex flex-col md:flex-row items-center justify-around gap-6 text-center font-space-grotesk text-xs">
+            <div className="flex flex-col md:flex-row items-center justify-around gap-6 text-center font-space text-xs">
               {details.act3Flowchart.map((box, idx) => (
                 <React.Fragment key={idx}>
                   {idx > 0 && (
-                    <div className="text-brand-orange font-extrabold rotate-90 md:rotate-0">
+                    <div className="text-brand-blue font-extrabold rotate-90 md:rotate-0">
                       ➔
                     </div>
                   )}
                   <div className="p-4 rounded-xl border border-border/40 bg-muted/20 w-44 space-y-2">
-                    <span className="text-[9px] font-bold text-brand-orange block">
+                    <span className="text-[9px] font-bold text-brand-blue block">
                       {box.label}
                     </span>
                     <span className="font-bold text-brand-navy dark:text-white">
                       {box.name}
                     </span>
-                    <p className="text-[9px] text-muted-foreground font-inter">
+                    <p className="text-[9px] text-muted-foreground font-manrope">
                       {box.desc}
                     </p>
                   </div>
                 </React.Fragment>
               ))}
             </div>
-            <p className="text-[10px] text-center text-muted-foreground font-inter max-w-lg mx-auto">
+            <p className="text-[10px] text-center text-muted-foreground font-manrope max-w-lg mx-auto">
               {details.act3Caption}
             </p>
           </div>
@@ -505,14 +502,14 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
       <Section className="py-16 md:py-24 border-b border-border/10">
         <Container className="max-w-4xl mx-auto space-y-12">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk mb-2">
+            <span className="text-[10px] font-bold text-brand-blue uppercase tracking-wider block font-space mb-2">
               {details.act4Sub}
             </span>
-            <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight font-poppins text-brand-navy dark:text-white">
+            <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight font-sora text-brand-navy dark:text-white">
               {details.act4Title}
             </h2>
-            <div className="h-1 w-12 bg-brand-orange rounded-full mt-3 mx-auto" />
-            <p className="text-xs text-muted-foreground mt-4 font-inter leading-relaxed">
+            <div className="h-1 w-12 bg-brand-blue rounded-full mt-3 mx-auto" />
+            <p className="text-xs text-muted-foreground mt-4 font-manrope leading-relaxed">
               We divided the project into four logical execution tracks. Each
               step resolved a distinct business challenge, ensuring that UI
               updates, backend automation, search visibility, and content
@@ -535,10 +532,10 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                     className="w-full p-5 flex items-center justify-between cursor-pointer bg-muted/5 hover:bg-muted/10 transition-colors focus:outline-none"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="text-xs font-bold text-brand-orange font-space-grotesk">
+                      <span className="text-xs font-bold text-brand-blue font-space">
                         {step.step}
                       </span>
-                      <h4 className="text-sm font-bold text-brand-navy dark:text-white font-poppins">
+                      <h4 className="text-sm font-bold text-brand-navy dark:text-white font-sora">
                         {step.title}
                       </h4>
                     </div>
@@ -550,7 +547,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                     />
                   </button>
                   {openStep === stepNum && (
-                    <div className="p-6 border-t border-border/10 space-y-4 bg-card text-xs text-muted-foreground leading-relaxed font-inter">
+                    <div className="p-6 border-t border-border/10 space-y-4 bg-card text-xs text-muted-foreground leading-relaxed font-manrope">
                       <p>{step.description}</p>
 
                       {step.bulletGrid && (
@@ -560,7 +557,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                               key={bIdx}
                               className="p-4 bg-muted/20 border border-border/10 rounded-xl space-y-1.5"
                             >
-                              <span className="font-bold text-brand-navy dark:text-white font-space-grotesk">
+                              <span className="font-bold text-brand-navy dark:text-white font-space">
                                 {bg.title}
                               </span>
                               <p className="text-[10px]">{bg.text}</p>
@@ -591,14 +588,14 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
       <Section className="py-16 md:py-24 bg-muted/5 border-b border-border/10">
         <Container className="max-w-4xl mx-auto space-y-8">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk mb-2">
+            <span className="text-[10px] font-bold text-brand-blue uppercase tracking-wider block font-space mb-2">
               {details.act5Sub}
             </span>
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-poppins text-brand-navy dark:text-white">
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-sora text-brand-navy dark:text-white">
               {details.act5Title}
             </h2>
-            <div className="h-1 w-12 bg-brand-orange rounded-full mt-3 mx-auto" />
-            <p className="text-xs text-muted-foreground mt-4 font-inter leading-relaxed">
+            <div className="h-1 w-12 bg-brand-blue rounded-full mt-3 mx-auto" />
+            <p className="text-xs text-muted-foreground mt-4 font-manrope leading-relaxed">
               We analyzed competitor search gaps and capabilities to optimize
               our deployment parameters and organic strategy.
             </p>
@@ -606,8 +603,8 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
 
           <div className="border border-border/30 rounded-3xl bg-card overflow-hidden shadow-md">
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse text-left text-xs font-inter">
-                <thead className="bg-muted/40 font-bold font-space-grotesk text-muted-foreground border-b border-border/10">
+              <table className="w-full border-collapse text-left text-xs font-manrope">
+                <thead className="bg-muted/40 font-bold font-space text-muted-foreground border-b border-border/10">
                   <tr>
                     {details.act5KeywordsHeader.map((header, idx) => (
                       <th key={idx} className="p-4">
@@ -627,7 +624,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                       <td className="p-4 text-red-500 font-semibold">
                         {row[3]}
                       </td>
-                      <td className="p-4 font-semibold text-brand-orange">
+                      <td className="p-4 font-semibold text-brand-blue">
                         {row[4]}
                       </td>
                     </tr>
@@ -643,14 +640,14 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
       <Section className="py-16 md:py-24 bg-brand-navy text-white dark:bg-[#070707] dark:border-y dark:border-white/10">
         <Container className="max-w-4xl mx-auto space-y-12">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk mb-2 text-white/80">
+            <span className="text-[10px] font-bold text-brand-blue uppercase tracking-wider block font-space mb-2 text-white/80">
               {details.act6Sub}
             </span>
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-poppins">
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight font-sora">
               {details.act6Title}
             </h2>
-            <div className="h-1 w-12 bg-brand-orange rounded-full mt-3 mx-auto" />
-            <p className="text-xs text-white/70 mt-4 font-inter leading-relaxed">
+            <div className="h-1 w-12 bg-brand-blue rounded-full mt-3 mx-auto" />
+            <p className="text-xs text-white/70 mt-4 font-manrope leading-relaxed">
               In the first two months post-launch, we provided full support and
               maintenance checks. Today, platform operational efficiency has
               reached record levels.
@@ -665,10 +662,10 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                   key={idx}
                   className="p-6 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm"
                 >
-                  <span className="text-3xl font-extrabold text-brand-orange block mb-1 font-poppins">
+                  <span className="text-3xl font-extrabold text-brand-blue block mb-1 font-sora">
                     {metric.metric}
                   </span>
-                  <span className="text-xs font-semibold text-white/85 font-space-grotesk tracking-wide uppercase">
+                  <span className="text-xs font-semibold text-white/85 font-space tracking-wide uppercase">
                     {metric.label}
                   </span>
                 </div>
@@ -677,7 +674,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
 
             {/* Growth Area Chart */}
             <div className="p-6 bg-white/5 border border-white/10 rounded-3xl space-y-4">
-              <h4 className="text-xs font-bold font-space-grotesk text-white/90 tracking-wider text-center">
+              <h4 className="text-xs font-bold font-space text-white/90 tracking-wider text-center">
                 {details.act6ChartTitle}
               </h4>
               <div className="w-full h-44 relative">
@@ -688,10 +685,10 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                 >
                   <defs>
                     <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#FF6B00" stopOpacity="0.4" />
+                      <stop offset="0%" stopColor="#0878F9" stopOpacity="0.4" />
                       <stop
                         offset="100%"
-                        stopColor="#FF6B00"
+                        stopColor="#0878F9"
                         stopOpacity="0.0"
                       />
                     </linearGradient>
@@ -729,16 +726,16 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                   <path
                     d="M 0 110 Q 50 100 100 80 T 200 40 T 300 10"
                     fill="none"
-                    stroke="#FF6B00"
+                    stroke="#0878F9"
                     strokeWidth="3"
                   />
                   {/* Nodes */}
-                  <circle cx="100" cy="80" r="4" fill="#FF6B00" />
-                  <circle cx="200" cy="40" r="4" fill="#FF6B00" />
-                  <circle cx="300" cy="10" r="4" fill="#FF6B00" />
+                  <circle cx="100" cy="80" r="4" fill="#0878F9" />
+                  <circle cx="200" cy="40" r="4" fill="#0878F9" />
+                  <circle cx="300" cy="10" r="4" fill="#0878F9" />
                 </svg>
               </div>
-              <div className="flex justify-between text-[10px] font-bold text-white/50 font-space-grotesk">
+              <div className="flex justify-between text-[10px] font-bold text-white/50 font-space">
                 <span>{details.act6ChartLabels[0]}</span>
                 <span>{details.act6ChartLabels[1]}</span>
                 <span>{details.act6ChartLabels[2]}</span>
@@ -753,26 +750,26 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
         <Container className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-4">
-              <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block font-space-grotesk">
+              <span className="text-[10px] font-bold text-brand-blue uppercase tracking-wider block font-space">
                 CLIENT TESTIMONIAL
               </span>
-              <h2 className="text-2xl font-extrabold text-brand-navy dark:text-white font-poppins">
+              <h2 className="text-2xl font-extrabold text-brand-navy dark:text-white font-sora">
                 {details.testimonialTitle}
               </h2>
-              <div className="h-1 w-10 bg-brand-orange rounded-full mb-6" />
-              <p className="text-xs text-muted-foreground leading-relaxed font-inter italic">
+              <div className="h-1 w-10 bg-brand-blue rounded-full mb-6" />
+              <p className="text-xs text-muted-foreground leading-relaxed font-manrope italic">
                 &ldquo;{details.testimonialText}&rdquo;
               </p>
-              <h5 className="text-xs font-bold text-brand-navy dark:text-white font-space-grotesk">
+              <h5 className="text-xs font-bold text-brand-navy dark:text-white font-space">
                 — {details.testimonialAuthor}
               </h5>
             </div>
 
             {/* Video Placeholder Container */}
             <div className="aspect-video w-full bg-slate-900 rounded-3xl border border-border/30 overflow-hidden relative shadow-lg group">
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,107,0,0.1)_0%,transparent_75%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(8, 120, 249,0.1)_0%,transparent_75%)]" />
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white/85 p-6 z-10 text-center">
-                <div className="h-14 w-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center cursor-pointer transition-transform duration-300 hover:scale-110 mb-4 group-hover:bg-brand-orange group-hover:border-brand-orange">
+                <div className="h-14 w-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center cursor-pointer transition-transform duration-300 hover:scale-110 mb-4 group-hover:bg-brand-blue group-hover:border-brand-blue">
                   <svg
                     className="w-6 h-6 fill-current text-white ml-1"
                     viewBox="0 0 24 24"
@@ -780,10 +777,10 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                     <path d="M8 5v14l11-7z" />
                   </svg>
                 </div>
-                <span className="text-xs font-bold tracking-widest font-space-grotesk text-white">
+                <span className="text-xs font-bold tracking-widest font-space text-white">
                   PLAY REVIEW VIDEO
                 </span>
-                <span className="text-[9px] font-bold text-white/50 tracking-wider uppercase font-inter mt-1.5">
+                <span className="text-[9px] font-bold text-white/50 tracking-wider uppercase font-manrope mt-1.5">
                   {details.testimonialVideoCaption}
                 </span>
               </div>
@@ -797,10 +794,10 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16">
             <SectionTag className="justify-center">VISUAL WORK</SectionTag>
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-sora">
               Interface screenshots & flows
             </h2>
-            <div className="h-1 w-12 bg-brand-orange rounded-full mt-4 mx-auto" />
+            <div className="h-1 w-12 bg-brand-blue rounded-full mt-4 mx-auto" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
@@ -827,7 +824,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                         />
                       )}
                       <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
-                        <span className="text-xs font-bold text-white font-space-grotesk tracking-widest uppercase bg-black/60 px-3 py-1.5 rounded-full backdrop-blur-sm shadow-md">
+                        <span className="text-xs font-bold text-white font-space tracking-widest uppercase bg-black/60 px-3 py-1.5 rounded-full backdrop-blur-sm shadow-md">
                           Zoom In
                         </span>
                       </div>
@@ -857,7 +854,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                         )}
                       >
                         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15)_0%,transparent_85%)] mix-blend-overlay" />
-                        <span className="font-space-grotesk tracking-widest text-white/50 text-xs uppercase">
+                        <span className="font-space tracking-widest text-white/50 text-xs uppercase">
                           SCREENSHOT {index + 1} FULL MOCKUP
                         </span>
                       </div>
@@ -874,20 +871,20 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
       <Section className="bg-muted/10 border-y border-border/20 py-16 text-center">
         <Container>
           <div className="max-w-xl mx-auto">
-            <span className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block mb-3 font-space-grotesk">
+            <span className="text-[10px] font-bold text-brand-blue uppercase tracking-wider block mb-3 font-space">
               COLLABORATION OPPORTUNITY
             </span>
-            <h2 className="text-xl md:text-2xl font-extrabold text-brand-navy dark:text-white mb-3 font-poppins">
+            <h2 className="text-xl md:text-2xl font-extrabold text-brand-navy dark:text-white mb-3 font-sora">
               Have a similar project in mind?
             </h2>
-            <p className="text-xs text-muted-foreground mb-8 font-inter">
+            <p className="text-xs text-muted-foreground mb-8 font-manrope">
               Get an honest technical scope check and estimated budget numbers
               for your company.
             </p>
             <Link href="/contact">
               <Button
                 size="lg"
-                className="bg-brand-orange hover:bg-brand-orange/90 text-white font-bold h-12 px-6 rounded-lg text-xs flex items-center justify-center gap-1.5 shadow-[0_4px_14px_rgba(255,107,0,0.3)] mx-auto"
+                className="bg-brand-blue hover:bg-brand-blue/90 text-white font-bold h-12 px-6 rounded-lg text-xs flex items-center justify-center gap-1.5 shadow-[0_4px_14px_rgba(8, 120, 249,0.3)] mx-auto"
               >
                 Let&apos;s Talk
                 <ArrowRight className="h-4 w-4" />
@@ -904,14 +901,14 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
               <div className="flex flex-col items-start">
                 <SectionTag>MORE SUCCESS STORIES</SectionTag>
-                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-sora">
                   Related Case Studies
                 </h2>
-                <div className="h-1 w-12 bg-brand-orange rounded-full mt-4" />
+                <div className="h-1 w-12 bg-brand-blue rounded-full mt-4" />
               </div>
               <Link
                 href="/work"
-                className="group flex items-center gap-1.5 text-xs font-bold text-brand-orange hover:text-brand-orange-hover transition-colors font-inter"
+                className="group flex items-center gap-1.5 text-xs font-bold text-brand-blue hover:text-brand-blue-dark transition-colors font-manrope"
               >
                 View all work
                 <motion.span
@@ -931,7 +928,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
               {relatedProjects.map((project) => (
                 <div
                   key={project.slug}
-                  className="flex flex-col rounded-2xl border border-border/40 bg-card overflow-hidden transition-all duration-300 group hover:border-brand-orange/30 hover:shadow-[0_4px_20px_rgba(255,107,0,0.06)]"
+                  className="flex flex-col rounded-2xl border border-border/40 bg-card overflow-hidden transition-all duration-300 group hover:border-brand-blue/30 hover:shadow-[0_4px_20px_rgba(8, 120, 249,0.06)]"
                 >
                   {/* Image or Gradient Preview */}
                   <div className="h-40 w-full relative overflow-hidden select-none">
@@ -953,17 +950,17 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                       />
                     )}
                     <div className="absolute inset-0 bg-black/15 z-10" />
-                    <span className="absolute bottom-3 left-3 text-[9px] font-extrabold tracking-widest text-white/95 uppercase font-space-grotesk bg-black/40 px-2 py-0.5 rounded backdrop-blur-sm z-20">
+                    <span className="absolute bottom-3 left-3 text-[9px] font-extrabold tracking-widest text-white/95 uppercase font-space bg-black/40 px-2 py-0.5 rounded backdrop-blur-sm z-20">
                       {project.industry} Case Study
                     </span>
                   </div>
 
                   <div className="p-5 flex-grow flex flex-col justify-between">
                     <div>
-                      <h3 className="text-sm font-bold text-brand-navy dark:text-white mb-2 font-poppins group-hover:text-brand-orange transition-colors">
+                      <h3 className="text-sm font-bold text-brand-navy dark:text-white mb-2 font-sora group-hover:text-brand-blue transition-colors">
                         {project.title}
                       </h3>
-                      <p className="text-xs text-muted-foreground leading-relaxed mb-4 font-inter">
+                      <p className="text-xs text-muted-foreground leading-relaxed mb-4 font-manrope">
                         {project.overview}
                       </p>
                     </div>
@@ -974,7 +971,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                           <Badge
                             key={t}
                             variant="secondary"
-                            className="bg-muted hover:bg-muted text-[9px] text-muted-foreground font-semibold px-2 py-0.5 rounded-sm border border-border/10 font-inter"
+                            className="bg-muted hover:bg-muted text-[9px] text-muted-foreground font-semibold px-2 py-0.5 rounded-sm border border-border/10 font-manrope"
                           >
                             {t}
                           </Badge>
@@ -983,7 +980,7 @@ export function CaseStudyClient({ project }: CaseStudyClientProps) {
                       <div className="border-t border-border/10 pt-3">
                         <Link
                           href={`/work/${project.slug}`}
-                          className="text-xs font-bold text-brand-navy hover:text-brand-orange dark:text-white/80 dark:hover:text-brand-orange transition-colors flex items-center gap-1 font-inter"
+                          className="text-xs font-bold text-brand-navy hover:text-brand-blue dark:text-white/80 dark:hover:text-brand-blue transition-colors flex items-center gap-1 font-manrope"
                         >
                           View Case Study
                           <ExternalLink className="h-3 w-3 opacity-60" />

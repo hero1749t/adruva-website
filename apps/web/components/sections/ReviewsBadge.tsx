@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { Star } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { Container } from '@/components/layout/container';
+import React, { useState, useEffect } from "react";
+import { Star } from "lucide-react";
+import { motion } from "framer-motion";
+import { Container } from "@/components/layout/container";
 
 export function ReviewsBadge() {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
     const checkReducedMotion = () => {
-      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
       setPrefersReducedMotion(mediaQuery.matches);
     };
     checkReducedMotion();
@@ -21,7 +21,7 @@ export function ReviewsBadge() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: 'easeOut' },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
@@ -32,7 +32,7 @@ export function ReviewsBadge() {
           variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
+          viewport={{ once: true, margin: "-60px" }}
           className="flex flex-col items-center justify-center max-w-[400px] mx-auto text-center p-8 sm:p-10 rounded-[20px] bg-card border border-border shadow-[0_4px_24px_rgba(0,0,0,0.06)]"
         >
           {/* Stars Row */}
@@ -43,14 +43,14 @@ export function ReviewsBadge() {
           </div>
 
           {/* Rating Text */}
-          <span className="text-3xl font-bold text-foreground font-poppins">
+          <span className="text-3xl font-bold text-foreground font-sora">
             4.9 out of 5
           </span>
 
           {/* Sub Text & Google Branding */}
-          <div className="flex items-center justify-center gap-1.5 mt-2 text-sm text-muted-foreground font-inter">
+          <div className="flex items-center justify-center gap-1.5 mt-2 text-sm text-muted-foreground font-manrope">
             <span>Based on verified</span>
-            
+
             {/* Google mini-svg */}
             <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24">
               <path
@@ -78,7 +78,7 @@ export function ReviewsBadge() {
             href="https://google.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-semibold text-brand-orange hover:underline mt-4 font-inter"
+            className="text-sm font-semibold text-brand-blue hover:underline mt-4 font-manrope"
           >
             View on Google →
           </a>

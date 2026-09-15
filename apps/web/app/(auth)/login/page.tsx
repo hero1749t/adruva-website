@@ -64,12 +64,12 @@ export default function LoginPage() {
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center bg-[#060b13] overflow-y-auto py-12 px-4">
       {/* Decorative Blur Background Circles */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-orange/20 rounded-full blur-[100px] pointer-events-none animate-pulse duration-[8000ms]" />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-blue/20 rounded-full blur-[100px] pointer-events-none animate-pulse duration-[8000ms]" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-blue/20 rounded-full blur-[100px] pointer-events-none animate-pulse duration-[6000ms]" />
 
       <Card className="relative w-full max-w-md border border-white/10 bg-[#0b121e]/80 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] text-white overflow-hidden rounded-2xl">
         {/* Top brand header accent */}
-        <div className="h-1.5 w-full bg-gradient-to-r from-brand-orange via-brand-blue to-brand-orange" />
+        <div className="h-1.5 w-full bg-gradient-to-r from-brand-blue via-brand-blue to-brand-blue" />
 
         <CardHeader className="space-y-2 text-center pt-8 px-6 sm:px-8">
           <Link
@@ -86,11 +86,11 @@ export default function LoginPage() {
                 priority
               />
             </div>
-            <span className="text-xl font-[800] tracking-tight text-white transition-colors font-poppins mt-1">
-              Adruva<span className="text-brand-orange">.</span>
+            <span className="text-xl font-[800] tracking-tight text-white transition-colors font-sora mt-1">
+              Adruva<span className="text-brand-blue">.</span>
             </span>
           </Link>
-          <CardDescription className="text-brand-gray text-sm font-inter">
+          <CardDescription className="text-brand-gray text-sm font-manrope">
             Access the administrative console to manage content & leads
           </CardDescription>
         </CardHeader>
@@ -117,7 +117,7 @@ export default function LoginPage() {
                   id="email"
                   type="email"
                   placeholder="admin@adruvasolution.com"
-                  className="pl-12 h-12 bg-white/5 border-white/10 text-white placeholder:text-brand-gray/40 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange"
+                  className="pl-12 h-12 bg-white/5 border-white/10 text-white placeholder:text-brand-gray/40 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
                   {...register("email")}
                 />
               </div>
@@ -141,7 +141,7 @@ export default function LoginPage() {
                   id="password"
                   type="password"
                   placeholder="••••••••••••"
-                  className="pl-12 h-12 bg-white/5 border-white/10 text-white placeholder:text-brand-gray/40 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange"
+                  className="pl-12 h-12 bg-white/5 border-white/10 text-white placeholder:text-brand-gray/40 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
                   {...register("password")}
                 />
               </div>
@@ -155,7 +155,7 @@ export default function LoginPage() {
             <Button
               type="submit"
               disabled={loading}
-              className="w-full bg-brand-orange hover:bg-brand-orange/90 text-white h-12 mt-6 transition-all duration-300 font-semibold flex items-center justify-center gap-2 rounded-lg"
+              className="w-full bg-brand-blue hover:bg-brand-blue/90 text-white h-12 mt-6 transition-all duration-300 font-semibold flex items-center justify-center gap-2 rounded-lg"
             >
               {loading ? (
                 <span>Authenticating...</span>

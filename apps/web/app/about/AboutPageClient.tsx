@@ -160,25 +160,25 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
       {/* 1. Hero Section */}
       <Section className="pt-20 pb-16 md:pt-28 md:pb-24 relative overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-brand-orange/10 dark:bg-brand-orange/20 blur-[120px]" />
+          <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-brand-blue/10 dark:bg-brand-blue/20 blur-[120px]" />
           <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-blue-500/10 dark:bg-blue-600/10 blur-[100px]" />
         </div>
 
         <Container className="relative z-10">
           <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-bold tracking-wider text-brand-orange mb-6 font-space-grotesk shadow-sm">
-              <Sparkle className="h-4 w-4 fill-brand-orange text-brand-orange animate-pulse" />
+            <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-bold tracking-wider text-brand-blue mb-6 font-space shadow-sm">
+              <Sparkle className="h-4 w-4 fill-brand-blue text-brand-teal animate-pulse" />
               OUR STORY & VISION
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6 font-poppins leading-[1.1]">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6 font-sora leading-[1.1]">
               Web Development & AI Automation <br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-amber-500">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-teal">
                 Agency in Rishikesh, India
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-slate-600 dark:text-gray-400 font-inter max-w-2xl leading-relaxed mb-10">
+            <p className="text-lg md:text-xl text-slate-600 dark:text-gray-400 font-manrope max-w-2xl leading-relaxed mb-10">
               We are an elite team of developers, designers, and growth
               marketing strategists transforming complex business challenges
               into elegant digital solutions.
@@ -200,13 +200,13 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
               className="space-y-8"
             >
               <div>
-                <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-6 font-poppins">
+                <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-6 font-sora">
                   Our Rishikesh IT Agency Roots
                 </h2>
 
-                <div className="h-1.5 w-16 bg-brand-orange rounded-full" />
+                <div className="h-1.5 w-16 bg-brand-blue rounded-full" />
               </div>
-              <div className="space-y-6 text-base md:text-lg text-slate-600 dark:text-gray-300 leading-relaxed font-inter">
+              <div className="space-y-6 text-base md:text-lg text-slate-600 dark:text-gray-300 leading-relaxed font-manrope">
                 <motion.p variants={fadeInUp}>
                   In Rishikesh and across regional business hubs, we noticed a
                   persistent and frustrating gap: local businesses were
@@ -243,20 +243,20 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-brand-navy p-8 flex flex-col justify-between">
                 <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
-                  <Sparkle className="w-8 h-8 text-brand-orange" />
+                  <Sparkle className="w-8 h-8 text-brand-blue" />
                 </div>
                 <div>
-                  <h3 className="text-3xl font-bold text-white mb-2 font-poppins">
+                  <h3 className="text-3xl font-bold text-white mb-2 font-sora">
                     Built differently.
                   </h3>
-                  <p className="text-slate-300 font-inter">
+                  <p className="text-slate-300 font-manrope">
                     We don&apos;t just write code. We architect scalable
                     business solutions.
                   </p>
                 </div>
               </div>
               {/* Decorative elements */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-orange/20 rounded-full blur-[80px]" />
+              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-blue/20 rounded-full blur-[80px]" />
               <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/20 rounded-full blur-[80px]" />
             </motion.div>
           </div>
@@ -267,10 +267,10 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
       <Section className="py-20 md:py-32 bg-white dark:bg-[#0A0A0A] border-y border-slate-200 dark:border-white/10 relative">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16 md:mb-24">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white font-poppins mb-6">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white font-sora mb-6">
               Our Journey So Far
             </h2>
-            <p className="text-lg text-slate-600 dark:text-gray-400 font-inter">
+            <p className="text-lg text-slate-600 dark:text-gray-400 font-manrope">
               From a small local initiative to a trusted digital partner for
               global brands.
             </p>
@@ -278,7 +278,7 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
 
           <div className="max-w-4xl mx-auto relative">
             {/* Center Line */}
-            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-brand-orange/50 via-brand-orange/20 to-transparent -translate-x-1/2 rounded-full" />
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-brand-blue/50 via-brand-blue/20 to-transparent -translate-x-1/2 rounded-full" />
 
             <div className="space-y-12 md:space-y-0">
               {timeline.map((item, idx) => (
@@ -287,11 +287,11 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
                   className={`relative flex flex-col md:flex-row items-center ${idx % 2 === 0 ? "md:flex-row-reverse" : ""}`}
                 >
                   {/* Timeline Dot */}
-                  <div className="hidden md:flex absolute left-1/2 w-8 h-8 bg-brand-orange rounded-full border-4 border-white dark:border-[#0A0A0A] -translate-x-1/2 items-center justify-center shadow-[0_0_15px_rgba(249,115,22,0.4)] z-10" />
+                  <div className="hidden md:flex absolute left-1/2 w-8 h-8 bg-brand-blue rounded-full border-4 border-white dark:border-[#0A0A0A] -translate-x-1/2 items-center justify-center shadow-[0_0_15px_rgba(249,115,22,0.4)] z-10" />
                   {/* Mobile Dot */}
                   <div className="md:hidden flex items-center mb-4 self-start">
-                    <div className="w-4 h-4 bg-brand-orange rounded-full mr-4 shadow-[0_0_10px_rgba(249,115,22,0.5)]" />
-                    <span className="text-xl font-bold text-brand-orange font-space-grotesk">
+                    <div className="w-4 h-4 bg-brand-blue rounded-full mr-4 shadow-[0_0_10px_rgba(249,115,22,0.5)]" />
+                    <span className="text-xl font-bold text-brand-blue font-space">
                       {item.step}
                     </span>
                   </div>
@@ -305,15 +305,15 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.6, ease: "easeOut" }}
                       viewport={{ once: true, margin: "-50px" }}
-                      className="p-8 rounded-3xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5 hover:border-brand-orange/30 dark:hover:border-brand-orange/30 transition-colors shadow-sm"
+                      className="p-8 rounded-3xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5 hover:border-brand-blue/30 dark:hover:border-brand-blue/30 transition-colors shadow-sm"
                     >
-                      <span className="hidden md:block text-5xl font-black text-brand-orange/10 dark:text-brand-orange/10 absolute top-4 right-8 select-none">
+                      <span className="hidden md:block text-5xl font-black text-brand-blue/10 dark:text-brand-blue/10 absolute top-4 right-8 select-none">
                         {item.step}
                       </span>
-                      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 font-poppins relative z-10">
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 font-sora relative z-10">
                         {item.title}
                       </h3>
-                      <p className="text-sm text-slate-600 dark:text-gray-400 font-inter leading-relaxed relative z-10">
+                      <p className="text-sm text-slate-600 dark:text-gray-400 font-manrope leading-relaxed relative z-10">
                         {item.desc}
                       </p>
                     </motion.div>
@@ -329,7 +329,7 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
       <Section className="py-20 md:py-32 relative overflow-hidden">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white font-poppins">
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white font-sora">
               What Drives Us
             </h2>
           </div>
@@ -344,17 +344,17 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
             {/* Mission (Span 2) */}
             <motion.div
               variants={fadeInUp}
-              className="md:col-span-2 p-8 md:p-10 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#0A0A0A] shadow-xl shadow-slate-200/50 dark:shadow-none hover:border-brand-orange/40 transition-colors relative overflow-hidden group"
+              className="md:col-span-2 p-8 md:p-10 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#0A0A0A] shadow-xl shadow-slate-200/50 dark:shadow-none hover:border-brand-blue/40 transition-colors relative overflow-hidden group"
             >
-              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-orange/5 rounded-full blur-[80px] group-hover:bg-brand-orange/10 transition-colors duration-500" />
-              <Target className="w-10 h-10 text-brand-orange mb-6" />
-              <h3 className="text-xs font-bold text-brand-orange uppercase tracking-wider mb-2 font-space-grotesk">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-blue/5 rounded-full blur-[80px] group-hover:bg-brand-blue/10 transition-colors duration-500" />
+              <Target className="w-10 h-10 text-brand-blue mb-6" />
+              <h3 className="text-xs font-bold text-brand-blue uppercase tracking-wider mb-2 font-space">
                 Our Mission
               </h3>
-              <p className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white leading-snug font-poppins mb-4">
+              <p className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white leading-snug font-sora mb-4">
                 To empower businesses with cutting-edge technology & automation.
               </p>
-              <p className="text-slate-600 dark:text-gray-400 font-inter max-w-xl">
+              <p className="text-slate-600 dark:text-gray-400 font-manrope max-w-xl">
                 We build custom web systems to streamline regional operations,
                 removing manual bottlenecks so founders can focus on growth.
               </p>
@@ -367,13 +367,13 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
             >
               <div className="absolute bottom-0 right-0 w-48 h-48 bg-blue-500/5 rounded-full blur-[60px] group-hover:bg-blue-500/10 transition-colors duration-500" />
               <Eye className="w-10 h-10 text-blue-500 mb-6" />
-              <h3 className="text-xs font-bold text-blue-500 uppercase tracking-wider mb-2 font-space-grotesk">
+              <h3 className="text-xs font-bold text-blue-500 uppercase tracking-wider mb-2 font-space">
                 Our Vision
               </h3>
-              <p className="text-xl font-bold text-slate-900 dark:text-white leading-snug font-poppins mb-4">
+              <p className="text-xl font-bold text-slate-900 dark:text-white leading-snug font-sora mb-4">
                 To make enterprise-grade tech accessible.
               </p>
-              <p className="text-sm text-slate-600 dark:text-gray-400 font-inter">
+              <p className="text-sm text-slate-600 dark:text-gray-400 font-manrope">
                 Eliminating complex seat pricing and subscription locks for
                 ambitious brands.
               </p>
@@ -386,11 +386,11 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
             >
               <div className="flex flex-col md:flex-row gap-8 lg:gap-12 items-start md:items-center">
                 <div className="md:w-1/3">
-                  <Rocket className="w-10 h-10 text-brand-orange mb-4" />
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white font-poppins">
+                  <Rocket className="w-10 h-10 text-brand-blue mb-4" />
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white font-sora">
                     Core Values
                   </h3>
-                  <p className="text-sm text-slate-600 dark:text-gray-400 font-inter mt-2">
+                  <p className="text-sm text-slate-600 dark:text-gray-400 font-manrope mt-2">
                     The principles that guide every line of code we write.
                   </p>
                 </div>
@@ -417,12 +417,12 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
                       key={i}
                       className="flex items-start gap-3 p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02]"
                     >
-                      <span className="h-2 w-2 mt-1.5 rounded-full bg-brand-orange shrink-0" />
+                      <span className="h-2 w-2 mt-1.5 rounded-full bg-brand-blue shrink-0" />
                       <div>
-                        <strong className="block text-sm text-slate-900 dark:text-white font-poppins">
+                        <strong className="block text-sm text-slate-900 dark:text-white font-sora">
                           {val.title}
                         </strong>
-                        <span className="text-xs text-slate-600 dark:text-gray-400 font-inter">
+                        <span className="text-xs text-slate-600 dark:text-gray-400 font-manrope">
                           {val.desc}
                         </span>
                       </div>
@@ -439,10 +439,10 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
       <Section className="py-20 md:py-32 bg-slate-100 dark:bg-[#050A15] border-y border-slate-200 dark:border-white/5">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16 md:mb-24">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white font-poppins mb-6">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white font-sora mb-6">
               Our Philosophy
             </h2>
-            <p className="text-lg text-slate-600 dark:text-gray-400 font-inter">
+            <p className="text-lg text-slate-600 dark:text-gray-400 font-manrope">
               We don&apos;t just act as vendors; we act as your technical
               co-founders.
             </p>
@@ -456,13 +456,13 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
                   key={idx}
                   className="flex flex-col items-center text-center p-6"
                 >
-                  <div className="w-16 h-16 rounded-2xl bg-white dark:bg-[#0A1428] border border-slate-200 dark:border-brand-orange/20 shadow-lg flex items-center justify-center mb-6">
-                    <Icon className="w-8 h-8 text-brand-orange" />
+                  <div className="w-16 h-16 rounded-2xl bg-white dark:bg-[#0A1428] border border-slate-200 dark:border-brand-blue/20 shadow-lg flex items-center justify-center mb-6">
+                    <Icon className="w-8 h-8 text-brand-blue" />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 font-poppins">
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 font-sora">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-slate-600 dark:text-gray-400 font-inter leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-gray-400 font-manrope leading-relaxed">
                     {item.desc}
                   </p>
                 </div>
@@ -481,7 +481,7 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
                 The Experts
               </span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white font-poppins">
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white font-sora">
               Meet the people behind Adruva
             </h2>
           </div>
@@ -497,7 +497,7 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
               <motion.div
                 key={idx}
                 variants={fadeInUp}
-                className="group relative rounded-3xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#0A0A0A] overflow-hidden hover:border-brand-orange/30 dark:hover:border-brand-orange/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+                className="group relative rounded-3xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-[#0A0A0A] overflow-hidden hover:border-brand-blue/30 dark:hover:border-brand-blue/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
               >
                 <div className="aspect-square w-full p-6 flex items-center justify-center relative">
                   <div
@@ -522,10 +522,10 @@ export function AboutPageClient({ initialTeam }: AboutPageClientProps) {
                   <div className="absolute inset-0 m-auto w-32 h-32 rounded-full border border-slate-200 dark:border-white/5 scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500" />
                 </div>
                 <div className="p-5 text-center border-t border-slate-200 dark:border-white/5 bg-white dark:bg-transparent">
-                  <h4 className="text-sm md:text-base font-bold text-slate-900 dark:text-white font-poppins mb-1">
+                  <h4 className="text-sm md:text-base font-bold text-slate-900 dark:text-white font-sora mb-1">
                     {member.name}
                   </h4>
-                  <p className="text-xs text-slate-500 dark:text-gray-400 font-inter">
+                  <p className="text-xs text-slate-500 dark:text-gray-400 font-manrope">
                     {member.role}
                   </p>
                 </div>

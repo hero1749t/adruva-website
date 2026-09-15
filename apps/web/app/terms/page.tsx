@@ -51,10 +51,10 @@ export default function TermsPage() {
               >
                 Legal Contract
               </Badge>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold font-poppins text-secondary dark:text-white leading-tight tracking-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold font-sora text-secondary dark:text-white leading-tight tracking-tight">
                 Terms of Service
               </h1>
-              <div className="flex flex-wrap items-center gap-4 text-sm text-text-muted font-inter py-2 border-b border-border/60">
+              <div className="flex flex-wrap items-center gap-4 text-sm text-text-muted font-manrope py-2 border-b border-border/60">
                 <span className="flex items-center gap-1.5">
                   <Clock className="w-4 h-4 text-primary/80" />
                   Last Updated: {currentDate}
@@ -67,7 +67,7 @@ export default function TermsPage() {
             </div>
 
             {/* Document body using styled elements */}
-            <div className="prose prose-lg dark:prose-invert font-inter text-text-secondary dark:text-gray-300 space-y-6 leading-relaxed">
+            <div className="prose prose-lg dark:prose-invert font-manrope text-text-secondary dark:text-gray-300 space-y-6 leading-relaxed">
               <p>
                 Welcome to <strong>Adruva Solution</strong>. By accessing our
                 website, inquiring about our services, or signing a project
@@ -76,7 +76,7 @@ export default function TermsPage() {
                 engaging our services.
               </p>
 
-              <h2 className="text-xl md:text-2xl font-bold font-poppins text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
                 1. Acceptance of Terms
               </h2>
               <p>
@@ -88,7 +88,7 @@ export default function TermsPage() {
                 prohibited from using our site and services.
               </p>
 
-              <h2 className="text-xl md:text-2xl font-bold font-poppins text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
                 2. Scope of Services
               </h2>
               <p>
@@ -104,7 +104,7 @@ export default function TermsPage() {
                 general Terms.
               </p>
 
-              <h2 className="text-xl md:text-2xl font-bold font-poppins text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
                 3. Client Obligations
               </h2>
               <p>
@@ -126,7 +126,7 @@ export default function TermsPage() {
                 </li>
               </ul>
 
-              <h2 className="text-xl md:text-2xl font-bold font-poppins text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
                 4. Billing, Payments & Cancellations
               </h2>
               <p>
@@ -151,7 +151,7 @@ export default function TermsPage() {
                 </li>
               </ul>
 
-              <h2 className="text-xl md:text-2xl font-bold font-poppins text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
                 5. Intellectual Property Transfer
               </h2>
               <p>
@@ -168,7 +168,7 @@ export default function TermsPage() {
                 signed beforehand.
               </p>
 
-              <h2 className="text-xl md:text-2xl font-bold font-poppins text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
                 6. Governing Law & Dispute Resolution
               </h2>
               <p>
@@ -180,7 +180,7 @@ export default function TermsPage() {
                 in <strong>Rishikesh, Uttarakhand, India</strong>.
               </p>
 
-              <h2 className="text-xl md:text-2xl font-bold font-poppins text-secondary dark:text-white mt-8 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold font-sora text-secondary dark:text-white mt-8 mb-4">
                 7. Contact Information
               </h2>
               <p>

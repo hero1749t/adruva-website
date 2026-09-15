@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { ChevronUp } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { cn } from '@/lib/utils';
+import React, { useState, useEffect } from "react";
+import { ChevronUp } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 export function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,14 +17,14 @@ export function BackToTop() {
       }
     };
 
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
@@ -38,10 +38,10 @@ export function BackToTop() {
           transition={{ duration: 0.2 }}
           onClick={scrollToTop}
           className={cn(
-            'fixed bottom-24 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full shadow-lg border border-border/40 transition-colors',
-            'bg-background/80 text-foreground backdrop-blur-md hover:bg-brand-orange hover:text-white',
-            'focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2',
-            'md:bottom-28 md:right-8'
+            "fixed bottom-24 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full shadow-lg border border-border/40 transition-colors",
+            "bg-background/80 text-foreground backdrop-blur-md hover:bg-brand-blue hover:text-white",
+            "focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2",
+            "md:bottom-28 md:right-8",
           )}
           aria-label="Back to top"
         >

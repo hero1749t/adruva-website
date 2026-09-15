@@ -67,7 +67,7 @@ export function DynamicBackground() {
       const dotColor = dark
         ? "rgba(255, 255, 255, 0.04)"
         : "rgba(0, 0, 0, 0.05)";
-      const orangeGlow = dark ? "rgba(255, 107, 0, " : "rgba(255, 107, 0, ";
+      const orangeGlow = dark ? "rgba(8, 120, 249, " : "rgba(8, 120, 249, ";
       const blueGlow = dark ? "rgba(45, 140, 255, " : "rgba(45, 140, 255, ";
 
       // Loop through grid coordinates

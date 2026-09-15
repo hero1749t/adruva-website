@@ -238,7 +238,7 @@ export default function StaffManager() {
         </div>
         <Button
           onClick={() => setIsAddOpen(true)}
-          className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold gap-1.5 self-start sm:self-auto"
+          className="bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold gap-1.5 self-start sm:self-auto"
         >
           <UserPlus size={16} />
           Add Staff Member
@@ -440,7 +440,7 @@ export default function StaffManager() {
             {newUserRole === "manager" && (
               <div className="space-y-2 border-t border-slate-100 dark:border-slate-800 pt-3">
                 <label className="text-xs font-bold text-slate-600 dark:text-slate-400 flex items-center gap-1.5">
-                  <Shield size={13} className="text-brand-orange" />
+                  <Shield size={13} className="text-brand-blue" />
                   Grant Feature Access
                 </label>
                 <div className="grid grid-cols-1 gap-2 max-h-48 overflow-y-auto pr-2">
@@ -457,7 +457,7 @@ export default function StaffManager() {
                           onChange={() =>
                             handleToggleNewUserPermission(perm.key)
                           }
-                          className="h-3.5 w-3.5 rounded border-slate-300 dark:border-slate-800 accent-brand-orange cursor-pointer"
+                          className="h-3.5 w-3.5 rounded border-slate-300 dark:border-slate-800 accent-brand-blue cursor-pointer"
                         />
                         <div className="min-w-0 flex-1">
                           <div className="text-[11px] font-bold text-slate-800 dark:text-slate-200">
@@ -486,7 +486,7 @@ export default function StaffManager() {
               <Button
                 type="submit"
                 size="sm"
-                className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold gap-1.5"
+                className="bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold gap-1.5"
                 disabled={createMutation.isPending}
               >
                 {createMutation.isPending ? (
@@ -537,7 +537,7 @@ export default function StaffManager() {
                         type="checkbox"
                         checked={checked}
                         onChange={() => handleTogglePermission(perm.key)}
-                        className="h-3.5 w-3.5 rounded border-slate-300 dark:border-slate-800 accent-brand-orange cursor-pointer"
+                        className="h-3.5 w-3.5 rounded border-slate-300 dark:border-slate-800 accent-brand-blue cursor-pointer"
                       />
                       <div className="min-w-0 flex-1">
                         <div className="text-[11px] font-bold text-slate-800 dark:text-slate-200">
@@ -564,7 +564,7 @@ export default function StaffManager() {
             </Button>
             <Button
               size="sm"
-              className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold gap-1.5"
+              className="bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold gap-1.5"
               disabled={
                 updateMutation.isPending || selectedUser?.role === "owner"
               }

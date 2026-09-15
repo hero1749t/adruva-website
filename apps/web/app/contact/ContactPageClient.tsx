@@ -298,16 +298,16 @@ export function ContactPageClient() {
             <div className="lg:col-span-7">
               <Card className="border-border/80 bg-card rounded-2xl shadow-xl overflow-hidden">
                 <CardHeader className="bg-muted/10 p-6 md:p-8 border-b border-border/40">
-                  <CardTitle className="text-2xl font-bold font-poppins text-secondary dark:text-white">
+                  <CardTitle className="text-2xl font-bold font-sora text-secondary dark:text-white">
                     Send a Message
                   </CardTitle>
-                  <CardDescription className="text-text-muted mt-1.5 font-inter">
+                  <CardDescription className="text-text-muted mt-1.5 font-manrope">
                     Fill out the form below and our team will get back to you
                     within 24 hours.
                   </CardDescription>
                 </CardHeader>
 
-                <CardContent className="p-6 md:p-8 font-inter">
+                <CardContent className="p-6 md:p-8 font-manrope">
                   {/* Submit Status Inline Banners */}
                   {submitStatus === "success" && (
                     <div className="mb-6 p-4 rounded-xl bg-green-500/10 border border-green-500/20 text-green-700 dark:text-green-400 flex items-start gap-3">
@@ -352,13 +352,13 @@ export function ContactPageClient() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
-                          Full Name <span className="text-brand-orange">*</span>
+                          Full Name <span className="text-brand-blue">*</span>
                         </label>
                         <Input
                           type="text"
                           placeholder="e.g. Rahul Bisht"
                           {...register("fullName")}
-                          className={`border-border/80 focus-visible:ring-brand-orange/50 ${errors.fullName ? "border-red-500 focus-visible:ring-red-500 ring-red-500" : ""}`}
+                          className={`border-border/80 focus-visible:ring-brand-blue/50 ${errors.fullName ? "border-red-500 focus-visible:ring-red-500 ring-red-500" : ""}`}
                         />
                         {errors.fullName && (
                           <p className="text-xs text-red-500 mt-1">
@@ -370,13 +370,13 @@ export function ContactPageClient() {
                       <div className="space-y-2">
                         <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
                           Email Address{" "}
-                          <span className="text-brand-orange">*</span>
+                          <span className="text-brand-blue">*</span>
                         </label>
                         <Input
                           type="email"
                           placeholder="e.g. rahul@example.com"
                           {...register("email")}
-                          className={`border-border/80 focus-visible:ring-brand-orange/50 ${errors.email ? "border-red-500 focus-visible:ring-red-500 ring-red-500" : ""}`}
+                          className={`border-border/80 focus-visible:ring-brand-blue/50 ${errors.email ? "border-red-500 focus-visible:ring-red-500 ring-red-500" : ""}`}
                         />
                         {errors.email && (
                           <p className="text-xs text-red-500 mt-1">
@@ -391,13 +391,13 @@ export function ContactPageClient() {
                       <div className="space-y-2">
                         <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
                           Phone Number{" "}
-                          <span className="text-brand-orange">*</span>
+                          <span className="text-brand-blue">*</span>
                         </label>
                         <Input
                           type="tel"
                           placeholder="10-digit number"
                           {...register("phone")}
-                          className={`border-border/80 focus-visible:ring-brand-orange/50 ${errors.phone ? "border-red-500 focus-visible:ring-red-500 ring-red-500" : ""}`}
+                          className={`border-border/80 focus-visible:ring-brand-blue/50 ${errors.phone ? "border-red-500 focus-visible:ring-red-500 ring-red-500" : ""}`}
                         />
                         {errors.phone && (
                           <p className="text-xs text-red-500 mt-1">
@@ -414,7 +414,7 @@ export function ContactPageClient() {
                           type="text"
                           placeholder="Optional"
                           {...register("companyName")}
-                          className="border-border/80 focus-visible:ring-brand-orange/50"
+                          className="border-border/80 focus-visible:ring-brand-blue/50"
                         />
                         {errors.companyName && (
                           <p className="text-xs text-red-500 mt-1">
@@ -429,11 +429,11 @@ export function ContactPageClient() {
                       <div className="space-y-2">
                         <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
                           Service Interested{" "}
-                          <span className="text-brand-orange">*</span>
+                          <span className="text-brand-blue">*</span>
                         </label>
                         <select
                           {...register("serviceInterested")}
-                          className={`flex h-10 w-full rounded-md border border-border/80 bg-background px-3 py-2 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/50 disabled:cursor-not-allowed disabled:opacity-50 ${
+                          className={`flex h-10 w-full rounded-md border border-border/80 bg-background px-3 py-2 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/50 disabled:cursor-not-allowed disabled:opacity-50 ${
                             errors.serviceInterested
                               ? "border-red-500 focus-visible:ring-red-500"
                               : ""
@@ -456,11 +456,11 @@ export function ContactPageClient() {
                       <div className="space-y-2">
                         <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
                           Budget Range{" "}
-                          <span className="text-brand-orange">*</span>
+                          <span className="text-brand-blue">*</span>
                         </label>
                         <select
                           {...register("budgetRange")}
-                          className={`flex h-10 w-full rounded-md border border-border/80 bg-background px-3 py-2 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/50 disabled:cursor-not-allowed disabled:opacity-50 ${
+                          className={`flex h-10 w-full rounded-md border border-border/80 bg-background px-3 py-2 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/50 disabled:cursor-not-allowed disabled:opacity-50 ${
                             errors.budgetRange
                               ? "border-red-500 focus-visible:ring-red-500"
                               : ""
@@ -482,11 +482,11 @@ export function ContactPageClient() {
 
                       <div className="space-y-2">
                         <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
-                          Timeline <span className="text-brand-orange">*</span>
+                          Timeline <span className="text-brand-blue">*</span>
                         </label>
                         <select
                           {...register("timeline")}
-                          className={`flex h-10 w-full rounded-md border border-border/80 bg-background px-3 py-2 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/50 disabled:cursor-not-allowed disabled:opacity-50 ${
+                          className={`flex h-10 w-full rounded-md border border-border/80 bg-background px-3 py-2 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/50 disabled:cursor-not-allowed disabled:opacity-50 ${
                             errors.timeline
                               ? "border-red-500 focus-visible:ring-red-500"
                               : ""
@@ -511,13 +511,13 @@ export function ContactPageClient() {
                     <div className="space-y-2">
                       <label className="text-xs font-bold text-text-primary dark:text-white uppercase tracking-wider">
                         Project Details{" "}
-                        <span className="text-brand-orange">*</span>
+                        <span className="text-brand-blue">*</span>
                       </label>
                       <Textarea
                         rows={4}
                         placeholder="Tell us about your project requirements..."
                         {...register("message")}
-                        className={`border-border/80 focus-visible:ring-brand-orange/50 ${errors.message ? "border-red-500 focus-visible:ring-red-500 ring-red-500" : ""}`}
+                        className={`border-border/80 focus-visible:ring-brand-blue/50 ${errors.message ? "border-red-500 focus-visible:ring-red-500 ring-red-500" : ""}`}
                       />
                       {errors.message && (
                         <p className="text-xs text-red-500 mt-1">

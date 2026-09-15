@@ -186,12 +186,12 @@ export default function NotificationsBell() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-900 border border-transparent hover:border-slate-200 dark:hover:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-brand-orange dark:hover:text-brand-orange transition duration-200 cursor-pointer"
+        className="relative p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-900 border border-transparent hover:border-slate-200 dark:hover:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-brand-blue dark:hover:text-brand-blue transition duration-200 cursor-pointer"
         title="Notifications"
       >
         <Bell size={18} />
         {unreadCount > 0 && (
-          <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-brand-orange text-[9px] font-bold text-white shadow-sm ring-2 ring-white dark:ring-[#060814]">
+          <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-brand-blue text-[9px] font-bold text-white shadow-sm ring-2 ring-white dark:ring-[#060814]">
             {unreadCount}
           </span>
         )}
@@ -201,11 +201,11 @@ export default function NotificationsBell() {
         <div className="absolute right-0 mt-2.5 w-80 md:w-96 rounded-xl border border-slate-200 dark:border-slate-855 bg-white dark:bg-[#0c101d] shadow-2xl z-[9999] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
           <div className="px-4 py-3 bg-slate-50/50 dark:bg-slate-900/35 border-b border-slate-200 dark:border-slate-855 flex justify-between items-center">
             <div className="flex items-center gap-1.5">
-              <span className="text-xs font-bold text-slate-800 dark:text-white font-poppins">
+              <span className="text-xs font-bold text-slate-800 dark:text-white font-sora">
                 Recent Alerts
               </span>
               {unreadCount > 0 && (
-                <span className="bg-brand-orange/10 text-brand-orange px-2 py-0.5 rounded-full text-[9px] font-bold">
+                <span className="bg-brand-blue/10 text-brand-blue px-2 py-0.5 rounded-full text-[9px] font-bold">
                   {unreadCount} New
                 </span>
               )}
@@ -213,14 +213,14 @@ export default function NotificationsBell() {
             {unreadCount > 0 && (
               <button
                 onClick={handleMarkAllRead}
-                className="text-[10px] font-bold text-brand-orange hover:text-brand-orange-hover hover:underline cursor-pointer transition-colors"
+                className="text-[10px] font-bold text-brand-blue hover:text-brand-blue-dark hover:underline cursor-pointer transition-colors"
               >
                 Mark all read
               </button>
             )}
           </div>
 
-          <div className="max-h-[320px] overflow-y-auto divide-y divide-slate-100 dark:divide-slate-855/50 font-inter">
+          <div className="max-h-[320px] overflow-y-auto divide-y divide-slate-100 dark:divide-slate-855/50 font-manrope">
             {notifications.length === 0 ? (
               <div className="px-4 py-8 text-center text-xs text-slate-500 dark:text-slate-400">
                 You have no recent notification alerts.
@@ -233,7 +233,7 @@ export default function NotificationsBell() {
                     key={item.id}
                     className={`p-3.5 hover:bg-slate-50/40 dark:hover:bg-slate-900/10 flex gap-3 transition-colors ${
                       !item.isRead
-                        ? "bg-brand-orange/[0.015] border-l-2 border-brand-orange"
+                        ? "bg-brand-blue/[0.015] border-l-2 border-brand-blue"
                         : "border-l-2 border-transparent"
                     }`}
                   >
@@ -275,7 +275,7 @@ export default function NotificationsBell() {
                               handleMarkRead(item.id);
                               setIsOpen(false);
                             }}
-                            className="inline-flex items-center gap-1 text-[9px] font-bold text-brand-orange hover:text-brand-orange-hover hover:underline transition-colors"
+                            className="inline-flex items-center gap-1 text-[9px] font-bold text-brand-blue hover:text-brand-blue-dark hover:underline transition-colors"
                           >
                             <span>Open Log</span>
                             <ExternalLink size={9} />

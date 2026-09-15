@@ -84,7 +84,7 @@ export function CTASection({
               <span>30-Day Post-Launch Warranty</span>
             </div>
             <div className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-brand-orange" />
+              <Zap className="w-4 h-4 text-brand-blue" />
               <span>No Hidden Fees &bull; No Hourly Traps</span>
             </div>
           </div>

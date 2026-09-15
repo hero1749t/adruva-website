@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { XIcon } from 'lucide-react';
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { XIcon } from "lucide-react";
 
 interface DialogProps {
   open?: boolean;
@@ -18,7 +18,11 @@ const DialogContext = React.createContext<{
   setOpen: () => {},
 });
 
-export function Dialog({ children, open: controlledOpen, onOpenChange }: DialogProps) {
+export function Dialog({
+  children,
+  open: controlledOpen,
+  onOpenChange,
+}: DialogProps) {
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(false);
   const isControlled = controlledOpen !== undefined;
   const open = isControlled ? controlledOpen : uncontrolledOpen;
@@ -30,7 +34,7 @@ export function Dialog({ children, open: controlledOpen, onOpenChange }: DialogP
       }
       onOpenChange?.(newOpen);
     },
-    [isControlled, onOpenChange]
+    [isControlled, onOpenChange],
   );
 
   return (
@@ -40,7 +44,12 @@ export function Dialog({ children, open: controlledOpen, onOpenChange }: DialogP
   );
 }
 
-export function DialogTrigger({ render, ...props }: { render: React.ReactElement }) {
+export function DialogTrigger({
+  render,
+  ...props
+}: {
+  render: React.ReactElement;
+}) {
   const { setOpen } = React.useContext(DialogContext);
   return React.cloneElement(render, {
     onClick: (e: React.MouseEvent) => {
@@ -111,8 +120,8 @@ export function DialogContent({
       <DialogOverlay />
       <div
         className={cn(
-          'relative z-50 grid w-full max-w-[calc(100%-2rem)] gap-4 rounded-xl bg-card p-6 text-card-foreground shadow-lg border border-border sm:max-w-[425px] animation-in fade-in-0 zoom-in-95 duration-200',
-          className
+          "relative z-50 grid w-full max-w-[calc(100%-2rem)] gap-4 rounded-xl bg-card p-6 text-card-foreground shadow-lg border border-border sm:max-w-[425px] animation-in fade-in-0 zoom-in-95 duration-200",
+          className,
         )}
         {...props}
       >
@@ -132,10 +141,13 @@ export function DialogContent({
   );
 }
 
-export function DialogHeader({ className, ...props }: React.ComponentProps<'div'>) {
+export function DialogHeader({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
   return (
     <div
-      className={cn('flex flex-col gap-2 text-left', className)}
+      className={cn("flex flex-col gap-2 text-left", className)}
       {...props}
     />
   );
@@ -146,15 +158,15 @@ export function DialogFooter({
   showCloseButton = false,
   children,
   ...props
-}: React.ComponentProps<'div'> & {
+}: React.ComponentProps<"div"> & {
   showCloseButton?: boolean;
 }) {
   const { setOpen } = React.useContext(DialogContext);
   return (
     <div
       className={cn(
-        'flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:gap-2 mt-4',
-        className
+        "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:gap-2 mt-4",
+        className,
       )}
       {...props}
     >
@@ -168,12 +180,15 @@ export function DialogFooter({
   );
 }
 
-export function DialogTitle({ className, ...props }: React.ComponentProps<'h2'>) {
+export function DialogTitle({
+  className,
+  ...props
+}: React.ComponentProps<"h2">) {
   return (
     <h2
       className={cn(
-        'font-poppins text-lg leading-none font-semibold tracking-tight',
-        className
+        "font-sora text-lg leading-none font-semibold tracking-tight",
+        className,
       )}
       {...props}
     />
@@ -183,13 +198,10 @@ export function DialogTitle({ className, ...props }: React.ComponentProps<'h2'>)
 export function DialogDescription({
   className,
   ...props
-}: React.ComponentProps<'p'>) {
+}: React.ComponentProps<"p">) {
   return (
     <p
-      className={cn(
-        'text-sm text-text-secondary font-inter',
-        className
-      )}
+      className={cn("text-sm text-text-secondary font-manrope", className)}
       {...props}
     />
   );

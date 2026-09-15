@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import { useTheme } from 'next-themes';
-import { Sun, Moon } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from '@/components/ui/button';
+import * as React from "react";
+import { useTheme } from "next-themes";
+import { Sun, Moon } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/components/ui/button";
 
 export function ThemeToggle() {
   const { setTheme, resolvedTheme } = useTheme();
@@ -17,16 +17,20 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <Button variant="ghost" size="icon" className="w-9 h-9 border border-border rounded-lg">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="w-9 h-9 border border-border rounded-lg"
+      >
         <span className="sr-only">Toggle theme</span>
       </Button>
     );
   }
 
-  const isDark = resolvedTheme === 'dark';
+  const isDark = resolvedTheme === "dark";
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const nextTheme = isDark ? 'light' : 'dark';
+    const nextTheme = isDark ? "light" : "dark";
     const doc = document as unknown as {
       startViewTransition?: (callback: () => void) => {
         ready: Promise<void>;
@@ -41,7 +45,7 @@ export function ThemeToggle() {
     const y = e.clientY;
     const endRadius = Math.hypot(
       Math.max(x, window.innerWidth - x),
-      Math.max(y, window.innerHeight - y)
+      Math.max(y, window.innerHeight - y),
     );
 
     const transition = doc.startViewTransition(() => {
@@ -51,7 +55,7 @@ export function ThemeToggle() {
     transition.ready.then(() => {
       const clipPath = [
         `circle(0px at ${x}px ${y}px)`,
-        `circle(${endRadius}px at ${x}px ${y}px)`
+        `circle(${endRadius}px at ${x}px ${y}px)`,
       ];
 
       document.documentElement.animate(
@@ -60,9 +64,9 @@ export function ThemeToggle() {
         },
         {
           duration: 480,
-          easing: 'ease-in-out',
-          pseudoElement: '::view-transition-new(root)',
-        }
+          easing: "ease-in-out",
+          pseudoElement: "::view-transition-new(root)",
+        },
       );
     });
   };
@@ -72,7 +76,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       onClick={handleToggle}
-      className="relative w-9 h-9 border border-border rounded-lg overflow-hidden hover:bg-black/5 dark:hover:bg-white/5 hover:border-brand-orange dark:hover:border-brand-orange hover:text-brand-orange dark:hover:text-brand-orange transition-all duration-200"
+      className="relative w-9 h-9 border border-border rounded-lg overflow-hidden hover:bg-black/5 dark:hover:bg-white/5 hover:border-brand-blue dark:hover:border-brand-blue hover:text-brand-blue dark:hover:text-brand-blue transition-all duration-200"
     >
       <span className="sr-only">Toggle theme</span>
       <AnimatePresence mode="wait" initial={false}>
@@ -83,7 +87,7 @@ export function ThemeToggle() {
             animate={{ y: 0, opacity: 1, rotate: 0 }}
             exit={{ y: -20, opacity: 0, rotate: 90 }}
             transition={{ duration: 0.2 }}
-            className="flex items-center justify-center text-brand-orange"
+            className="flex items-center justify-center text-brand-blue"
           >
             <Sun className="h-4 w-4" />
           </motion.div>

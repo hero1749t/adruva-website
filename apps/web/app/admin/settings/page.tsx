@@ -135,11 +135,11 @@ export default function SettingsManager() {
       {/* Header Panel */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-xl font-bold font-poppins text-slate-900 dark:text-white flex items-center gap-2">
-            <Settings className="w-5 h-5 text-brand-orange" />
+          <h2 className="text-xl font-bold font-sora text-slate-900 dark:text-white flex items-center gap-2">
+            <Settings className="w-5 h-5 text-brand-blue" />
             <span>Site Configuration</span>
           </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 font-inter">
+          <p className="text-xs text-slate-500 dark:text-slate-400 font-manrope">
             Manage general company data, communication tools, and API
             credentials
           </p>
@@ -158,7 +158,7 @@ export default function SettingsManager() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-semibold transition-all duration-200 ${
                   isTabActive
-                    ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/15 font-bold"
+                    ? "bg-brand-blue text-white shadow-lg shadow-brand-blue/15 font-bold"
                     : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900/50 hover:text-slate-950 dark:hover:text-white"
                 }`}
               >
@@ -176,7 +176,7 @@ export default function SettingsManager() {
               {/* Tab 1: General Details */}
               {activeTab === "general" && (
                 <div className="space-y-4">
-                  <h3 className="font-bold text-sm text-slate-900 dark:text-white font-poppins pb-2 border-b border-slate-100 dark:border-slate-800/60">
+                  <h3 className="font-bold text-sm text-slate-900 dark:text-white font-sora pb-2 border-b border-slate-100 dark:border-slate-800/60">
                     Company & Brand Details
                   </h3>
 
@@ -271,7 +271,7 @@ export default function SettingsManager() {
                         handleInputChange("description", e.target.value)
                       }
                       placeholder="Empowering businesses with modern high-performance cloud applications..."
-                      className="w-full min-h-[100px] p-3 text-xs rounded-md border border-slate-200 dark:border-slate-850 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none font-inter leading-relaxed"
+                      className="w-full min-h-[100px] p-3 text-xs rounded-md border border-slate-200 dark:border-slate-850 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none font-manrope leading-relaxed"
                     />
                   </div>
                 </div>
@@ -280,7 +280,7 @@ export default function SettingsManager() {
               {/* Tab 2: Third-party Integrations */}
               {activeTab === "integrations" && (
                 <div className="space-y-4">
-                  <h3 className="font-bold text-sm text-slate-900 dark:text-white font-poppins pb-2 border-b border-slate-100 dark:border-slate-800/60">
+                  <h3 className="font-bold text-sm text-slate-900 dark:text-white font-sora pb-2 border-b border-slate-100 dark:border-slate-800/60">
                     APIs & Integrations
                   </h3>
 
@@ -364,7 +364,7 @@ export default function SettingsManager() {
               {/* Tab 3: SMTP Settings */}
               {activeTab === "smtp" && (
                 <div className="space-y-4">
-                  <h3 className="font-bold text-sm text-slate-900 dark:text-white font-poppins pb-2 border-b border-slate-100 dark:border-slate-800/60">
+                  <h3 className="font-bold text-sm text-slate-900 dark:text-white font-sora pb-2 border-b border-slate-100 dark:border-slate-800/60">
                     Mail Server Configurations
                   </h3>
 
@@ -495,7 +495,7 @@ export default function SettingsManager() {
               {/* Tab 4: Social Handles */}
               {activeTab === "social" && (
                 <div className="space-y-4">
-                  <h3 className="font-bold text-sm text-slate-900 dark:text-white font-poppins pb-2 border-b border-slate-100 dark:border-slate-800/60">
+                  <h3 className="font-bold text-sm text-slate-900 dark:text-white font-sora pb-2 border-b border-slate-100 dark:border-slate-800/60">
                     Social Platform Handles
                   </h3>
 
@@ -600,7 +600,7 @@ export default function SettingsManager() {
                 <Button
                   type="submit"
                   disabled={saveMutation.isPending}
-                  className="bg-brand-orange hover:bg-brand-orange-hover text-white flex items-center gap-2"
+                  className="bg-brand-blue hover:bg-brand-blue-dark text-white flex items-center gap-2"
                 >
                   {saveMutation.isPending ? (
                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />

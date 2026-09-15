@@ -43,8 +43,8 @@ const departments = [
     title: "Brand, Design & Creative",
     desc: "Visual identity and design systems built with strategic intent.",
     tag: "UI/UX • Identity • Motion",
-    border: "border-brand-orange/30",
-    badgeColor: "text-brand-orange",
+    border: "border-brand-blue/30",
+    badgeColor: "text-brand-blue",
     link: "/services/ui-ux-design",
   },
 ];

@@ -162,39 +162,39 @@ export function CareersPageClient({
     <div className="w-full bg-background text-foreground transition-colors duration-300">
       {/* 1. Hero Section */}
       <Section className="relative pt-12 pb-16 md:pt-16 md:pb-24 overflow-hidden border-b border-border/10">
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-orange/5 via-transparent to-transparent pointer-events-none z-0" />
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-blue/5 via-transparent to-transparent pointer-events-none z-0" />
         <Container className="relative z-10">
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-orange/10 border border-brand-orange/20 text-xs font-semibold text-brand-orange mb-5 font-space-grotesk">
-              <Sparkle className="h-3.5 w-3.5 fill-brand-orange text-brand-orange animate-pulse" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-xs font-semibold text-brand-blue mb-5 font-space">
+              <Sparkle className="h-3.5 w-3.5 fill-brand-blue text-brand-teal animate-pulse" />
               JOIN OUR TEAM
             </div>
-            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-brand-navy dark:text-white mb-6 font-poppins">
+            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-brand-navy dark:text-white mb-6 font-sora">
               Where Your Career Meets{" "}
-              <span className="text-brand-orange">Real Impact</span>
+              <span className="text-brand-blue">Real Impact</span>
             </h1>
-            <p className="text-base text-muted-foreground leading-relaxed max-w-2xl mb-8 font-inter">
+            <p className="text-base text-muted-foreground leading-relaxed max-w-2xl mb-8 font-manrope">
               Build production software, handle advanced API automations, and
               expand your technical boundaries. Work directly with senior leads
               at a rapid startup pace.
             </p>
             <div className="flex flex-wrap gap-4 justify-center items-center mb-10 text-xs font-medium text-muted-foreground">
               <span className="flex items-center gap-1.5 bg-muted/40 px-3 py-1.5 rounded-lg border border-border/30">
-                <Briefcase className="h-3.5 w-3.5 text-brand-orange" />
+                <Briefcase className="h-3.5 w-3.5 text-brand-blue" />
                 {activeJobs.length} Open Positions
               </span>
               <span className="flex items-center gap-1.5 bg-muted/40 px-3 py-1.5 rounded-lg border border-border/30">
-                <Home className="h-3.5 w-3.5 text-brand-orange" />
+                <Home className="h-3.5 w-3.5 text-brand-blue" />
                 Hybrid / Remote Friendly
               </span>
               <span className="flex items-center gap-1.5 bg-muted/40 px-3 py-1.5 rounded-lg border border-border/30">
-                <Rocket className="h-3.5 w-3.5 text-brand-orange" />
+                <Rocket className="h-3.5 w-3.5 text-brand-blue" />
                 Zero Corporate Politics
               </span>
             </div>
             <Button
               onClick={scrollToPositions}
-              className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold rounded-lg px-6 h-11 flex items-center gap-1.5 shadow-[0_4px_14px_rgba(255,107,0,0.3)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold rounded-lg px-6 h-11 flex items-center gap-1.5 shadow-[0_4px_14px_rgba(8, 120, 249,0.3)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
             >
               View Open Positions
               <ArrowRight className="h-4 w-4" />
@@ -208,10 +208,10 @@ export function CareersPageClient({
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16">
             <SectionTag className="justify-center">OUR CULTURE</SectionTag>
-            <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
+            <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-sora">
               Why people love working here
             </h2>
-            <div className="h-1 w-12 bg-brand-orange rounded-full mt-4 mx-auto" />
+            <div className="h-1 w-12 bg-brand-blue rounded-full mt-4 mx-auto" />
           </div>
 
           <motion.div
@@ -229,7 +229,7 @@ export function CareersPageClient({
                   variants={fadeInUp}
                   className={cn(
                     "p-6 rounded-2xl border border-border/30 bg-card/50 transition-all duration-300 shadow-sm",
-                    "hover:border-brand-orange/30 hover:bg-card hover:shadow-[0_8px_30px_rgba(255,107,0,0.04)]",
+                    "hover:border-brand-blue/30 hover:bg-card hover:shadow-[0_8px_30px_rgba(8, 120, 249,0.04)]",
                     index === 6 && "md:col-span-2 lg:col-span-1",
                   )}
                 >
@@ -241,10 +241,10 @@ export function CareersPageClient({
                   >
                     <IconComp className="h-5 w-5" />
                   </div>
-                  <h3 className="text-sm font-bold text-brand-navy dark:text-white mb-2 font-poppins">
+                  <h3 className="text-sm font-bold text-brand-navy dark:text-white mb-2 font-sora">
                     {card.title}
                   </h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed font-inter">
+                  <p className="text-xs text-muted-foreground leading-relaxed font-manrope">
                     {card.desc}
                   </p>
                 </motion.div>
@@ -259,10 +259,10 @@ export function CareersPageClient({
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16">
             <SectionTag className="justify-center">WHAT YOU GET</SectionTag>
-            <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
+            <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-sora">
               Benefits that actually matter
             </h2>
-            <div className="h-1 w-12 bg-brand-orange rounded-full mt-4 mx-auto" />
+            <div className="h-1 w-12 bg-brand-blue rounded-full mt-4 mx-auto" />
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
@@ -270,10 +270,10 @@ export function CareersPageClient({
             <div className="p-8 rounded-2xl border border-border/40 bg-card shadow-sm flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-2 mb-6">
-                  <span className="p-1.5 rounded-lg bg-brand-orange/10 text-brand-orange">
+                  <span className="p-1.5 rounded-lg bg-brand-blue/10 text-brand-blue">
                     <Briefcase className="h-5 w-5" />
                   </span>
-                  <h3 className="text-base font-bold text-brand-navy dark:text-white font-poppins">
+                  <h3 className="text-base font-bold text-brand-navy dark:text-white font-sora">
                     Full-Time Roles
                   </h3>
                 </div>
@@ -281,14 +281,14 @@ export function CareersPageClient({
                   {fullTimePerks.map((perk, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <CheckCircle2 className="h-4 w-4 text-green-500 shrink-0 mt-0.5" />
-                      <span className="text-xs text-muted-foreground leading-relaxed font-inter">
+                      <span className="text-xs text-muted-foreground leading-relaxed font-manrope">
                         {perk}
                       </span>
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="border-t border-border/20 pt-6 mt-8 text-xs text-muted-foreground font-inter">
+              <div className="border-t border-border/20 pt-6 mt-8 text-xs text-muted-foreground font-manrope">
                 Structured contract milestones, hardware assistance, and yearly
                 performance adjustments.
               </div>
@@ -298,10 +298,10 @@ export function CareersPageClient({
             <div className="p-8 rounded-2xl border border-border/40 bg-card shadow-sm flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-2 mb-6">
-                  <span className="p-1.5 rounded-lg bg-brand-orange/10 text-brand-orange">
+                  <span className="p-1.5 rounded-lg bg-brand-blue/10 text-brand-blue">
                     <GraduationCap className="h-5 w-5" />
                   </span>
-                  <h3 className="text-base font-bold text-brand-navy dark:text-white font-poppins">
+                  <h3 className="text-base font-bold text-brand-navy dark:text-white font-sora">
                     Internship Roles
                   </h3>
                 </div>
@@ -309,14 +309,14 @@ export function CareersPageClient({
                   {internPerks.map((perk, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <CheckCircle2 className="h-4 w-4 text-green-500 shrink-0 mt-0.5" />
-                      <span className="text-xs text-muted-foreground leading-relaxed font-inter">
+                      <span className="text-xs text-muted-foreground leading-relaxed font-manrope">
                         {perk}
                       </span>
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="border-t border-border/20 pt-6 mt-8 text-xs text-muted-foreground font-inter">
+              <div className="border-t border-border/20 pt-6 mt-8 text-xs text-muted-foreground font-manrope">
                 Mentoring reviews, code audits, formal LOR certificate
                 validation, and full-time conversion evaluation.
               </div>
@@ -330,14 +330,14 @@ export function CareersPageClient({
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16">
             <SectionTag className="justify-center">HOW WE HIRE</SectionTag>
-            <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
+            <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-sora">
               Our default hiring process
             </h2>
-            <p className="text-xs text-muted-foreground mt-2 max-w-lg mx-auto font-inter">
+            <p className="text-xs text-muted-foreground mt-2 max-w-lg mx-auto font-manrope">
               We aim to review profiles and respond to candidates within 7
               business days.
             </p>
-            <div className="h-1 w-12 bg-brand-orange rounded-full mt-4 mx-auto" />
+            <div className="h-1 w-12 bg-brand-blue rounded-full mt-4 mx-auto" />
           </div>
 
           <div className="max-w-4xl mx-auto relative pl-6 md:pl-0">
@@ -356,7 +356,7 @@ export function CareersPageClient({
                     )}
                   >
                     {/* Circle badge */}
-                    <div className="absolute left-[-11px] md:left-1/2 md:-translate-x-1/2 h-8 w-8 rounded-full bg-background border-2 border-brand-orange flex items-center justify-center text-xs font-bold text-brand-orange font-space-grotesk z-10">
+                    <div className="absolute left-[-11px] md:left-1/2 md:-translate-x-1/2 h-8 w-8 rounded-full bg-background border-2 border-brand-blue flex items-center justify-center text-xs font-bold text-brand-blue font-space z-10">
                       {step.step}
                     </div>
 
@@ -369,10 +369,10 @@ export function CareersPageClient({
                       )}
                     >
                       <div className="p-5 rounded-2xl border border-border/30 bg-card/40 hover:bg-card transition-colors duration-300">
-                        <h4 className="text-xs font-bold uppercase tracking-wider text-brand-orange mb-1 font-space-grotesk">
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-brand-blue mb-1 font-space">
                           {step.title}
                         </h4>
-                        <p className="text-xs text-muted-foreground leading-relaxed font-inter">
+                        <p className="text-xs text-muted-foreground leading-relaxed font-manrope">
                           {step.description}
                         </p>
                       </div>
@@ -393,10 +393,10 @@ export function CareersPageClient({
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-16">
             <SectionTag className="justify-center">OPEN POSITIONS</SectionTag>
-            <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-poppins">
+            <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy dark:text-white font-sora">
               Find your role at Adruva
             </h2>
-            <div className="h-1 w-12 bg-brand-orange rounded-full mt-4 mx-auto" />
+            <div className="h-1 w-12 bg-brand-blue rounded-full mt-4 mx-auto" />
           </div>
 
           {/* Filter Bar */}
@@ -405,7 +405,7 @@ export function CareersPageClient({
             <div className="flex flex-col space-y-1.5">
               <label
                 htmlFor="job-type-select"
-                className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground font-space-grotesk"
+                className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground font-space"
               >
                 Job Type
               </label>
@@ -413,7 +413,7 @@ export function CareersPageClient({
                 id="job-type-select"
                 value={selectedType}
                 onChange={(e) => setSelectedType(e.target.value)}
-                className="w-full bg-background border border-border/50 text-xs px-3 h-10 rounded-lg text-foreground focus:outline-none focus:ring-1 focus:ring-brand-orange transition-all cursor-pointer"
+                className="w-full bg-background border border-border/50 text-xs px-3 h-10 rounded-lg text-foreground focus:outline-none focus:ring-1 focus:ring-brand-blue transition-all cursor-pointer"
               >
                 {JOB_TYPES.map((t: (typeof JOB_TYPES)[number]) => (
                   <option key={t.value} value={t.value}>
@@ -427,7 +427,7 @@ export function CareersPageClient({
             <div className="flex flex-col space-y-1.5">
               <label
                 htmlFor="dept-select"
-                className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground font-space-grotesk"
+                className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground font-space"
               >
                 Department
               </label>
@@ -435,7 +435,7 @@ export function CareersPageClient({
                 id="dept-select"
                 value={selectedDept}
                 onChange={(e) => setSelectedDept(e.target.value)}
-                className="w-full bg-background border border-border/50 text-xs px-3 h-10 rounded-lg text-foreground focus:outline-none focus:ring-1 focus:ring-brand-orange transition-all cursor-pointer"
+                className="w-full bg-background border border-border/50 text-xs px-3 h-10 rounded-lg text-foreground focus:outline-none focus:ring-1 focus:ring-brand-blue transition-all cursor-pointer"
               >
                 <option value="all">All Departments</option>
                 {uniqueDepartments.map((dept) => (
@@ -450,7 +450,7 @@ export function CareersPageClient({
             <div className="flex flex-col space-y-1.5">
               <label
                 htmlFor="loc-select"
-                className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground font-space-grotesk"
+                className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground font-space"
               >
                 Location
               </label>
@@ -458,7 +458,7 @@ export function CareersPageClient({
                 id="loc-select"
                 value={selectedLoc}
                 onChange={(e) => setSelectedLoc(e.target.value)}
-                className="w-full bg-background border border-border/50 text-xs px-3 h-10 rounded-lg text-foreground focus:outline-none focus:ring-1 focus:ring-brand-orange transition-all cursor-pointer"
+                className="w-full bg-background border border-border/50 text-xs px-3 h-10 rounded-lg text-foreground focus:outline-none focus:ring-1 focus:ring-brand-blue transition-all cursor-pointer"
               >
                 {LOCATIONS.map((l: (typeof LOCATIONS)[number]) => (
                   <option key={l.value} value={l.value}>
@@ -475,23 +475,23 @@ export function CareersPageClient({
               {filteredJobs.map((job) => (
                 <div
                   key={job.id}
-                  className="p-6 rounded-2xl border border-border/30 bg-card hover:border-brand-orange/30 hover:shadow-[0_8px_30px_rgba(255,107,0,0.03)] flex flex-col justify-between transition-all duration-300"
+                  className="p-6 rounded-2xl border border-border/30 bg-card hover:border-brand-blue/30 hover:shadow-[0_8px_30px_rgba(8, 120, 249,0.03)] flex flex-col justify-between transition-all duration-300"
                 >
                   <div>
                     {/* Header: Title + Badges */}
                     <div className="flex items-start justify-between gap-4 mb-4">
                       <div>
-                        <h3 className="text-base font-bold text-brand-navy dark:text-white font-poppins leading-snug">
+                        <h3 className="text-base font-bold text-brand-navy dark:text-white font-sora leading-snug">
                           {job.title}
                         </h3>
-                        <span className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider mt-1 block font-space-grotesk">
+                        <span className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider mt-1 block font-space">
                           {job.department}
                         </span>
                       </div>
                       <div className="flex flex-wrap gap-1.5 justify-end">
                         <Badge
                           variant="outline"
-                          className="bg-brand-orange/5 border-brand-orange/20 text-brand-orange text-[9px] px-2 py-0.5 rounded-full capitalize font-semibold"
+                          className="bg-brand-blue/5 border-brand-blue/20 text-brand-blue text-[9px] px-2 py-0.5 rounded-full capitalize font-semibold"
                         >
                           {job.type.replace("_", " ")}
                         </Badge>
@@ -505,18 +505,18 @@ export function CareersPageClient({
                     </div>
 
                     {/* Quick Info Row */}
-                    <div className="grid grid-cols-3 gap-2 py-3 border-y border-border/10 mb-4 text-[10px] text-muted-foreground font-medium font-space-grotesk">
+                    <div className="grid grid-cols-3 gap-2 py-3 border-y border-border/10 mb-4 text-[10px] text-muted-foreground font-medium font-space">
                       <span className="flex items-center gap-1">
-                        <Clock className="h-3 w-3 text-brand-orange" />
+                        <Clock className="h-3 w-3 text-brand-blue" />
                         {job.experience_level} Experience
                       </span>
                       <span className="flex items-center gap-1">
-                        <Users className="h-3 w-3 text-brand-orange" />
+                        <Users className="h-3 w-3 text-brand-blue" />
                         {job.openings_count} Opening
                         {job.openings_count > 1 ? "s" : ""}
                       </span>
                       <span className="flex items-center gap-1 justify-end text-right">
-                        <Calendar className="h-3 w-3 text-brand-orange" />
+                        <Calendar className="h-3 w-3 text-brand-blue" />
                         By{" "}
                         {new Date(job.application_deadline).toLocaleDateString(
                           "en-US",
@@ -526,7 +526,7 @@ export function CareersPageClient({
                     </div>
 
                     {/* Description preview */}
-                    <p className="text-xs text-muted-foreground leading-relaxed mb-6 font-inter line-clamp-3">
+                    <p className="text-xs text-muted-foreground leading-relaxed mb-6 font-manrope line-clamp-3">
                       {job.description}
                     </p>
                   </div>
@@ -534,15 +534,15 @@ export function CareersPageClient({
                   {/* Footer: Salary + Apply Button */}
                   <div className="flex items-center justify-between border-t border-border/10 pt-4 mt-auto">
                     <div className="flex flex-col">
-                      <span className="text-[9px] uppercase tracking-wider text-muted-foreground font-semibold font-space-grotesk">
+                      <span className="text-[9px] uppercase tracking-wider text-muted-foreground font-semibold font-space">
                         Stipend / Salary
                       </span>
-                      <span className="text-xs font-extrabold text-brand-navy dark:text-white font-poppins">
+                      <span className="text-xs font-extrabold text-brand-navy dark:text-white font-sora">
                         {job.salary_label}
                       </span>
                     </div>
                     <Link href={`/careers/${job.slug}`}>
-                      <Button className="bg-brand-orange hover:bg-brand-orange/90 text-white text-xs h-9 rounded-lg px-4 font-semibold flex items-center gap-1 transition-all duration-300">
+                      <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white text-xs h-9 rounded-lg px-4 font-semibold flex items-center gap-1 transition-all duration-300">
                         View & Apply
                         <ArrowRight className="h-3.5 w-3.5" />
                       </Button>
@@ -554,10 +554,10 @@ export function CareersPageClient({
           ) : (
             <div className="text-center py-16 px-6 border border-dashed border-border/50 rounded-2xl bg-card/40 max-w-md mx-auto">
               <Search className="h-10 w-10 text-muted-foreground/40 mx-auto mb-4" />
-              <h3 className="text-sm font-bold text-brand-navy dark:text-white mb-2 font-poppins">
+              <h3 className="text-sm font-bold text-brand-navy dark:text-white mb-2 font-sora">
                 No matching open positions
               </h3>
-              <p className="text-xs text-muted-foreground mb-6 font-inter">
+              <p className="text-xs text-muted-foreground mb-6 font-manrope">
                 We couldn&apos;t find any roles matching your current filters.
                 Try resetting the options.
               </p>

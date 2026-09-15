@@ -146,7 +146,7 @@ export default function DashboardCharts({
       .sort((a, b) => b.value - a.value);
 
     // Color mapping for SVG donut slices
-    const colors = ["#FF6B00", "#3B82F6", "#10B981", "#8B5CF6", "#6B7280"];
+    const colors = ["#0878F9", "#3B82F6", "#10B981", "#8B5CF6", "#6B7280"];
 
     // Calculate SVG stroke dashes
     let accumulatedPercent = 0;
@@ -176,11 +176,11 @@ export default function DashboardCharts({
       <div className="bg-white dark:bg-[#0c1220]/50 border border-slate-200/80 dark:border-slate-900/60 p-6 rounded-2xl shadow-sm">
         <div className="flex justify-between items-center mb-5 pb-3 border-b border-slate-100 dark:border-slate-900/40">
           <div className="space-y-0.5">
-            <h4 className="text-xs font-extrabold font-poppins text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-1.5">
-              <TrendingUp className="w-4 h-4 text-brand-orange" />
+            <h4 className="text-xs font-extrabold font-sora text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-1.5">
+              <TrendingUp className="w-4 h-4 text-brand-blue" />
               <span>Conversion Growth Trend</span>
             </h4>
-            <p className="text-[10px] text-slate-500 font-inter">
+            <p className="text-[10px] text-slate-500 font-manrope">
               Leads and inquiries submission volume
             </p>
           </div>
@@ -199,8 +199,8 @@ export default function DashboardCharts({
             >
               <defs>
                 <linearGradient id="leadsGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#FF6B00" stopOpacity="0.25" />
-                  <stop offset="100%" stopColor="#FF6B00" stopOpacity="0.0" />
+                  <stop offset="0%" stopColor="#0878F9" stopOpacity="0.25" />
+                  <stop offset="100%" stopColor="#0878F9" stopOpacity="0.0" />
                 </linearGradient>
               </defs>
 
@@ -244,7 +244,7 @@ export default function DashboardCharts({
                 <path
                   d={lineChartData.pathD}
                   fill="none"
-                  stroke="#FF6B00"
+                  stroke="#0878F9"
                   strokeWidth="2.5"
                   strokeLinecap="round"
                   className="transition-all duration-500"
@@ -258,7 +258,7 @@ export default function DashboardCharts({
                     cx={pt.x}
                     cy={pt.y}
                     r="3.5"
-                    fill="#FF6B00"
+                    fill="#0878F9"
                     stroke="#fff"
                     strokeWidth="1.5"
                     className="transition-all duration-300 group-hover/dot:r-5"
@@ -292,17 +292,17 @@ export default function DashboardCharts({
       <div className="bg-white dark:bg-[#0c1220]/50 border border-slate-200/80 dark:border-slate-900/60 p-6 rounded-2xl shadow-sm">
         <div className="flex justify-between items-center mb-5 pb-3 border-b border-slate-100 dark:border-slate-900/40">
           <div className="space-y-0.5">
-            <h4 className="text-xs font-extrabold font-poppins text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-1.5">
-              <PieIcon className="w-4 h-4 text-brand-orange" />
+            <h4 className="text-xs font-extrabold font-sora text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-1.5">
+              <PieIcon className="w-4 h-4 text-brand-blue" />
               <span>Services Breakdown</span>
             </h4>
-            <p className="text-[10px] text-slate-500 font-inter">
+            <p className="text-[10px] text-slate-500 font-manrope">
               Interest categories for client inquiry leads
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-6 h-44 font-inter">
+        <div className="flex items-center gap-6 h-44 font-manrope">
           {/* Donut SVG */}
           <div className="relative w-32 h-32 shrink-0">
             <svg
@@ -334,7 +334,7 @@ export default function DashboardCharts({
               ))}
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-              <span className="text-xl font-extrabold font-poppins text-slate-900 dark:text-white leading-none">
+              <span className="text-xl font-extrabold font-sora text-slate-900 dark:text-white leading-none">
                 {donutChartData.total}
               </span>
               <span className="text-[8px] text-slate-500 font-bold uppercase tracking-wider mt-0.5">
@@ -360,7 +360,7 @@ export default function DashboardCharts({
                       className="w-2.5 h-2.5 rounded shrink-0"
                       style={{ backgroundColor: slice.color }}
                     />
-                    <span className="font-semibold text-slate-700 dark:text-slate-300 truncate font-inter">
+                    <span className="font-semibold text-slate-700 dark:text-slate-300 truncate font-manrope">
                       {slice.name}
                     </span>
                   </div>

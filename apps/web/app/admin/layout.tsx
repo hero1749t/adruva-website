@@ -62,7 +62,7 @@ export default function AdminLayout({
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-[#060814]">
         <div className="flex flex-col items-center gap-3">
-          <div className="w-10 h-10 border-4 border-brand-orange border-t-transparent rounded-full animate-spin" />
+          <div className="w-10 h-10 border-4 border-brand-blue border-t-transparent rounded-full animate-spin" />
           <p className="text-slate-500 text-xs font-semibold tracking-wider animate-pulse uppercase">
             Loading Admin Console...
           </p>
@@ -200,15 +200,15 @@ export default function AdminLayout({
           }`}
           onClick={() => setMobileMenuOpen(false)}
         >
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-orange text-sm font-black text-white shadow-md shadow-brand-orange/20">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-blue text-sm font-black text-white shadow-md shadow-brand-blue/20">
             AD
           </span>
           {!isCollapsed && (
             <span className="min-w-0">
-              <span className="block truncate text-sm font-extrabold leading-tight text-slate-900 dark:text-white font-poppins tracking-tight">
+              <span className="block truncate text-sm font-extrabold leading-tight text-slate-900 dark:text-white font-sora tracking-tight">
                 Adruva Console
               </span>
-              <span className="mt-0.5 block text-[9px] font-bold uppercase tracking-[0.2em] text-brand-orange">
+              <span className="mt-0.5 block text-[9px] font-bold uppercase tracking-[0.2em] text-brand-blue">
                 Workspace
               </span>
             </span>
@@ -227,10 +227,10 @@ export default function AdminLayout({
       {!isCollapsed && (
         <div className="p-4 mx-4 mt-4 rounded-xl border border-slate-200 dark:border-slate-900 bg-slate-50 dark:bg-slate-950/40 hidden lg:block">
           <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-            <Sparkles size={12} className="text-brand-orange" />
+            <Sparkles size={12} className="text-brand-blue" />
             <span>Interactive Console</span>
           </div>
-          <p className="mt-1 text-[11px] leading-normal text-slate-600 dark:text-slate-500 font-inter">
+          <p className="mt-1 text-[11px] leading-normal text-slate-600 dark:text-slate-500 font-manrope">
             Monitor client inquiries, post jobs, and manage sitemaps.
           </p>
         </div>
@@ -245,7 +245,7 @@ export default function AdminLayout({
       </button>
 
       {/* Navigation Groups */}
-      <nav className="min-h-0 flex-1 overflow-y-auto px-3 py-6 space-y-4 font-inter">
+      <nav className="min-h-0 flex-1 overflow-y-auto px-3 py-6 space-y-4 font-manrope">
         {navGroups.map((group) => {
           const userPermissions = session?.user?.permissions || [];
           const visibleItems = group.items.filter((item) => {
@@ -265,7 +265,7 @@ export default function AdminLayout({
           return (
             <section key={group.title} className="space-y-1">
               {!isCollapsed ? (
-                <h4 className="px-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 py-1.5 font-poppins">
+                <h4 className="px-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 py-1.5 font-sora">
                   {group.title}
                 </h4>
               ) : (
@@ -302,18 +302,18 @@ export default function AdminLayout({
                         "group relative flex min-h-10 items-center gap-3 rounded-xl px-3 text-xs font-semibold outline-none transition-all duration-150",
                         isCollapsed ? "lg:justify-center lg:px-0" : "",
                         active
-                          ? "bg-brand-orange/10 dark:bg-slate-900/60 text-brand-orange dark:text-white shadow-sm ring-1 ring-brand-orange/20 dark:ring-slate-800/40"
+                          ? "bg-brand-blue/10 dark:bg-slate-900/60 text-brand-blue dark:text-white shadow-sm ring-1 ring-brand-blue/20 dark:ring-slate-800/40"
                           : "text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900/30 hover:text-slate-900 dark:hover:text-white",
                       ].join(" ")}
                     >
                       {active && !isCollapsed && (
-                        <span className="absolute left-0 top-2.5 h-5 w-1 rounded-r-full bg-brand-orange" />
+                        <span className="absolute left-0 top-2.5 h-5 w-1 rounded-r-full bg-brand-blue" />
                       )}
                       <span
                         className={[
                           "flex h-7 w-7 shrink-0 items-center justify-center rounded-lg transition-transform duration-200 group-hover:scale-105",
                           active
-                            ? "bg-brand-orange text-white shadow-md shadow-brand-orange/20"
+                            ? "bg-brand-blue text-white shadow-md shadow-brand-blue/20"
                             : "bg-slate-50 dark:bg-slate-950 text-slate-400 dark:text-slate-500 border border-slate-200 dark:border-slate-900 group-hover:bg-slate-100 dark:group-hover:bg-slate-900 group-hover:text-slate-700 dark:group-hover:text-white",
                         ].join(" ")}
                       >
@@ -354,12 +354,12 @@ export default function AdminLayout({
             isCollapsed ? "lg:justify-center lg:p-1.5" : ""
           }`}
         >
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold text-brand-orange font-poppins">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold text-brand-blue font-sora">
             {userInitial}
           </span>
           {!isCollapsed && (
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-semibold text-slate-900 dark:text-white leading-tight truncate font-inter">
+              <p className="text-xs font-semibold text-slate-900 dark:text-white leading-tight truncate font-manrope">
                 {session.user?.name || "Admin"}
               </p>
               <p className="text-[10px] text-slate-500 truncate capitalize font-mono mt-0.5">
@@ -402,7 +402,7 @@ export default function AdminLayout({
       {/* Main Container */}
       <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden relative">
         {/* Glowing Background Mesh */}
-        <div className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-brand-orange/5 dark:bg-brand-orange/[0.015] rounded-full blur-[120px] pointer-events-none -z-10" />
+        <div className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-brand-blue/5 dark:bg-brand-blue/[0.015] rounded-full blur-[120px] pointer-events-none -z-10" />
 
         {/* Top Navbar */}
         <header className="h-16 border-b border-slate-200 dark:border-slate-900/60 bg-white/80 dark:bg-[#060814]/80 backdrop-blur-md sticky top-0 z-10 flex items-center justify-between px-6 md:px-8 transition-colors duration-300">
@@ -414,8 +414,8 @@ export default function AdminLayout({
             >
               <Menu size={18} />
             </button>
-            <h1 className="text-base font-bold font-poppins tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              <Shield size={16} className="text-brand-orange" />
+            <h1 className="text-base font-bold font-sora tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+              <Shield size={16} className="text-brand-blue" />
               <span>
                 {navGroups
                   .flatMap((g) => g.items)

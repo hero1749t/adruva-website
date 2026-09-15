@@ -46,7 +46,7 @@ export async function GET(request: Request) {
               letterSpacing: "-1px",
             }}
           >
-            Adruva<span style={{ color: "#FF6B00" }}>.</span>
+            Adruva<span style={{ color: "#0878F9" }}>.</span>
           </div>
           {type !== "default" && (
             <div
@@ -54,12 +54,12 @@ export async function GET(request: Request) {
                 fontSize: "14px",
                 fontWeight: "bold",
                 textTransform: "uppercase",
-                color: "#FF6B00",
+                color: "#0878F9",
                 letterSpacing: "2px",
-                border: "1px solid rgba(255, 107, 0, 0.3)",
+                border: "1px solid rgba(8, 120, 249, 0.3)",
                 padding: "6px 12px",
                 borderRadius: "100px",
-                backgroundColor: "rgba(255, 107, 0, 0.05)",
+                backgroundColor: "rgba(8, 120, 249, 0.05)",
               }}
             >
               {type}
@@ -116,7 +116,7 @@ export async function GET(request: Request) {
           <div
             style={{
               fontSize: "18px",
-              color: "#FF6B00",
+              color: "#0878F9",
               fontWeight: "bold",
               letterSpacing: "1px",
             }}

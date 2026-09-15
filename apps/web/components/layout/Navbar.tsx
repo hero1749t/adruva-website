@@ -28,6 +28,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { LanguageSelector } from "@/components/ui/LanguageSelector";
 import { MobileMenu } from "./MobileMenu";
 import Image from "next/image";
 
@@ -102,31 +103,6 @@ export function Navbar() {
 
   useEffect(() => {
     setSupportsHover(window.matchMedia("(hover: hover)").matches);
-
-    // Initialize Google Translate Element Widget
-    if (typeof window !== "undefined") {
-      if (!document.getElementById("google-translate-script")) {
-        const script = document.createElement("script");
-        script.id = "google-translate-script";
-        script.src =
-          "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-        script.async = true;
-        document.body.appendChild(script);
-      }
-
-      (window as any).googleTranslateElementInit = () => {
-        new (window as any).google.translate.TranslateElement(
-          {
-            pageLanguage: "en",
-            includedLanguages: "en,id,de,ko,ja,zh-CN,nl,ru,it,es,fr",
-            layout: (window as any).google.translate.TranslateElement
-              .InlineLayout.SIMPLE,
-            autoDisplay: false,
-          },
-          "google_translate_element",
-        );
-      };
-    }
 
     const sentinel = sentinelRef.current;
     if (!sentinel) return;
@@ -367,12 +343,12 @@ export function Navbar() {
 
           {/* Action Actions Flex wrapper */}
           <div className="flex items-center gap-3">
-            <div id="google_translate_element" className="scale-90" />
+            <LanguageSelector />
 
             <div className="hidden md:flex items-center gap-4 h-16">
               <ThemeToggle />
               <Link href="/contact">
-                <Button className="bg-brand-blue hover:bg-brand-blue-dark text-white text-xs px-5 h-9 rounded-lg font-semibold font-space flex items-center gap-1.5 shadow-[0_4px_14px_rgba(8,120,249,0.3)] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
+                <Button className="bg-brand-blue hover:bg-brand-blue-dark text-white text-xs px-5 h-9 rounded-lg font-semibold font-space flex items-center gap-1.5 shadow-[0_4px_14px_rgba(8,120,249,0.35)] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
                   <Calendar className="h-3.5 w-3.5" />
                   Book a Consultation &rarr;
                 </Button>

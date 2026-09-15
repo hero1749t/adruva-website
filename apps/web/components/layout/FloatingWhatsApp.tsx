@@ -57,7 +57,7 @@ export function FloatingWhatsApp({
       />
       <div className="fixed z-50 hidden md:flex items-center gap-3 bottom-8 right-8 group">
         {/* Tooltip */}
-        <div className="opacity-0 translate-x-2 pointer-events-none group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out bg-[#111b21] text-white text-xs font-semibold px-3.5 py-2 rounded-xl shadow-xl whitespace-nowrap font-inter flex items-center gap-1.5">
+        <div className="opacity-0 translate-x-2 pointer-events-none group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out bg-[#111b21] text-white text-xs font-semibold px-3.5 py-2 rounded-xl shadow-xl whitespace-nowrap font-manrope flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-[#25d366] shrink-0 animate-pulse" />
           Chat with us on WhatsApp
         </div>

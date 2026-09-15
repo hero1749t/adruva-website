@@ -299,16 +299,16 @@ export default function ProjectsManager() {
       {/* Header Panel */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-xl font-bold font-poppins text-slate-900 dark:text-white">
+          <h2 className="text-xl font-bold font-sora text-slate-900 dark:text-white">
             Case Studies
           </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 font-inter">
+          <p className="text-xs text-slate-500 dark:text-slate-400 font-manrope">
             Manage client portfolio work and success stories
           </p>
         </div>
         <Button
           onClick={handleOpenNew}
-          className="bg-brand-orange hover:bg-brand-orange-hover text-white flex items-center gap-2"
+          className="bg-brand-blue hover:bg-brand-blue-dark text-white flex items-center gap-2"
         >
           <Plus className="w-4 h-4" />
           <span>Add Case Study</span>
@@ -323,7 +323,7 @@ export default function ProjectsManager() {
           placeholder="Search case studies by title..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 h-9 text-xs focus:ring-1 focus:ring-brand-orange focus:border-brand-orange max-w-sm"
+          className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-850 h-9 text-xs focus:ring-1 focus:ring-brand-blue focus:border-brand-blue max-w-sm"
         />
       </Card>
 
@@ -451,7 +451,7 @@ export default function ProjectsManager() {
                               variant="ghost"
                               size="sm"
                               onClick={() => handleEdit(project)}
-                              className="h-8 w-8 p-0 text-slate-600 hover:text-brand-orange hover:bg-brand-orange/5 dark:text-slate-400"
+                              className="h-8 w-8 p-0 text-slate-600 hover:text-brand-blue hover:bg-brand-blue/5 dark:text-slate-400"
                             >
                               <Edit className="w-3.5 h-3.5" />
                             </Button>
@@ -480,7 +480,7 @@ export default function ProjectsManager() {
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="sm:max-w-2xl bg-white dark:bg-[#151f32] border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl overflow-y-auto max-h-[85vh]">
           <DialogHeader>
-            <DialogTitle className="font-poppins">
+            <DialogTitle className="font-sora">
               {editingProject ? "Edit Case Study" : "Create Case Study"}
             </DialogTitle>
             <DialogDescription className="text-slate-500 dark:text-slate-400 text-xs">
@@ -649,7 +649,7 @@ export default function ProjectsManager() {
                     type="button"
                     size="sm"
                     onClick={addTech}
-                    className="bg-brand-orange hover:bg-brand-orange-hover text-white"
+                    className="bg-brand-blue hover:bg-brand-blue-dark text-white"
                   >
                     Add Tech
                   </Button>
@@ -693,7 +693,7 @@ export default function ProjectsManager() {
                   <input
                     id="isFeatured"
                     type="checkbox"
-                    className="w-4 h-4 rounded border-slate-300 dark:border-slate-700 bg-slate-50 text-brand-orange focus:ring-brand-orange"
+                    className="w-4 h-4 rounded border-slate-300 dark:border-slate-700 bg-slate-50 text-brand-blue focus:ring-brand-blue"
                     {...register("isFeatured")}
                   />
                   <Label
@@ -717,7 +717,7 @@ export default function ProjectsManager() {
               <Button
                 type="submit"
                 disabled={createMutation.isPending || updateMutation.isPending}
-                className="bg-brand-orange hover:bg-brand-orange-hover text-white"
+                className="bg-brand-blue hover:bg-brand-blue-dark text-white"
               >
                 {createMutation.isPending || updateMutation.isPending
                   ? "Saving..."
@@ -732,7 +732,7 @@ export default function ProjectsManager() {
       <Dialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
         <DialogContent className="sm:max-w-md bg-white dark:bg-[#151f32] border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl">
           <DialogHeader>
-            <DialogTitle className="font-poppins flex items-center gap-2">
+            <DialogTitle className="font-sora flex items-center gap-2">
               <Trash className="w-5 h-5 text-red-500" />
               <span>Delete Case Study</span>
             </DialogTitle>

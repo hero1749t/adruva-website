@@ -48,8 +48,8 @@ const steps = [
     icon: TrendingUp,
     title: "Deliver Meaningful ROI",
     desc: "We turn technology into commercial pipeline. Technical SEO, high-converting checkout funnels, and continuous conversion optimization.",
-    color: "text-brand-orange",
-    border: "border-brand-orange/30",
+    color: "text-brand-blue",
+    border: "border-brand-blue/30",
   },
 ];
 

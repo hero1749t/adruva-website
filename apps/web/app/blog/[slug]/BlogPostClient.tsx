@@ -123,7 +123,7 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                     className={cn(
                       "px-2 py-0.5 rounded transition-colors text-[10px] font-bold uppercase",
                       post.language === "en"
-                        ? "bg-brand-orange text-white"
+                        ? "bg-brand-blue text-white"
                         : "hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400",
                     )}
                   >
@@ -136,7 +136,7 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                       className={cn(
                         "px-2 py-0.5 rounded transition-colors text-[10px] font-bold uppercase",
                         post.language === trans.language
-                          ? "bg-brand-orange text-white"
+                          ? "bg-brand-blue text-white"
                           : "hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400",
                       )}
                     >
@@ -152,7 +152,7 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                 {post.category}
               </Badge>
 
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold font-poppins text-secondary dark:text-white leading-tight tracking-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold font-sora text-secondary dark:text-white leading-tight tracking-tight">
                 {post.title}
               </h1>
 
@@ -174,7 +174,7 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                 </div>
 
                 {/* Date and Time */}
-                <div className="flex items-center justify-center space-x-4 text-sm text-text-muted font-inter">
+                <div className="flex items-center justify-center space-x-4 text-sm text-text-muted font-manrope">
                   <span className="flex items-center gap-1.5">
                     <Calendar className="w-4 h-4 text-primary/80" />
                     {post.publishedDate}
@@ -209,7 +209,7 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
             </div>
 
             {/* Rich Text Body */}
-            <div className="mt-8 font-inter">
+            <div className="mt-8 font-manrope">
               <BlogContentRenderer node={post.content} />
             </div>
 
@@ -306,7 +306,7 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                   >
                     RECOMMENDED
                   </Badge>
-                  <h2 className="text-2xl md:text-3xl font-bold font-poppins text-secondary dark:text-white mt-2">
+                  <h2 className="text-2xl md:text-3xl font-bold font-sora text-secondary dark:text-white mt-2">
                     Related Articles
                   </h2>
                 </div>
@@ -353,7 +353,7 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                     </Link>
 
                     <CardHeader className="p-5 pb-2 space-y-2">
-                      <div className="flex items-center space-x-3 text-[10px] text-text-muted font-inter">
+                      <div className="flex items-center space-x-3 text-[10px] text-text-muted font-manrope">
                         <span className="flex items-center gap-1">
                           <Calendar className="w-3 h-3 text-primary/70" />
                           {relatedPost.publishedDate}
@@ -367,14 +367,14 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
                         href={`/blog/${relatedPost.slug}`}
                         className="block group-hover:text-primary transition-colors duration-200"
                       >
-                        <h3 className="text-base font-bold font-poppins text-secondary dark:text-white line-clamp-2 leading-snug">
+                        <h3 className="text-base font-bold font-sora text-secondary dark:text-white line-clamp-2 leading-snug">
                           {relatedPost.title}
                         </h3>
                       </Link>
                     </CardHeader>
 
                     <CardContent className="p-5 pt-0 flex-grow">
-                      <p className="text-xs text-text-muted dark:text-gray-300 line-clamp-2 leading-relaxed font-inter">
+                      <p className="text-xs text-text-muted dark:text-gray-300 line-clamp-2 leading-relaxed font-manrope">
                         {relatedPost.summary}
                       </p>
                     </CardContent>

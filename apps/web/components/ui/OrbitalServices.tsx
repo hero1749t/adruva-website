@@ -87,11 +87,11 @@ function OrbitingNode({ service, angle, isDragging }: OrbitingNodeProps) {
       className="absolute flex flex-col items-center gap-1.5 pointer-events-auto"
     >
       {/* Node Button - Large, Visible, High Contrast */}
-      <div className="w-11 h-11 md:w-13 md:h-13 rounded-full bg-zinc-950 border-2 border-white/20 shadow-[0_5px_12px_rgba(0,0,0,0.6)] flex items-center justify-center relative hover:border-brand-orange hover:shadow-[0_0_15px_rgba(255,107,0,0.35)] transition-all duration-300">
+      <div className="w-11 h-11 md:w-13 md:h-13 rounded-full bg-zinc-950 border-2 border-white/20 shadow-[0_5px_12px_rgba(0,0,0,0.6)] flex items-center justify-center relative hover:border-brand-blue hover:shadow-[0_0_15px_rgba(8, 120, 249,0.35)] transition-all duration-300">
         <service.icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
 
         {/* Glowing Orange Active Indicator Dot */}
-        <div className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-brand-orange rounded-full shadow-[0_0_6px_rgba(255,107,0,0.9)] border border-black" />
+        <div className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-brand-blue rounded-full shadow-[0_0_6px_rgba(8, 120, 249,0.9)] border border-black" />
       </div>
 
       {/* Description Label - Visible and High-Quality */}
@@ -181,7 +181,7 @@ export function OrbitalServices() {
     >
       {/* Background Ambience Glow */}
       <div className="absolute inset-0 flex items-center justify-center -z-20 pointer-events-none">
-        <div className="w-[300px] h-[300px] bg-brand-orange/5 rounded-full blur-[90px]" />
+        <div className="w-[300px] h-[300px] bg-brand-blue/5 rounded-full blur-[90px]" />
         <div className="absolute w-[200px] h-[200px] bg-brand-blue/5 rounded-full blur-[70px] translate-x-12 -translate-y-12" />
       </div>
 
@@ -260,8 +260,8 @@ export function OrbitalServices() {
             <div className="w-24 h-6 bg-brand-blue/20 rounded-full blur-xl mb-4 pointer-events-none" />
 
             {/* Top platform */}
-            <div className="w-40 h-10 bg-gradient-to-b from-zinc-800 to-zinc-950 rounded-[100%] border border-white/10 shadow-[0_0_20px_rgba(255,107,0,0.1)_inset] relative flex items-center justify-center">
-              <div className="w-28 h-5 rounded-[100%] border border-brand-orange/20" />
+            <div className="w-40 h-10 bg-gradient-to-b from-zinc-800 to-zinc-950 rounded-[100%] border border-white/10 shadow-[0_0_20px_rgba(8, 120, 249,0.1)_inset] relative flex items-center justify-center">
+              <div className="w-28 h-5 rounded-[100%] border border-brand-blue/20" />
             </div>
 
             {/* Lower thickness */}

@@ -161,16 +161,16 @@ export default function InquiriesManager() {
       {/* Header Panel */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-xl font-bold font-poppins text-slate-900 dark:text-white">
+          <h2 className="text-xl font-bold font-sora text-slate-900 dark:text-white">
             Leads & Inquiries
           </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 font-inter">
+          <p className="text-xs text-slate-500 dark:text-slate-400 font-manrope">
             Monitor website inquiries and CRM push logs
           </p>
         </div>
         <Button
           onClick={handleExport}
-          className="bg-brand-orange hover:bg-brand-orange-hover text-white flex items-center gap-2"
+          className="bg-brand-blue hover:bg-brand-blue-dark text-white flex items-center gap-2"
         >
           <Download className="w-4 h-4" />
           <span>Export CSV</span>
@@ -265,7 +265,7 @@ export default function InquiriesManager() {
                       </td>
                       <td className="px-6 py-4">
                         {inq.crmLeadId ? (
-                          <span className="font-mono text-xs text-brand-orange bg-brand-orange/5 px-2 py-0.5 rounded border border-brand-orange/10">
+                          <span className="font-mono text-xs text-brand-blue bg-brand-blue/5 px-2 py-0.5 rounded border border-brand-blue/10">
                             {inq.crmLeadId}
                           </span>
                         ) : (
@@ -337,8 +337,8 @@ export default function InquiriesManager() {
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="sm:max-w-xl bg-white dark:bg-[#151f32] border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="font-poppins flex items-center gap-2">
-              <Info className="w-5 h-5 text-brand-orange" />
+            <DialogTitle className="font-sora flex items-center gap-2">
+              <Info className="w-5 h-5 text-brand-blue" />
               <span>Inquiry Details</span>
             </DialogTitle>
             <DialogDescription className="text-slate-500 dark:text-slate-400 text-xs">
@@ -505,7 +505,7 @@ export default function InquiriesManager() {
               {activeInquiry?.email && (
                 <a
                   href={`mailto:${activeInquiry.email}?subject=Regarding your inquiry at Adruva Solution`}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-orange hover:bg-brand-orange-hover text-white text-xs font-bold transition shadow-sm"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-blue hover:bg-brand-blue-dark text-white text-xs font-bold transition shadow-sm"
                 >
                   <Mail className="w-3.5 h-3.5" />
                   <span>Mail Client</span>
